@@ -1,0 +1,201 @@
+.library-detail {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #eee;
+}
+
+.library-detail h1 {
+  color: #90caf9;
+  margin-bottom: 20px;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.library-detail h3 {
+  color: #90caf9;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+.library-detail h4 {
+  color: #a0c3ff;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.library-detail p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.library-detail strong {
+  color: #bbb;
+}
+
+.library-detail ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 20px;
+}
+
+.library-detail li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.library-detail a {
+  color: #82aaff;
+  text-decoration: none;
+}
+
+.library-detail a:hover {
+  text-decoration: underline;
+}
+
+.library-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.library-detail th,
+.library-detail td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: left;
+}
+
+.library-detail th {
+  background-color: #333;
+  color: #90caf9;
+}
+
+.library-detail tr:nth-child(even) {
+  background-color: #222;
+}
+
+.telemetry-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.telemetry-tabs button {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.telemetry-tabs button:hover {
+  background-color: #444;
+  border-color: #82aaff;
+}
+
+.telemetry-tabs button.active {
+  background-color: #82aaff;
+  color: #1a1a1a;
+  border-color: #82aaff;
+}
+
+.back-button {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #777;
+}
+
+.telemetry-content {
+  margin-top: 20px;
+}
+
+.telemetry-section {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.telemetry-section h5 {
+  color: #90caf9;
+  font-size: 1.3em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.attributes-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  list-style-type: circle;
+}
+
+.metrics-section {
+  background-color: #2c3e50; /* Distinct background for metrics */
+}
+
+.spans-section {
+  background-color: #3e2c50; /* Distinct background for spans */
+}
+
+.metric-header, .span-header {
+  margin-bottom: 10px;
+}
+
+.metric-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #a0c3ff;
+}
+
+.metric-details, .span-kind {
+  font-size: 1em;
+  color: #bbb;
+}
+
+.metric-description {
+  margin-bottom: 15px;
+}
+
+.attributes-section {
+  border-top: 1px solid #555;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+.attributes-section h6 {
+  color: #a0c3ff;
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.attributes-list li {
+  background-color: #3c3c3c;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
