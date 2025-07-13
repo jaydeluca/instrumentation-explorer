@@ -5,7 +5,7 @@
 *   **Project Scaffolding:** A React application initialized with Vite.
 *   **Data Loading and Parsing:** A script successfully parses `instrumentation-list.yaml` into a JSON format (`instrumentation-list.json`) consumable by the frontend.
 *   **Library List View:** Displays a list of all instrumentation libraries with their names and descriptions.
-*   **Search and Filter Functionality:** Users can search and filter the library list by name.
+*   **Search and Filter Functionality:** Users can search and filter the library list by name, semantic convention, telemetry type (spans/metrics), and target version (javaagent/library). Filters are additive.
 *   **Library Detail View:** A dedicated page/component displays detailed information for a selected library, including all fields from the YAML data.
 *   **UI Enhancement - Centering Container:** The main application container is now centered for improved visual balance.
 *   **UI Enhancement - Configuration Data Display:** Configuration data in the Library Detail View is now presented using a table format.

@@ -30,7 +30,7 @@ function LibraryDetail() {
     <div className="library-detail">
       <button onClick={() => navigate(-1)} className="back-button">Back to List</button>
       <h1>{library.name}</h1>
-      {library.description && <p><strong>Description:</strong> {library.description}</p>}
+      {library.description && <p>{library.description}</p>}
       {library.technology && <p><strong>Technology:</strong> {library.technology}</p>}
       {library.type && <p><strong>Type:</strong> {library.type}</p>}
       {library.maturity && <p><strong>Maturity:</strong> {library.maturity}</p>}
@@ -76,7 +76,7 @@ function LibraryDetail() {
           <div className="target-versions-container">
             {library.target_versions.javaagent && library.target_versions.javaagent.length > 0 && (
               <div className="target-version-section">
-                <h4>Javaagent:</h4>
+                <h4 style={{ padding: '0px', margin: '0px' }}>Javaagent:</h4>
                 <ul>
                   {library.target_versions.javaagent.map((version, index) => (
                     <li key={index}>{version}</li>

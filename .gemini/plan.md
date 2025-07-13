@@ -22,9 +22,9 @@ This plan outlines the steps to build a web-based explorer for Java instrumentat
     *   **Verification:** The application displays a list of libraries from the parsed data.
 
 *   **Step 2.2: Search and Filter Functionality.**
-    *   **Action:** Implement a search bar and filtering options (e.g., by name, by technology) on the list view.
+    *   **Action:** Implement a search bar and filtering options (e.g., by name, by technology, by telemetry type, by target version) on the list view.
     *   **Status: COMPLETE**
-    *   **Verification:** Users can type in the search bar to filter the list of libraries in real-time.
+    *   **Verification:** Users can type in the search bar to filter the list of libraries in real-time. Filters are additive.
 
 *   **Step 2.3: Library Detail View.**
     *   **Action:** Create a new page/component that shows detailed information for a selected library. This includes all fields from the YAML file, presented in a clear and organized manner.
