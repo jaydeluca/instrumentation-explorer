@@ -1,80 +1,85 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
 }
 
-.App h1 {
-  color: #646cff;
-  margin-bottom: 30px;
-  font-size: 2.8em;
-  font-weight: 700;
-}
-
-.App input[type="text"] {
-  padding: 12px 15px;
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 40px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  font-size: 1.1em;
-  background-color: #333;
-  color: #eee;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+.search-bar {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px auto 20px auto; /* Center the search bar and add bottom margin */
+  box-sizing: border-box;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  color: white;
+  display: block; /* Make it a block element to apply margin: auto */
 }
 
 .library-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-  width: 100%;
-  padding: 0;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
 }
 
 .library-card {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 12px;
+  background-color: #2a2a2a; /* Dark card background */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 8px;
   padding: 20px;
   text-align: left;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
-  height: 220px; /* Set a fixed height */
-}
-
-.library-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-.library-card h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #90caf9; /* A lighter blue for titles */
-  font-size: 1.5em;
-  font-weight: 600;
-}
-
-.library-card p {
-  color: #bbb;
-  font-size: 0.95em;
-  line-height: 1.5;
-  /* The following properties are for multi-line truncation */
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* Adjust number of lines to show */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.87); /* Light text color */
 }
 
 .library-card a {
   text-decoration: none;
-  color: inherit; /* Inherit color from parent for better consistency */
+  color: #82aaff; /* Use the global link color from index.css */
+}
+
+.library-card a:hover {
+  color: #a0c3ff;
+}
+
+
+.library-card h2 {
+  margin-top: 0;
+  color: #fff; /* White heading */
+}
+
+.semconv-tags {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.semconv-tag {
+  display: inline-block;
+  background-color: #333; /* Darker tag background */
+  color: #ccc; /* Lighter tag text */
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.filter-buttons {
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px 10px 0;
+  font-size: 14px;
+}
+
+.filter-buttons button.active {
+  background-color: #82aaff;
+  color: #1a1a1a;
+  border-color: #82aaff;
 }

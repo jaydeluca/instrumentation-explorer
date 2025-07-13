@@ -24,6 +24,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #1a1a1a; /* Ensure body background matches root */
+  width: 100%;
 }
 
 h1 {
@@ -41,6 +42,19 @@ a {
 a:hover {
   color: #a0c3ff; /* Lighter blue on hover */
   text-decoration: underline; /* Add underline on hover for clarity */
+}
+
+.library-detail h6 {
+  color: #bbb;
+  font-size: 1.1em;
+  margin-top: 1em;
+  margin-bottom: 10px;
+}
+
+.telemetry-section li .attribute-item {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-bottom: 5px;
 }
 
 button {
