@@ -6,13 +6,13 @@
 .search-bar {
   width: 50%;
   padding: 12px 20px;
-  margin: 8px auto 20px auto; /* Center the search bar and add bottom margin */
+  margin: 8px auto 20px auto;
   box-sizing: border-box;
-  border: 1px solid #555;
+  border: 1px solid #ced4da; /* Light border */
   border-radius: 4px;
-  background-color: #2a2a2a;
-  color: white;
-  display: block; /* Make it a block element to apply margin: auto */
+  background-color: #ffffff; /* White background */
+  color: #495057; /* Dark text */
+  display: block;
 }
 
 .library-list {
@@ -23,29 +23,29 @@
 }
 
 .library-card {
-  background-color: #2a2a2a; /* Dark card background */
-  border: 1px solid #444; /* Darker border */
+  background-color: #ffffff; /* White card background */
+  border: 1px solid #e0e0e0; /* Light border */
   border-radius: 8px;
   padding: 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
-  color: rgba(255, 255, 255, 0.87); /* Light text color */
+  color: #343a40; /* Dark text color */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
 }
 
 .library-card a {
   text-decoration: none;
-  color: #82aaff; /* Use the global link color from index.css */
+  color: #007bff; /* Primary blue for links */
 }
 
 .library-card a:hover {
-  color: #a0c3ff;
+  color: #0056b3;
 }
-
 
 .library-card h2 {
   margin-top: 0;
-  color: #fff; /* White heading */
+  color: #212529; /* Dark heading */
 }
 
 .semconv-tags {
@@ -55,12 +55,13 @@
 
 .semconv-tag {
   display: inline-block;
-  background-color: #333; /* Darker tag background */
-  color: #ccc; /* Lighter tag text */
+  background-color: #e9ecef; /* Light tag background */
+  color: #495057; /* Dark tag text */
   padding: 5px 10px;
   border-radius: 5px;
   margin-right: 5px;
   font-size: 12px;
+  border: 1px solid #dee2e6; /* Light border */
 }
 
 .filter-buttons {
@@ -68,9 +69,9 @@
 }
 
 .filter-buttons button {
-  background-color: #333;
-  color: white;
-  border: 1px solid #555;
+  background-color: #f0f0f0; /* Light button background */
+  color: #495057; /* Dark text */
+  border: 1px solid #ced4da; /* Light border */
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
@@ -79,7 +80,7 @@
 }
 
 .filter-buttons button.active {
-  background-color: #82aaff;
-  color: #1a1a1a;
-  border-color: #82aaff;
+  background-color: #007bff; /* Primary blue for active */
+  color: #ffffff; /* White text for active */
+  border-color: #007bff;
 }

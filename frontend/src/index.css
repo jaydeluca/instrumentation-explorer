@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Inter', sans-serif; /* Modern sans-serif font */
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1a1a1a; /* Darker background for a modern feel */
+  color-scheme: light; /* Changed to light */
+  color: #333333; /* Dark text for light background */
+  background-color: #ffffff; /* White background */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,11 +19,11 @@
 body {
   margin: 0;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: flex-start; /* Align to the top vertically */
+  justify-content: center;
+  align-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #1a1a1a; /* Ensure body background matches root */
+  background-color: #ffffff; /* Ensure body background matches root */
   width: 100%;
 }
 
@@ -32,20 +32,21 @@ h1 {
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: #212529; /* Darker heading color */
 }
 
 a {
   font-weight: 500;
-  color: #82aaff; /* A softer blue for links */
-  text-decoration: none; /* Remove underline by default */
+  color: #007bff; /* Primary blue for links */
+  text-decoration: none;
 }
 a:hover {
-  color: #a0c3ff; /* Lighter blue on hover */
-  text-decoration: underline; /* Add underline on hover for clarity */
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline;
 }
 
 .library-detail h6 {
-  color: #bbb;
+  color: #555; /* Adjusted for lighter theme */
   font-size: 1.1em;
   margin-top: 1em;
   margin-bottom: 10px;
@@ -59,36 +60,23 @@ a:hover {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #dee2e6; /* Light border */
   padding: 0.8em 1.8em;
   font-size: 1.1em;
   font-weight: 600;
   font-family: inherit;
-  background-color: #333; /* Darker button background */
+  background-color: #f0f0f0; /* Light button background */
   cursor: pointer;
   transition: border-color 0.25s, background-color 0.25s;
-  color: #eee;
+  color: #333; /* Dark text for buttons */
 }
 button:hover {
-  border-color: #82aaff;
-  background-color: #444;
+  border-color: #007bff; /* Blue border on hover */
+  background-color: #e2e6ea; /* Slightly darker on hover */
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Light mode adjustments (if needed, though dark mode is primary) */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #f0f2f5;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #e0e2e5;
-    color: #213547;
-  }
-}
+/* Removed light mode media query as default is now light */
