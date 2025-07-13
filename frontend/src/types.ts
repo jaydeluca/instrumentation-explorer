@@ -1,3 +1,29 @@
+export interface Attribute {
+  name: string;
+  type: string;
+  semconv?: boolean;
+}
+
+export interface Metric {
+  name: string;
+  description: string;
+  type: string;
+  unit: string;
+  attributes: Attribute[];
+  semconv?: boolean;
+}
+
+export interface Span {
+  span_kind: string;
+  attributes: Attribute[];
+}
+
+export interface Telemetry {
+  when: string;
+  metrics?: Metric[];
+  spans?: Span[];
+}
+
 export interface Library {
   name: string;
   description?: string;
@@ -10,20 +36,7 @@ export interface Library {
     javaagent?: string[];
     library?: string[];
   };
-  telemetry?: {
-    when: string;
-    metrics?: {
-      name: string;
-      description: string;
-      type: string;
-      unit: string;
-      attributes: { name: string; type: string; }[];
-    }[];
-    spans?: {
-      span_kind: string;
-      attributes: { name: string; type: string; }[];
-    }[];
-  }[];
+  telemetry?: Telemetry[];
   technology?: string;
   type?: string;
   maturity?: string;
@@ -36,8 +49,5 @@ export interface Library {
     type: string;
     default: string | boolean | number;
   }[];
-}
-
-export interface InstrumentationData {
-  libraries: { [key: string]: Library[] };
+  semconv?: string[];
 }

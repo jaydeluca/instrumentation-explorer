@@ -1,14 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import data from './instrumentation-list.json';
+import data from './instrumentation-list-enriched.json';
 import './LibraryDetail.css';
-import type { Library, InstrumentationData } from './types';
+import type { Library } from './types';
 
 function LibraryDetail() {
   const { libraryName } = useParams();
   const navigate = useNavigate();
-  const typedData: InstrumentationData = data;
-  const libraries: Library[] = Object.values(typedData.libraries).flat();
+  const libraries: Library[] = data;
   const library = libraries.find((lib) => lib.name === libraryName);
 
   const [activeTelemetryWhen, setActiveTelemetryWhen] = useState<string | null>(null);
@@ -74,31 +73,36 @@ function LibraryDetail() {
       {library.target_versions && (
         <div>
           <h3>Target Versions:</h3>
-          {library.target_versions.javaagent && library.target_versions.javaagent.length > 0 && (
-            <div>
-              <h4>Javaagent:</h4>
-              <ul>
-                {library.target_versions.javaagent.map((version, index) => (
-                  <li key={index}>{version}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {library.target_versions.library && library.target_versions.library.length > 0 && (
-            <div>
-              <h4>Library:</h4>
-              <ul>
-                {library.target_versions.library.map((version, index) => (
-                  <li key={index}>{version}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <div className="target-versions-container">
+            {library.target_versions.javaagent && library.target_versions.javaagent.length > 0 && (
+              <div className="target-version-section">
+                <h4>Javaagent:</h4>
+                <ul>
+                  {library.target_versions.javaagent.map((version, index) => (
+                    <li key={index}>{version}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {library.target_versions.library && library.target_versions.library.length > 0 && (
+              <div className="target-version-section">
+                <h4>Library:</h4>
+                <ul>
+                  {library.target_versions.library.map((version, index) => (
+                    <li key={index}>{version}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
       {library.telemetry && library.telemetry.length > 0 && (
         <div>
           <h3>Telemetry:</h3>
+          <div className="semconv-key">
+            <span className="semconv-check">✅</span> = Semantic Conventions
+          </div>
           <div className="telemetry-tabs">
             {library.telemetry.map((item) => (
               <button
@@ -120,15 +124,22 @@ function LibraryDetail() {
                       <li key={metricIndex}>
                         <div className="metric-header">
                           <strong className="metric-name">{metric.name}</strong>
-                          <span className="metric-details">({metric.type}, {metric.unit})</span>
+                          {metric.semconv && <span className="semconv-check">✅</span>}
                         </div>
-                        <p className="metric-description">{metric.description}</p>
+                        <div className="metric-details">
+                          <div><strong>Type:</strong> {metric.type}</div>
+                          <div><strong>Unit:</strong> {metric.unit}</div>
+                          <div className="metric-description"><strong>Description:</strong> {metric.description}</div>
+                        </div>
                         {metric.attributes && metric.attributes.length > 0 && (
                           <div className="attributes-section">
                             <h6>Attributes</h6>
                             <ul className="attributes-list">
                               {metric.attributes.map((attr, attrIndex) => (
-                                <li key={attrIndex}>{attr.name} ({attr.type})</li>
+                                <li key={attrIndex} className="attribute-item">
+                                  <span>{attr.name} ({attr.type})</span>
+                                  {attr.semconv && <span className="semconv-check">✅</span>}
+                                </li>
                               ))}
                             </ul>
                           </div>
@@ -145,14 +156,17 @@ function LibraryDetail() {
                     {telemetryItem.spans.map((span, spanIndex) => (
                       <li key={spanIndex}>
                         <div className="span-header">
-                          <strong className="span-kind">Kind:</strong> {span.span_kind}
+                          <strong className="span-kind">Kind:&nbsp;</strong> {span.span_kind}
                         </div>
                         {span.attributes && span.attributes.length > 0 && (
                           <div className="attributes-section">
                             <h6>Attributes</h6>
                             <ul className="attributes-list">
                               {span.attributes.map((attr, attrIndex) => (
-                                <li key={attrIndex}>{attr.name} ({attr.type})</li>
+                                <li key={attrIndex} className="attribute-item">
+                                  <span>{attr.name} ({attr.type})</span>
+                                  {attr.semconv && <span className="semconv-check">✅</span>}
+                                </li>
                               ))}
                             </ul>
                           </div>
