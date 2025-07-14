@@ -43,9 +43,21 @@ This plan outlines the steps to build a web-based explorer for Java instrumentat
     *   **Status: COMPLETE**
     *   **Verification:** The UI correctly displays the semantic convention information.
 
-## Phase 4: Polishing and Deployment
+## Phase 4: Versioning
 
-*   **Step 4.1: Styling and UX Improvements.**
+*   **Step 4.1: Data Ingestion.**
+    *   **Action:** Update the data ingestion process to handle multiple `instrumentation-list-{version}.yaml` files.
+    *   **Status: COMPLETE**
+    *   **Verification:** The script successfully processes all versioned YAML files and generates a single JSON output.
+
+*   **Step 4.2: Version Toggle.**
+    *   **Action:** Add a dropdown menu to the UI to allow users to switch between different versions of the instrumentation data. This toggle will be available on both the main page and the detail page.
+    *   **Status: COMPLETE**
+    *   **Verification:** The UI correctly displays and allows switching between versions.
+
+## Phase 5: Polishing and Deployment
+
+*   **Step 5.1: Styling and UX Improvements.**
     *   **Action:** Apply CSS styling to make the application visually appealing and user-friendly. This involved:
         *   Ensuring a consistent width for the library detail view container (80% width).
         *   Arranging metric and span telemetry data to display side-by-side.
@@ -54,7 +66,14 @@ This plan outlines the steps to build a web-based explorer for Java instrumentat
     *   **Status: COMPLETE**
     *   **Verification:** The application has a consistent and polished look and feel.
 
-*   **Step 4.2: Build and Deployment.**
+*   **Step 5.2: Build and Deployment.**
     *   **Action:** Create a production build of the application and document the steps to deploy it.
     *   **Status: IN PROGRESS**
     *   **Verification:** The application is successfully deployed to a hosting service and is publicly accessible.
+
+## Phase 6: Telemetry Version Diff Tool
+
+*   **Step 6.1: Implement Diffing Logic and UI.**
+    *   **Action:** Create a new component to display telemetry differences between two selected versions, including added/removed metrics/spans and attribute-level diffs.
+    *   **Status: COMPLETE**
+    *   **Verification:** The diff tool accurately highlights changes in telemetry between versions.

@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/library/:libraryName',
+    path: '/library/:version/:libraryName',
     element: <LibraryDetail />,
   },
 ]);

@@ -1,20 +1,30 @@
-This file is used to store general information about the project that the Gemini CLI might need to know.
+# Gemini CLI Session Summary
 
-## Project Structure
+## Project Overview
 
-*   **`enrich_instrumentation_data.py`**: A Python script responsible for fetching semantic convention data from the OpenTelemetry GitHub repository, enriching the `instrumentation-list.yaml` data, and generating `instrumentation-list-enriched.json`.
-*   **`frontend/`**: Contains the React frontend application.
-    *   **`frontend/src/instrumentation-list-enriched.json`**: The enriched data file used by the frontend.
-    *   **`frontend/src/SearchAndFilter.tsx`**: React component for the search bar and filter buttons.
-    *   **`frontend/src/LibraryDetail.tsx`**: React component for displaying detailed library information.
-    *   **`frontend/src/LibraryDetail.css`**: CSS for styling the `LibraryDetail` component.
+This project, "instrumentation-explorer," is a web-based tool designed to explore and display information about Java instrumentation libraries. The goal is to provide a clear, searchable, and filterable interface for understanding the capabilities of each library, including the telemetry data they generate (metrics and spans) and their adherence to semantic conventions.
 
-## Development Environment
+## Current State
 
-*   **Python Dependencies**: Managed by `requirements.txt`.
-*   **Node.js Dependencies**: Managed by `package.json` and `package-lock.json` (for the frontend).
+The application is in a good state. We have successfully:
 
-## Key Learnings
+*   Set up a React frontend using Vite.
+*   Parsed the `instrumentation-list.yaml` file into a JSON format for the frontend.
+*   Implemented a main view that displays a list of instrumentation libraries.
+*   Added search and filtering capabilities to the main view.
+*   Created a detailed view for each library.
+*   Integrated semantic convention data from the OpenTelemetry GitHub repository to enrich the instrumentation data.
+*   Highlighted semantic conventions in the UI.
+*   Made significant styling and UX improvements, including a consistent layout, better data presentation, and a cleaner theme.
+*   Added versioning to the instrumentation data, allowing users to switch between different versions of the libraries.
+*   Implemented a telemetry version diff tool on the detail page to highlight differences in emitted telemetry between versions.
 
-*   **Semantic Convention Data**: The semantic convention data is dynamically fetched from the OpenTelemetry GitHub repository, with caching and GitHub token authentication implemented to handle rate limiting. An allow list is used to process only relevant directories.
-*   **Frontend Styling**: The frontend uses Material-UI (MUI) for styling and components. Recent improvements include a dedicated `SearchAndFilter` component, consistent container widths, side-by-side layouts for related data (metrics/spans, target versions), and a revamped theme for better visual hierarchy and distinct sections. Filtering is now additive across search term, semantic conventions, telemetry types (spans/metrics), and target versions (javaagent/library).
+## Key Technologies
+
+*   **Frontend:** React, Vite, TypeScript
+*   **Data:** YAML, JSON
+*   **Styling:** CSS
+
+## Next Steps
+
+The next major feature is to deploy the application.

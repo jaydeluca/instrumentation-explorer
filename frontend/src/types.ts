@@ -51,3 +51,16 @@ export interface Library {
   }[];
   semconv?: string[];
 }
+
+export interface DiffResult {
+  added: (Metric | Span)[];
+  removed: (Metric | Span)[];
+  common: {
+    base: Metric | Span;
+    compare: Metric | Span;
+    attributeDiff: {
+      added: Attribute[];
+      removed: Attribute[];
+    }
+  }[];
+}

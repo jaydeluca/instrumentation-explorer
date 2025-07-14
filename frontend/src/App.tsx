@@ -1,17 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
-import data from './instrumentation-list-enriched.json';
 import type { Library } from './types';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import SearchAndFilter from './SearchAndFilter';
 
 function App() {
+  const [libraries, setLibraries] = useState<Library[]>([]);
+  const [allLibraries, setAllLibraries] = useState<{ [key: string]: Library[] }>({});
+  const [versions, setVersions] = useState<string[]>([]);
+  const [selectedVersion, setSelectedVersion] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeSemconvFilters, setActiveSemconvFilters] = useState<string[]>([]);
   const [activeTelemetryFilters, setActiveTelemetryFilters] = useState<string[]>([]);
   const [activeTargetFilters, setActiveTargetFilters] = useState<string[]>([]);
-  const libraries: Library[] = data;
+
+  useEffect(() => {
+    fetch('/instrumentation-list-enriched.json')
+      .then(response => response.json())
+      .then(data => {
+        const versions = Object.keys(data);
+        setAllLibraries(data);
+        setVersions(versions);
+        setSelectedVersion(versions[0]);
+        setLibraries(data[versions[0]]);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedVersion) {
+      setLibraries(allLibraries[selectedVersion]);
+    }
+  }, [selectedVersion, allLibraries]);
 
   const allSemconvTags = Array.from(new Set(libraries.flatMap(lib => lib.semconv || [])));
   const allTelemetryTags = Array.from(new Set(libraries.flatMap(lib => {
@@ -45,6 +65,14 @@ function App() {
 
   return (
     <div className="App">
+      <div className="version-selector">
+        <label htmlFor="version-select">Select Version:</label>
+        <select id="version-select" value={selectedVersion} onChange={(e) => setSelectedVersion(e.target.value)}>
+          {versions.map(version => (
+            <option key={version} value={version}>{version}</option>
+          ))}
+        </select>
+      </div>
       <h1>Instrumentation Libraries</h1>
       <SearchAndFilter 
         searchTerm={searchTerm}
@@ -62,7 +90,7 @@ function App() {
       <div className="library-list">
         {filteredLibraries.map((library) => (
           <div key={library.name} className="library-card">
-            <a href={`/library/${library.name}`}>
+            <a href={`/library/${selectedVersion}/${library.name}`}>
               <h2>{library.name}</h2>
             </a>
             <div className="target-tags">

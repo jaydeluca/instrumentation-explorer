@@ -1,16 +1,33 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import data from './instrumentation-list-enriched.json';
 import './LibraryDetail.css';
 import type { Library } from './types';
+import TelemetryDiff from './TelemetryDiff';
 
 function LibraryDetail() {
-  const { libraryName } = useParams();
+  const { libraryName, version } = useParams();
   const navigate = useNavigate();
-  const libraries: Library[] = data;
-  const library = libraries.find((lib) => lib.name === libraryName);
-
+  const [library, setLibrary] = useState<Library | null>(null);
   const [activeTelemetryWhen, setActiveTelemetryWhen] = useState<string | null>(null);
+  const [versions, setVersions] = useState<string[]>([]);
+  const [selectedVersion, setSelectedVersion] = useState<string | undefined>(version);
+
+  useEffect(() => {
+    fetch('/instrumentation-list-enriched.json')
+      .then(response => response.json())
+      .then(data => {
+        setVersions(Object.keys(data));
+        if (selectedVersion && data[selectedVersion]) {
+          const foundLibrary = data[selectedVersion].find((lib: Library) => lib.name === libraryName);
+          setLibrary(foundLibrary);
+        }
+      });
+  }, [libraryName, selectedVersion]);
+
+  const handleVersionChange = (newVersion: string) => {
+    setSelectedVersion(newVersion);
+    navigate(`/library/${newVersion}/${libraryName}`);
+  };
 
   useEffect(() => {
     if (library && library.telemetry && library.telemetry.length > 0 && activeTelemetryWhen === null) {
@@ -27,8 +44,18 @@ function LibraryDetail() {
   );
 
   return (
-    <div className="library-detail">
-      <button onClick={() => navigate(-1)} className="back-button">Back to List</button>
+    <div className="library-detail library-card">
+      <div className="detail-header">
+        <button onClick={() => navigate(-1)} className="back-button">Back to List</button>
+        <div className="version-selector">
+          <label htmlFor="version-select">Select Version:</label>
+          <select id="version-select" value={selectedVersion} onChange={(e) => handleVersionChange(e.target.value)}>
+            {versions.map(version => (
+              <option key={version} value={version}>{version}</option>
+            ))}
+          </select>
+        </div>
+      </div>
       <h1>{library.name}</h1>
       {library.description && <p>{library.description}</p>}
       {library.technology && <p><strong>Technology:</strong> {library.technology}</p>}
@@ -137,7 +164,7 @@ function LibraryDetail() {
                             <ul className="attributes-list">
                               {metric.attributes.map((attr, attrIndex) => (
                                 <li key={attrIndex} className="attribute-item">
-                                  <span>{attr.name} ({attr.type})</span>
+                                  <div><span>{attr.name}</span> <span>({attr.type})</span></div>
                                   {attr.semconv && <span className="semconv-check">✅</span>}
                                 </li>
                               ))}
@@ -164,7 +191,7 @@ function LibraryDetail() {
                             <ul className="attributes-list">
                               {span.attributes.map((attr, attrIndex) => (
                                 <li key={attrIndex} className="attribute-item">
-                                  <span>{attr.name} ({attr.type})</span>
+                                  <div><span>{attr.name}</span> <span>({attr.type})</span></div>
                                   {attr.semconv && <span className="semconv-check">✅</span>}
                                 </li>
                               ))}
@@ -180,6 +207,7 @@ function LibraryDetail() {
           ))}
         </div>
       )}
+      <TelemetryDiff versions={versions} library={library} />
     </div>
   );
 }
