@@ -3,18 +3,6 @@
   padding: 20px;
 }
 
-.search-bar {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px auto 20px auto;
-  box-sizing: border-box;
-  border: 1px solid #ced4da; /* Light border */
-  border-radius: 4px;
-  background-color: #ffffff; /* White background */
-  color: #495057; /* Dark text */
-  display: block;
-}
-
 .library-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -26,7 +14,7 @@
   background-color: #ffffff; /* White card background */
   border: 1px solid #e0e0e0; /* Light border */
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -45,12 +33,55 @@
 
 .library-card h2 {
   margin-top: 0;
+  margin-bottom: 5px; /* Reduced margin */
   color: #212529; /* Dark heading */
 }
 
 .semconv-tags {
-  margin-top: auto;
-  padding-top: 15px;
+  margin-top: 10px; /* Reduced margin */
+  padding-top: 0; /* Removed padding */
+}
+
+.telemetry-tags {
+  padding-bottom: 0; /* Removed padding */
+}
+
+.telemetry-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.telemetry-tag.spans {
+  background-color: #3498db; /* Blue for spans */
+}
+
+.telemetry-tag.metrics {
+  background-color: #2ecc71; /* Green for metrics */
+}
+
+.target-tags {
+  padding-bottom: 5px; /* Reduced padding */
+}
+
+.target-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.target-tag.javaagent {
+  background-color: #f1c40f; /* Yellow for javaagent */
+}
+
+.target-tag.library {
+  background-color: #e67e22; /* Orange for library */
 }
 
 .semconv-tag {
@@ -62,25 +93,4 @@
   margin-right: 5px;
   font-size: 12px;
   border: 1px solid #dee2e6; /* Light border */
-}
-
-.filter-buttons {
-  margin-bottom: 20px;
-}
-
-.filter-buttons button {
-  background-color: #f0f0f0; /* Light button background */
-  color: #495057; /* Dark text */
-  border: 1px solid #ced4da; /* Light border */
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 5px 10px 0;
-  font-size: 14px;
-}
-
-.filter-buttons button.active {
-  background-color: #007bff; /* Primary blue for active */
-  color: #ffffff; /* White text for active */
-  border-color: #007bff;
 }
