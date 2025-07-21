@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import type { Library } from './types';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
@@ -65,7 +66,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="version-selector">
+      <div className="header-container">
+        <h1>Instrumentation Libraries</h1>
+        <Link to="/analyze" className="analyze-link">Analyze Service</Link>
+      </div>
+      <div className="version-selector" style={{ marginBottom: '10px' }}>
         <label htmlFor="version-select">Select Version:</label>
         <select id="version-select" value={selectedVersion} onChange={(e) => setSelectedVersion(e.target.value)}>
           {versions.map(version => (
@@ -73,8 +78,7 @@ function App() {
           ))}
         </select>
       </div>
-      <h1>Instrumentation Libraries</h1>
-      <SearchAndFilter 
+      <SearchAndFilter
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         allTelemetryTags={allTelemetryTags}

@@ -34,7 +34,7 @@ This directory contains the Python script responsible for processing and enrichi
 To run the data enrichment script, activate the virtual environment (as shown above) and then execute:
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 This script will read the `instrumentation-list-*.yaml` files, enrich them with semantic convention data, and output the combined and enriched JSON to `frontend/public/instrumentation-list-enriched.json`.

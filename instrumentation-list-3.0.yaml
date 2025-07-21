@@ -856,11 +856,6 @@ libraries:
     target_versions:
       javaagent:
       - com.clickhouse.client:clickhouse-client:[0.5.0,)
-    configurations:
-    - name: otel.instrumentation.common.db-statement-sanitizer.enabled
-      description: Enables statement sanitization for database queries.
-      type: boolean
-      default: true
     telemetry:
     - when: default
       metrics:
