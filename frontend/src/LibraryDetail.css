@@ -12,26 +12,38 @@ body {
 }
 
 .library-detail {
-  width: 70%;
-  margin: 40px auto; /* More vertical margin */
-  padding: 40px; /* More padding */
-  background-color: #f8f9fa; /* Light grey background for content area */
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  border: 1px solid #e0e0e0; /* Light border */
+  padding: 20px;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
-/* Buttons */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .back-button {
-  background-color: #007bff; /* Primary blue */
-  color: #ffffff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 5px; /* Slightly less rounded */
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
-  margin-bottom: 30px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.version-selector {
+  display: flex;
+  align-items: center;
+}
+
+.version-selector label {
+  margin-right: 10px;
+}
+
+.version-selector select {
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .back-button:hover {
@@ -277,6 +289,7 @@ th {
 
 .attribute-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
   font-size: 0.85em;

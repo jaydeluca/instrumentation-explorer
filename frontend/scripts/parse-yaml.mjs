@@ -3,7 +3,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
 
-const yamlFilePath = path.resolve('../instrumentation-list.yaml');
+const yamlFilePath = path.resolve('../instrumentation-list-2.17.yaml');
 const jsonFilePath = path.resolve('src/instrumentation-list.json');
 
 try {

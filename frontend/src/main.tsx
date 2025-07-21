@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.css'
 import App from './App.tsx'
 import LibraryDetail from './LibraryDetail.tsx';
+import JarAnalyzerPage from './JarAnalyzerPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -11,8 +13,12 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/library/:libraryName',
+    path: '/library/:version/:libraryName',
     element: <LibraryDetail />,
+  },
+  {
+    path: '/analyze',
+    element: <JarAnalyzerPage />,
   },
 ]);
 

@@ -1,0 +1,32 @@
+.telemetry-diff {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.diff-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.diff-controls .version-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.diff-controls button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.diff-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

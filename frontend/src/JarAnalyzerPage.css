@@ -1,0 +1,73 @@
+.instrumentation-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.instrumentation-input textarea {
+  width: 80%;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif; /* Consistent font */
+  font-size: 1em;
+}
+
+.instrumentation-input button {
+  padding: 10px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.instrumentation-input button:hover {
+  background-color: #0056b3;
+}
+
+.analysis-results {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.combined-telemetry-display {
+  margin-top: 20px;
+}
+
+.combined-telemetry-display h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.combined-telemetry-display ul {
+  list-style: none;
+  padding: 0;
+}
+
+.combined-telemetry-display li {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.telemetry-source-label {
+  font-size: 0.8em;
+  color: #6c757d;
+  margin-bottom: 5px;
+  display: block;
+}

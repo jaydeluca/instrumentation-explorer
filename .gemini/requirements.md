@@ -29,4 +29,11 @@
     *   Comprehensive theme revamp for a cleaner, more distinct, and hierarchically appropriate layout.
     *   Side-by-side display for Javaagent and Library target versions.
 
+*   **Versioning:**
+    *   **Data Ingestion:** The data ingestion process now handles multiple `instrumentation-list-{version}.yaml` files.
+    *   **Version Toggle:** A dropdown menu has been added to the UI to allow users to switch between different versions of the instrumentation data. This toggle is available on both the main page and the detail page.
+
+*   **Telemetry Version Diff Tool:**
+    *   A new tool on the detail page allows users to select two versions and view a GitHub-style diff of added, removed, and changed telemetry (metrics and spans), including attribute-level differences.
+
 ## Future State (New features)

@@ -44,7 +44,7 @@ ALLOWED_SEMCONV_DIRS = [
     "tls",
     "url",
 ]
-OUTPUT_FILE = "frontend/src/instrumentation-list-enriched.json"
+OUTPUT_FILE = "frontend/public/instrumentation-list-enriched.json"
 CACHE_DIR = "./.semconv_cache"
 
 
@@ -186,21 +186,33 @@ def enrich_instrumentation_data(instrumentation_data, mappings):
 
 def main():
     """
-    Main function to orchestrate the fetching and enrichment process.
+    Main function to orchestrate the fetching and enrichment process for all versions.
     """
-    try:
-        with open("instrumentation-list.yaml", "r") as f:
-            instrumentation_data = yaml.safe_load(f)
-    except (IOError, yaml.YAMLError) as e:
-        print(f"Error loading instrumentation-list.yaml: {e}")
-        return
+    import glob
 
+    all_enriched_data = {}
     mappings = get_convention_mappings()
-    enriched_data = enrich_instrumentation_data(instrumentation_data, mappings)
+
+    for filepath in glob.glob("instrumentation-list-*.yaml"):
+        try:
+            version = filepath.replace("instrumentation-list-", "").replace(".yaml", "")
+            with open(filepath, "r") as f:
+                instrumentation_data = yaml.safe_load(f)
+            
+            enriched_data = enrich_instrumentation_data(instrumentation_data, mappings)
+            all_enriched_data[version] = enriched_data
+
+        except (IOError, yaml.YAMLError) as e:
+            print(f"Error loading or processing {filepath}: {e}")
+            continue
 
     try:
+        # Ensure the output directory exists
+        output_dir = os.path.dirname(OUTPUT_FILE)
+        os.makedirs(output_dir, exist_ok=True)
+
         with open(OUTPUT_FILE, "w") as f:
-            json.dump(enriched_data, f, indent=2)
+            json.dump(all_enriched_data, f, indent=2)
         print(f"Successfully generated enriched data in {OUTPUT_FILE}")
     except IOError as e:
         print(f"Error writing to {OUTPUT_FILE}: {e}")
