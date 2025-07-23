@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/instrumentation-explorer/',
   plugins: [react()],
+  server: {
+    base: '/instrumentation-explorer/',
+  },
 })

@@ -121,7 +121,7 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
     }
 
     console.log("Fetching enriched data...");
-    const response = await fetch('/instrumentation-list-enriched.json');
+    const response = await fetch('/instrumentation-explorer/instrumentation-list-enriched.json');
     const allData: { [key: string]: Library[] } = await response.json();
     console.log("Fetched all data:", allData);
 
