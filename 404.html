@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Get the base URL from the current path
+    var pathSegments = window.location.pathname.split('/');
+    // Assuming the repo name is the second segment (e.g., /repo-name/)
+    // Adjust this if your GitHub Pages URL structure is different
+    var repoName = pathSegments[1];
+    var baseUrl = '/' + repoName + '/';
+
+    // Redirect to the base URL, letting React Router handle the rest
+    window.location.replace(baseUrl);
+  </script>
+</head>
+<body>
+  If you are not redirected automatically, follow this <a href="/">link to the application</a>.
+</body>
+</html>
