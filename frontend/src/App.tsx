@@ -46,14 +46,15 @@ function App() {
   const [activeTargetFilters, setActiveTargetFilters] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch('/instrumentation-list-enriched.json')
+    fetch('/instrumentation-explorer/instrumentation-list-enriched.json')
       .then(response => response.json())
       .then(data => {
         const versions = Object.keys(data);
         setAllLibraries(data);
         setVersions(versions);
-        setSelectedVersion(versions[0]);
-        setLibraries(data[versions[0]]);
+        const defaultVersion = versions.includes('2.17') ? '2.17' : versions[0];
+        setSelectedVersion(defaultVersion);
+        setLibraries(data[defaultVersion]);
       });
   }, []);
 
@@ -123,9 +124,9 @@ function App() {
       <div className="library-list">
         {filteredLibraries.map((library) => (
           <div key={library.name} className="library-card">
-            <a href={`/library/${selectedVersion}/${library.name}`}>
+            <Link to={`/library/${selectedVersion}/${library.name}`}>
               <h2>{library.name}</h2>
-            </a>
+            </Link>
             <div className="target-tags">
               {library.target_versions?.javaagent && <span className="target-tag javaagent"><SmartToyIcon sx={{ fontSize: 12 }} /></span>}
               {library.target_versions?.library && <span className="target-tag library"><LocalLibraryIcon sx={{ fontSize: 12 }} /></span>}

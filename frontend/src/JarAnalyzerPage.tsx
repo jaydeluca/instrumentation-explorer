@@ -16,7 +16,7 @@ const JarAnalyzerPage: React.FC = () => {
   const [combinedSpans, setCombinedSpans] = useState<(Span & { sourceInstrumentation: string })[]>([]);
 
   useEffect(() => {
-    fetch('/instrumentation-list-enriched.json')
+    fetch('/instrumentation-explorer/instrumentation-list-enriched.json')
       .then(response => response.json())
       .then(data => {
         const loadedVersions = Object.keys(data);
@@ -27,6 +27,8 @@ const JarAnalyzerPage: React.FC = () => {
         const versionParam = params.get('version');
         if (versionParam && loadedVersions.includes(versionParam)) {
           setSelectedVersion(versionParam);
+        } else if (loadedVersions.includes('2.17')) {
+          setSelectedVersion('2.17');
         } else if (loadedVersions.length > 0) {
           setSelectedVersion(loadedVersions[0]);
         }

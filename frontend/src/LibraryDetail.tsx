@@ -13,7 +13,7 @@ function LibraryDetail() {
   const [selectedVersion, setSelectedVersion] = useState<string | undefined>(version);
 
   useEffect(() => {
-    fetch('/instrumentation-list-enriched.json')
+    fetch('/instrumentation-explorer/instrumentation-list-enriched.json')
       .then(response => response.json())
       .then(data => {
         setVersions(Object.keys(data));
