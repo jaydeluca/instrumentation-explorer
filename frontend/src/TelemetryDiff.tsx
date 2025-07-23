@@ -85,40 +85,29 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
       }
     });
 
-    // Compare Spans (more robust comparison as span_kind might not be unique)
-    const matchedBaseSpans = new Set<Span>();
-    const matchedCompareSpans = new Set<Span>();
-
-    compareSpans.forEach(compareSpan => {
-      let foundMatch = false;
-      for (const baseSpan of baseSpans) {
-        // If span_kind matches and this baseSpan hasn't been matched yet
-        if (baseSpan.span_kind === compareSpan.span_kind && !matchedBaseSpans.has(baseSpan)) {
-          const attributeDiff = compareAttributes(baseSpan.attributes, compareSpan.attributes);
-          if (attributeDiff.added.length > 0 || attributeDiff.removed.length > 0) {
-            console.log("Common Span with Attribute Diff:", compareSpan.span_kind, attributeDiff);
-            common.push({
-              base: baseSpan,
-              compare: compareSpan,
-              attributeDiff,
-            });
-          }
-          matchedBaseSpans.add(baseSpan);
-          matchedCompareSpans.add(compareSpan);
-          foundMatch = true;
-          break; // Move to the next compareSpan
+    // Compare Spans
+    compareSpans.forEach(span => {
+      if (!baseSpanMap.has(span.span_kind)) {
+        console.log("Added Span:", span.span_kind);
+        added.push(span);
+      } else {
+        const baseSpan = baseSpanMap.get(span.span_kind)!;
+        const attributeDiff = compareAttributes(baseSpan.attributes, span.attributes);
+        if (attributeDiff.added.length > 0 || attributeDiff.removed.length > 0) {
+          console.log("Common Span with Attribute Diff:", span.span_kind, attributeDiff);
+          common.push({
+            base: baseSpan,
+            compare: span,
+            attributeDiff,
+          });
         }
-      }
-      if (!foundMatch) {
-        console.log("Added Span:", compareSpan.span_kind);
-        added.push(compareSpan);
       }
     });
 
-    baseSpans.forEach(baseSpan => {
-      if (!matchedBaseSpans.has(baseSpan)) { // If this baseSpan was not matched with any compareSpan
-        console.log("Removed Span:", baseSpan.span_kind);
-        removed.push(baseSpan);
+    baseSpans.forEach(span => {
+      if (!compareSpanMap.has(span.span_kind)) {
+        console.log("Removed Span:", span.span_kind);
+        removed.push(span);
       }
     });
 

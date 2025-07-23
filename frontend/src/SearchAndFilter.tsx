@@ -34,7 +34,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
   return (
     <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
       <Grid container spacing={4} justifyContent="space-around">
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md:4 }}>
           <Typography variant="h6" gutterBottom>
             Search
           </Typography>
@@ -53,7 +53,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
             }}
           />
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Grid size={{ xs: 12, md:2 }}>
           <Typography variant="h6" gutterBottom>
             Telemetry
           </Typography>
@@ -70,7 +70,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
             ))}
           </Paper>
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Grid size={{ xs: 12, md:2 }}>
           <Typography variant="h6" gutterBottom>
             Target
           </Typography>
@@ -93,7 +93,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
             ))}
           </Paper>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md:4 }}>
           <Typography variant="h6" gutterBottom>
             Semantic Conventions
           </Typography>

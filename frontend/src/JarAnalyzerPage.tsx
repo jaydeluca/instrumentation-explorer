@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import InstrumentationInput from './InstrumentationInput';
 import CombinedTelemetryDisplay from './CombinedTelemetryDisplay';
 import './JarAnalyzerPage.css';
-import type { Library } from './types';
+import type { Library, Metric, Span } from './types';
 
 const JarAnalyzerPage: React.FC = () => {
   const navigate = useNavigate();
