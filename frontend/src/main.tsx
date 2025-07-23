@@ -23,7 +23,7 @@ const router = withFaroRouterInstrumentation(createBrowserRouter([
     path: '/analyze',
     element: <JarAnalyzerPage />,
   },
-]));
+], { basename: '/instrumentation-explorer/' }));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
