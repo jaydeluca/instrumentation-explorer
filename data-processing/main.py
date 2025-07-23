@@ -44,7 +44,7 @@ ALLOWED_SEMCONV_DIRS = [
     "tls",
     "url",
 ]
-OUTPUT_FILE = "frontend/public/instrumentation-list-enriched.json"
+OUTPUT_FILE = "../frontend/public/instrumentation-list-enriched.json"
 CACHE_DIR = "./.semconv_cache"
 
 
@@ -193,9 +193,9 @@ def main():
     all_enriched_data = {}
     mappings = get_convention_mappings()
 
-    for filepath in glob.glob("instrumentation-list-*.yaml"):
+    for filepath in glob.glob("../instrumentation-list-*.yaml"):
         try:
-            version = filepath.replace("instrumentation-list-", "").replace(".yaml", "")
+            version = filepath.replace("../instrumentation-list-", "").replace(".yaml", "")
             with open(filepath, "r") as f:
                 instrumentation_data = yaml.safe_load(f)
             

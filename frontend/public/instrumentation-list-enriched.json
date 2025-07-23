@@ -2,7 +2,7 @@
   "3.0": [
     {
       "name": "activej-http-6.0",
-      "description": "This instrumentation provides SERVER spans and metrics for the ActiveJ HTTP server.",
+      "description": "This instrumentation enables SERVER spans and metrics for the ActiveJ HTTP server.",
       "source_path": "instrumentation/activej-http-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -154,6 +154,7 @@
     },
     {
       "name": "akka-http-10.0",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Akka HTTP client and server.",
       "source_path": "instrumentation/akka/akka-http-10.0",
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
@@ -456,7 +457,7 @@
     },
     {
       "name": "apache-dbcp-2.0",
-      "description": "This instrumentation provides database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
+      "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
       "source_path": "instrumentation/apache-dbcp-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-dbcp-2.0"
@@ -635,7 +636,7 @@
     },
     {
       "name": "apache-httpasyncclient-4.1",
-      "description": "This instrumentation provides CLIENT spans and metrics for the Apache HttpAsyncClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for the Apache HttpAsyncClient.",
       "source_path": "instrumentation/apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
@@ -740,7 +741,7 @@
     },
     {
       "name": "apache-httpclient-2.0",
-      "description": "This instrumentation provides CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
@@ -840,7 +841,7 @@
     },
     {
       "name": "apache-httpclient-4.0",
-      "description": "This instrumentation provides CLIENT spans and metrics for version 4 of the Apache HttpClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 4 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
@@ -1056,6 +1057,7 @@
     },
     {
       "name": "apache-httpclient-5.0",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 5 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
@@ -1103,6 +1105,53 @@
               ],
               "semconv": true
             }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
           ]
         }
       ],
@@ -1113,6 +1162,7 @@
     },
     {
       "name": "apache-httpclient-5.2",
+      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
@@ -1122,10 +1172,107 @@
           "org.apache.httpcomponents.client5:httpclient5:5.2.1"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.resend_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "apache-shenyu-2.4",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing SERVER spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
       "source_path": "instrumentation/apache-shenyu-2.4",
       "scope": {
         "name": "io.opentelemetry.apache-shenyu-2.4"
@@ -1138,7 +1285,7 @@
       "configurations": [
         {
           "name": "otel.instrumentation.apache-shenyu.experimental-span-attributes",
-          "description": "Enables experimental span attributes for Apache Shenyu instrumentation.",
+          "description": "Enables experimental `apache-shenyu.meta.` prefixed span attributes `app-name`, `service-name`, `context-path`, `param-types`, `id`, `method-name`, `rpc-type`, `path` and `rpc-ext`.\n",
           "type": "boolean",
           "default": false
         }
@@ -1147,6 +1294,7 @@
     },
     {
       "name": "armeria-1.3",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria HTTP client and server.",
       "source_path": "instrumentation/armeria/armeria-1.3",
       "scope": {
         "name": "io.opentelemetry.armeria-1.3"
@@ -1159,10 +1307,217 @@
           "com.linecorp.armeria:armeria:1.3.0"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "armeria-grpc-1.14",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria gRPC client and server.",
       "source_path": "instrumentation/armeria/armeria-grpc-1.14",
       "scope": {
         "name": "io.opentelemetry.armeria-grpc-1.14"
@@ -1176,6 +1531,7 @@
     },
     {
       "name": "async-http-client-1.9",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
       "source_path": "instrumentation/async-http-client/async-http-client-1.9",
       "scope": {
         "name": "io.opentelemetry.async-http-client-1.9"
@@ -1185,10 +1541,92 @@
           "com.ning:async-http-client:[1.9.0,)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "async-http-client-2.0",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
       "source_path": "instrumentation/async-http-client/async-http-client-2.0",
       "scope": {
         "name": "io.opentelemetry.async-http-client-2.0"
@@ -1198,7 +1636,108 @@
           "org.asynchttpclient:async-http-client:[2.0.0,)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "avaje-jex-3.0",
@@ -1291,7 +1830,7 @@
         },
         {
           "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
-          "description": "Enables experimental receive telemetry for AWS SDK instrumentation.",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
           "type": "boolean",
           "default": false
         },
@@ -1367,7 +1906,7 @@
       "configurations": [
         {
           "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
-          "description": "Enables experimental receive telemetry for AWS SDK instrumentation.",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
           "type": "boolean",
           "default": false
         },
@@ -1456,12 +1995,7 @@
                 }
               ],
               "semconv": true
-            }
-          ]
-        },
-        {
-          "when": "default",
-          "metrics": [
+            },
             {
               "name": "db.client.operation.duration",
               "description": "Duration of database client operations.",
@@ -1548,6 +2082,39 @@
           "when": "default",
           "metrics": [
             {
+              "name": "db.client.connections.pending_requests",
+              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+              "type": "LONG_SUM",
+              "unit": "requests",
+              "attributes": [
+                {
+                  "name": "pool.name",
+                  "type": "STRING"
+                }
+              ]
+            },
+            {
+              "name": "db.client.connections.usage",
+              "description": "The number of connections that are currently in state described by the state attribute.",
+              "type": "LONG_SUM",
+              "unit": "connections",
+              "attributes": [
+                {
+                  "name": "pool.name",
+                  "type": "STRING"
+                },
+                {
+                  "name": "state",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.semconv-stability.opt-in=database",
+          "metrics": [
+            {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
               "type": "LONG_SUM",
@@ -1589,7 +2156,7 @@
     },
     {
       "name": "camel-2.20",
-      "description": "This instrumentation provides tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
+      "description": "This instrumentation enables tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
       "source_path": "instrumentation/camel-2.20",
       "scope": {
         "name": "io.opentelemetry.camel-2.20"
@@ -1911,13 +2478,13 @@
       "configurations": [
         {
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
-          "description": "Enables experimental view telemetry.",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
           "type": "boolean",
           "default": false
         },
         {
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
-          "description": "Enables experimental controller telemetry.",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
           "type": "boolean",
           "default": false
         }
@@ -1926,7 +2493,7 @@
     },
     {
       "name": "elasticsearch-api-client-7.16",
-      "description": "This instrumentation provides client spans for Elasticsearch API client requests for version 7 of the client. Versions 8.10 and later have native support for OpenTelemetry.",
+      "description": "This instrumentation enables client spans for Elasticsearch API client requests for version 7 of the client. Versions 8.10 and later have native support for OpenTelemetry.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-api-client-7.16",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-api-client-7.16"
@@ -1941,7 +2508,7 @@
     },
     {
       "name": "elasticsearch-rest-5.0",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-5.0"
@@ -2002,7 +2569,7 @@
     },
     {
       "name": "elasticsearch-rest-6.4",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-6.4",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-6.4"
@@ -2062,7 +2629,7 @@
     },
     {
       "name": "elasticsearch-rest-7.0",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-7.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-7.0"
@@ -2125,7 +2692,7 @@
     },
     {
       "name": "elasticsearch-transport-5.0",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.0"
@@ -2259,7 +2826,7 @@
     },
     {
       "name": "elasticsearch-transport-5.3",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-5.3",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.3"
@@ -2413,7 +2980,7 @@
     },
     {
       "name": "elasticsearch-transport-6.0",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-6.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-6.0"
@@ -2440,12 +3007,19 @@
               "span_kind": "CLIENT",
               "attributes": [
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.system",
-                  "type": "STRING"
+                  "name": "db.system.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
                   "name": "network.peer.address",
@@ -2455,6 +3029,11 @@
                 {
                   "name": "network.peer.port",
                   "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.type",
+                  "type": "STRING",
                   "semconv": true
                 }
               ]
@@ -2532,40 +3111,10 @@
                   "name": "network.peer.port",
                   "type": "LONG",
                   "semconv": true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "when": "otel.semconv-stability.opt-in=database",
-          "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
                 },
                 {
-                  "name": "db.system.name",
+                  "name": "network.type",
                   "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "error.type",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
                   "semconv": true
                 }
               ]
@@ -2574,7 +3123,8 @@
         }
       ],
       "semconv": [
-        "Database Client"
+        "Database Client",
+        "Network"
       ]
     },
     {
@@ -2607,6 +3157,7 @@
     },
     {
       "name": "finagle-http-23.11",
+      "description": "This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.\n",
       "source_path": "instrumentation/finagle-http-23.11",
       "scope": {
         "name": "io.opentelemetry.finagle-http-23.11"
@@ -2621,6 +3172,7 @@
     },
     {
       "name": "finatra-2.9",
+      "description": "This instrumentation for the Finatra web framework augments the telemetry generated by the underlying Netty instrumentation. It provides more specific, high-level context, such as route information, to the spans generated by Netty.",
       "source_path": "instrumentation/finatra-2.9",
       "scope": {
         "name": "io.opentelemetry.finatra-2.9"
@@ -2631,7 +3183,31 @@
           "com.twitter:finatra-http_2.12:[2.9.0,]"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "geode-1.4",
@@ -3807,6 +4383,7 @@
     },
     {
       "name": "kafka-clients-0.11",
+      "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
       "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-0.11"
@@ -3828,12 +4405,25 @@
           "description": "Enables the capture of the experimental consumer attribute \"kafka.record.queue_time_ms\"",
           "type": "boolean",
           "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
         }
       ],
       "semconv": []
     },
     {
       "name": "kafka-clients-2.6",
+      "description": "This instrumentation provides a library integeration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
       "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-2.6",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-2.6"
@@ -4617,6 +5207,182 @@
       "semconv": [
         "Database Client",
         "HTTP"
+      ]
+    },
+    {
+      "name": "openai-java-1.1",
+      "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "source_path": "instrumentation/openai/openai-java-1.1",
+      "scope": {
+        "name": "io.opentelemetry.openai-java-1.1"
+      },
+      "target_versions": {
+        "javaagent": [
+          "com.openai:openai-java:[1.1.0,)"
+        ],
+        "library": [
+          "com.openai:openai-java:1.1.0"
+        ]
+      },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.genai.capture-message-content",
+          "description": "Enables including the full content of user and assistant messages in emitted log events. Note that full content can have data privacy and size concerns, and care should be taken when enabling this.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "gen_ai.client.operation.duration",
+              "description": "GenAI operation duration.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "description": "Measures number of input and output tokens used.",
+              "type": "HISTOGRAM",
+              "unit": "token",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                },
+                {
+                  "name": "gen_ai.token.type",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.frequency_penalty",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.max_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.presence_penalty",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.seed",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.stop_sequences",
+                  "type": "STRING_ARRAY",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.temperature",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.top_p",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.finish_reasons",
+                  "type": "STRING_ARRAY",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                },
+                {
+                  "name": "gen_ai.usage.input_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.usage.output_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Gen Ai"
       ]
     },
     {
@@ -5818,6 +6584,7 @@
     },
     {
       "name": "spring-batch-3.0",
+      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
       "source_path": "instrumentation/spring/spring-batch-3.0",
       "scope": {
@@ -5828,10 +6595,47 @@
           "org.springframework.batch:spring-batch-core:[3.0.0.RELEASE,5)"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-batch.experimental-span-attributes",
+          "description": "Adds the experimental attribute `job.system` to spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-batch.experimental.chunk.new-trace",
+          "description": "When enabled, a new root span will be created for each chunk processing. Please note that this may lead to a high number of spans being created.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-batch.item.enabled",
+          "description": "When enabled, spans will be created for each item processed. Please note that this may lead to a high number of spans being created.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.spring-batch.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "job.system",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-boot-actuator-autoconfigure-2.0",
+      "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
       "disabled_by_default": true,
       "source_path": "instrumentation/spring/spring-boot-actuator-autoconfigure-2.0",
       "scope": {
@@ -5846,6 +6650,7 @@
     },
     {
       "name": "spring-boot-resources",
+      "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
       "source_path": "instrumentation/spring/spring-boot-resources",
       "scope": {
         "name": "io.opentelemetry.spring-boot-resources"
@@ -5854,6 +6659,7 @@
     },
     {
       "name": "spring-cloud-aws-3.0",
+      "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
       "source_path": "instrumentation/spring/spring-cloud-aws-3.0",
       "minimum_java_version": 17,
       "scope": {
@@ -5868,6 +6674,7 @@
     },
     {
       "name": "spring-cloud-gateway-2.0",
+      "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
       "source_path": "instrumentation/spring/spring-cloud-gateway/spring-cloud-gateway-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-cloud-gateway-2.0"
@@ -5877,10 +6684,19 @@
           "org.springframework.cloud:spring-cloud-starter-gateway:[2.0.0.RELEASE,]"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-cloud-gateway.experimental-span-attributes",
+          "description": "Enables experimental `spring-cloud-gateway.route` attributes (e.g., `spring-cloud-gateway.route.id`, `spring-cloud-gateway.route.uri`, etc.) on spans.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-core-2.0",
+      "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
       "source_path": "instrumentation/spring/spring-core-2.0",
       "minimum_java_version": 17,
       "scope": {
@@ -5895,6 +6711,7 @@
     },
     {
       "name": "spring-data-1.8",
+      "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
       "source_path": "instrumentation/spring/spring-data/spring-data-1.8",
       "scope": {
         "name": "io.opentelemetry.spring-data-1.8"
@@ -5905,10 +6722,35 @@
           "org.springframework.data:spring-data-commons:[1.8.0.RELEASE,]"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-integration-4.1",
+      "description": "This instrumentation enables PRODUCER and CONSUMER spans for Spring Integration.",
       "source_path": "instrumentation/spring/spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -5921,10 +6763,70 @@
           "org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,5.+)"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-integration.producer.enabled",
+          "description": "Create producer spans when messages are sent to an output channel. Enable when you're using a messaging library that doesn't have its own instrumentation for generating producer spans. Note that the detection of output channels only works for Spring Cloud Stream `DirectWithAttributesChannel`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-integration.global-channel-interceptor-patterns",
+          "description": "An array of Spring channel name patterns that will be intercepted.",
+          "type": "list",
+          "default": "*"
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "Allows configuring headers to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-integration.producer.enabled=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            },
+            {
+              "span_kind": "PRODUCER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-jms-2.0",
+      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
       "source_path": "instrumentation/spring/spring-jms/spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -5934,10 +6836,58 @@
           "org.springframework:spring-jms:[2.0,6)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-jms-6.0",
+      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
       "source_path": "instrumentation/spring/spring-jms/spring-jms-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -5948,10 +6898,58 @@
           "org.springframework:spring-jms:[6.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-kafka-2.7",
+      "description": "This instrumentation enables CONSUMER spans for Spring Kafka listeners.",
       "source_path": "instrumentation/spring/spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -5961,10 +6959,151 @@
           "org.springframework.kafka:spring-kafka:[2.7.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.kafka.experimental-span-attributes",
+          "description": "Enables capturing experimental span attribute `kafka.record.queue_time_ms`",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.kafka.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "kafka.record.queue_time_ms",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.batch.message_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.destination.partition.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.consumer.group",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.kafka.message.key",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.message.offset",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.batch.message_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.destination.partition.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.consumer.group",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.kafka.message.key",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.message.offset",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-pulsar-1.0",
+      "description": "This instrumentation enables CONSUMER spans for Spring Pulsar listeners.",
       "source_path": "instrumentation/spring/spring-pulsar-1.0",
       "minimum_java_version": 17,
       "scope": {
@@ -5975,10 +7114,103 @@
           "org.springframework.pulsar:spring-pulsar:[1.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.pulsar.experimental-span-attributes",
+          "description": "Enables capturing experimental span attribute `messaging.pulsar.message.type` on PRODUCER spans.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-rabbit-1.0",
+      "description": "This instrumentation enables CONSUMER spans for Spring RabbitMQ listeners.",
       "source_path": "instrumentation/spring/spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -5988,10 +7220,52 @@
           "org.springframework.amqp:spring-rabbit:(,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-rmi-4.0",
+      "description": "This instrumentation enables CLIENT and SERVER spans for Spring RMI applications.",
       "source_path": "instrumentation/spring/spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
@@ -6001,10 +7275,60 @@
           "org.springframework:spring-context:[4.0.0.RELEASE,6)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.service",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.service",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Aws"
+      ]
     },
     {
       "name": "spring-scheduling-3.1",
+      "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
       "source_path": "instrumentation/spring/spring-scheduling-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-scheduling-3.1"
@@ -6014,10 +7338,67 @@
           "org.springframework:spring-context:[3.1.0.RELEASE,]"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-scheduling.experimental-span-attributes",
+          "description": "Adds the experimental span attribute `job.system` with the value `spring_scheduling`.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-scheduling.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "job.system",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-security-config-6.0",
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
       "source_path": "instrumentation/spring/spring-security-config-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -6035,10 +7416,43 @@
           "org.springframework.security:spring-security-web:6.0.0"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.common.enduser.id.enabled",
+          "description": "Enables capturing the enduser.id attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.enduser.role.enabled",
+          "description": "Enables capturing the enduser.role attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.enduser.scope.enabled",
+          "description": "Enables capturing the enduser.scope attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-security.enduser.role.granted-authority-prefix",
+          "description": "Prefix of granted authorities identifying roles to capture in the `enduser.role` semantic attribute.",
+          "type": "string",
+          "default": "ROLE_"
+        },
+        {
+          "name": "otel.instrumentation.spring-security.scope.role.granted-authority-prefix",
+          "description": "Prefix of granted authorities identifying scopes to capture in the `enduser.scopes` semantic attribute.",
+          "type": "string",
+          "default": "SCOPE_"
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-web-3.1",
+      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
       "source_path": "instrumentation/spring/spring-web/spring-web-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-web-3.1"
@@ -6046,34 +7460,6 @@
       "target_versions": {
         "javaagent": [
           "org.springframework:spring-web:[3.1.0.RELEASE,6)"
-        ]
-      },
-      "semconv": []
-    },
-    {
-      "name": "spring-web-6.0",
-      "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
-      "scope": {
-        "name": "io.opentelemetry.spring-web-6.0"
-      },
-      "target_versions": {
-        "javaagent": [
-          "org.springframework:spring-web:[6.0.0,)"
-        ]
-      },
-      "semconv": []
-    },
-    {
-      "name": "spring-webflux-5.0",
-      "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.0",
-      "scope": {
-        "name": "io.opentelemetry.spring-webflux-5.0"
-      },
-      "target_versions": {
-        "javaagent": [
-          "io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)",
-          "org.springframework:spring-webflux:[5.0.0.RELEASE,)",
-          "io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)"
         ]
       },
       "telemetry": [
@@ -6109,6 +7495,43 @@
               ],
               "semconv": true
             }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
           ]
         }
       ],
@@ -6118,7 +7541,138 @@
       ]
     },
     {
+      "name": "spring-web-6.0",
+      "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
+      "scope": {
+        "name": "io.opentelemetry.spring-web-6.0"
+      },
+      "target_versions": {
+        "javaagent": [
+          "org.springframework:spring-web:[6.0.0,)"
+        ]
+      },
+      "semconv": []
+    },
+    {
+      "name": "spring-webflux-5.0",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.0",
+      "scope": {
+        "name": "io.opentelemetry.spring-webflux-5.0"
+      },
+      "target_versions": {
+        "javaagent": [
+          "io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)",
+          "org.springframework:spring-webflux:[5.0.0.RELEASE,)",
+          "io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)"
+        ]
+      },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code",
+        "Database Client",
+        "HTTP"
+      ]
+    },
+    {
       "name": "spring-webflux-5.3",
+      "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
       "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.3"
@@ -6128,10 +7682,187 @@
           "org.springframework:spring-webflux:5.3.0"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "spring-webmvc-3.1",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-3.1"
@@ -6141,18 +7872,215 @@
           "org.springframework:spring-webmvc:[3.1.0.RELEASE,6)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-webmvc.experimental-span-attributes",
+          "description": "Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-webmvc.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "spring-webmvc.view.type",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-webmvc-5.3",
+      "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-5.3"
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "spring-webmvc-6.0",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -6163,7 +8091,75 @@
           "org.springframework:spring-webmvc:[6.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-webmvc.experimental-span-attributes",
+          "description": "Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-webmvc.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "spring-webmvc.view.type",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-ws-2.0",
@@ -6589,7 +8585,7 @@
       },
       "telemetry": [
         {
-          "when": "otel.semconv-stability.opt-in=database",
+          "when": "default",
           "metrics": [
             {
               "name": "db.client.operation.duration",
@@ -6668,7 +8664,7 @@
       },
       "telemetry": [
         {
-          "when": "otel.semconv-stability.opt-in=database",
+          "when": "default",
           "metrics": [
             {
               "name": "db.client.operation.duration",
@@ -6725,7 +8721,7 @@
       },
       "telemetry": [
         {
-          "when": "otel.semconv-stability.opt-in=database",
+          "when": "default",
           "metrics": [
             {
               "name": "db.client.operation.duration",
@@ -6834,30 +8830,6 @@
               "semconv": true
             }
           ]
-        },
-        {
-          "when": "otel.semconv-stability.opt-in=database",
-          "metrics": [
-            {
-              "name": "db.client.connection.count",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connection",
-              "attributes": [
-                {
-                  "name": "db.client.connection.pool.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.client.connection.state",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
-            }
-          ]
         }
       ],
       "semconv": [
@@ -6935,7 +8907,7 @@
   "2.17": [
     {
       "name": "activej-http-6.0",
-      "description": "This instrumentation provides SERVER spans and metrics for the ActiveJ HTTP server.",
+      "description": "This instrumentation enables SERVER spans and metrics for the ActiveJ HTTP server.",
       "source_path": "instrumentation/activej-http-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -7087,6 +9059,7 @@
     },
     {
       "name": "akka-http-10.0",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Akka HTTP client and server.",
       "source_path": "instrumentation/akka/akka-http-10.0",
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
@@ -7458,7 +9431,7 @@
     },
     {
       "name": "apache-dbcp-2.0",
-      "description": "This instrumentation provides database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
+      "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
       "source_path": "instrumentation/apache-dbcp-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-dbcp-2.0"
@@ -7694,7 +9667,7 @@
     },
     {
       "name": "apache-httpasyncclient-4.1",
-      "description": "This instrumentation provides CLIENT spans and metrics for the Apache HttpAsyncClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for the Apache HttpAsyncClient.",
       "source_path": "instrumentation/apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
@@ -7799,7 +9772,7 @@
     },
     {
       "name": "apache-httpclient-2.0",
-      "description": "This instrumentation provides CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
@@ -7899,7 +9872,7 @@
     },
     {
       "name": "apache-httpclient-4.0",
-      "description": "This instrumentation provides CLIENT spans and metrics for version 4 of the Apache HttpClient.",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 4 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
@@ -8115,6 +10088,7 @@
     },
     {
       "name": "apache-httpclient-5.0",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 5 of the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
@@ -8162,6 +10136,53 @@
               ],
               "semconv": true
             }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
           ]
         }
       ],
@@ -8172,6 +10193,7 @@
     },
     {
       "name": "apache-httpclient-5.2",
+      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
       "source_path": "instrumentation/apache-httpclient/apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
@@ -8181,10 +10203,107 @@
           "org.apache.httpcomponents.client5:httpclient5:5.2.1"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.resend_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "apache-shenyu-2.4",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing SERVER spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
       "source_path": "instrumentation/apache-shenyu-2.4",
       "scope": {
         "name": "io.opentelemetry.apache-shenyu-2.4"
@@ -8197,7 +10316,7 @@
       "configurations": [
         {
           "name": "otel.instrumentation.apache-shenyu.experimental-span-attributes",
-          "description": "Enables experimental span attributes for Apache Shenyu instrumentation.",
+          "description": "Enables experimental `apache-shenyu.meta.` prefixed span attributes `app-name`, `service-name`, `context-path`, `param-types`, `id`, `method-name`, `rpc-type`, `path` and `rpc-ext`.\n",
           "type": "boolean",
           "default": false
         }
@@ -8206,6 +10325,7 @@
     },
     {
       "name": "armeria-1.3",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria HTTP client and server.",
       "source_path": "instrumentation/armeria/armeria-1.3",
       "scope": {
         "name": "io.opentelemetry.armeria-1.3"
@@ -8218,10 +10338,217 @@
           "com.linecorp.armeria:armeria:1.3.0"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "armeria-grpc-1.14",
+      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria gRPC client and server.",
       "source_path": "instrumentation/armeria/armeria-grpc-1.14",
       "scope": {
         "name": "io.opentelemetry.armeria-grpc-1.14"
@@ -8235,6 +10562,7 @@
     },
     {
       "name": "async-http-client-1.9",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
       "source_path": "instrumentation/async-http-client/async-http-client-1.9",
       "scope": {
         "name": "io.opentelemetry.async-http-client-1.9"
@@ -8244,10 +10572,92 @@
           "com.ning:async-http-client:[1.9.0,)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "async-http-client-2.0",
+      "description": "This instrumentation enables CLIENT spans and metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
       "source_path": "instrumentation/async-http-client/async-http-client-2.0",
       "scope": {
         "name": "io.opentelemetry.async-http-client-2.0"
@@ -8257,7 +10667,108 @@
           "org.asynchttpclient:async-http-client:[2.0.0,)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "avaje-jex-3.0",
@@ -8350,7 +10861,7 @@
         },
         {
           "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
-          "description": "Enables experimental receive telemetry for AWS SDK instrumentation.",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
           "type": "boolean",
           "default": false
         },
@@ -8426,7 +10937,7 @@
       "configurations": [
         {
           "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
-          "description": "Enables experimental receive telemetry for AWS SDK instrumentation.",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
           "type": "boolean",
           "default": false
         },
@@ -8681,7 +11192,7 @@
     },
     {
       "name": "camel-2.20",
-      "description": "This instrumentation provides tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
+      "description": "This instrumentation enables tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
       "source_path": "instrumentation/camel-2.20",
       "scope": {
         "name": "io.opentelemetry.camel-2.20"
@@ -9039,13 +11550,13 @@
       "configurations": [
         {
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
-          "description": "Enables experimental view telemetry.",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
           "type": "boolean",
           "default": false
         },
         {
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
-          "description": "Enables experimental controller telemetry.",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
           "type": "boolean",
           "default": false
         }
@@ -9054,7 +11565,7 @@
     },
     {
       "name": "elasticsearch-api-client-7.16",
-      "description": "This instrumentation provides client spans for Elasticsearch API client requests for version 7 of the client. Versions 8.10 and later have native support for OpenTelemetry.",
+      "description": "This instrumentation enables client spans for Elasticsearch API client requests for version 7 of the client. Versions 8.10 and later have native support for OpenTelemetry.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-api-client-7.16",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-api-client-7.16"
@@ -9069,7 +11580,7 @@
     },
     {
       "name": "elasticsearch-rest-5.0",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-5.0"
@@ -9130,7 +11641,7 @@
     },
     {
       "name": "elasticsearch-rest-6.4",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-6.4",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-6.4"
@@ -9190,7 +11701,7 @@
     },
     {
       "name": "elasticsearch-rest-7.0",
-      "description": "This instrumentation provides tracing for Elasticsearch REST clients.",
+      "description": "This instrumentation enables tracing for Elasticsearch REST clients.",
       "source_path": "instrumentation/elasticsearch/elasticsearch-rest-7.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-7.0"
@@ -9253,7 +11764,7 @@
     },
     {
       "name": "elasticsearch-transport-5.0",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.0"
@@ -9415,7 +11926,7 @@
     },
     {
       "name": "elasticsearch-transport-5.3",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-5.3",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.3"
@@ -9597,7 +12108,7 @@
     },
     {
       "name": "elasticsearch-transport-6.0",
-      "description": "This instrumentation provides client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "source_path": "instrumentation/elasticsearch/elasticsearch-transport-6.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-6.0"
@@ -9807,6 +12318,7 @@
     },
     {
       "name": "finagle-http-23.11",
+      "description": "This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.\n",
       "source_path": "instrumentation/finagle-http-23.11",
       "scope": {
         "name": "io.opentelemetry.finagle-http-23.11"
@@ -9821,6 +12333,7 @@
     },
     {
       "name": "finatra-2.9",
+      "description": "This instrumentation for the Finatra web framework augments the telemetry generated by the underlying Netty instrumentation. It provides more specific, high-level context, such as route information, to the spans generated by Netty.",
       "source_path": "instrumentation/finatra-2.9",
       "scope": {
         "name": "io.opentelemetry.finatra-2.9"
@@ -9831,7 +12344,31 @@
           "com.twitter:finatra-http_2.12:[2.9.0,]"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "geode-1.4",
@@ -11112,6 +13649,7 @@
     },
     {
       "name": "kafka-clients-0.11",
+      "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
       "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-0.11"
@@ -11133,12 +13671,25 @@
           "description": "Enables the capture of the experimental consumer attribute \"kafka.record.queue_time_ms\"",
           "type": "boolean",
           "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
         }
       ],
       "semconv": []
     },
     {
       "name": "kafka-clients-2.6",
+      "description": "This instrumentation provides a library integeration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
       "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-2.6",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-2.6"
@@ -11922,6 +14473,182 @@
       "semconv": [
         "Database Client",
         "HTTP"
+      ]
+    },
+    {
+      "name": "openai-java-1.1",
+      "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "source_path": "instrumentation/openai/openai-java-1.1",
+      "scope": {
+        "name": "io.opentelemetry.openai-java-1.1"
+      },
+      "target_versions": {
+        "javaagent": [
+          "com.openai:openai-java:[1.1.0,)"
+        ],
+        "library": [
+          "com.openai:openai-java:1.1.0"
+        ]
+      },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.genai.capture-message-content",
+          "description": "Enables including the full content of user and assistant messages in emitted log events. Note that full content can have data privacy and size concerns, and care should be taken when enabling this.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "gen_ai.client.operation.duration",
+              "description": "GenAI operation duration.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "description": "Measures number of input and output tokens used.",
+              "type": "HISTOGRAM",
+              "unit": "token",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                },
+                {
+                  "name": "gen_ai.token.type",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "gen_ai.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.frequency_penalty",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.max_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.presence_penalty",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.seed",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.stop_sequences",
+                  "type": "STRING_ARRAY",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.temperature",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.request.top_p",
+                  "type": "DOUBLE",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.finish_reasons",
+                  "type": "STRING_ARRAY",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.response.model",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.system",
+                  "type": "STRING"
+                },
+                {
+                  "name": "gen_ai.usage.input_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "gen_ai.usage.output_tokens",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Gen Ai"
       ]
     },
     {
@@ -13168,6 +15895,7 @@
     },
     {
       "name": "spring-batch-3.0",
+      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
       "source_path": "instrumentation/spring/spring-batch-3.0",
       "scope": {
@@ -13178,10 +15906,47 @@
           "org.springframework.batch:spring-batch-core:[3.0.0.RELEASE,5)"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-batch.experimental-span-attributes",
+          "description": "Adds the experimental attribute `job.system` to spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-batch.experimental.chunk.new-trace",
+          "description": "When enabled, a new root span will be created for each chunk processing. Please note that this may lead to a high number of spans being created.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-batch.item.enabled",
+          "description": "When enabled, spans will be created for each item processed. Please note that this may lead to a high number of spans being created.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.spring-batch.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "job.system",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-boot-actuator-autoconfigure-2.0",
+      "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
       "disabled_by_default": true,
       "source_path": "instrumentation/spring/spring-boot-actuator-autoconfigure-2.0",
       "scope": {
@@ -13196,6 +15961,7 @@
     },
     {
       "name": "spring-boot-resources",
+      "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
       "source_path": "instrumentation/spring/spring-boot-resources",
       "scope": {
         "name": "io.opentelemetry.spring-boot-resources"
@@ -13204,6 +15970,7 @@
     },
     {
       "name": "spring-cloud-aws-3.0",
+      "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
       "source_path": "instrumentation/spring/spring-cloud-aws-3.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13218,6 +15985,7 @@
     },
     {
       "name": "spring-cloud-gateway-2.0",
+      "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
       "source_path": "instrumentation/spring/spring-cloud-gateway/spring-cloud-gateway-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-cloud-gateway-2.0"
@@ -13227,10 +15995,19 @@
           "org.springframework.cloud:spring-cloud-starter-gateway:[2.0.0.RELEASE,]"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-cloud-gateway.experimental-span-attributes",
+          "description": "Enables experimental `spring-cloud-gateway.route` attributes (e.g., `spring-cloud-gateway.route.id`, `spring-cloud-gateway.route.uri`, etc.) on spans.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-core-2.0",
+      "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
       "source_path": "instrumentation/spring/spring-core-2.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13245,6 +16022,7 @@
     },
     {
       "name": "spring-data-1.8",
+      "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
       "source_path": "instrumentation/spring/spring-data/spring-data-1.8",
       "scope": {
         "name": "io.opentelemetry.spring-data-1.8"
@@ -13255,10 +16033,35 @@
           "org.springframework.data:spring-data-commons:[1.8.0.RELEASE,]"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-integration-4.1",
+      "description": "This instrumentation enables PRODUCER and CONSUMER spans for Spring Integration.",
       "source_path": "instrumentation/spring/spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -13271,10 +16074,70 @@
           "org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,5.+)"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-integration.producer.enabled",
+          "description": "Create producer spans when messages are sent to an output channel. Enable when you're using a messaging library that doesn't have its own instrumentation for generating producer spans. Note that the detection of output channels only works for Spring Cloud Stream `DirectWithAttributesChannel`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-integration.global-channel-interceptor-patterns",
+          "description": "An array of Spring channel name patterns that will be intercepted.",
+          "type": "list",
+          "default": "*"
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "Allows configuring headers to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-integration.producer.enabled=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            },
+            {
+              "span_kind": "PRODUCER",
+              "attributes": [
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-jms-2.0",
+      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
       "source_path": "instrumentation/spring/spring-jms/spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -13284,10 +16147,58 @@
           "org.springframework:spring-jms:[2.0,6)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-jms-6.0",
+      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
       "source_path": "instrumentation/spring/spring-jms/spring-jms-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13298,10 +16209,58 @@
           "org.springframework:spring-jms:[6.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-kafka-2.7",
+      "description": "This instrumentation enables CONSUMER spans for Spring Kafka listeners.",
       "source_path": "instrumentation/spring/spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -13311,10 +16270,151 @@
           "org.springframework.kafka:spring-kafka:[2.7.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.kafka.experimental-span-attributes",
+          "description": "Enables capturing experimental span attribute `kafka.record.queue_time_ms`",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.kafka.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "kafka.record.queue_time_ms",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.batch.message_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.destination.partition.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.consumer.group",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.kafka.message.key",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.message.offset",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.batch.message_count",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.destination.partition.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.consumer.group",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.kafka.message.key",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.kafka.message.offset",
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-pulsar-1.0",
+      "description": "This instrumentation enables CONSUMER spans for Spring Pulsar listeners.",
       "source_path": "instrumentation/spring/spring-pulsar-1.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13325,10 +16425,103 @@
           "org.springframework.pulsar:spring-pulsar:[1.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        },
+        {
+          "name": "otel.instrumentation.pulsar.experimental-span-attributes",
+          "description": "Enables capturing experimental span attribute `messaging.pulsar.message.type` on PRODUCER spans.\n",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.id",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-rabbit-1.0",
+      "description": "This instrumentation enables CONSUMER spans for Spring RabbitMQ listeners.",
       "source_path": "instrumentation/spring/spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -13338,10 +16531,52 @@
           "org.springframework.amqp:spring-rabbit:(,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "type": "list",
+          "default": ""
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CONSUMER",
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Messaging"
+      ]
     },
     {
       "name": "spring-rmi-4.0",
+      "description": "This instrumentation enables CLIENT and SERVER spans for Spring RMI applications.",
       "source_path": "instrumentation/spring/spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
@@ -13351,10 +16586,60 @@
           "org.springframework:spring-context:[4.0.0.RELEASE,6)"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.service",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.service",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "rpc.system",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Aws"
+      ]
     },
     {
       "name": "spring-scheduling-3.1",
+      "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
       "source_path": "instrumentation/spring/spring-scheduling-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-scheduling-3.1"
@@ -13364,10 +16649,67 @@
           "org.springframework:spring-context:[3.1.0.RELEASE,]"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-scheduling.experimental-span-attributes",
+          "description": "Adds the experimental span attribute `job.system` with the value `spring_scheduling`.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-scheduling.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "job.system",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-security-config-6.0",
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
       "source_path": "instrumentation/spring/spring-security-config-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13385,10 +16727,43 @@
           "org.springframework.security:spring-security-web:6.0.0"
         ]
       },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.common.enduser.id.enabled",
+          "description": "Enables capturing the enduser.id attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.enduser.role.enabled",
+          "description": "Enables capturing the enduser.role attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.enduser.scope.enabled",
+          "description": "Enables capturing the enduser.scope attribute.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.spring-security.enduser.role.granted-authority-prefix",
+          "description": "Prefix of granted authorities identifying roles to capture in the `enduser.role` semantic attribute.",
+          "type": "string",
+          "default": "ROLE_"
+        },
+        {
+          "name": "otel.instrumentation.spring-security.scope.role.granted-authority-prefix",
+          "description": "Prefix of granted authorities identifying scopes to capture in the `enduser.scopes` semantic attribute.",
+          "type": "string",
+          "default": "SCOPE_"
+        }
+      ],
       "semconv": []
     },
     {
       "name": "spring-web-3.1",
+      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
       "source_path": "instrumentation/spring/spring-web/spring-web-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-web-3.1"
@@ -13396,34 +16771,6 @@
       "target_versions": {
         "javaagent": [
           "org.springframework:spring-web:[3.1.0.RELEASE,6)"
-        ]
-      },
-      "semconv": []
-    },
-    {
-      "name": "spring-web-6.0",
-      "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
-      "scope": {
-        "name": "io.opentelemetry.spring-web-6.0"
-      },
-      "target_versions": {
-        "javaagent": [
-          "org.springframework:spring-web:[6.0.0,)"
-        ]
-      },
-      "semconv": []
-    },
-    {
-      "name": "spring-webflux-5.0",
-      "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.0",
-      "scope": {
-        "name": "io.opentelemetry.spring-webflux-5.0"
-      },
-      "target_versions": {
-        "javaagent": [
-          "io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)",
-          "org.springframework:spring-webflux:[5.0.0.RELEASE,)",
-          "io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)"
         ]
       },
       "telemetry": [
@@ -13459,6 +16806,43 @@
               ],
               "semconv": true
             }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
           ]
         }
       ],
@@ -13468,7 +16852,138 @@
       ]
     },
     {
+      "name": "spring-web-6.0",
+      "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
+      "scope": {
+        "name": "io.opentelemetry.spring-web-6.0"
+      },
+      "target_versions": {
+        "javaagent": [
+          "org.springframework:spring-web:[6.0.0,)"
+        ]
+      },
+      "semconv": []
+    },
+    {
+      "name": "spring-webflux-5.0",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.0",
+      "scope": {
+        "name": "io.opentelemetry.spring-webflux-5.0"
+      },
+      "target_versions": {
+        "javaagent": [
+          "io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)",
+          "org.springframework:spring-webflux:[5.0.0.RELEASE,)",
+          "io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)"
+        ]
+      },
+      "configurations": [
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code",
+        "Database Client",
+        "HTTP"
+      ]
+    },
+    {
       "name": "spring-webflux-5.3",
+      "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
       "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.3"
@@ -13478,10 +16993,187 @@
           "org.springframework:spring-webflux:5.3.0"
         ]
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.client.request.duration",
+              "description": "Duration of HTTP client requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            },
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.full",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            },
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "spring-webmvc-3.1",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-3.1"
@@ -13491,18 +17183,215 @@
           "org.springframework:spring-webmvc:[3.1.0.RELEASE,6)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-webmvc.experimental-span-attributes",
+          "description": "Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-webmvc.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "spring-webmvc.view.type",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-webmvc-5.3",
+      "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-5.3"
       },
-      "semconv": []
+      "telemetry": [
+        {
+          "when": "default",
+          "metrics": [
+            {
+              "name": "http.server.request.duration",
+              "description": "Duration of HTTP server requests.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "SERVER",
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "error.type",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.request.method_original",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "http.response.status_code",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "http.route",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "network.protocol.version",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "url.path",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.query",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "url.scheme",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "user_agent.original",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ]
     },
     {
       "name": "spring-webmvc-6.0",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
       "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-6.0",
       "minimum_java_version": 17,
       "scope": {
@@ -13513,7 +17402,75 @@
           "org.springframework:spring-webmvc:[6.0.0,)"
         ]
       },
-      "semconv": []
+      "configurations": [
+        {
+          "name": "otel.instrumentation.spring-webmvc.experimental-span-attributes",
+          "description": "Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.\n",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "telemetry": [
+        {
+          "when": "default",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "when": "otel.instrumentation.spring-webmvc.experimental-span-attributes=true",
+          "spans": [
+            {
+              "span_kind": "INTERNAL",
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "code.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "spring-webmvc.view.type",
+                  "type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "semconv": [
+        "Code"
+      ]
     },
     {
       "name": "spring-ws-2.0",

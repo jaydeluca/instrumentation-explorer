@@ -33,7 +33,7 @@ const InstrumentationInput: React.FC<InstrumentationInputProps> = ({ onAnalyze, 
 
     // Update the URL query parameter
     const encoded = btoa(instrumentationsArray.join(','));
-    navigate(`?instrumentations=${encoded}&version=${selectedVersion}`);
+    navigate(`?instrumentations=${encoded}&version=${selectedVersion}`, { replace: true });
   };
 
   return (
