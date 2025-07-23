@@ -6,6 +6,6 @@ export default defineConfig({
   base: '/instrumentation-explorer/',
   plugins: [react()],
   server: {
-    base: '/instrumentation-explorer/',
+    // The 'base' property is not valid here. It should be a top-level property.
   },
 })
