@@ -23,7 +23,7 @@ This project is a web-based tool designed to explore and display information abo
 
 To generate or update the enriched instrumentation list:
 
-1.  Navigate to the `telemetry-processing` directory:
+1.  Navigate to the `data-processing` directory:
     ```bash
     cd telemetry-processing
     ```

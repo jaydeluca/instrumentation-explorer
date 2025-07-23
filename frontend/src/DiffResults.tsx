@@ -9,7 +9,6 @@ interface DiffResultsProps {
 }
 
 const DiffResults: React.FC<DiffResultsProps> = ({ diff, baseVersion, compareVersion }) => {
-  console.log("DiffResults props received:", { diff, baseVersion, compareVersion });
   if (!diff) {
     return null;
   }

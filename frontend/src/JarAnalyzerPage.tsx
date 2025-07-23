@@ -32,13 +32,10 @@ const JarAnalyzerPage: React.FC = () => {
         } else if (loadedVersions.length > 0) {
           setSelectedVersion(loadedVersions[0]);
         }
-        console.log("All Libraries loaded:", data);
       });
   }, [location.search]);
 
   useEffect(() => {
-    console.log("Instrumentation Names:", instrumentationNames);
-    console.log("Selected Version:", selectedVersion);
     if (instrumentationNames.length > 0 && selectedVersion && allLibraries[selectedVersion]) {
       const currentVersionLibraries = allLibraries[selectedVersion];
       const metrics: (Metric & { sourceInstrumentation: string })[] = [];
@@ -46,10 +43,8 @@ const JarAnalyzerPage: React.FC = () => {
 
       instrumentationNames.forEach(name => {
         const library = currentVersionLibraries.find(lib => lib.name === name);
-        console.log(`Searching for library ${name}:`, library);
         if (library && library.telemetry) {
           library.telemetry.forEach(telemetryBlock => {
-            console.log(`Processing telemetry block for ${library.name} (when: ${telemetryBlock.when}):`, telemetryBlock);
             if (telemetryBlock.when === "default") { // Only consider default telemetry
               telemetryBlock.metrics?.forEach(metric => {
                 metrics.push({ ...metric, sourceInstrumentation: library.name });
@@ -63,12 +58,9 @@ const JarAnalyzerPage: React.FC = () => {
       });
       setCombinedMetrics(metrics);
       setCombinedSpans(spans);
-      console.log("Combined Metrics:", metrics);
-      console.log("Combined Spans:", spans);
     } else {
       setCombinedMetrics([]);
       setCombinedSpans([]);
-      console.log("No instrumentations selected or version not loaded.");
     }
   }, [instrumentationNames, selectedVersion, allLibraries]);
 

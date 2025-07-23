@@ -49,11 +49,6 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
     const baseSpans = baseDefaultTelemetry?.spans || [];
     const compareSpans = compareDefaultTelemetry?.spans || [];
 
-    console.log("Base Metrics:", baseMetrics);
-    console.log("Compare Metrics:", compareMetrics);
-    console.log("Base Spans:", baseSpans);
-    console.log("Compare Spans:", compareSpans);
-
     const baseMetricMap = new Map(baseMetrics.map(m => [m.name, m]));
     const compareMetricMap = new Map(compareMetrics.map(m => [m.name, m]));
     const baseSpanMap = new Map(baseSpans.map(s => [s.span_kind, s]));
@@ -62,13 +57,11 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
     // Compare Metrics
     compareMetrics.forEach(metric => {
       if (!baseMetricMap.has(metric.name)) {
-        console.log("Added Metric:", metric.name);
         added.push(metric);
       } else {
         const baseMetric = baseMetricMap.get(metric.name)!;
         const attributeDiff = compareAttributes(baseMetric.attributes, metric.attributes);
         if (attributeDiff.added.length > 0 || attributeDiff.removed.length > 0) {
-          console.log("Common Metric with Attribute Diff:", metric.name, attributeDiff);
           common.push({
             base: baseMetric,
             compare: metric,
@@ -80,7 +73,6 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
 
     baseMetrics.forEach(metric => {
       if (!compareMetricMap.has(metric.name)) {
-        console.log("Removed Metric:", metric.name);
         removed.push(metric);
       }
     });
@@ -88,13 +80,11 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
     // Compare Spans
     compareSpans.forEach(span => {
       if (!baseSpanMap.has(span.span_kind)) {
-        console.log("Added Span:", span.span_kind);
         added.push(span);
       } else {
         const baseSpan = baseSpanMap.get(span.span_kind)!;
         const attributeDiff = compareAttributes(baseSpan.attributes, span.attributes);
         if (attributeDiff.added.length > 0 || attributeDiff.removed.length > 0) {
-          console.log("Common Span with Attribute Diff:", span.span_kind, attributeDiff);
           common.push({
             base: baseSpan,
             compare: span,
@@ -106,7 +96,6 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
 
     baseSpans.forEach(span => {
       if (!compareSpanMap.has(span.span_kind)) {
-        console.log("Removed Span:", span.span_kind);
         removed.push(span);
       }
     });
@@ -116,24 +105,17 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
 
   const handleCompare = async () => {
     if (!baseVersion || !compareVersion || !library) {
-      console.log("Missing baseVersion, compareVersion, or library.");
       return;
     }
 
-    console.log("Fetching enriched data...");
     const response = await fetch('/instrumentation-explorer/instrumentation-list-enriched.json');
     const allData: { [key: string]: Library[] } = await response.json();
-    console.log("Fetched all data:", allData);
 
     const baseLib = allData[baseVersion]?.find(lib => lib.name === library.name);
     const compareLib = allData[compareVersion]?.find(lib => lib.name === library.name);
 
-    console.log("Base Library:", baseLib);
-    console.log("Compare Library:", compareLib);
-
     if (baseLib && compareLib) {
       const calculatedDiff = compareTelemetry(baseLib, compareLib);
-      console.log("Calculated Diff:", calculatedDiff);
       setDiffResult(calculatedDiff);
     } else {
       setDiffResult(null);
@@ -153,7 +135,6 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
           <label htmlFor="base-version-select">Base Version:</label>
           <select id="base-version-select" value={baseVersion} onChange={(e) => {
               setBaseVersion(e.target.value);
-              console.log("Base Version selected:", e.target.value);
             }}>
             <option value="">Select Version</option>
             {versions.map(version => (
@@ -165,7 +146,6 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
           <label htmlFor="compare-version-select">Compare Version:</label>
           <select id="compare-version-select" value={compareVersion} onChange={(e) => {
               setCompareVersion(e.target.value);
-              console.log("Compare Version selected:", e.target.value);
             }}>
             <option value="">Select Version</option>
             {versions.map(version => (
