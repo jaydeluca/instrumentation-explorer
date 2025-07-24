@@ -68,6 +68,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="disclaimer-box">
+        <p>Disclaimer: This is a proof of concept related to <a href="https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/13468" target="_blank" rel="noopener noreferrer">this GitHub issue/project</a>. The data is incomplete and unverified.</p>
+      </div>
       <div className="header-container">
         <h1>Instrumentation Libraries</h1>
         <Link to="/analyze" className="analyze-link">Analyze Service</Link>
