@@ -3,6 +3,28 @@
   padding: 20px;
 }
 
+.disclaimer-box {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 2px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  line-height: 1.2;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.disclaimer-box a {
+  color: #856404;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.disclaimer-box a:hover {
+  color: #5a4300;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
