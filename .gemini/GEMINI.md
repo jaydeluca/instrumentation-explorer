@@ -36,3 +36,5 @@ There are requirement files and other GEMINI resources under the .gemini directo
 .gemini/requirements.md
 .gemini/semconv.md
 .gemini/telemetry_delta.md
+
+Do not try and run "npm run dev", it does not work for you

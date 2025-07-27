@@ -1,6 +1,3 @@
-@import './themes/default.css';
-@import './themes/grafana.css';
-
 /* General Styling - Emulating OpenTelemetry Registry */
 #root {
   width: 100%;
@@ -8,11 +5,7 @@
 
 /* Library Detail Page */
 .library-detail {
-  padding: 20px;
-  max-width: 80%;
-  margin: 0 auto;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Theme specific */
 }
 
 .detail-header {
@@ -53,7 +46,6 @@
 h1 {
   font-size: 2.5em;
   margin-bottom: 25px;
-  border-bottom: 1px solid;
   padding-bottom: 15px;
   font-weight: 600;
 }
@@ -63,7 +55,6 @@ h3 {
   margin-top: 35px;
   margin-bottom: 15px;
   padding-bottom: 8px;
-  border-bottom: 1px solid;
   font-weight: 600;
 }
 
@@ -78,7 +69,6 @@ h5 {
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 15px;
-  border-bottom: 1px solid;
   padding-bottom: 10px;
   font-weight: 600;
 }
@@ -99,7 +89,7 @@ p {
 ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 15px;
+  margin: 0;
 }
 
 li {
@@ -120,7 +110,6 @@ a:hover {
 .configurations-section,
 .target-versions-main-section,
 .telemetry-main-section {
-  border: 1px solid;
   border-radius: 6px;
   padding: 20px;
   margin-top: 20px;
@@ -133,12 +122,12 @@ table {
   margin-top: 20px;
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid;
+  border: 1px solid; /* Re-added border for the table */
 }
 
 th,
 td {
-  border: 1px solid;
+  border: 1px solid; /* Re-added border for table cells */
   padding: 12px;
   text-align: left;
 }
@@ -151,7 +140,6 @@ td {
   font-size: 0.9em;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid;
 }
 
 .semconv-check {
@@ -164,7 +152,6 @@ td {
 .telemetry-tabs {
   display: flex;
   margin-bottom: 25px;
-  border-bottom: 1px solid;
 }
 
 .telemetry-tabs button {
@@ -199,7 +186,6 @@ td {
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid;
 }
 
 .telemetry-section ul {
@@ -211,13 +197,11 @@ td {
 .telemetry-section li {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed;
 }
 
 .telemetry-section li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
-  border-bottom: none;
 }
 
 .metric-header,
@@ -250,7 +234,6 @@ td {
   padding: 15px 20px;
   border-left: 3px solid;
   border-radius: 4px;
-  border: 1px solid;
 }
 
 .attributes-section h6 {
@@ -270,11 +253,9 @@ td {
   margin-bottom: 8px;
   font-size: 0.85em;
   padding: 4px 0;
-  border-bottom: 1px dashed;
 }
 
 .attribute-item:last-child {
-  border-bottom: none;
   margin-bottom: 0;
 }
 
@@ -296,7 +277,6 @@ td {
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid;
 }
 
 .target-version-section ul {
@@ -308,11 +288,9 @@ td {
 .target-version-section li {
   margin-bottom: 8px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed;
 }
 
 .target-version-section li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
-  border-bottom: none;
 }

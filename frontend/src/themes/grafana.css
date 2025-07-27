@@ -1,59 +1,33 @@
 /* Grafana Theme */
 
+@import './base.css';
+
 .theme-grafana #root {
   background-color: #1f2127 !important;
   color: #e0e0e0;
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-}
-
-.theme-grafana .App {
-  text-align: center;
-  padding: 20px;
 }
 
 .theme-grafana .disclaimer-box {
   background-color: #3a3d46;
   border: 1px solid #5c5f66;
   color: #c7c7c7;
-  padding: 8px;
-  margin-bottom: 15px;
-  font-size: 13px;
-  line-height: 1.4;
-  border-radius: 4px;
-  text-align: center;
 }
 
 .theme-grafana .disclaimer-box a {
   color: #629e51;
-  font-weight: bold;
-  text-decoration: underline;
 }
 
 .theme-grafana .disclaimer-box a:hover {
   color: #8cd26a;
 }
 
-.theme-grafana .header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
 .theme-grafana h1 {
   color: #e0e0e0;
-  font-size: 28px;
-  margin: 0;
 }
 
 .theme-grafana .analyze-link {
-  padding: 8px 16px;
   background-color: #629e51;
   color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  font-size: 14px;
 }
 
 .theme-grafana .analyze-link:hover {
@@ -61,8 +35,6 @@
 }
 
 .theme-grafana .version-selector label {
-  margin-right: 10px;
-  font-size: 14px;
   color: #c7c7c7;
 }
 
@@ -71,44 +43,21 @@
   background-color: #3a3d46;
   border: 1px solid #5c5f66;
   color: #e0e0e0;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
 }
 
 .theme-grafana .version-selector select:focus,
 .theme-grafana .theme-switcher select:focus {
-  outline: none;
   border-color: #629e51;
-}
-
-.theme-grafana .library-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
 }
 
 .theme-grafana .library-card {
   background-color: #2c2e34;
   border: 1px solid #3a3d46;
-  border-radius: 6px;
-  padding: 18px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
   color: #e0e0e0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
-}
-
-.theme-grafana .library-card:hover {
-  transform: translateY(-3px);
 }
 
 .theme-grafana .library-card a {
-  text-decoration: none;
   color: #629e51;
 }
 
@@ -117,43 +66,15 @@
 }
 
 .theme-grafana .library-card h2 {
-  margin-top: 0;
-  margin-bottom: 8px;
   color: #e0e0e0;
-  font-size: 20px;
 }
 
 .theme-grafana .library-card-footer {
-  margin-top: auto;
-  padding-top: 15px;
   border-top: 1px solid #3a3d46;
 }
 
 .theme-grafana .library-card-footer h4 {
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 15px;
   color: #c7c7c7;
-}
-
-.theme-grafana .telemetry-tags, .theme-grafana .semconv-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center; /* Vertically align items */
-}
-
-.theme-grafana .telemetry-tags {
-  margin-bottom: 10px;
-}
-
-.theme-grafana .telemetry-tag, .theme-grafana .semconv-tag, .theme-grafana .target-tag {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  color: #e0e0e0;
-  border: none;
 }
 
 .theme-grafana .telemetry-tag.spans {
@@ -163,10 +84,6 @@
 .theme-grafana .telemetry-tag.metrics {
   background-color: #4a8a4a;
 }
-
-.theme-grafana .target-tags {
-  padding-bottom: 10px;
-}`
 
 .theme-grafana .target-tag.javaagent svg {
   color: #f1c40f;
@@ -185,36 +102,20 @@
 .theme-grafana .search-filter-container {
   background-color: #2c2e34;
   border: 1px solid #3a3d46;
-  border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 20px;
-  text-align: left;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
 }
 
-@media (min-width: 1024px) {
-  .theme-grafana .search-filter-container {
-    grid-template-columns: repeat(4, 1fr); /* Four columns on larger screens */
-    /* Removed align-items: start to allow vertical stretching */
-  }
+.theme-grafana .filter-section {
+  border-right: 1px solid #3a3d46; /* Add vertical border */
 }
 
-.theme-grafana .search-input-container {
-  display: flex;
-  align-items: center; /* Vertically center content */
-  gap: 10px;
+.theme-grafana .filter-section h4 {
+  color: #e0e0e0;
 }
 
 .theme-grafana .search-input-container input {
-  flex-grow: 1;
   background-color: #3a3d46;
   border: 1px solid #5c5f66;
   color: #e0e0e0;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 14px;
 }
 
 .theme-grafana .search-input-container input::placeholder {
@@ -222,45 +123,13 @@
 }
 
 .theme-grafana .search-input-container input:focus {
-  outline: none;
   border-color: #629e51;
-}
-
-.theme-grafana .filter-section {
-  margin-top: 0;
-  border-right: 1px solid #3a3d46; /* Add vertical border */
-  padding-right: 10px; /* Add padding for separation */
-  padding-left: 10px; /* Add padding for separation */
-  text-align: center; /* Center content horizontally */
-}
-
-.theme-grafana .filter-section:last-child {
-  border-right: none; /* Remove border from last section */
-}
-
-.theme-grafana .filter-section h4 {
-  margin-top: 0;
-  margin-bottom: 8px;
-  color: #e0e0e0;
-  font-size: 15px;
-}
-
-.theme-grafana .filter-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center; /* Center buttons horizontally */
 }
 
 .theme-grafana .filter-button {
   background-color: #3a3d46;
   border: 1px solid #5c5f66;
   color: #c7c7c7;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .theme-grafana .filter-button.active {
@@ -275,31 +144,284 @@
 }
 
 /* TruncatedDescription component styles */
-.theme-grafana .truncated-description-container {
-  margin-bottom: 10px;
-}
-
 .theme-grafana .truncated-description-content {
-  margin: 0;
-  padding: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-size: 14px;
-  line-height: 1.5;
   color: #c7c7c7;
 }
 
 .theme-grafana .toggle-button {
-  background: none;
-  border: none;
   color: #629e51;
-  cursor: pointer;
-  padding: 0;
-  margin-top: 5px;
-  font-size: 13px;
-  text-decoration: underline;
 }
 
 .theme-grafana .toggle-button:hover {
   color: #8cd26a;
+}
+
+/* Library Detail Page */
+.theme-grafana .library-detail {
+  background-color: #2c2e34;
+  color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-grafana .back-button {
+  background-color: #3a3d46;
+  color: #e0e0e0;
+  border: 1px solid #5c5f66;
+}
+
+.theme-grafana .back-button:hover {
+  background-color: #4a4d56;
+  border-color: #6c707a;
+}
+
+.theme-grafana .version-selector select {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+}
+
+.theme-grafana .version-selector select:focus {
+  border-color: #629e51;
+}
+
+.theme-grafana h1 {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a3d46;
+}
+
+.theme-grafana h3 {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a3d46;
+}
+
+.theme-grafana h4 {
+  color: #e0e0e0;
+}
+
+.theme-grafana h5 {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a3d46;
+}
+
+.theme-grafana h6 {
+  color: #e0e0e0;
+}
+
+.theme-grafana p {
+  color: #c7c7c7;
+  /*border: 1px solid #3a3d46; !* Added border *!*/
+  /*padding: 5px 0; !* Added padding *!*/
+  /*border-radius: 6px; !* Rounded corners *!*/
+  /*background-color: #2a2c32; !* Slightly darker background *!*/
+}
+
+.theme-grafana li {
+  color: #c7c7c7;
+}
+
+.theme-grafana a {
+  color: #629e51;
+}
+
+.theme-grafana a:hover {
+  color: #8cd26a;
+}
+
+.theme-grafana .links-section,
+.theme-grafana .configurations-section,
+.theme-grafana .target-versions-main-section,
+.theme-grafana .telemetry-main-section {
+  border: 1px solid #3a3d46;
+  background-color: #25272c; /* Added darker background */
+}
+
+.theme-grafana table {
+  border: 1px solid #4a4d56; /* Slightly lighter border for tables */
+}
+
+.theme-grafana th,
+.theme-grafana td {
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana th {
+  background-color: #3a3d46; /* Darker background for table headers */
+  font-weight: 600;
+}
+
+.theme-grafana tr:nth-child(even) {
+  background-color: #2f313a; /* Zebra striping for table rows */
+}
+
+.theme-grafana .semconv-key {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #c7c7c7;
+}
+
+.theme-grafana .telemetry-tabs button {
+  background-color: #3a3d46;
+  color: #c7c7c7;
+  border-color: #5c5f66;
+}
+
+.theme-grafana .telemetry-tabs button:hover {
+  background-color: #4a4d56;
+}
+
+.theme-grafana .telemetry-tabs button.active {
+  background-color: #2c2e34;
+  color: #629e51;
+  border-color: #5c5f66;
+  border-bottom-color: #2c2e34;
+}
+
+.theme-grafana .telemetry-section {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .telemetry-section li {
+  /*border-bottom: 1px dashed #3a3d46;*/
+}
+
+.theme-grafana .metric-name,
+.theme-grafana .span-kind {
+  color: #629e51;
+}
+
+.theme-grafana .metric-details {
+  color: #c7c7c7;
+}
+
+.theme-grafana .metric-description {
+  color: #a0a0a0;
+}
+
+.theme-grafana .attributes-section {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  border-left-color: #629e51;
+}
+
+.theme-grafana .attributes-section h6 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .attribute-item {
+  color: #c7c7c7;
+  border-bottom: 1px dashed #afb4c6;
+}
+
+.theme-grafana .target-version-section {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .target-version-section li {
+  border-bottom: 1px dashed #3a3d46;
+}
+
+/* Telemetry Diff */
+.theme-grafana .telemetry-diff {
+  border-top: 1px solid #3a3d46;
+}
+
+.theme-grafana .diff-controls button {
+  background-color: #3a3d46;
+  color: #c7c7c7;
+  border-color: #5c5f66;
+}
+
+.theme-grafana .diff-controls button:hover {
+  background-color: #4a4d56;
+}
+
+.theme-grafana .diff-controls button:disabled {
+  background-color: #3a3d46;
+  color: #777777;
+  border-color: #5c5f66;
+}
+
+.theme-grafana .diff-section {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .diff-section h4 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .diff-line {
+  border-bottom: 1px dashed #3a3d46;
+}
+
+.theme-grafana .diff-added {
+  background-color: rgba(98, 158, 81, 0.2);
+  color: #8cd26a;
+}
+
+.theme-grafana .diff-removed {
+  background-color: rgba(224, 82, 82, 0.2);
+  color: #d26a6a;
+}
+
+.theme-grafana .diff-line-header {
+  color: #e0e0e0;
+}
+
+.theme-grafana .diff-attribute-item {
+  color: #c7c7c7;
+}
+
+.theme-grafana .diff-attribute-item.diff-added {
+  background-color: rgba(98, 158, 81, 0.2);
+  color: #8cd26a;
+}
+
+.theme-grafana .diff-attribute-item.diff-removed {
+  background-color: rgba(224, 82, 82, 0.2);
+  color: #d26a6a;
+}
+
+.theme-grafana .instrumentation-input {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .instrumentation-input textarea {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+}
+
+.theme-grafana .instrumentation-input textarea::placeholder {
+  color: #a0a0a0;
+}
+
+.theme-grafana .instrumentation-input button {
+  background-color: #629e51;
+  color: white;
+}
+
+.theme-grafana .instrumentation-input button:hover {
+  background-color: #4a7a3e;
+}
+
+.theme-grafana .analysis-results {
+  border-top: 1px solid #3a3d46;
+}
+
+.theme-grafana .combined-telemetry-display h5 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .combined-telemetry-display li {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+  color: #e0e0e0;
+}
+
+.theme-grafana .telemetry-source-label {
+  color: #c7c7c7;
 }

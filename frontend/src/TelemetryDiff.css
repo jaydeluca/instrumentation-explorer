@@ -1,10 +1,6 @@
-@import './themes/default.css';
-@import './themes/grafana.css';
-
 .telemetry-diff {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid;
 }
 
 .diff-controls {
@@ -36,7 +32,6 @@
 }
 
 .diff-section {
-  border: 1px solid;
   border-radius: 6px;
   padding: 20px;
   margin-bottom: 20px;
@@ -55,17 +50,10 @@
 
 .diff-line {
   padding: 8px 0;
-  border-bottom: 1px dashed;
 }
 
 .diff-line:last-child {
   border-bottom: none;
-}
-
-.diff-added {
-}
-
-.diff-removed {
 }
 
 .diff-line-header {
@@ -76,10 +64,4 @@
 .diff-attribute-item {
   margin-left: 15px;
   font-size: 0.9em;
-}
-
-.diff-attribute-item.diff-added {
-}
-
-.diff-attribute-item.diff-removed {
 }

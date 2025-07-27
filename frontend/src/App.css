@@ -1,15 +1,73 @@
-@import './themes/default.css';
-@import './themes/grafana.css';
-
 .App {
   text-align: center;
   padding: 20px;
 }
 
-.version-selector-and-theme-switcher-container {
+
+
+.navigation-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  background-color: var(--color-background-navbar);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.nav-links a {
+  color: var(--color-text-navbar);
+  text-decoration: none;
+  padding: 8px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: var(--color-background-button);
+  transition: background-color 0.3s ease;
+  display: inline-flex; /* Use flexbox for internal alignment */
+  align-items: center; /* Vertically center content */
+  height: 100%; /* Make the anchor take full height of its parent */
+}
+
+.nav-links a svg {
+  font-size: 1.2em; /* Adjust icon size if needed */
+  margin-left: 5px; /* Space between text and icon */
+  vertical-align: middle; /* Align icon vertically with text */
+}
+
+.nav-links a:hover {
+  background-color: var(--color-background-button-hover);
+  text-decoration: none;
+}
+
+.nav-links a.active-nav-link {
+  background-color: var(--color-background-button-active);
+  color: var(--color-text-button-active);
+}
+
+.nav-links a.active-nav-link:hover {
+  background-color: var(--color-background-button-active); /* Keep same background on hover */
+  text-decoration: none;
+}
+
+.version-selector label,
+.theme-selector label {
+  color: var(--color-text-navbar);
+  margin-right: 10px;
+}
+
+.version-selector select,
+.theme-selector select {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border-input);
+  background-color: var(--color-background-input);
+  color: var(--color-text-input);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Ensure nav-links takes full height of its parent */
 }
 

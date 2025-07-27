@@ -33,15 +33,15 @@
 }
 
 .telemetry-item.common {
-  background-color: rgba(60, 62, 68, 0.5); /* Darker neutral background */
-  border-left: 4px solid #5c5f66;
+  background-color: #f0f0f0; /* Changed to a lighter grey */
+  border-left: 4px solid #ccc;
 }
 
 .attribute-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 0;
+  padding: 10px;
 }
 
 .attribute-item.added {
