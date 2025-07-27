@@ -14,10 +14,22 @@
 
       gtag('config', 'G-WZ0TEHH81Z');
     </script>
-    <script type="module" crossorigin src="/instrumentation-explorer/assets/index-DcQ1hHDm.js"></script>
-    <link rel="stylesheet" crossorigin href="/instrumentation-explorer/assets/index-DljSlFAi.css">
+    <script type="module" crossorigin src="/instrumentation-explorer/assets/index-D0U2BD_B.js"></script>
+    <link rel="stylesheet" crossorigin href="/instrumentation-explorer/assets/index-Dl5nwr9f.css">
   </head>
   <body>
+    <script>
+      // Apply theme from localStorage as early as possible to prevent flicker
+      (function() {
+        const savedTheme = localStorage.getItem('app-theme');
+        if (savedTheme) {
+          document.body.className = `theme-${savedTheme}`;
+        } else {
+          // Default to 'default' theme if no theme is saved
+          document.body.className = 'theme-default';
+        }
+      })();
+    </script>
     <div id="root"></div>
   </body>
 </html>
