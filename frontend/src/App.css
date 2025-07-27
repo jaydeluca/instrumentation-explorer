@@ -1,3 +1,18 @@
+.library-card-footer h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.semconv-tags-container {
+  margin-top: 10px;
+}
+
+.telemetry-tags {
+  padding-bottom: 10px;
+}
+
 .App {
   text-align: center;
   padding: 20px;
@@ -79,9 +94,15 @@
   color: #212529; /* Dark heading */
 }
 
+.library-card-footer {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
 .semconv-tags {
-  margin-top: 10px; /* Reduced margin */
-  padding-top: 0; /* Removed padding */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .telemetry-tags {

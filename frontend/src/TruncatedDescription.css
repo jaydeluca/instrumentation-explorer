@@ -1,0 +1,25 @@
+
+.truncated-description-container {
+  /* No specific styles needed here anymore */
+}
+
+.truncated-description-content {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap; /* Preserve whitespace and wrap text */
+  word-wrap: break-word; /* Break long words */
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.toggle-button:hover {
+  text-decoration: underline;
+}

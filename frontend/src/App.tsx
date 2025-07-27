@@ -5,6 +5,7 @@ import type { Library } from './types';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import SearchAndFilter from './SearchAndFilter';
+import TruncatedDescription from './TruncatedDescription';
 
 function App() {
 
@@ -106,20 +107,28 @@ function App() {
               {library.target_versions?.javaagent && <span className="target-tag javaagent"><SmartToyIcon sx={{ fontSize: 12 }} /></span>}
               {library.target_versions?.library && <span className="target-tag library"><LocalLibraryIcon sx={{ fontSize: 12 }} /></span>}
             </div>
-            <p style={{ flexGrow: 1 }}>{library.description}</p>
-            <div className="telemetry-tags">
-              {library.telemetry?.some(t => t.spans?.length) && <span className="telemetry-tag spans">Spans</span>}
-              {library.telemetry?.some(t => t.metrics?.length) && <span className="telemetry-tag metrics">Metrics</span>}
+            <TruncatedDescription description={library.description} />
+            <div className="library-card-footer">
+              {(library.telemetry?.some(t => t.spans?.length) || library.telemetry?.some(t => t.metrics?.length)) && (
+                <div className="telemetry-tags">
+                  <h4>Telemetry</h4>
+                  {library.telemetry?.some(t => t.spans?.length) && <span className="telemetry-tag spans">Spans</span>}
+                  {library.telemetry?.some(t => t.metrics?.length) && <span className="telemetry-tag metrics">Metrics</span>}
+                </div>
+              )}
+              {library.semconv && library.semconv.length > 0 && (
+                <div className="semconv-tags-container">
+                  <h4>Semantic Conventions</h4>
+                  <div className="semconv-tags">
+                    {library.semconv.map((tag) => (
+                      <span key={tag} className="semconv-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-            {library.semconv && library.semconv.length > 0 && (
-              <div className="semconv-tags">
-                {library.semconv.map((tag) => (
-                  <span key={tag} className="semconv-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
         ))}
       </div>
