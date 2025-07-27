@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/instrumentation-explorer/**", "destination": "/dist/index.html" }
+  ]
+}
