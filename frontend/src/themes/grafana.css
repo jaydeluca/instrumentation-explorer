@@ -209,10 +209,6 @@
 
 .theme-grafana p {
   color: #c7c7c7;
-  /*border: 1px solid #3a3d46; !* Added border *!*/
-  /*padding: 5px 0; !* Added padding *!*/
-  /*border-radius: 6px; !* Rounded corners *!*/
-  /*background-color: #2a2c32; !* Slightly darker background *!*/
 }
 
 .theme-grafana li {
@@ -281,10 +277,6 @@
   border: 1px solid #3a3d46;
 }
 
-.theme-grafana .telemetry-section li {
-  /*border-bottom: 1px dashed #3a3d46;*/
-}
-
 .theme-grafana .metric-name,
 .theme-grafana .span-kind {
   color: #629e51;
@@ -323,6 +315,9 @@
 }
 
 /* Telemetry Diff */
+.theme-grafana .telemetry-item.common {
+  background-color: #2c2e34;
+}
 .theme-grafana .telemetry-diff {
   border-top: 1px solid #3a3d46;
 }
