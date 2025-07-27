@@ -1,0 +1,566 @@
+/* Base styles that apply to both themes */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html {
+  /* background-color handled by themes */
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.disclaimer-box {
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8px 15px;
+  margin-bottom: 20px;
+}
+
+.disclaimer-box p {
+  margin: 0;
+}
+
+:root {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  /* color-scheme and background-color handled by themes */
+  --color-background-button-active: #007bff;
+  --color-text-button-active: white;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.disclaimer-box {
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.disclaimer-box p {
+  padding: 5px !important;
+  margin: 0px !important;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 25px; /* Ensure consistent spacing */
+  padding-bottom: 15px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.6em;
+  margin-top: 35px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.3em;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1em;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Common heading styles for detail page sections */
+.library-detail h1, .library-detail h3, .library-detail h4, .library-detail h5, .library-detail h6 {
+  border-bottom: 2px solid; /* Increased border thickness */
+  padding-bottom: 8px; /* Consistent padding for all bordered headings */
+  margin-bottom: 15px; /* Consistent margin for all headings */
+}
+
+.library-detail h1 {
+  font-size: 2.5em; /* Override for main title */
+  padding-bottom: 15px;
+}
+
+.library-detail h5 {
+  margin-top: 0; /* Override for h5 */
+}
+
+p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+a {
+  font-weight: 500; /* From index.css */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.analyze-link {
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid;
+  padding: 0.8em 1.8em;
+  font-size: 1.1em;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.version-selector label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.version-selector select,
+.theme-switcher select {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.version-selector select:focus {
+  outline: none;
+}
+
+.library-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.library-card {
+  border-radius: 6px;
+  padding: 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Default shadow, can be overridden */
+}
+
+
+.library-card h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.library-card-footer {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.library-card-footer h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.telemetry-tags, .semconv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center; /* Vertically align items */
+}
+
+.telemetry-tags {
+  margin-bottom: 10px;
+}
+
+.telemetry-tag, .semconv-tag, .target-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: none;
+  color: #ffffff; /* Set font color to white for telemetry tags */
+}
+
+.target-tags {
+  padding-bottom: 10px;
+}
+
+/* Styles for SearchAndFilter component */
+.search-filter-container {
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 1024px) {
+  .search-filter-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.filter-section {
+  margin-top: 0;
+  padding-right: 10px; /* Add padding for separation */
+  padding-left: 10px; /* Add padding for separation */
+  text-align: center; /* Center content horizontally */
+}
+
+.filter-section:last-child {
+  border-right: none; /* Remove border from last section */
+}
+
+.filter-section h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center; /* Center buttons horizontally */
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  gap: 10px;
+  justify-content: center; /* Center input horizontally */
+}
+
+.search-input-container input {
+  flex-grow: 0; /* Prevent input from growing */
+  width: 80%; /* Set a fixed width or max-width */
+  max-width: 200px; /* Example max-width */
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-input-container input:focus {
+  outline: none;
+}
+
+.filter-button {
+  background-color: transparent;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filter-button:hover:not(.active) {
+  /* Theme specific */
+}
+
+/* TruncatedDescription component styles */
+.truncated-description-container {
+  margin-bottom: 10px;
+}
+
+.truncated-description-content {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.toggle-button:hover {
+  /* Theme specific */
+}
+
+/* Library Detail Page */
+.library-detail {
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.version-selector {
+  display: flex;
+  align-items: center;
+}
+
+.version-selector label {
+  margin-right: 10px;
+}
+
+.version-selector select {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.version-selector select:focus {
+  outline: none;
+}
+
+/* Sections with background */
+.links-section,
+.configurations-section,
+.target-versions-main-section,
+.telemetry-main-section {
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid; /* Re-added border for the table */
+}
+
+th,
+td {
+  border: 1px solid; /* Re-added border for table cells */
+  padding: 12px;
+  text-align: left;
+}
+
+/* Semantic Conventions Key */
+.semconv-key {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.semconv-check {
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+/* Telemetry Tabs */
+.telemetry-tabs {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.telemetry-tabs button {
+  border: 1px solid;
+  border-bottom: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 0.95em;
+  border-radius: 5px 5px 0 0;
+  margin-right: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.telemetry-tabs button.active {
+  font-weight: 600;
+}
+
+/* Telemetry Content (Metrics & Spans) */
+.telemetry-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.telemetry-section {
+  flex: 1;
+  min-width: 350px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.telemetry-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.telemetry-section li {
+  margin-bottom: 0px !important;
+  padding-bottom: 10px;
+}
+
+.telemetry-section li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.metric-header,
+.span-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.metric-name,
+.span-kind {
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-right: 10px;
+}
+
+.metric-details {
+  margin-left: 15px;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.metric-description {
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.attributes-section {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-left: 3px solid;
+  border-radius: 4px;
+}
+
+.attributes-section h6 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.attributes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.attribute-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.85em;
+  padding: 4px 0;
+}
+
+.attribute-item:last-child {
+  margin-bottom: 0;
+}
+
+.attribute-item span {
+  margin-right: 8px;
+}
+
+/* Target Versions */
+.target-versions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.target-version-section {
+  flex: 1;
+  min-width: 250px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.target-version-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.target-version-section li {
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+}
+
+.target-version-section li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}

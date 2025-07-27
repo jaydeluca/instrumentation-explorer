@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+@import './themes/base.css';
+@import './themes/default.css';
+@import './themes/grafana.css';
+
+html {
+  /* background-color handled by themes */
+}
+
 :root {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light; /* Changed to light */
-  color: #333333; /* Dark text for light background */
-  background-color: #ffffff; /* White background */
+  /* color-scheme and background-color handled by themes */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,65 +24,12 @@
 
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-width: 320px;
   min-height: 100vh;
-  background-color: #ffffff; /* Ensure body background matches root */
   width: 100%;
 }
 
-h1 {
-  font-size: 3.8em;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #212529; /* Darker heading color */
+.main-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
 }
-
-a {
-  font-weight: 500;
-  color: #007bff; /* Primary blue for links */
-  text-decoration: none;
-}
-a:hover {
-  color: #0056b3; /* Darker blue on hover */
-  text-decoration: underline;
-}
-
-.library-detail h6 {
-  color: #555; /* Adjusted for lighter theme */
-  font-size: 1.1em;
-  margin-top: 1em;
-  margin-bottom: 10px;
-}
-
-.telemetry-section li .attribute-item {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding-bottom: 5px;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid #dee2e6; /* Light border */
-  padding: 0.8em 1.8em;
-  font-size: 1.1em;
-  font-weight: 600;
-  font-family: inherit;
-  background-color: #f0f0f0; /* Light button background */
-  cursor: pointer;
-  transition: border-color 0.25s, background-color 0.25s;
-  color: #333; /* Dark text for buttons */
-}
-button:hover {
-  border-color: #007bff; /* Blue border on hover */
-  background-color: #e2e6ea; /* Slightly darker on hover */
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Removed light mode media query as default is now light */

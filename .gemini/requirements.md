@@ -10,7 +10,8 @@
 *   **UI Enhancement - Centering Container:** The main application container is now centered for improved visual balance.
 *   **UI Enhancement - Configuration Data Display:** Configuration data in the Library Detail View is now presented using a table format.
 *   **UI Enhancement - Telemetry Data Display:** A toggle mechanism has been implemented for displaying telemetry data based on the `when` condition, showing only one at a time.
-*   **UI Enhancement - Consistent Card Sizing:** Standardized the height of library cards on the main page and truncated long descriptions to create a uniform and clean grid layout.
+*   **UI Enhancement - Consistent Card Sizing:** Standardized the height of library cards on the main page and implemented a "Show more/Show less" button for description truncation, ensuring a uniform and clean grid layout.
+*   **UI Enhancement - Improved Telemetry and Semantic Convention Display:** Enhanced the display of telemetry and semantic convention tags with distinct, labeled sections for clarity and better styling.
 *   **UI Enhancement - Improved Telemetry View:** Enhanced the Telemetry Detail View by visually separating Metrics and Spans into distinct sections for better readability.
 *   **UI Enhancement - Styled Telemetry Attributes:** Improved the styling of telemetry attributes by highlighting metric names and span kinds, and presenting attributes in a more structured and visually appealing format.
 *   **Semantic Convention Integration:**
