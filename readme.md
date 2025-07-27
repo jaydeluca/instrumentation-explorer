@@ -2,6 +2,9 @@
 
 This project is a web-based tool designed to explore and display information about Java instrumentation libraries. It provides a clear, searchable, and filterable interface for understanding the capabilities of each library, including the telemetry data they generate (metrics and spans), their adherence to semantic conventions, and changes between different versions.
 
+
+<img src="./screenshots/home.png" width="800">
+
 ## Features
 
 *   **Library List View:** Browse a list of all instrumentation libraries.
@@ -10,6 +13,10 @@ This project is a web-based tool designed to explore and display information abo
 *   **Semantic Convention Integration:** See which metrics and attributes adhere to OpenTelemetry semantic conventions.
 *   **Versioning:** Switch between different versions of the instrumentation data.
 *   **Telemetry Version Diff Tool:** Compare telemetry changes (added, removed, modified metrics and spans, including attribute-level differences) between any two versions of a library.
+
+
+<img src="./screenshots/clickhouse-client.png" width="800">
+
 
 ## Project Structure
 
@@ -50,3 +57,11 @@ To generate or update the enriched instrumentation list:
     ```
 
     The application will typically be available at `http://localhost:5173`.
+
+## Screenshot automation
+
+There is a github action that will generate screenshots of various scenes for each PR. You can run this locally: 
+
+```
+node scripts/take-screenshots.mjs
+```
