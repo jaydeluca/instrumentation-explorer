@@ -62,7 +62,7 @@ function LibraryDetail() {
       {library.type && <p><strong>Type:</strong> {library.type}</p>}
       {library.maturity && <p><strong>Maturity:</strong> {library.maturity}</p>}
       {library.links && (
-        <div>
+        <div className="links-section">
           <h3>Links:</h3>
           <ul>
             {Object.entries(library.links).map(([key, value]) => (
@@ -73,7 +73,7 @@ function LibraryDetail() {
       )}
       {library.notes && <p><strong>Notes:</strong> {library.notes}</p>}
       {library.configurations && library.configurations.length > 0 && (
-        <div>
+        <div className="configurations-section">
           <h3>Configurations:</h3>
           <table>
             <thead>
@@ -98,7 +98,7 @@ function LibraryDetail() {
         </div>
       )}
       {library.target_versions && (
-        <div>
+        <div className="target-versions-main-section">
           <h3>Target Versions:</h3>
           <div className="target-versions-container">
             {library.target_versions.javaagent && library.target_versions.javaagent.length > 0 && (
@@ -125,7 +125,7 @@ function LibraryDetail() {
         </div>
       )}
       {library.telemetry && library.telemetry.length > 0 && (
-        <div>
+        <div className="telemetry-main-section">
           <h3>Telemetry:</h3>
           <div className="semconv-key">
             <span className="semconv-check">✅</span> = Semantic Conventions

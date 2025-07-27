@@ -1,16 +1,8 @@
-.library-card-footer h4 {
-  margin-top: 0;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #6c757d;
-}
 
-.semconv-tags-container {
-  margin-top: 10px;
-}
+/* Grafana-inspired Theme */
 
-.telemetry-tags {
-  padding-bottom: 10px;
+body {
+  background-color: #333333 !important;
 }
 
 .App {
@@ -19,45 +11,73 @@
 }
 
 .disclaimer-box {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  padding: 2px;
-  margin-bottom: 5px;
-  font-size: 12px;
-  line-height: 1.2;
-  border-radius: 5px;
+  background-color: #3a3d46; /* Darker background for disclaimer */
+  border: 1px solid #5c5f66; /* Subtle border */
+  color: #c7c7c7; /* Lighter text */
+  padding: 8px; /* Increased padding */
+  margin-bottom: 15px; /* More margin */
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 4px;
   text-align: center;
 }
 
 .disclaimer-box a {
-  color: #856404;
+  color: #629e51; /* Grafana green for links */
   font-weight: bold;
   text-decoration: underline;
 }
 
 .disclaimer-box a:hover {
-  color: #5a4300;
+  color: #8cd26a; /* Lighter green on hover */
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  color: #e0e0e0; /* Light heading color */
+  font-size: 28px;
+  margin: 0;
 }
 
 .analyze-link {
-  padding: 10px 15px;
-  background-color: #007bff;
+  padding: 8px 16px;
+  background-color: #629e51; /* Grafana green for buttons */
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: background-color 0.3s ease;
+  font-size: 14px;
 }
 
 .analyze-link:hover {
-  background-color: #0056b3;
+  background-color: #4a7a3e; /* Darker green on hover */
+}
+
+.version-selector label {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #c7c7c7;
+}
+
+.version-selector select {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.version-selector select:focus {
+  outline: none;
+  border-color: #629e51;
 }
 
 .library-list {
@@ -68,92 +88,205 @@
 }
 
 .library-card {
-  background-color: #ffffff; /* White card background */
-  border: 1px solid #e0e0e0; /* Light border */
-  border-radius: 8px;
-  padding: 15px; /* Reduced padding */
+  background-color: #2c2e34; /* Slightly lighter background for cards */
+  border: 1px solid #3a3d46; /* Subtle border */
+  border-radius: 6px;
+  padding: 18px; /* Adjusted padding */
   text-align: left;
   display: flex;
   flex-direction: column;
-  color: #343a40; /* Dark text color */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  color: #e0e0e0; /* Light text color */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  transition: transform 0.2s ease-in-out;
+}
+
+.library-card:hover {
+  transform: translateY(-3px);
 }
 
 .library-card a {
   text-decoration: none;
-  color: #007bff; /* Primary blue for links */
+  color: #629e51; /* Grafana green for links */
 }
 
 .library-card a:hover {
-  color: #0056b3;
+  color: #8cd26a; /* Lighter green on hover */
 }
 
 .library-card h2 {
   margin-top: 0;
-  margin-bottom: 5px; /* Reduced margin */
-  color: #212529; /* Dark heading */
+  margin-bottom: 8px; /* Adjusted margin */
+  color: #e0e0e0; /* Light heading */
+  font-size: 20px;
 }
 
 .library-card-footer {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 15px; /* More padding above footer */
+  border-top: 1px solid #3a3d46; /* Separator line */
 }
 
-.semconv-tags {
+.library-card-footer h4 {
+  margin-top: 0;
+  margin-bottom: 8px; /* Adjusted margin */
+  font-size: 15px;
+  color: #c7c7c7; /* Lighter grey for subheadings */
+}
+
+.telemetry-tags, .semconv-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 8px; /* Adjusted gap */
 }
 
 .telemetry-tags {
-  padding-bottom: 0; /* Removed padding */
+  margin-bottom: 10px; /* Space between telemetry and semconv sections */
 }
 
-.telemetry-tag {
+.telemetry-tag, .semconv-tag, .target-tag {
   display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
   font-size: 12px;
-  color: #ffffff;
+  color: #e0e0e0; /* Light text on tags */
+  border: none; /* No border for tags */
 }
 
 .telemetry-tag.spans {
-  background-color: #3498db; /* Blue for spans */
+  background-color: #346a9b; /* Muted blue */
 }
 
 .telemetry-tag.metrics {
-  background-color: #2ecc71; /* Green for metrics */
+  background-color: #4a8a4a; /* Muted green */
 }
 
 .target-tags {
-  padding-bottom: 5px; /* Reduced padding */
-}
-
-.target-tag {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  color: #ffffff;
+  padding-bottom: 10px; /* Adjusted padding */
 }
 
 .target-tag.javaagent {
-  background-color: #f1c40f; /* Yellow for javaagent */
+  background-color: #9b7b34; /* Muted yellow/orange */
 }
 
 .target-tag.library {
-  background-color: #e67e22; /* Orange for library */
+  background-color: #9b5a34; /* Muted orange/brown */
 }
 
 .semconv-tag {
-  display: inline-block;
-  background-color: #e9ecef; /* Light tag background */
-  color: #495057; /* Dark tag text */
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
+  background-color: #3a3d46; /* Darker background for semconv tags */
+  color: #c7c7c7; /* Lighter text */
+}
+
+/* Styles for SearchAndFilter component */
+.search-filter-container {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+  border-radius: 6px;
+  padding: 10px; /* Reduced padding */
+  margin-bottom: 20px;
+  text-align: left;
+  display: grid; /* Use grid for better control */
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 10px; /* Reduced gap */
+}
+
+@media (min-width: 768px) {
+  .search-filter-container {
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns on larger screens */
+    align-items: start;
+  }
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input-container input {
+  flex-grow: 1;
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-input-container input::placeholder {
+  color: #a0a0a0;
+}
+
+.search-input-container input:focus {
+  outline: none;
+  border-color: #629e51;
+}
+
+.filter-section {
+  margin-top: 0; /* Removed margin-top */
+}
+
+.filter-section h4 {
+  margin-top: 0;
+  margin-bottom: 8px; /* Reduced margin */
+  color: #e0e0e0;
+  font-size: 15px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px; /* Reduced gap */
+}
+
+.filter-button {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #c7c7c7;
+  padding: 5px 10px; /* Reduced padding */
+  border-radius: 4px;
   font-size: 12px;
-  border: 1px solid #dee2e6; /* Light border */
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-button.active {
+  background-color: #629e51;
+  border-color: #629e51;
+  color: white;
+}
+
+.filter-button:hover:not(.active) {
+  background-color: #4a4d56;
+  border-color: #6c707a;
+}
+
+/* TruncatedDescription component styles */
+.truncated-description-container {
+  margin-bottom: 10px; /* Space below description */
+}
+
+.truncated-description-content {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c7c7c7; /* Lighter grey for description text */
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #629e51; /* Grafana green for toggle button */
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.toggle-button:hover {
+  color: #8cd26a;
 }

@@ -5,9 +5,9 @@
 
 body {
   width: 100%;
-  background-color: #ffffff; /* White background */
-  color: #333333; /* Dark grey text */
-  font-family: 'Open Sans', sans-serif; /* Common sans-serif font */
+  /* background-color: #ffffff; */ /* Removed, handled by index.css */
+  color: #e0e0e0; /* Light grey text */
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; /* Grafana-like font */
   line-height: 1.6;
 }
 
@@ -15,6 +15,11 @@ body {
   padding: 20px;
   max-width: 80%;
   margin: 0 auto;
+  background-color: #2c2e34; /* Card background */
+  border: 1px solid #3a3d46;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
 }
 
 .detail-header {
@@ -25,11 +30,18 @@ body {
 }
 
 .back-button {
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 8px 16px;
+  background-color: #3a3d46; /* Darker background for button */
+  border: 1px solid #5c5f66; /* Subtle border */
+  border-radius: 4px;
   cursor: pointer;
+  color: #e0e0e0; /* Light text */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #4a4d56; /* Darker on hover */
+  border-color: #6c707a;
 }
 
 .version-selector {
@@ -39,40 +51,46 @@ body {
 
 .version-selector label {
   margin-right: 10px;
+  color: #c7c7c7;
 }
 
 .version-selector select {
-  padding: 5px;
-  border-radius: 5px;
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.back-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+.version-selector select:focus {
+  outline: none;
+  border-color: #629e51;
 }
 
 /* Headings */
 h1 {
-  color: #212529; /* Darker heading color */
+  color: #e0e0e0; /* Light heading color */
   font-size: 2.5em;
   margin-bottom: 25px;
-  border-bottom: 1px solid #dee2e6; /* Lighter, subtle border */
+  border-bottom: 1px solid #3a3d46; /* Darker, subtle border */
   padding-bottom: 15px;
-  font-weight: 600; /* Slightly bolder */
+  font-weight: 600;
 }
 
 h3 {
-  color: #212529;
+  color: #e0e0e0;
   font-size: 1.6em;
   margin-top: 35px;
   margin-bottom: 15px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #3a3d46;
   font-weight: 600;
 }
 
 h4 {
-  color: #343a40; /* Slightly lighter dark */
+  color: #e0e0e0; /* Light heading */
   font-size: 1.3em;
   margin-top: 25px;
   margin-bottom: 10px;
@@ -80,17 +98,17 @@ h4 {
 }
 
 h5 {
-  color: #343a40;
+  color: #e0e0e0;
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 15px;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid #3a3d46;
   padding-bottom: 10px;
   font-weight: 600;
 }
 
 h6 {
-  color: #495057;
+  color: #c7c7c7;
   font-size: 1em;
   margin-top: 15px;
   margin-bottom: 10px;
@@ -101,6 +119,11 @@ h6 {
 p {
   margin-bottom: 15px;
   line-height: 1.7;
+  color: #c7c7c7;
+}
+
+p strong {
+  color: #e0e0e0;
 }
 
 ul {
@@ -111,17 +134,30 @@ ul {
 
 li {
   margin-bottom: 8px;
+  color: #c7c7c7;
 }
 
 a {
-  color: #007bff;
+  color: #629e51; /* Grafana green for links */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #8cd26a;
   text-decoration: underline;
+}
+
+/* Sections with background */
+.links-section,
+.configurations-section,
+.target-versions-main-section,
+.telemetry-main-section {
+  background-color: #2c2e34; /* Card background */
+  border: 1px solid #3a3d46;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 /* Tables */
@@ -129,22 +165,23 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #ffffff;
+  background-color: #2c2e34; /* Card background */
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid #dee2e6;
+  border: 1px solid #3a3d46;
 }
 
 th,
 td {
-  border: 1px solid #dee2e6;
+  border: 1px solid #3a3d46;
   padding: 12px;
   text-align: left;
+  color: #e0e0e0;
 }
 
 th {
-  background-color: #e9ecef;
-  color: #495057;
+  background-color: #3a3d46;
+  color: #e0e0e0;
   font-weight: 600;
 }
 
@@ -154,15 +191,15 @@ th {
   align-items: center;
   margin-bottom: 20px;
   font-size: 0.9em;
-  color: #6c757d;
+  color: #c7c7c7;
   padding: 10px;
-  background-color: #e9ecef;
+  background-color: #3a3d46;
   border-radius: 5px;
-  border: 1px solid #dee2e6;
+  border: 1px solid #5c5f66;
 }
 
 .semconv-check {
-  color: #28a745; /* Green for success */
+  color: #629e51; /* Grafana green for success */
   font-weight: bold;
   margin-right: 8px;
   font-size: 1.2em;
@@ -172,13 +209,13 @@ th {
 .telemetry-tabs {
   display: flex;
   margin-bottom: 25px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #3a3d46;
 }
 
 .telemetry-tabs button {
-  background-color: #f0f0f0;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  background-color: #3a3d46;
+  color: #c7c7c7;
+  border: 1px solid #5c5f66;
   border-bottom: none;
   padding: 10px 18px;
   cursor: pointer;
@@ -189,13 +226,13 @@ th {
 }
 
 .telemetry-tabs button:hover {
-  background-color: #e2e6ea;
+  background-color: #4a4d56;
 }
 
 .telemetry-tabs button.active {
-  background-color: #ffffff;
-  color: #007bff;
-  border-color: #007bff;
+  background-color: #2c2e34;
+  color: #629e51;
+  border-color: #629e51;
   font-weight: 600;
 }
 
@@ -210,11 +247,11 @@ th {
 .telemetry-section {
   flex: 1;
   min-width: 350px;
-  background-color: #ffffff;
+  background-color: #2c2e34;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3a3d46;
 }
 
 .telemetry-section ul {
@@ -226,7 +263,8 @@ th {
 .telemetry-section li {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed #e9ecef;
+  border-bottom: 1px dashed #3a3d46;
+  color: #c7c7c7;
 }
 
 .telemetry-section li:last-child {
@@ -245,7 +283,7 @@ th {
 .metric-name,
 .span-kind {
   font-weight: 700;
-  color: #333333;
+  color: #9be67a; /* Brighter green for maximum contrast */
   font-size: 1.05em;
   margin-right: 10px;
 }
@@ -253,31 +291,27 @@ th {
 .metric-details {
   margin-left: 15px;
   font-size: 0.9em;
-  color: #555555;
+  color: #f0f0f0; /* Brighter white for maximum contrast */
   line-height: 1.6;
 }
 
 .metric-description {
   margin-top: 8px;
   font-style: italic;
-  color: #6c757d;
+  color: #e0e0e0; /* Lighter grey for better contrast */
 }
 
 .attributes-section {
   margin-top: 20px;
-  padding-left: 20px;
-  border-left: 3px solid #007bff;
-  background-color: #f8f9fa;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 0 5px 5px 0;
-  border-top: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 20px;
+  border-left: 3px solid #629e51; /* Grafana green border */
+  background-color: #3a3d46 !important; /* Darker background for attributes section */
+  border-radius: 4px;
+  border: 1px solid #3a3d46; /* Consistent border */
 }
 
 .attributes-section h6 {
-  color: #007bff;
+  color: #629e51;
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -293,7 +327,14 @@ th {
   align-items: center;
   margin-bottom: 8px;
   font-size: 0.85em;
-  color: #6c757d;
+  color: #c7c7c7;
+  padding: 4px 0;
+  border-bottom: 1px dashed #4a4d56; /* Subtle dashed separator */
+}
+
+.attribute-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .attribute-item span {
@@ -311,11 +352,11 @@ th {
 .target-version-section {
   flex: 1;
   min-width: 250px;
-  background-color: #ffffff;
+  background-color: #2c2e34;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3a3d46;
 }
 
 .target-version-section ul {
@@ -327,7 +368,8 @@ th {
 .target-version-section li {
   margin-bottom: 8px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #e9ecef;
+  border-bottom: 1px dashed #3a3d46;
+  color: #c7c7c7;
 }
 
 .target-version-section li:last-child {

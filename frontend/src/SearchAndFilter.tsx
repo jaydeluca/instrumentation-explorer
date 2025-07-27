@@ -1,8 +1,4 @@
 import React from 'react';
-import { TextField, Grid, Paper, Typography, Chip, InputAdornment } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 interface SearchAndFilterProps {
   searchTerm: string;
@@ -18,100 +14,75 @@ interface SearchAndFilterProps {
   toggleTargetFilter: (filter: string) => void;
 }
 
-const SearchAndFilter: React.FC<SearchAndFilterProps> = ({ 
-  searchTerm, 
-  setSearchTerm, 
-  allTelemetryTags, 
-  activeTelemetryFilters, 
-  toggleTelemetryFilter, 
-  allSemconvTags, 
-  activeSemconvFilters, 
+const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
+  searchTerm,
+  setSearchTerm,
+  allTelemetryTags,
+  activeTelemetryFilters,
+  toggleTelemetryFilter,
+  allSemconvTags,
+  activeSemconvFilters,
   toggleSemconvFilter,
   allTargetTags,
   activeTargetFilters,
   toggleTargetFilter
 }) => {
   return (
-    <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-      <Grid container spacing={4} justifyContent="space-around">
-        <Grid size={{ xs: 12, md:4 }}>
-          <Typography variant="h6" gutterBottom>
-            Search
-          </Typography>
-          <TextField
-            fullWidth
-            label="Search by name..."
-            variant="outlined"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-        <Grid size={{ xs: 12, md:2 }}>
-          <Typography variant="h6" gutterBottom>
-            Telemetry
-          </Typography>
-          <Paper variant="outlined" style={{ padding: '10px' }}>
-            {allTelemetryTags.map(tag => (
-              <Chip
-                key={tag}
-                label={tag}
-                clickable
-                color={activeTelemetryFilters.includes(tag) ? 'primary' : 'default'}
-                onClick={() => toggleTelemetryFilter(tag)}
-                style={{ marginRight: '10px', marginBottom: '0px' }}
-              />
-            ))}
-          </Paper>
-        </Grid>
-        <Grid size={{ xs: 12, md:2 }}>
-          <Typography variant="h6" gutterBottom>
-            Target
-          </Typography>
-          <Paper variant="outlined" style={{ padding: '10px' }}>
-            {allTargetTags.map(tag => (
-              <Chip
-                key={tag}
-                label={
-                  <>
-                    {tag === 'javaagent' && <SmartToyIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />}
-                    {tag === 'library' && <LocalLibraryIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />}
-                    {tag === 'javaagent' ? 'Java Agent' : tag === 'library' ? 'Library' : tag}
-                  </>
-                }
-                clickable
-                color={activeTargetFilters.includes(tag) ? 'primary' : 'default'}
-                onClick={() => toggleTargetFilter(tag)}
-                style={{ marginRight: '10px', marginBottom: '0px' }}
-              />
-            ))}
-          </Paper>
-        </Grid>
-        <Grid size={{ xs: 12, md:4 }}>
-          <Typography variant="h6" gutterBottom>
-            Semantic Conventions
-          </Typography>
-          <Paper variant="outlined" style={{ padding: '10px' }}>
-            {allSemconvTags.map(tag => (
-              <Chip
-                key={tag}
-                label={tag}
-                clickable
-                color={activeSemconvFilters.includes(tag) ? 'primary' : 'default'}
-                onClick={() => toggleSemconvFilter(tag)}
-                style={{ marginRight: '10px', marginBottom: '0px' }}
-              />
-            ))}
-          </Paper>
-        </Grid>
-      </Grid>
-    </Paper>
+    <div className="search-filter-container">
+      <div className="search-input-container">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <div className="filter-section">
+        <h4>Telemetry</h4>
+        <div className="filter-buttons">
+          {allTelemetryTags.map(tag => (
+            <button
+              key={tag}
+              className={`filter-button ${activeTelemetryFilters.includes(tag) ? 'active' : ''}`}
+              onClick={() => toggleTelemetryFilter(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-section">
+        <h4>Target</h4>
+        <div className="filter-buttons">
+          {allTargetTags.map(tag => (
+            <button
+              key={tag}
+              className={`filter-button ${activeTargetFilters.includes(tag) ? 'active' : ''}`}
+              onClick={() => toggleTargetFilter(tag)}
+            >
+              {tag === 'javaagent' ? 'Java Agent' : tag === 'library' ? 'Library' : tag}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-section">
+        <h4>Semantic Conventions</h4>
+        <div className="filter-buttons">
+          {allSemconvTags.map(tag => (
+            <button
+              key={tag}
+              className={`filter-button ${activeSemconvFilters.includes(tag) ? 'active' : ''}`}
+              onClick={() => toggleSemconvFilter(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
