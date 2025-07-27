@@ -34,6 +34,8 @@ import './index.css'
 import App from './App.tsx'
 import LibraryDetail from './LibraryDetail.tsx';
 import JarAnalyzerPage from './JarAnalyzerPage.tsx';
+import About from './About.tsx'; // Import the new About component
+import { ThemeProvider } from './ThemeProvider'; // Import ThemeProvider
 
 
 const router = withFaroRouterInstrumentation(createBrowserRouter([
@@ -49,11 +51,17 @@ const router = withFaroRouterInstrumentation(createBrowserRouter([
     path: '/analyze',
     element: <JarAnalyzerPage />,
   },
+  {
+    path: '/about',
+    element: <About />,
+  },
 ], { basename: '/instrumentation-explorer/' }));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider> {/* Wrap RouterProvider with ThemeProvider */}
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 );
 

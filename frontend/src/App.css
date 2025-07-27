@@ -3,136 +3,71 @@
   padding: 20px;
 }
 
-.disclaimer-box {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  padding: 2px;
-  margin-bottom: 5px;
-  font-size: 12px;
-  line-height: 1.2;
-  border-radius: 5px;
-  text-align: center;
-}
 
-.disclaimer-box a {
-  color: #856404;
-  font-weight: bold;
-  text-decoration: underline;
-}
 
-.disclaimer-box a:hover {
-  color: #5a4300;
-}
-
-.header-container {
+.navigation-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--color-background-navbar);
+  padding: 10px 20px;
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
-.analyze-link {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
+.nav-links a {
+  color: var(--color-text-navbar);
   text-decoration: none;
+  padding: 8px 15px;
+  margin-right: 10px;
   border-radius: 5px;
+  font-weight: bold;
+  background-color: var(--color-background-button);
   transition: background-color 0.3s ease;
+  display: inline-flex; /* Use flexbox for internal alignment */
+  align-items: center; /* Vertically center content */
+  height: 100%; /* Make the anchor take full height of its parent */
 }
 
-.analyze-link:hover {
-  background-color: #0056b3;
+.nav-links a svg {
+  font-size: 1.2em; /* Adjust icon size if needed */
+  margin-left: 5px; /* Space between text and icon */
+  vertical-align: middle; /* Align icon vertically with text */
 }
 
-.library-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
-}
-
-.library-card {
-  background-color: #ffffff; /* White card background */
-  border: 1px solid #e0e0e0; /* Light border */
-  border-radius: 8px;
-  padding: 15px; /* Reduced padding */
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  color: #343a40; /* Dark text color */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-}
-
-.library-card a {
+.nav-links a:hover {
+  background-color: var(--color-background-button-hover);
   text-decoration: none;
-  color: #007bff; /* Primary blue for links */
 }
 
-.library-card a:hover {
-  color: #0056b3;
+.nav-links a.active-nav-link {
+  background-color: var(--color-background-button-active);
+  color: var(--color-text-button-active);
 }
 
-.library-card h2 {
-  margin-top: 0;
-  margin-bottom: 5px; /* Reduced margin */
-  color: #212529; /* Dark heading */
+.nav-links a.active-nav-link:hover {
+  background-color: var(--color-background-button-active); /* Keep same background on hover */
+  text-decoration: none;
 }
 
-.semconv-tags {
-  margin-top: 10px; /* Reduced margin */
-  padding-top: 0; /* Removed padding */
+.version-selector label,
+.theme-selector label {
+  color: var(--color-text-navbar);
+  margin-right: 10px;
 }
 
-.telemetry-tags {
-  padding-bottom: 0; /* Removed padding */
+.version-selector select,
+.theme-selector select {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border-input);
+  background-color: var(--color-background-input);
+  color: var(--color-text-input);
 }
 
-.telemetry-tag {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  color: #ffffff;
+.nav-links {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Ensure nav-links takes full height of its parent */
 }
 
-.telemetry-tag.spans {
-  background-color: #3498db; /* Blue for spans */
-}
-
-.telemetry-tag.metrics {
-  background-color: #2ecc71; /* Green for metrics */
-}
-
-.target-tags {
-  padding-bottom: 5px; /* Reduced padding */
-}
-
-.target-tag {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  color: #ffffff;
-}
-
-.target-tag.javaagent {
-  background-color: #f1c40f; /* Yellow for javaagent */
-}
-
-.target-tag.library {
-  background-color: #e67e22; /* Orange for library */
-}
-
-.semconv-tag {
-  display: inline-block;
-  background-color: #e9ecef; /* Light tag background */
-  color: #495057; /* Dark tag text */
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  border: 1px solid #dee2e6; /* Light border */
-}

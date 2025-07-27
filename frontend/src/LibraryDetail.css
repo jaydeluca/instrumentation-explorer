@@ -3,18 +3,9 @@
   width: 100%;
 }
 
-body {
-  width: 100%;
-  background-color: #ffffff; /* White background */
-  color: #333333; /* Dark grey text */
-  font-family: 'Open Sans', sans-serif; /* Common sans-serif font */
-  line-height: 1.6;
-}
-
+/* Library Detail Page */
 .library-detail {
-  padding: 20px;
-  max-width: 80%;
-  margin: 0 auto;
+  /* Theme specific */
 }
 
 .detail-header {
@@ -25,11 +16,10 @@ body {
 }
 
 .back-button {
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .version-selector {
@@ -42,37 +32,33 @@ body {
 }
 
 .version-selector select {
-  padding: 5px;
-  border-radius: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.back-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+.version-selector select:focus {
+  outline: none;
 }
 
 /* Headings */
 h1 {
-  color: #212529; /* Darker heading color */
   font-size: 2.5em;
   margin-bottom: 25px;
-  border-bottom: 1px solid #dee2e6; /* Lighter, subtle border */
   padding-bottom: 15px;
-  font-weight: 600; /* Slightly bolder */
+  font-weight: 600;
 }
 
 h3 {
-  color: #212529;
   font-size: 1.6em;
   margin-top: 35px;
   margin-bottom: 15px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #dee2e6;
   font-weight: 600;
 }
 
 h4 {
-  color: #343a40; /* Slightly lighter dark */
   font-size: 1.3em;
   margin-top: 25px;
   margin-bottom: 10px;
@@ -80,17 +66,14 @@ h4 {
 }
 
 h5 {
-  color: #343a40;
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 15px;
-  border-bottom: 1px solid #e9ecef;
   padding-bottom: 10px;
   font-weight: 600;
 }
 
 h6 {
-  color: #495057;
   font-size: 1em;
   margin-top: 15px;
   margin-bottom: 10px;
@@ -106,7 +89,7 @@ p {
 ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 15px;
+  margin: 0;
 }
 
 li {
@@ -114,14 +97,22 @@ li {
 }
 
 a {
-  color: #007bff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3;
   text-decoration: underline;
+}
+
+/* Sections with background */
+.links-section,
+.configurations-section,
+.target-versions-main-section,
+.telemetry-main-section {
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 /* Tables */
@@ -129,23 +120,16 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #ffffff;
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid #dee2e6;
+  border: 1px solid; /* Re-added border for the table */
 }
 
 th,
 td {
-  border: 1px solid #dee2e6;
+  border: 1px solid; /* Re-added border for table cells */
   padding: 12px;
   text-align: left;
-}
-
-th {
-  background-color: #e9ecef;
-  color: #495057;
-  font-weight: 600;
 }
 
 /* Semantic Conventions Key */
@@ -154,15 +138,11 @@ th {
   align-items: center;
   margin-bottom: 20px;
   font-size: 0.9em;
-  color: #6c757d;
   padding: 10px;
-  background-color: #e9ecef;
   border-radius: 5px;
-  border: 1px solid #dee2e6;
 }
 
 .semconv-check {
-  color: #28a745; /* Green for success */
   font-weight: bold;
   margin-right: 8px;
   font-size: 1.2em;
@@ -172,13 +152,10 @@ th {
 .telemetry-tabs {
   display: flex;
   margin-bottom: 25px;
-  border-bottom: 1px solid #dee2e6;
 }
 
 .telemetry-tabs button {
-  background-color: #f0f0f0;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  border: 1px solid;
   border-bottom: none;
   padding: 10px 18px;
   cursor: pointer;
@@ -189,13 +166,9 @@ th {
 }
 
 .telemetry-tabs button:hover {
-  background-color: #e2e6ea;
 }
 
 .telemetry-tabs button.active {
-  background-color: #ffffff;
-  color: #007bff;
-  border-color: #007bff;
   font-weight: 600;
 }
 
@@ -210,11 +183,9 @@ th {
 .telemetry-section {
   flex: 1;
   min-width: 350px;
-  background-color: #ffffff;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
 }
 
 .telemetry-section ul {
@@ -226,13 +197,11 @@ th {
 .telemetry-section li {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed #e9ecef;
 }
 
 .telemetry-section li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
-  border-bottom: none;
 }
 
 .metric-header,
@@ -245,7 +214,6 @@ th {
 .metric-name,
 .span-kind {
   font-weight: 700;
-  color: #333333;
   font-size: 1.05em;
   margin-right: 10px;
 }
@@ -253,31 +221,22 @@ th {
 .metric-details {
   margin-left: 15px;
   font-size: 0.9em;
-  color: #555555;
   line-height: 1.6;
 }
 
 .metric-description {
   margin-top: 8px;
   font-style: italic;
-  color: #6c757d;
 }
 
 .attributes-section {
   margin-top: 20px;
-  padding-left: 20px;
-  border-left: 3px solid #007bff;
-  background-color: #f8f9fa;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 0 5px 5px 0;
-  border-top: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 20px;
+  border-left: 3px solid;
+  border-radius: 4px;
 }
 
 .attributes-section h6 {
-  color: #007bff;
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -293,7 +252,11 @@ th {
   align-items: center;
   margin-bottom: 8px;
   font-size: 0.85em;
-  color: #6c757d;
+  padding: 4px 0;
+}
+
+.attribute-item:last-child {
+  margin-bottom: 0;
 }
 
 .attribute-item span {
@@ -311,11 +274,9 @@ th {
 .target-version-section {
   flex: 1;
   min-width: 250px;
-  background-color: #ffffff;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
 }
 
 .target-version-section ul {
@@ -327,11 +288,9 @@ th {
 .target-version-section li {
   margin-bottom: 8px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #e9ecef;
 }
 
 .target-version-section li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
-  border-bottom: none;
 }

@@ -1,0 +1,22 @@
+.truncated-description-container {
+  margin-bottom: 10px;
+}
+
+.truncated-description-content {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 13px;
+  text-decoration: underline;
+}

@@ -16,6 +16,18 @@
     </script>
   </head>
   <body>
+    <script>
+      // Apply theme from localStorage as early as possible to prevent flicker
+      (function() {
+        const savedTheme = localStorage.getItem('app-theme');
+        if (savedTheme) {
+          document.body.className = `theme-${savedTheme}`;
+        } else {
+          // Default to 'default' theme if no theme is saved
+          document.body.className = 'theme-default';
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
