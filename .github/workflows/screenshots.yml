@@ -41,7 +41,7 @@ jobs:
       - name: Add and commit screenshots
         run: |
           git add screenshots/
-          git commit -m "docs: Add screenshots for PR #$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" --date="$(date -R)"
+          git diff --quiet --exit-code --cached || git commit -m "docs: Add screenshots for PR #$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" --date="$(date -R)"
         # Only commit if there are changes to avoid empty commits
 
       - name: Push changes
