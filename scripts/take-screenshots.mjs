@@ -38,23 +38,39 @@ async function takeScreenshots() {
   server.listen(PORT);
 
   // Wait for the server to be ready
-  await new Promise(resolve => setTimeout(resolve, 10000));
+  await new Promise((resolve, reject) => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      http.get(URL, (res) => {
+        if (res.statusCode === 200) {
+          clearInterval(interval);
+          resolve();
+        }
+      }).on('error', () => {
+        if (Date.now() - start > 10000) { // 10-second timeout
+          clearInterval(interval);
+          reject(new Error('Server did not become ready in time.'));
+        }
+      });
+    }, 100); // Check every 100ms
+  });
 
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-  await page.setViewportSize({ width: 1800, height: 2000 });
-
+  let browser;
+  let page;
   try {
+    browser = await chromium.launch();
+    page = await browser.newPage();
+    await page.setViewportSize({ width: 1800, height: 2000 });
     // Navigate to the home page and take a screenshot
     await page.goto(URL);
     await page.waitForLoadState('networkidle', { timeout: 60000 }); // Wait for network to be idle with longer timeout
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Add a short hard wait
+    await page.waitForSelector('body', { state: 'visible' }); // Wait for the page body to be visible
     await page.screenshot({ path: `screenshots/home.png` });
 
     // Take a full-page screenshot of the ClickHouse client library page
     await page.goto(`${URL}library/2.17/clickhouse-client-0.5`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.waitForSelector('#base-version-select', { state: 'visible' }); // Wait for the dropdown to be visible
 
     // Select options in dropdowns and click compare button
     await page.selectOption('#base-version-select', '2.17');
@@ -81,7 +97,7 @@ async function takeScreenshots() {
 
   } finally {
     await browser.close();
-    server.close(); // Close the http server
+    await new Promise(resolve => server.close(resolve)); // Properly await server closure
   }
 }
 
