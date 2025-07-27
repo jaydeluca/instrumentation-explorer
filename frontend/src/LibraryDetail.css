@@ -1,25 +1,18 @@
+@import './themes/default.css';
+@import './themes/grafana.css';
+
 /* General Styling - Emulating OpenTelemetry Registry */
 #root {
   width: 100%;
 }
 
-body {
-  width: 100%;
-  /* background-color: #ffffff; */ /* Removed, handled by index.css */
-  color: #e0e0e0; /* Light grey text */
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; /* Grafana-like font */
-  line-height: 1.6;
-}
-
+/* Library Detail Page */
 .library-detail {
   padding: 20px;
   max-width: 80%;
   margin: 0 auto;
-  background-color: #2c2e34; /* Card background */
-  border: 1px solid #3a3d46;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  color: #e0e0e0;
 }
 
 .detail-header {
@@ -31,17 +24,9 @@ body {
 
 .back-button {
   padding: 8px 16px;
-  background-color: #3a3d46; /* Darker background for button */
-  border: 1px solid #5c5f66; /* Subtle border */
   border-radius: 4px;
   cursor: pointer;
-  color: #e0e0e0; /* Light text */
   transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #4a4d56; /* Darker on hover */
-  border-color: #6c707a;
 }
 
 .version-selector {
@@ -51,13 +36,9 @@ body {
 
 .version-selector label {
   margin-right: 10px;
-  color: #c7c7c7;
 }
 
 .version-selector select {
-  background-color: #3a3d46;
-  border: 1px solid #5c5f66;
-  color: #e0e0e0;
   padding: 6px 10px;
   border-radius: 4px;
   font-size: 14px;
@@ -66,31 +47,27 @@ body {
 
 .version-selector select:focus {
   outline: none;
-  border-color: #629e51;
 }
 
 /* Headings */
 h1 {
-  color: #e0e0e0; /* Light heading color */
   font-size: 2.5em;
   margin-bottom: 25px;
-  border-bottom: 1px solid #3a3d46; /* Darker, subtle border */
+  border-bottom: 1px solid;
   padding-bottom: 15px;
   font-weight: 600;
 }
 
 h3 {
-  color: #e0e0e0;
   font-size: 1.6em;
   margin-top: 35px;
   margin-bottom: 15px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #3a3d46;
+  border-bottom: 1px solid;
   font-weight: 600;
 }
 
 h4 {
-  color: #e0e0e0; /* Light heading */
   font-size: 1.3em;
   margin-top: 25px;
   margin-bottom: 10px;
@@ -98,17 +75,15 @@ h4 {
 }
 
 h5 {
-  color: #e0e0e0;
   font-size: 1.1em;
   margin-top: 0;
   margin-bottom: 15px;
-  border-bottom: 1px solid #3a3d46;
+  border-bottom: 1px solid;
   padding-bottom: 10px;
   font-weight: 600;
 }
 
 h6 {
-  color: #c7c7c7;
   font-size: 1em;
   margin-top: 15px;
   margin-bottom: 10px;
@@ -119,11 +94,6 @@ h6 {
 p {
   margin-bottom: 15px;
   line-height: 1.7;
-  color: #c7c7c7;
-}
-
-p strong {
-  color: #e0e0e0;
 }
 
 ul {
@@ -134,17 +104,14 @@ ul {
 
 li {
   margin-bottom: 8px;
-  color: #c7c7c7;
 }
 
 a {
-  color: #629e51; /* Grafana green for links */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #8cd26a;
   text-decoration: underline;
 }
 
@@ -153,8 +120,7 @@ a:hover {
 .configurations-section,
 .target-versions-main-section,
 .telemetry-main-section {
-  background-color: #2c2e34; /* Card background */
-  border: 1px solid #3a3d46;
+  border: 1px solid;
   border-radius: 6px;
   padding: 20px;
   margin-top: 20px;
@@ -165,24 +131,16 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #2c2e34; /* Card background */
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid #3a3d46;
+  border: 1px solid;
 }
 
 th,
 td {
-  border: 1px solid #3a3d46;
+  border: 1px solid;
   padding: 12px;
   text-align: left;
-  color: #e0e0e0;
-}
-
-th {
-  background-color: #3a3d46;
-  color: #e0e0e0;
-  font-weight: 600;
 }
 
 /* Semantic Conventions Key */
@@ -191,15 +149,12 @@ th {
   align-items: center;
   margin-bottom: 20px;
   font-size: 0.9em;
-  color: #c7c7c7;
   padding: 10px;
-  background-color: #3a3d46;
   border-radius: 5px;
-  border: 1px solid #5c5f66;
+  border: 1px solid;
 }
 
 .semconv-check {
-  color: #629e51; /* Grafana green for success */
   font-weight: bold;
   margin-right: 8px;
   font-size: 1.2em;
@@ -209,13 +164,11 @@ th {
 .telemetry-tabs {
   display: flex;
   margin-bottom: 25px;
-  border-bottom: 1px solid #3a3d46;
+  border-bottom: 1px solid;
 }
 
 .telemetry-tabs button {
-  background-color: #3a3d46;
-  color: #c7c7c7;
-  border: 1px solid #5c5f66;
+  border: 1px solid;
   border-bottom: none;
   padding: 10px 18px;
   cursor: pointer;
@@ -226,13 +179,9 @@ th {
 }
 
 .telemetry-tabs button:hover {
-  background-color: #4a4d56;
 }
 
 .telemetry-tabs button.active {
-  background-color: #2c2e34;
-  color: #629e51;
-  border-color: #629e51;
   font-weight: 600;
 }
 
@@ -247,11 +196,10 @@ th {
 .telemetry-section {
   flex: 1;
   min-width: 350px;
-  background-color: #2c2e34;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #3a3d46;
+  border: 1px solid;
 }
 
 .telemetry-section ul {
@@ -263,8 +211,7 @@ th {
 .telemetry-section li {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed #3a3d46;
-  color: #c7c7c7;
+  border-bottom: 1px dashed;
 }
 
 .telemetry-section li:last-child {
@@ -283,7 +230,6 @@ th {
 .metric-name,
 .span-kind {
   font-weight: 700;
-  color: #9be67a; /* Brighter green for maximum contrast */
   font-size: 1.05em;
   margin-right: 10px;
 }
@@ -291,27 +237,23 @@ th {
 .metric-details {
   margin-left: 15px;
   font-size: 0.9em;
-  color: #f0f0f0; /* Brighter white for maximum contrast */
   line-height: 1.6;
 }
 
 .metric-description {
   margin-top: 8px;
   font-style: italic;
-  color: #e0e0e0; /* Lighter grey for better contrast */
 }
 
 .attributes-section {
   margin-top: 20px;
   padding: 15px 20px;
-  border-left: 3px solid #629e51; /* Grafana green border */
-  background-color: #3a3d46 !important; /* Darker background for attributes section */
+  border-left: 3px solid;
   border-radius: 4px;
-  border: 1px solid #3a3d46; /* Consistent border */
+  border: 1px solid;
 }
 
 .attributes-section h6 {
-  color: #629e51;
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -327,9 +269,8 @@ th {
   align-items: center;
   margin-bottom: 8px;
   font-size: 0.85em;
-  color: #c7c7c7;
   padding: 4px 0;
-  border-bottom: 1px dashed #4a4d56; /* Subtle dashed separator */
+  border-bottom: 1px dashed;
 }
 
 .attribute-item:last-child {
@@ -352,11 +293,10 @@ th {
 .target-version-section {
   flex: 1;
   min-width: 250px;
-  background-color: #2c2e34;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #3a3d46;
+  border: 1px solid;
 }
 
 .target-version-section ul {
@@ -368,8 +308,7 @@ th {
 .target-version-section li {
   margin-bottom: 8px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #3a3d46;
-  color: #c7c7c7;
+  border-bottom: 1px dashed;
 }
 
 .target-version-section li:last-child {

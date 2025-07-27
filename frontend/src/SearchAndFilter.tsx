@@ -1,4 +1,6 @@
 import React from 'react';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 interface SearchAndFilterProps {
   searchTerm: string;
@@ -29,13 +31,15 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
 }) => {
   return (
     <div className="search-filter-container">
-      <div className="search-input-container">
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="filter-section">
+        <h4>Search</h4>
+        <div className="search-input-container">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="filter-section">
@@ -44,7 +48,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
           {allTelemetryTags.map(tag => (
             <button
               key={tag}
-              className={`filter-button ${activeTelemetryFilters.includes(tag) ? 'active' : ''}`}
+              className={`filter-button ${tag.toLowerCase()} ${activeTelemetryFilters.includes(tag) ? 'active' : ''}`}
               onClick={() => toggleTelemetryFilter(tag)}
             >
               {tag}
@@ -59,10 +63,22 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
           {allTargetTags.map(tag => (
             <button
               key={tag}
-              className={`filter-button ${activeTargetFilters.includes(tag) ? 'active' : ''}`}
+              className={`filter-button ${tag} ${activeTargetFilters.includes(tag) ? 'active' : ''}`}
               onClick={() => toggleTargetFilter(tag)}
             >
-              {tag === 'javaagent' ? 'Java Agent' : tag === 'library' ? 'Library' : tag}
+              {tag === 'javaagent' ? (
+                <>
+                  <SmartToyIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
+                  Java Agent
+                </>
+              ) : tag === 'library' ? (
+                <>
+                  <LocalLibraryIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
+                  Library
+                </>
+              ) : (
+                tag
+              )}
             </button>
           ))}
         </div>

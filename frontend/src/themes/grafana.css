@@ -1,0 +1,305 @@
+/* Grafana Theme */
+
+.theme-grafana #root {
+  background-color: #1f2127 !important;
+  color: #e0e0e0;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.theme-grafana .App {
+  text-align: center;
+  padding: 20px;
+}
+
+.theme-grafana .disclaimer-box {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #c7c7c7;
+  padding: 8px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.theme-grafana .disclaimer-box a {
+  color: #629e51;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.theme-grafana .disclaimer-box a:hover {
+  color: #8cd26a;
+}
+
+.theme-grafana .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.theme-grafana h1 {
+  color: #e0e0e0;
+  font-size: 28px;
+  margin: 0;
+}
+
+.theme-grafana .analyze-link {
+  padding: 8px 16px;
+  background-color: #629e51;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.theme-grafana .analyze-link:hover {
+  background-color: #4a7a3e;
+}
+
+.theme-grafana .version-selector label {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #c7c7c7;
+}
+
+.theme-grafana .version-selector select,
+.theme-grafana .theme-switcher select {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.theme-grafana .version-selector select:focus,
+.theme-grafana .theme-switcher select:focus {
+  outline: none;
+  border-color: #629e51;
+}
+
+.theme-grafana .library-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.theme-grafana .library-card {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+  border-radius: 6px;
+  padding: 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.theme-grafana .library-card:hover {
+  transform: translateY(-3px);
+}
+
+.theme-grafana .library-card a {
+  text-decoration: none;
+  color: #629e51;
+}
+
+.theme-grafana .library-card a:hover {
+  color: #8cd26a;
+}
+
+.theme-grafana .library-card h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+  font-size: 20px;
+}
+
+.theme-grafana .library-card-footer {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #3a3d46;
+}
+
+.theme-grafana .library-card-footer h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #c7c7c7;
+}
+
+.theme-grafana .telemetry-tags, .theme-grafana .semconv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center; /* Vertically align items */
+}
+
+.theme-grafana .telemetry-tags {
+  margin-bottom: 10px;
+}
+
+.theme-grafana .telemetry-tag, .theme-grafana .semconv-tag, .theme-grafana .target-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #e0e0e0;
+  border: none;
+}
+
+.theme-grafana .telemetry-tag.spans {
+  background-color: #346a9b;
+}
+
+.theme-grafana .telemetry-tag.metrics {
+  background-color: #4a8a4a;
+}
+
+.theme-grafana .target-tags {
+  padding-bottom: 10px;
+}`
+
+.theme-grafana .target-tag.javaagent svg {
+  color: #f1c40f;
+}
+
+.theme-grafana .target-tag.library svg {
+  color: #e67e22;
+}
+
+.theme-grafana .semconv-tag {
+  background-color: #3a3d46;
+  color: #c7c7c7;
+}
+
+/* Styles for SearchAndFilter component */
+.theme-grafana .search-filter-container {
+  background-color: #2c2e34;
+  border: 1px solid #3a3d46;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 1024px) {
+  .theme-grafana .search-filter-container {
+    grid-template-columns: repeat(4, 1fr); /* Four columns on larger screens */
+    /* Removed align-items: start to allow vertical stretching */
+  }
+}
+
+.theme-grafana .search-input-container {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  gap: 10px;
+}
+
+.theme-grafana .search-input-container input {
+  flex-grow: 1;
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.theme-grafana .search-input-container input::placeholder {
+  color: #a0a0a0;
+}
+
+.theme-grafana .search-input-container input:focus {
+  outline: none;
+  border-color: #629e51;
+}
+
+.theme-grafana .filter-section {
+  margin-top: 0;
+  border-right: 1px solid #3a3d46; /* Add vertical border */
+  padding-right: 10px; /* Add padding for separation */
+  padding-left: 10px; /* Add padding for separation */
+  text-align: center; /* Center content horizontally */
+}
+
+.theme-grafana .filter-section:last-child {
+  border-right: none; /* Remove border from last section */
+}
+
+.theme-grafana .filter-section h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+  font-size: 15px;
+}
+
+.theme-grafana .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center; /* Center buttons horizontally */
+}
+
+.theme-grafana .filter-button {
+  background-color: #3a3d46;
+  border: 1px solid #5c5f66;
+  color: #c7c7c7;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-grafana .filter-button.active {
+  background-color: #629e51;
+  border-color: #629e51;
+  color: white;
+}
+
+.theme-grafana .filter-button:hover:not(.active) {
+  background-color: #4a4d56;
+  border-color: #6c707a;
+}
+
+/* TruncatedDescription component styles */
+.theme-grafana .truncated-description-container {
+  margin-bottom: 10px;
+}
+
+.theme-grafana .truncated-description-content {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c7c7c7;
+}
+
+.theme-grafana .toggle-button {
+  background: none;
+  border: none;
+  color: #629e51;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.theme-grafana .toggle-button:hover {
+  color: #8cd26a;
+}

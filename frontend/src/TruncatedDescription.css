@@ -1,25 +1,25 @@
+@import './themes/default.css';
+@import './themes/grafana.css';
 
 .truncated-description-container {
-  /* No specific styles needed here anymore */
+  margin-bottom: 10px;
 }
 
 .truncated-description-content {
   margin: 0;
   padding: 0;
-  white-space: pre-wrap; /* Preserve whitespace and wrap text */
-  word-wrap: break-word; /* Break long words */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .toggle-button {
   background: none;
   border: none;
-  color: #007bff;
   cursor: pointer;
   padding: 0;
   margin-top: 5px;
-  font-size: 14px;
-}
-
-.toggle-button:hover {
+  font-size: 13px;
   text-decoration: underline;
 }

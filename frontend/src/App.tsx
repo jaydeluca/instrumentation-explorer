@@ -6,6 +6,8 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import SearchAndFilter from './SearchAndFilter';
 import TruncatedDescription from './TruncatedDescription';
+import { ThemeProvider } from './ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 function App() {
 
@@ -68,71 +70,76 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <div className="disclaimer-box">
-        <p>Disclaimer: This is a proof of concept related to <a href="https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/13468" target="_blank" rel="noopener noreferrer">this GitHub issue/project</a>. The data is incomplete and unverified.</p>
-      </div>
-      <div className="header-container">
-        <h1>Instrumentation Libraries</h1>
-        <Link to="/analyze" className="analyze-link">Analyze Service</Link>
-      </div>
-      <div className="version-selector" style={{ marginBottom: '10px' }}>
-        <label htmlFor="version-select">Select Version:</label>
-        <select id="version-select" value={selectedVersion} onChange={(e) => setSelectedVersion(e.target.value)}>
-          {versions.map(version => (
-            <option key={version} value={version}>{version}</option>
-          ))}
-        </select>
-      </div>
-      <SearchAndFilter
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        allTelemetryTags={allTelemetryTags}
-        activeTelemetryFilters={activeTelemetryFilters}
-        toggleTelemetryFilter={(tag) => toggleFilter(tag, activeTelemetryFilters, setActiveTelemetryFilters)}
-        allSemconvTags={allSemconvTags}
-        activeSemconvFilters={activeSemconvFilters}
-        toggleSemconvFilter={(tag) => toggleFilter(tag, activeSemconvFilters, setActiveSemconvFilters)}
-        allTargetTags={allTargetTags}
-        activeTargetFilters={activeTargetFilters}
-        toggleTargetFilter={(tag) => toggleFilter(tag, activeTargetFilters, setActiveTargetFilters)}
-      />
-      <div className="library-list">
-        {filteredLibraries.map((library) => (
-          <div key={library.name} className="library-card">
-            <Link to={`/library/${selectedVersion}/${library.name}`}>
-              <h2>{library.name}</h2>
-            </Link>
-            <div className="target-tags">
-              {library.target_versions?.javaagent && <span className="target-tag javaagent"><SmartToyIcon sx={{ fontSize: 12 }} /></span>}
-              {library.target_versions?.library && <span className="target-tag library"><LocalLibraryIcon sx={{ fontSize: 12 }} /></span>}
-            </div>
-            <TruncatedDescription description={library.description} />
-            <div className="library-card-footer">
-              {(library.telemetry?.some(t => t.spans?.length) || library.telemetry?.some(t => t.metrics?.length)) && (
-                <div className="telemetry-tags">
-                  <h4>Telemetry</h4>
-                  {library.telemetry?.some(t => t.spans?.length) && <span className="telemetry-tag spans">Spans</span>}
-                  {library.telemetry?.some(t => t.metrics?.length) && <span className="telemetry-tag metrics">Metrics</span>}
-                </div>
-              )}
-              {library.semconv && library.semconv.length > 0 && (
-                <div className="semconv-tags-container">
-                  <h4>Semantic Conventions</h4>
-                  <div className="semconv-tags">
-                    {library.semconv.map((tag) => (
-                      <span key={tag} className="semconv-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+    <ThemeProvider>
+      <div className="App">
+        <div className="disclaimer-box">
+          <p>Disclaimer: This is a proof of concept related to <a href="https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/13468" target="_blank" rel="noopener noreferrer">this GitHub issue/project</a>. The data is incomplete and unverified.</p>
+        </div>
+        <div className="header-container">
+          <h1>Instrumentation Libraries</h1>
+          <Link to="/analyze" className="analyze-link">Analyze Service</Link>
+        </div>
+        <div className="version-selector-and-theme-switcher-container" style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="version-selector">
+            <label htmlFor="version-select">Select Version:</label>
+            <select id="version-select" value={selectedVersion} onChange={(e) => setSelectedVersion(e.target.value)}>
+              {versions.map(version => (
+                <option key={version} value={version}>{version}</option>
+              ))}
+            </select>
           </div>
-        ))}
+          <ThemeSwitcher />
+        </div>
+        <SearchAndFilter
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          allTelemetryTags={allTelemetryTags}
+          activeTelemetryFilters={activeTelemetryFilters}
+          toggleTelemetryFilter={(tag) => toggleFilter(tag, activeTelemetryFilters, setActiveTelemetryFilters)}
+          allSemconvTags={allSemconvTags}
+          activeSemconvFilters={activeSemconvFilters}
+          toggleSemconvFilter={(tag) => toggleFilter(tag, activeSemconvFilters, setActiveSemconvFilters)}
+          allTargetTags={allTargetTags}
+          activeTargetFilters={activeTargetFilters}
+          toggleTargetFilter={(tag) => toggleFilter(tag, activeTargetFilters, setActiveTargetFilters)}
+        />
+        <div className="library-list">
+          {filteredLibraries.map((library) => (
+            <div key={library.name} className="library-card">
+              <Link to={`/library/${selectedVersion}/${library.name}`}>
+                <h2>{library.name}</h2>
+              </Link>
+              <div className="target-tags">
+                {library.target_versions?.javaagent && <span className="target-tag javaagent"><SmartToyIcon /></span>}
+                {library.target_versions?.library && <span className="target-tag library"><LocalLibraryIcon /></span>}
+              </div>
+              <TruncatedDescription description={library.description} />
+              <div className="library-card-footer">
+                {(library.telemetry?.some(t => t.spans?.length) || library.telemetry?.some(t => t.metrics?.length)) && (
+                  <div className="telemetry-tags">
+                    <h4>Telemetry</h4>
+                    {library.telemetry?.some(t => t.spans?.length) && <span className="telemetry-tag spans">Spans</span>}
+                    {library.telemetry?.some(t => t.metrics?.length) && <span className="telemetry-tag metrics">Metrics</span>}
+                  </div>
+                )}
+                {library.semconv && library.semconv.length > 0 && (
+                  <div className="semconv-tags-container">
+                    <h4>Semantic Conventions</h4>
+                    <div className="semconv-tags">
+                      {library.semconv.map((tag) => (
+                        <span key={tag} className="semconv-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
