@@ -23,25 +23,25 @@
 }
 
 .telemetry-item.added {
-  background-color: #e6ffed;
-  border-left: 4px solid #28a745;
+  background-color: rgba(98, 158, 81, 0.2); /* Darker green background */
+  border-left: 4px solid #629e51;
 }
 
 .telemetry-item.removed {
-  background-color: #ffeef0;
-  border-left: 4px solid #dc3545;
+  background-color: rgba(224, 82, 82, 0.2); /* Darker red background */
+  border-left: 4px solid #e05252;
 }
 
 .telemetry-item.common {
-  background-color: #f0f8ff;
-  border-left: 4px solid #007bff;
+  background-color: #f0f0f0; /* Changed to a lighter grey */
+  border-left: 4px solid #ccc;
 }
 
 .attribute-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 0;
+  padding: 10px;
 }
 
 .attribute-item.added {
@@ -136,7 +136,6 @@
 .metric-details {
   margin-left: 10px;
   font-size: 0.9em;
-  color: #555;
 }
 
 .metric-description {

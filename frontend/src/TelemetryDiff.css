@@ -1,7 +1,6 @@
 .telemetry-diff {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
 }
 
 .diff-controls {
@@ -18,15 +17,51 @@
 }
 
 .diff-controls button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.diff-controls button:hover {
 }
 
 .diff-controls button:disabled {
-  background-color: #ccc;
   cursor: not-allowed;
+}
+
+.diff-section {
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.diff-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.diff-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.diff-line {
+  padding: 8px 0;
+}
+
+.diff-line:last-child {
+  border-bottom: none;
+}
+
+.diff-line-header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.diff-attribute-item {
+  margin-left: 15px;
+  font-size: 0.9em;
 }

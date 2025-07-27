@@ -18,6 +18,8 @@ The application is in a good state. We have successfully:
 *   Made significant styling and UX improvements, including a consistent layout, better data presentation, and a cleaner theme.
 *   Added versioning to the instrumentation data, allowing users to switch between different versions of the libraries.
 *   Implemented a telemetry version diff tool on the detail page to highlight differences in emitted telemetry between versions.
+*   Implemented description truncation on the main list page with a "Show more/Show less" button for expansion, ensuring consistent library container height.
+*   Improved the display of telemetry and semantic convention tags with distinct, labeled sections for clarity and better styling.
 
 ## Key Technologies
 
@@ -25,6 +27,14 @@ The application is in a good state. We have successfully:
 *   **Data:** YAML, JSON
 *   **Styling:** CSS
 
-## Next Steps
+## Other notes
 
-The next major feature is to deploy the application.
+There are requirement files and other GEMINI resources under the .gemini directory that should be referenced:
+
+.gemini/jar-analyzer.md
+.gemini/plan.md
+.gemini/requirements.md
+.gemini/semconv.md
+.gemini/telemetry_delta.md
+
+Do not try and run "npm run dev", it does not work for you

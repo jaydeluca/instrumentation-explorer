@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import InstrumentationInput from './InstrumentationInput';
 import CombinedTelemetryDisplay from './CombinedTelemetryDisplay';
 import './JarAnalyzerPage.css';
 import type { Library, Metric, Span } from './types';
+import Header from './components/Header'; // Import the new Header component
 
 const JarAnalyzerPage: React.FC = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const [instrumentationNames, setInstrumentationNames] = useState<string[]>([]);
   const [allLibraries, setAllLibraries] = useState<{ [key: string]: Library[] }>({});
   const [versions, setVersions] = useState<string[]>([]);
@@ -68,8 +69,7 @@ const JarAnalyzerPage: React.FC = () => {
     setInstrumentationNames(names);
   }, []);
 
-  const handleVersionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newVersion = event.target.value;
+  const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
 
     // Update URL with new version while preserving other params
@@ -79,27 +79,23 @@ const JarAnalyzerPage: React.FC = () => {
   };
 
   return (
-    <div className="library-detail library-card">
-      <div className="detail-header">
-        <button onClick={() => navigate(-1)} className="back-button">Back to List</button>
-        <div className="version-selector">
-          <label htmlFor="version-select">Select Version:</label>
-          <select id="version-select" value={selectedVersion} onChange={handleVersionChange}>
-            {versions.map(version => (
-              <option key={version} value={version}>{version}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <h1>JAR Analyzer</h1>
-      <InstrumentationInput onAnalyze={handleAnalyze} selectedVersion={selectedVersion} />
+    <div className="main-content-wrapper">
+      <Header
+        onVersionChange={handleVersionChange}
+        currentVersion={selectedVersion}
+        versions={versions}
+      />
+      <div className="library-detail library-card">
+        <h1>JAR Analyzer</h1>
+        <InstrumentationInput onAnalyze={handleAnalyze} selectedVersion={selectedVersion} />
 
-      {instrumentationNames.length > 0 && selectedVersion && (
-        <div className="analysis-results">
-          <h2>Analysis Results for Version {selectedVersion}</h2>
-          <CombinedTelemetryDisplay metrics={combinedMetrics} spans={combinedSpans} />
-        </div>
-      )}
+        {instrumentationNames.length > 0 && selectedVersion && (
+          <div className="analysis-results">
+            <h2>Analysis Results for Version {selectedVersion}</h2>
+            <CombinedTelemetryDisplay metrics={combinedMetrics} spans={combinedSpans} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

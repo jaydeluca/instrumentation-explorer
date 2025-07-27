@@ -1,0 +1,412 @@
+/* Default Theme (Light) */
+
+@import './base.css';
+
+.theme-default #root {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.theme-default .disclaimer-box {
+  background-color: #e7f3fe; /* Light blue for info */
+  border: 1px solid #b8daff; /* Blue border */
+  color: #004085; /* Dark blue text */
+}
+
+.theme-default .disclaimer-box a {
+  color: #007bff;
+}
+
+.theme-default .disclaimer-box a:hover {
+  color: #0056b3;
+}
+
+.theme-default h1 {
+  color: #212529;
+}
+
+.theme-default .analyze-link {
+  background-color: #007bff;
+  color: white;
+}
+
+.theme-default .analyze-link:hover {
+  background-color: #0056b3;
+}
+
+.theme-default .version-selector label {
+  color: #333333;
+}
+
+.theme-default .version-selector select,
+.theme-default .theme-switcher select {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #333333;
+}
+
+.theme-default .version-selector select:focus,
+.theme-default .theme-switcher select:focus {
+  border-color: #007bff;
+}
+
+.theme-default .library-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+.theme-default .library-card a {
+  color: #007bff;
+}
+
+.theme-default .library-card a:hover {
+  color: #0056b3;
+}
+
+.theme-default .library-card h2 {
+  color: #212529;
+}
+
+.theme-default .library-card-footer {
+  border-top: 1px solid #e9ecef;
+}
+
+.theme-default .library-card-footer h4 {
+  color: #6c757d;
+}
+
+.theme-default .telemetry-tag.spans {
+  background-color: #007bff;
+}
+
+.theme-default .telemetry-tag.metrics {
+  background-color: #28a745;
+}
+
+.theme-default .target-tag.javaagent svg {
+  color: #b8860b; /* Darker goldenrod for better contrast */
+}
+
+.theme-default .target-tag.library svg {
+  color: #fd7e14;
+}
+
+.theme-default .semconv-tag {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+/* Styles for SearchAndFilter component */
+.theme-default .search-filter-container {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default .filter-section {
+  border-right: 1px solid #e0e0e0; /* Add vertical border */
+}
+
+.theme-default .filter-section h4 {
+  color: #333333;
+}
+
+.theme-default .search-input-container input {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  color: #333333;
+}
+
+.theme-default .search-input-container input::placeholder {
+  color: #6c757d;
+}
+
+.theme-default .search-input-container input:focus {
+  border-color: #007bff;
+}
+
+.theme-default .filter-button {
+  border: 1px solid #dee2e6;
+  color: #495057;
+}
+
+.theme-default .filter-button.spans {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.theme-default .filter-button.metrics {
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.theme-default .filter-button.javaagent {
+  color: #b8860b; /* Darker goldenrod for better contrast */
+  border-color: #b8860b;
+}
+
+.theme-default .filter-button.library {
+  color: #fd7e14;
+  border-color: #fd7e14;
+}
+
+.theme-default .filter-button.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.theme-default .filter-button.spans.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.theme-default .filter-button.metrics.active {
+  background-color: #28a745;
+  color: white;
+}
+
+.theme-default .filter-button.javaagent.active {
+  background-color: #ffc107;
+  color: white;
+}
+
+.theme-default .filter-button.library.active {
+  background-color: #fd7e14;
+  color: white;
+}
+
+.theme-default .filter-button:hover:not(.active) {
+  background-color: #e9ecef;
+  border-color: #c6c8ca;
+}
+
+/* TruncatedDescription component styles */
+.theme-default .truncated-description-content {
+  color: #333333;
+}
+
+.theme-default .toggle-button {
+  color: #007bff;
+}
+
+.theme-default .toggle-button:hover {
+  color: #0056b3;
+}
+
+/* Library Detail Page */
+.theme-default .library-detail {
+  background-color: #ffffff;
+  color: #333333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-default .back-button {
+  background-color: #f0f0f0;
+  color: #333333;
+  border: 1px solid #ccc;
+}
+
+.theme-default .back-button:hover {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+}
+
+.theme-default .version-selector select {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #333333;
+}
+
+.theme-default .version-selector select:focus {
+  border-color: #007bff;
+}
+
+.theme-default h1,
+.theme-default h3,
+.theme-default h4,
+.theme-default h5,
+.theme-default h6 {
+  color: #212529;
+  border-bottom-color: #444444; /* Even darker border for headings */
+}
+
+.theme-default p {
+  color: #333333;
+  padding: 15px 0; /* Added padding */
+  border-radius: 6px; /* Rounded corners */
+}
+
+.theme-default li {
+  color: #333333;
+}
+
+.theme-default a {
+  color: #007bff;
+}
+
+.theme-default a:hover {
+  color: #0056b3;
+}
+
+.theme-default .links-section,
+.theme-default .configurations-section,
+.theme-default .target-versions-main-section,
+.theme-default .telemetry-main-section {
+  border: 1px solid #e0e0e0;
+  background-color: #f8f8f8; /* Added light background */
+}
+
+.theme-default table {
+  border: 1px solid #444444; /* Even darker border for tables */
+}
+
+.theme-default th {
+  background-color: #808080; /* Even darker background for table headers */
+  font-weight: 700; /* Bolder font for table headers */
+  color: #ffffff; /* White text for table headers */
+}
+
+.theme-default td {
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default tr:nth-child(even) {
+  background-color: #c0c0c0; /* Even darker zebra striping */
+}
+
+.theme-default tr:hover {
+  background-color: #a0a0a0; /* More intense hover effect for table rows */
+}
+
+.theme-default .semconv-key {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+.theme-default .telemetry-tabs button {
+  background-color: #f0f0f0;
+  color: #333333;
+  border-color: #e0e0e0;
+}
+
+.theme-default .telemetry-tabs button:hover {
+  background-color: #e0e0e0;
+}
+
+.theme-default .telemetry-tabs button.active {
+  background-color: #ffffff;
+  color: #007bff;
+  border-color: #e0e0e0;
+  border-bottom-color: #ffffff;
+}
+
+.theme-default .telemetry-section {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default .telemetry-section li {
+  border-bottom: 1px dashed #e9ecef;
+}
+
+.theme-default .metric-name,
+.theme-default .span-kind {
+  color: #007bff;
+}
+
+.theme-default .metric-details {
+  color: #555555;
+}
+
+.theme-default .metric-description {
+  color: #6c757d;
+}
+
+.theme-default .attributes-section {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-left-color: #007bff;
+}
+
+.theme-default .attributes-section h6 {
+  color: #333333;
+}
+
+.theme-default .attribute-item {
+  color: #555555;
+  border-bottom: 1px dashed #7a8087 !important;
+}
+
+.theme-default .target-version-section {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default .target-version-section li {
+  border-bottom: 1px dashed #e9ecef;
+}
+
+/* Telemetry Diff */
+.theme-default .telemetry-diff {
+  border-top: 1px solid #e0e0e0;
+}
+
+.theme-default .diff-controls button {
+  background-color: #f0f0f0;
+  color: #333333;
+  border-color: #e0e0e0;
+}
+
+.theme-default .diff-controls button:hover {
+  background-color: #e0e0e0;
+}
+
+.theme-default .diff-controls button:disabled {
+  background-color: #e9ecef;
+  color: #aaaaaa;
+  border-color: #e0e0e0;
+}
+
+.theme-default .diff-section {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default .diff-section h4 {
+  color: #333333;
+}
+
+.theme-default .diff-line {
+  border-bottom: 1px dashed #e9ecef;
+}
+
+.theme-default .diff-added {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: #22863a;
+}
+
+.theme-default .diff-removed {
+  background-color: rgba(255, 0, 0, 0.05);
+  color: #cb2431;
+}
+
+.theme-default .diff-line-header {
+  color: #333333;
+}
+
+.theme-default .diff-attribute-item {
+  color: #555555;
+}
+
+.theme-default .diff-attribute-item.diff-added {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: #22863a;
+}
+
+.theme-default .diff-attribute-item.diff-removed {
+  background-color: rgba(255, 0, 0, 0.05);
+  color: #cb2431;
+}

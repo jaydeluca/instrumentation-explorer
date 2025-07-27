@@ -1,0 +1,12 @@
+.about-page ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-page li {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}

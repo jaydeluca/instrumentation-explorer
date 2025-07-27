@@ -58,7 +58,7 @@ async function takeScreenshots() {
   let browser;
   let page;
   try {
-    browser = await chromium.launch();
+    browser = await chromium.launch( );
     page = await browser.newPage();
     await page.setViewportSize({ width: 1800, height: 2000 });
     // Navigate to the home page and take a screenshot
@@ -67,7 +67,12 @@ async function takeScreenshots() {
     await page.waitForSelector('body', { state: 'visible' }); // Wait for the page body to be visible
     await page.screenshot({ path: `screenshots/home.png` });
 
+    await page.selectOption('#theme-select', 'grafana');
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.screenshot({ path: `screenshots/home-grafana.png` });
+
     // Take a full-page screenshot of the ClickHouse client library page
+    await page.selectOption('#theme-select', 'default');
     await page.goto(`${URL}library/2.17/clickhouse-client-0.5`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.waitForSelector('#base-version-select', { state: 'visible' }); // Wait for the dropdown to be visible
@@ -81,8 +86,13 @@ async function takeScreenshots() {
     await new Promise(resolve => setTimeout(resolve, 2000));
     await page.screenshot({ path: `screenshots/clickhouse-client.png`, fullPage: true });
 
+    await page.selectOption('#theme-select', 'grafana');
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.screenshot({ path: `screenshots/clickhouse-client-grafana.png`, fullPage: true });
+
     // Take a full-page screenshot of the alibaba-druid-1.0 client library page
     await page.goto(`${URL}library/2.17/alibaba-druid-1.0`);
+    await page.selectOption('#theme-select', 'default');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -94,6 +104,10 @@ async function takeScreenshots() {
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await new Promise(resolve => setTimeout(resolve, 2000));
     await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
+
+    await page.selectOption('#theme-select', 'grafana');
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
 
   } finally {
     await browser.close();
