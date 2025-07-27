@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "playwright": "^1.54.1"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "dependencies": {
+    "finalhandler": "^2.1.0",
+    "serve-static": "^2.2.0"
+  }
+}

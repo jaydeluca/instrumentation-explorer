@@ -1,0 +1,51 @@
+name: 'E2E & Screenshots'
+
+on:
+  pull_request:
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # We need to fetch all history to be able to commit to the PR branch
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build the frontend
+        run: npm run build --workspace=frontend
+
+      - name: Create screenshots directory
+        run: mkdir -p screenshots
+
+      - name: Take screenshots
+        run: node scripts/take-screenshots.mjs
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add and commit screenshots
+        run: |
+          git add screenshots/
+          git diff --quiet --exit-code --cached || git commit -m "docs: Add screenshots for PR #$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" --date="$(date -R)"
+        # Only commit if there are changes to avoid empty commits
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
