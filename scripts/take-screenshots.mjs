@@ -58,7 +58,7 @@ async function takeScreenshots() {
   let browser;
   let page;
   try {
-    browser = await chromium.launch({ headless: false, slowMo: 100 } );
+    browser = await chromium.launch( );
     page = await browser.newPage();
     await page.setViewportSize({ width: 1800, height: 2000 });
     // Navigate to the home page and take a screenshot
