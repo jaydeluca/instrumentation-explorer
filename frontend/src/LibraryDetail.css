@@ -125,6 +125,60 @@ table {
   border: 1px solid; /* Re-added border for the table */
 }
 
+/* Mobile-specific table styling */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    border: none !important;
+    margin-top: 15px;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table tbody {
+    display: block;
+    border: none !important;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 12px;
+    border: none !important;
+    border-radius: 0;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  table td,
+  table th {
+    display: block;
+    border: none !important;
+    padding: 8px 0;
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  table td:not(:last-child) {
+    border-bottom: none !important;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+
+  table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--color-text-secondary, #666);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
 th,
 td {
   border: 1px solid; /* Re-added border for table cells */
@@ -162,7 +216,8 @@ td {
   font-size: 0.95em;
   border-radius: 5px 5px 0 0;
   margin-right: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .telemetry-tabs button:hover {
@@ -178,6 +233,9 @@ td {
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 20px;
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .telemetry-section {
@@ -186,6 +244,9 @@ td {
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .telemetry-section ul {
@@ -222,11 +283,21 @@ td {
   margin-left: 15px;
   font-size: 0.9em;
   line-height: 1.6;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .metric-description {
   margin-top: 8px;
   font-style: italic;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .attributes-section {
@@ -253,6 +324,50 @@ td {
   margin-bottom: 8px;
   font-size: 0.85em;
   padding: 4px 0;
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Mobile-specific styling for attribute items */
+@media (max-width: 768px) {
+  .telemetry-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .telemetry-section {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .target-versions-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .target-version-section {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .attribute-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .attribute-item .semconv-check {
+    order: -1;
+    margin-right: 8px;
+    margin-bottom: 2px;
+  }
+
+  .attribute-item > div:first-child {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .attribute-item:last-child {
@@ -269,6 +384,8 @@ td {
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .target-version-section {
@@ -277,6 +394,11 @@ td {
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .target-version-section ul {
