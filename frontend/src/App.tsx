@@ -15,7 +15,7 @@ function App() {
     [key: string]: Library[];
   }>({});
   const [versions, setVersions] = useState<string[]>([]);
-  const [selectedVersion, setSelectedVersion] = useState<string>("");
+  const [selectedVersion, setSelectedVersion] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeSemconvFilters, setActiveSemconvFilters] = useState<string[]>(
     []
