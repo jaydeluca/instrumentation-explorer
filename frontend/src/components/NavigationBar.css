@@ -1,0 +1,434 @@
+/* Mobile-first responsive navigation bar */
+.navigation-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--color-background-navbar);
+  padding: 0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Hide lg-only items on mobile */
+.lg-only {
+  display: none;
+}
+
+/* Mobile: Stack all sections vertically */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  order: 1;
+}
+
+.nav-links a {
+  color: var(--color-text-navbar);
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: var(--color-background-button);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  min-height: 44px; /* Touch target size */
+}
+
+.nav-links a svg {
+  font-size: 1.2em;
+  margin-left: 8px;
+}
+
+.nav-links a:hover {
+  background-color: var(--color-background-button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-links a.active-nav-link {
+  background-color: var(--color-background-button-active);
+  color: var(--color-text-button-active);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links a.active-nav-link:hover {
+  background-color: var(--color-background-button-active);
+  transform: translateY(-1px);
+}
+
+/* Mobile controls section */
+.nav-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  order: 2;
+  /* mobile only */
+  @media (max-width: 768px) {
+    padding: 0 12px;
+  }
+}
+
+.theme-switcher {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.version-selector,
+.theme-selector,
+.theme-switcher,
+.github-link {
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-background-input);
+  border-radius: 6px;
+  border: 1px solid var(--color-border-input);
+}
+
+.version-selector label,
+.theme-selector label,
+.theme-switcher label,
+.github-link {
+  color: var(--color-text-navbar);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  background-color: var(--color-background-button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure GitHub link in dropdown never gets active state styling */
+.nav-links a[href*="github"].active-nav-link {
+  background-color: var(--color-background-button) !important;
+  color: var(--color-text-navbar) !important;
+  box-shadow: none !important;
+}
+
+.nav-links a[href*="github"].active-nav-link:hover {
+  background-color: var(--color-background-button-hover) !important;
+  transform: translateY(-1px);
+}
+
+/* Also ensure regular GitHub link styling */
+.nav-links a[href*="github"] {
+  background-color: var(--color-background-button) !important;
+  color: var(--color-text-navbar) !important;
+}
+
+.nav-links a[href*="github"]:hover {
+  background-color: var(--color-background-button-hover) !important;
+}
+
+.version-selector select,
+.theme-selector select,
+.theme-switcher select {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-input);
+  background-color: var(--color-background-input);
+  color: var(--color-text-input);
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  background-color: var(--color-background-button);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  order: 0;
+}
+
+/* Mobile navbar items styling */
+.nav-links-mobile {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Hide desktop nav links on mobile */
+.nav-links {
+  display: none;
+}
+
+.nav-links-mobile a {
+  color: var(--color-text-navbar);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: var(--color-background-button);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  min-height: 36px;
+}
+
+.nav-links-mobile a:hover {
+  background-color: var(--color-background-button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-links-mobile a.active-nav-link {
+  background-color: var(--color-background-button-active);
+  color: var(--color-text-button-active);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links-mobile a.active-nav-link:hover {
+  background-color: var(--color-background-button-active);
+  transform: translateY(-1px);
+}
+
+/* Mobile controls styling */
+.mobile-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.github-link-mobile {
+  color: var(--color-text-navbar) !important;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: var(--color-background-button) !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  min-width: 36px;
+}
+
+.github-link-mobile:hover {
+  background-color: var(--color-background-button-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure GitHub link never gets active state styling */
+.github-link-mobile.active-nav-link {
+  background-color: var(--color-background-button) !important;
+  color: var(--color-text-navbar) !important;
+  box-shadow: none !important;
+}
+
+.github-link-mobile.active-nav-link:hover {
+  background-color: var(--color-background-button-hover) !important;
+  transform: translateY(-1px);
+}
+
+.github-link-mobile svg {
+  font-size: 1.2em;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: var(--color-background-button-hover);
+}
+
+.mobile-menu-toggle .menu-text {
+  color: var(--color-text-navbar);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.mobile-menu-toggle .menu-icon {
+  color: var(--color-text-navbar);
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-toggle .menu-icon.rotated {
+  transform: rotate(90deg);
+}
+
+/* Mobile menu content */
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.mobile-menu-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Desktop override for collapsed state */
+@media (min-width: 768px) {
+  .mobile-menu-content.collapsed {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .navigation-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    gap: 16px;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .mobile-menu-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex: 1;
+    opacity: 1 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Show desktop nav links on desktop */
+  .nav-links {
+    display: flex;
+  }
+
+  /* Mobile menu content only shown on mobile */
+  .nav-links-mobile {
+    display: none;
+  }
+
+  /* Hide mobile controls on desktop */
+  .mobile-controls {
+    display: none;
+  }
+
+  /* Show mobile nav links only on mobile */
+  @media (max-width: 767px) {
+    .nav-links-mobile {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .mobile-controls {
+      display: flex;
+    }
+
+    /* Hide GitHub link in dropdown on mobile since it's in mobile controls */
+    .nav-links a[href*="github"] {
+      display: none;
+    }
+  }
+
+  .nav-links,
+  .nav-links-mobile {
+    flex-direction: row;
+    gap: 8px;
+    order: 0;
+    flex: 1;
+  }
+
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: auto;
+  }
+
+  /* Show lg-only items on desktop */
+  .lg-only {
+    display: flex;
+  }
+
+  .nav-controls {
+    flex-direction: row;
+    gap: 16px;
+    order: 1;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .version-selector,
+  .theme-selector,
+  .github-link {
+    padding: 6px 10px;
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .navigation-bar {
+    padding: 0;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  .nav-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links a.active-nav-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .version-selector,
+  .theme-selector,
+  .theme-switcher,
+  .github-link {
+    padding: 8px 12px;
+  }
+
+  .version-selector select,
+  .theme-selector select,
+  .theme-switcher select {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Large desktop breakpoint */
+@media (min-width: 1280px) {
+  .navigation-bar {
+    padding: 0;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
