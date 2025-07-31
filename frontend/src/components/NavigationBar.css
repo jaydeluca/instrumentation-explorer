@@ -46,7 +46,10 @@
 
 .nav-links a svg {
   font-size: 1.2em;
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+  .nav-links a svg {
     margin: 0 8px;
   }
 }
