@@ -163,33 +163,35 @@ function App() {
               )}
             </div>
             <TruncatedDescription description={library.description} />
+            {library.telemetry && library.semconv && (
+              <div className="divider"></div>
+            )}
+
             <div className="library-card-footer">
-              <>
-                {(library.telemetry?.some((t) => t.spans?.length) ||
-                  library.telemetry?.some((t) => t.metrics?.length)) && (
-                  <div className="telemetry-tags">
-                    <h4>Telemetry</h4>
-                    {library.telemetry?.some((t) => t.spans?.length) && (
-                      <span className="telemetry-tag spans">Spans</span>
-                    )}
-                    {library.telemetry?.some((t) => t.metrics?.length) && (
-                      <span className="telemetry-tag metrics">Metrics</span>
-                    )}
+              {(library.telemetry?.some((t) => t.spans?.length) ||
+                library.telemetry?.some((t) => t.metrics?.length)) && (
+                <div className="telemetry-tags">
+                  <h4>Telemetry</h4>
+                  {library.telemetry?.some((t) => t.spans?.length) && (
+                    <span className="telemetry-tag spans">Spans</span>
+                  )}
+                  {library.telemetry?.some((t) => t.metrics?.length) && (
+                    <span className="telemetry-tag metrics">Metrics</span>
+                  )}
+                </div>
+              )}
+              {library.semconv && library.semconv.length > 0 && (
+                <div className="semconv-tags-container">
+                  <h4>Semantic Conventions</h4>
+                  <div className="semconv-tags">
+                    {library.semconv.map((tag) => (
+                      <span key={tag} className="semconv-tag">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                )}
-                {library.semconv && library.semconv.length > 0 && (
-                  <div className="semconv-tags-container">
-                    <h4>Semantic Conventions</h4>
-                    <div className="semconv-tags">
-                      {library.semconv.map((tag) => (
-                        <span key={tag} className="semconv-tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </>
+                </div>
+              )}
             </div>
           </div>
         ))}

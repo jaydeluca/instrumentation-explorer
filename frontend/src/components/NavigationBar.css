@@ -10,6 +10,10 @@
   gap: 12px;
   width: 100%;
   box-sizing: border-box;
+  /* mobile only */
+  @media (max-width: 768px) {
+    padding: 0 12px;
+  }
 }
 
 /* Hide lg-only items on mobile */

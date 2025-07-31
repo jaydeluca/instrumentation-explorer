@@ -33,7 +33,7 @@ const About: React.FC = () => {
         currentVersion={selectedVersion}
         versions={versions}
       />
-      <div className="about-page">
+      <div className="about-page main-content-wrapper">
         <h1>About</h1>
         <p>
           This project is a work in progress proof of concept for a web-based

@@ -1,6 +1,6 @@
 /* Base styles that apply to both themes */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 html {
   /* background-color handled by themes */
@@ -24,7 +24,7 @@ html {
 }
 
 :root {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
@@ -101,7 +101,11 @@ h6 {
 }
 
 /* Common heading styles for detail page sections */
-.library-detail h1, .library-detail h3, .library-detail h4, .library-detail h5, .library-detail h6 {
+.library-detail h1,
+.library-detail h3,
+.library-detail h4,
+.library-detail h5,
+.library-detail h6 {
   border-bottom: 2px solid; /* Increased border thickness */
   padding-bottom: 8px; /* Consistent padding for all bordered headings */
   margin-bottom: 15px; /* Consistent margin for all headings */
@@ -193,7 +197,6 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Default shadow, can be overridden */
 }
 
-
 .library-card h2 {
   margin-top: 0;
   margin-bottom: 8px;
@@ -211,7 +214,8 @@ button {
   font-size: 15px;
 }
 
-.telemetry-tags, .semconv-tags {
+.telemetry-tags,
+.semconv-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -222,7 +226,9 @@ button {
   margin-bottom: 10px;
 }
 
-.telemetry-tag, .semconv-tag, .target-tag {
+.telemetry-tag,
+.semconv-tag,
+.target-tag {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 4px;
@@ -301,7 +307,8 @@ button {
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .filter-button:hover:not(.active) {
@@ -435,7 +442,8 @@ td {
   font-size: 0.95em;
   border-radius: 5px 5px 0 0;
   margin-right: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .telemetry-tabs button.active {
