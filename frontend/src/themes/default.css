@@ -1,6 +1,6 @@
 /* Default Theme (Light) */
 
-@import './base.css';
+@import "./base.css";
 
 .theme-default #root {
   background-color: #ffffff;
@@ -68,7 +68,7 @@
   color: #212529;
 }
 
-.theme-default .library-card-footer {
+.theme-default .divider {
   border-top: 1px solid #e9ecef;
 }
 
@@ -104,7 +104,7 @@
   border: 1px solid #e0e0e0;
 }
 
-.theme-default .filter-section {
+.theme-default .filter-section:not(:last-child) {
   border-right: 1px solid #e0e0e0; /* Add vertical border */
 }
 

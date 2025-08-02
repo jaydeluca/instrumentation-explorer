@@ -10,6 +10,31 @@
   margin-bottom: 20px;
 }
 
+/* Mobile-specific styling for diff controls */
+@media (max-width: 768px) {
+  .diff-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .diff-controls .version-selector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .diff-controls button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 16px;
+    font-size: 16px;
+    min-height: 44px;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
 .diff-controls .version-selector {
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
-import React from 'react';
-import Disclaimer from './Disclaimer';
-import NavigationBar from './NavigationBar';
+import React from "react";
+import Disclaimer from "./Disclaimer";
+import NavigationBar from "./NavigationBar";
 
 interface HeaderProps {
   onVersionChange: (version: string) => void;
@@ -8,9 +8,13 @@ interface HeaderProps {
   versions: string[];
 }
 
-const Header: React.FC<HeaderProps> = ({ onVersionChange, currentVersion, versions }) => {
+const Header: React.FC<HeaderProps> = ({
+  onVersionChange,
+  currentVersion,
+  versions,
+}) => {
   return (
-    <header className="app-header main-content-wrapper">
+    <header className="app-header ">
       <Disclaimer />
       <NavigationBar
         onVersionChange={onVersionChange}
