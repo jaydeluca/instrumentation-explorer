@@ -280,14 +280,8 @@ td {
 }
 
 .metric-details {
-  margin-left: 15px;
   font-size: 0.9em;
   line-height: 1.6;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: auto;
-  word-wrap: break-word;
-  word-break: break-word;
 }
 
 .metric-description {
@@ -331,35 +325,149 @@ td {
 
 /* Mobile-specific styling for attribute items */
 @media (max-width: 768px) {
+  /* Mobile font size adjustments */
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+  }
+
+  h4 {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+  h5 {
+    font-size: 1em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  h6 {
+    font-size: 0.9em;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  li {
+    font-size: 0.9em;
+    margin-bottom: 6px;
+  }
+
+  /* Mobile table improvements */
+  table td,
+  table th {
+    padding: 6px 0;
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+
+  table td:before {
+    font-size: 0.8em;
+    margin-bottom: 3px;
+  }
+
+  /* Mobile section padding adjustments */
+  .links-section,
+  .configurations-section,
+  .target-versions-main-section,
+  .telemetry-main-section {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  /* Mobile telemetry content adjustments */
   .telemetry-content {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .telemetry-section {
     min-width: auto;
     width: 100%;
+    padding: 15px;
   }
 
+  .telemetry-tabs {
+    margin-bottom: 20px;
+  }
+
+  .telemetry-tabs button {
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+
+  .metric-name,
+  .span-kind {
+    font-size: 0.95em;
+  }
+
+  .metric-details {
+    font-size: 0.85em;
+  }
+
+  .attributes-section {
+    margin-top: 15px;
+    padding: 10px 15px;
+  }
+
+  .attribute-item {
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  /* Mobile target versions adjustments */
   .target-versions-container {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .target-version-section {
     min-width: auto;
     width: 100%;
+    padding: 15px;
   }
 
+  .target-version-section h4 {
+    padding: 8px 0;
+    margin: 8px 0;
+  }
+
+  /* Mobile semantic conventions key */
+  .semconv-key {
+    font-size: 0.8em;
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+
+  .semconv-check {
+    font-size: 1.1em;
+  }
+
+  /* Mobile attribute item layout */
   .attribute-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 3px;
   }
 
   .attribute-item .semconv-check {
     order: -1;
-    margin-right: 8px;
+    margin-right: 6px;
     margin-bottom: 2px;
   }
 
@@ -367,6 +475,174 @@ td {
     display: flex;
     align-items: center;
     width: 100%;
+  }
+
+  /* Critical mobile overflow fixes */
+  .telemetry-section,
+  .target-version-section,
+  .links-section,
+  .configurations-section,
+  .target-versions-main-section,
+  .telemetry-main-section {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .metric-details,
+  .metric-description,
+  .attribute-item,
+  .telemetry-section li,
+  .target-version-section li,
+  .links-section li,
+  .configurations-section li {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Specific fixes for description text */
+  .metric-description {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-right: 5px;
+  }
+
+  /* Attribute item text wrapping */
+  .attribute-item > div:first-child {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+
+  .attribute-item span {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Ensure all text content wraps properly */
+  p,
+  li,
+  td,
+  th,
+  div {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Additional padding to prevent edge overflow */
+  .telemetry-section,
+  .target-version-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .attributes-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Reduce font sizes further for very small screens */
+  @media (max-width: 480px) {
+    .metric-details,
+    .metric-description {
+      font-size: 0.8em;
+    }
+
+    .attribute-item {
+      font-size: 0.75em;
+    }
+
+    .telemetry-section,
+    .target-version-section {
+      padding: 10px;
+    }
+
+    .attributes-section {
+      padding: 8px 10px;
+    }
+  }
+
+  /* Mobile blue text/link adjustments */
+  a,
+  .telemetry-tabs button,
+  .semconv-key,
+  .metric-name,
+  .span-kind,
+  .attribute-item span,
+  .telemetry-section a,
+  .target-version-section a,
+  .links-section a {
+    font-size: 0.85em;
+  }
+
+  /* Align blue text with content below headings */
+  .semconv-key {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .telemetry-main-section h3 + .semconv-key {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  /* Align telemetry tabs with content */
+  .telemetry-tabs {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  /* Align metric and span content with headings */
+  .metric-header,
+  .span-header {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .metric-details {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  /* Make links even smaller on very small screens */
+  @media (max-width: 480px) {
+    a,
+    .telemetry-tabs button,
+    .semconv-key,
+    .metric-name,
+    .span-kind,
+    .attribute-item span,
+    .telemetry-section a,
+    .target-version-section a,
+    .links-section a {
+      font-size: 0.8em;
+    }
   }
 }
 
