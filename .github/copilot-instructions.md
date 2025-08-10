@@ -129,7 +129,7 @@ npm run build
 - **Development:** ESLint, Vite dev server
 
 ### Build Artifacts and Outputs:
-- `frontend/public/instrumentation-list-enriched.json` - Enriched data from Python pipeline
+- `frontend/public/instrumentation-list-enriched.json` - Enriched data from Python pipeline (**NEVER MODIFY**: This is a generated file created by the data processing pipeline)
 - `frontend/dist/` - Production build artifacts from Vite
 - `screenshots/` - Generated screenshots (created by automation script)
 
