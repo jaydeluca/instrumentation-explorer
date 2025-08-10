@@ -1,10 +1,8 @@
 // scripts/take-screenshots.mjs
-import { spawn } from 'child_process';
 import { chromium } from 'playwright';
 import http from 'http';
 import finalhandler from 'finalhandler';
 import serveStatic from 'serve-static';
-import path from 'path';
 
 const PORT = 3000;
 const BASE_PATH = '/instrumentation-explorer/';
