@@ -19,7 +19,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install Python dependencies
-        run: pip install requests pyyaml
+        run: pip install -r requirements.txt
+        working-directory: ./data-processing
+
+      - name: Lint Python code
+        run: flake8 main.py
         working-directory: ./data-processing
 
       - name: Run data processing script
@@ -33,6 +37,10 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm install
+        working-directory: ./frontend
+
+      - name: Lint frontend code
+        run: npm run lint
         working-directory: ./frontend
 
       - name: Build frontend

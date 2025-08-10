@@ -5,6 +5,9 @@
   "workspaces": [
     "frontend"
   ],
+  "scripts": {
+    "lint": "npm run lint --workspace=frontend"
+  },
   "dependencies": {
     "finalhandler": "^2.1.0",
     "serve-static": "^2.2.0"
