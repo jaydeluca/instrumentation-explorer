@@ -5,6 +5,7 @@ import Header from "./components/Header"; // Import the new Header component
 import InstrumentationInput from "./InstrumentationInput";
 import "./JarAnalyzerPage.css";
 import type { Library, Metric, Span } from "./types";
+import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
 
 const JarAnalyzerPage: React.FC = () => {
   const location = useLocation();
@@ -29,17 +30,19 @@ const JarAnalyzerPage: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         const loadedVersions = Object.keys(data);
+        const sortedVersions = sortVersionsDescending(loadedVersions);
         setAllLibraries(data);
-        setVersions(loadedVersions);
+        setVersions(sortedVersions);
 
         const params = new URLSearchParams(location.search);
         const versionParam = params.get("version");
         if (versionParam && loadedVersions.includes(versionParam)) {
           setSelectedVersion(versionParam);
-        } else if (loadedVersions.includes("2.17")) {
-          setSelectedVersion("2.17");
-        } else if (loadedVersions.length > 0) {
-          setSelectedVersion(loadedVersions[0]);
+        } else {
+          const defaultVersion = getDefaultVersion(loadedVersions);
+          if (defaultVersion) {
+            setSelectedVersion(defaultVersion);
+          }
         }
       });
   }, [location.search]);
