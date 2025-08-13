@@ -5,6 +5,7 @@ import "./App.css";
 import SearchAndFilter from "./SearchAndFilter";
 import TruncatedDescription from "./TruncatedDescription";
 import type { Library } from "./types";
+import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
 
 import { Link } from "react-router-dom"; // Keep Link for library cards
 import Header from "./components/Header"; // Import the new Header component
@@ -30,11 +31,14 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         const versions = Object.keys(data);
+        const sortedVersions = sortVersionsDescending(versions);
         setAllLibraries(data);
-        setVersions(versions);
-        const defaultVersion = versions.includes("2.17") ? "2.17" : versions[0];
-        setSelectedVersion(defaultVersion);
-        setLibraries(data[defaultVersion]);
+        setVersions(sortedVersions);
+        const defaultVersion = getDefaultVersion(versions);
+        if (defaultVersion) {
+          setSelectedVersion(defaultVersion);
+          setLibraries(data[defaultVersion]);
+        }
       });
   }, []);
 

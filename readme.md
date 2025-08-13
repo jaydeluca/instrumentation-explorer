@@ -2,6 +2,7 @@
 
 This project is a web-based tool designed to explore and display information about Java instrumentation libraries. It provides a clear, searchable, and filterable interface for understanding the capabilities of each library, including the telemetry data they generate (metrics and spans), their adherence to semantic conventions, and changes between different versions.
 
+The instrumentation data is automatically kept up to date with the latest releases from the [OpenTelemetry Java Instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation) repository.
 
 <img src="./screenshots/home.png" width="800">
 
@@ -13,6 +14,7 @@ This project is a web-based tool designed to explore and display information abo
 *   **Semantic Convention Integration:** See which metrics and attributes adhere to OpenTelemetry semantic conventions.
 *   **Versioning:** Switch between different versions of the instrumentation data.
 *   **Telemetry Version Diff Tool:** Compare telemetry changes (added, removed, modified metrics and spans, including attribute-level differences) between any two versions of a library.
+*   **Automated Updates:** Instrumentation data is automatically updated weekly and with new releases.
 
 
 <img src="./screenshots/clickhouse-client.png" width="800">
@@ -20,26 +22,89 @@ This project is a web-based tool designed to explore and display information abo
 
 ## Project Structure
 
-*   **`telemetry-processing/`**: Contains the Python script for processing and enriching instrumentation data.
+*   **`data-processing/`**: Contains the Python script for processing and enriching instrumentation data.
 *   **`frontend/`**: Contains the React frontend application.
-    *   **`frontend/public/instrumentation-list-enriched.json`**: The enriched data file used by the frontend.
+   *   **`frontend/public/instrumentation-list-enriched.json`**: The enriched data file used by the frontend.
+*   **`scripts/`**: Contains automation scripts for updating instrumentation data.
+*   **`.github/workflows/`**: GitHub Actions workflows for automated updates.
+*   **`instrumentation-list-*.yaml`**: Versioned instrumentation data files from OpenTelemetry.
+
+## Automated Updates
+
+The instrumentation data is automatically kept up to date through:
+
+### GitHub Actions Workflow
+- **Weekly Updates**: Runs every Monday at 9 AM UTC
+- **Manual Trigger**: Can be triggered manually via GitHub Actions
+- **Auto-merge**: Automatically creates PRs with updated data
+
+### Manual Updates
+You can also update the instrumentation data manually:
+
+```bash
+# Install Python dependencies for the update script
+pip install requests pyyaml
+
+# Run the update script
+npm run update-instrumentation
+
+# Or run directly
+python3 scripts/update-instrumentation-list.py
+```
+
+This will:
+1. Download the latest instrumentation list from the OpenTelemetry repository
+2. Save it with the appropriate version number
+3. Run the data processing to generate the enriched JSON file
 
 ## Running the Project
 
-### 1. Process Instrumentation Data
+### 1. Set Up Data Processing Environment (optional)
 
-To generate or update the enriched instrumentation list:
+First, set up the Python environment for data processing:
 
-1.  Navigate to the `data-processing` directory:
-    ```bash
-    cd telemetry-processing
-    ```
+```bash
+# Set up the data processing environment (only needed once)
+npm run setup-data-processing
+```
 
-2.  Follow the instructions in `telemetry-processing/README.md` to set up the Python environment (using `uv`) and run the `main.py` script.
+Or manually:
+```bash
+cd data-processing
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
+```
 
-    This will generate `frontend/public/instrumentation-list-enriched.json`.
+### 2. Process Instrumentation Data (optional)
 
-### 2. Start the Frontend Application
+To generate or update the enriched instrumentation list from existing YAML files:
+
+```bash
+# Process existing data
+npm run process-data
+```
+
+Or manually:
+```bash
+cd data-processing
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+python3 main.py
+```
+
+This will generate `frontend/public/instrumentation-list-enriched.json`.
+
+### 3. Start the Frontend Application
+
+You can use the npm scripts from the root directory:
+
+```bash
+# Install dependencies and start development server
+npm install
+npm run dev
+```
+
+Or manually:
 
 1.  Navigate to the `frontend` directory:
     ```bash
