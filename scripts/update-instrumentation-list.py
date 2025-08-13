@@ -122,30 +122,20 @@ def generate_3_0_version(latest_content):
                     else:
                         other_blocks.append(block)
                 
-                # If we have both default and opt-in blocks, merge them
+                # If we have both default and opt-in blocks, replace default with opt-in content
                 if default_block and opt_in_blocks:
-                    # Create new default block by merging opt-in content
+                    # Create new default block by replacing with opt-in content
                     new_default_block = {'when': 'default'}
                     
-                    # Start with default content
-                    if 'metrics' in default_block:
-                        new_default_block['metrics'] = default_block['metrics'].copy()
-                    if 'spans' in default_block:
-                        new_default_block['spans'] = default_block['spans'].copy()
-                    
-                    # Merge content from all opt-in blocks
+                    # Replace default content with content from all opt-in blocks
                     for opt_in_block in opt_in_blocks:
-                        # Merge metrics
+                        # Replace metrics (not merge)
                         if 'metrics' in opt_in_block:
-                            if 'metrics' not in new_default_block:
-                                new_default_block['metrics'] = []
-                            new_default_block['metrics'].extend(opt_in_block['metrics'])
+                            new_default_block['metrics'] = opt_in_block['metrics']
                         
-                        # Merge spans
+                        # Replace spans (not merge)
                         if 'spans' in opt_in_block:
-                            if 'spans' not in new_default_block:
-                                new_default_block['spans'] = []
-                            new_default_block['spans'].extend(opt_in_block['spans'])
+                            new_default_block['spans'] = opt_in_block['spans']
                     
                     new_telemetry_blocks.append(new_default_block)
                     processed_count += 1

@@ -12971,70 +12971,6 @@
           "when": "default",
           "metrics": [
             {
-              "name": "db.client.connections.idle.max",
-              "description": "The maximum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.idle.min",
-              "description": "The minimum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.pending_requests",
-              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
-              "type": "LONG_SUM",
-              "unit": "requests",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
               "type": "LONG_SUM",
@@ -13135,58 +13071,6 @@
         {
           "when": "default",
           "metrics": [
-            {
-              "name": "db.client.connections.idle.max",
-              "description": "The maximum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.idle.min",
-              "description": "The minimum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
             {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
@@ -14713,6 +14597,37 @@
       "telemetry": [
         {
           "when": "default",
+          "metrics": [
+            {
+              "name": "db.client.operation.duration",
+              "description": "Duration of database client operations.",
+              "type": "HISTOGRAM",
+              "unit": "s",
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "db.system.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ],
+              "semconv": true
+            }
+          ],
           "spans": [
             {
               "span_kind": "CLIENT",
@@ -14780,218 +14695,6 @@
                   "type": "STRING"
                 },
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "error.type",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.request.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.response.status_code",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.destination.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.protocol.version",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.service",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "url.full",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CONSUMER",
-              "attributes": [
-                {
-                  "name": "aws.agent",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.queue.url",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.request_id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.request.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.response.status_code",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.destination.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.message.id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "messaging.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.protocol.version",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.service",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "url.full",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "aws.agent",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.bucket.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.dynamodb.table_names",
-                  "type": "STRING_ARRAY",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.lambda.function.arn",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.lambda.function.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.lambda.resource_mapping.id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.queue.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.queue.url",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.request_id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.sns.topic.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.step_functions.activity.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.step_functions.state_machine.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.stream.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.table.name",
-                  "type": "STRING"
-                },
-                {
                   "name": "db.operation.name",
                   "type": "STRING",
                   "semconv": true
@@ -15139,37 +14842,6 @@
                   "semconv": true
                 }
               ]
-            }
-          ],
-          "metrics": [
-            {
-              "name": "db.client.operation.duration",
-              "description": "Duration of database client operations.",
-              "type": "HISTOGRAM",
-              "unit": "s",
-              "attributes": [
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.system.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
             }
           ]
         }
@@ -15247,57 +14919,6 @@
           "when": "default",
           "metrics": [
             {
-              "name": "gen_ai.client.operation.duration",
-              "description": "GenAI operation duration.",
-              "type": "HISTOGRAM",
-              "unit": "s",
-              "attributes": [
-                {
-                  "name": "gen_ai.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.model",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.system",
-                  "type": "STRING"
-                }
-              ],
-              "semconv": true
-            },
-            {
-              "name": "gen_ai.client.token.usage",
-              "description": "Measures number of input and output tokens used.",
-              "type": "HISTOGRAM",
-              "unit": "token",
-              "attributes": [
-                {
-                  "name": "gen_ai.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.model",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "gen_ai.token.type",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
-            },
-            {
               "name": "db.client.operation.duration",
               "description": "Duration of database client operations.",
               "type": "HISTOGRAM",
@@ -15318,348 +14939,6 @@
             }
           ],
           "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "aws.agent",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.bucket.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.dynamodb.global_secondary_indexes",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.dynamodb.limit",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.dynamodb.provisioned_throughput.read_capacity_units",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.dynamodb.provisioned_throughput.write_capacity_units",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.dynamodb.select",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.lambda.function.arn",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.lambda.function.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.lambda.resource_mapping.id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.queue.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.queue.url",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.request_id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.secretsmanager.secret.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.sns.topic.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.step_functions.activity.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.step_functions.state_machine.arn",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "aws.stream.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.table.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "gen_ai.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.max_tokens",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.model",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.stop_sequences",
-                  "type": "STRING_ARRAY",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.temperature",
-                  "type": "DOUBLE",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.request.top_p",
-                  "type": "DOUBLE",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.response.finish_reasons",
-                  "type": "STRING_ARRAY",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "gen_ai.usage.input_tokens",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "gen_ai.usage.output_tokens",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "http.request.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.response.status_code",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.destination.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.service",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "url.full",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CONSUMER",
-              "attributes": [
-                {
-                  "name": "aws.agent",
-                  "type": "STRING"
-                },
-                {
-                  "name": "http.request.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.response.status_code",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.batch.message_count",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.destination.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.message.id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "messaging.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.service",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "url.full",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "PRODUCER",
-              "attributes": [
-                {
-                  "name": "aws.agent",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.queue.url",
-                  "type": "STRING"
-                },
-                {
-                  "name": "aws.request_id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.request.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "http.response.status_code",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.destination.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.message.id",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "messaging.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "messaging.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.method",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.service",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "rpc.system",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "url.full",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -15961,7 +15240,6 @@
       "semconv": [
         "Aws",
         "Database Client",
-        "Gen Ai",
         "HTTP",
         "Messaging"
       ]
@@ -16027,34 +15305,6 @@
         {
           "when": "default",
           "metrics": [
-            {
-              "name": "db.client.connections.pending_requests",
-              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
-              "type": "LONG_SUM",
-              "unit": "requests",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
             {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
@@ -16145,56 +15395,6 @@
               "span_kind": "CLIENT",
               "attributes": [
                 {
-                  "name": "db.cassandra.table",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "network.type",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
                   "name": "db.collection.name",
                   "type": "STRING",
                   "semconv": true
@@ -16278,80 +15478,6 @@
         {
           "when": "default",
           "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.cassandra.consistency_level",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.coordinator.dc",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.coordinator.id",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.idempotence",
-                  "type": "BOOLEAN"
-                },
-                {
-                  "name": "db.cassandra.page_size",
-                  "type": "LONG"
-                },
-                {
-                  "name": "db.cassandra.speculative_execution_count",
-                  "type": "LONG"
-                },
-                {
-                  "name": "db.cassandra.table",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "network.type",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -16477,80 +15603,6 @@
               "span_kind": "CLIENT",
               "attributes": [
                 {
-                  "name": "db.cassandra.consistency_level",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.coordinator.dc",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.coordinator.id",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.cassandra.idempotence",
-                  "type": "BOOLEAN"
-                },
-                {
-                  "name": "db.cassandra.page_size",
-                  "type": "LONG"
-                },
-                {
-                  "name": "db.cassandra.speculative_execution_count",
-                  "type": "LONG"
-                },
-                {
-                  "name": "db.cassandra.table",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "network.type",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
                   "name": "cassandra.consistency.level",
                   "type": "STRING",
                   "semconv": true
@@ -16664,25 +15716,27 @@
       "telemetry": [
         {
           "when": "default",
-          "spans": [
+          "metrics": [
             {
-              "span_kind": "CLIENT",
+              "name": "db.client.operation.duration",
+              "description": "Duration of database client operations.",
+              "type": "HISTOGRAM",
+              "unit": "s",
               "attributes": [
                 {
-                  "name": "db.name",
-                  "type": "STRING"
+                  "name": "db.namespace",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
+                  "name": "db.system.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
                   "name": "server.address",
@@ -16694,8 +15748,11 @@
                   "type": "LONG",
                   "semconv": true
                 }
-              ]
-            },
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -16740,42 +15797,6 @@
                   "semconv": true
                 }
               ]
-            }
-          ],
-          "metrics": [
-            {
-              "name": "db.client.operation.duration",
-              "description": "Duration of database client operations.",
-              "type": "HISTOGRAM",
-              "unit": "s",
-              "attributes": [
-                {
-                  "name": "db.namespace",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.system.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
             }
           ]
         }
@@ -17146,29 +16167,6 @@
               "span_kind": "CLIENT",
               "attributes": [
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
                   "name": "db.operation.name",
                   "type": "STRING",
                   "semconv": true
@@ -17299,29 +16297,6 @@
         {
           "when": "default",
           "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -17476,34 +16451,6 @@
         {
           "when": "default",
           "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "network.type",
-                  "type": "STRING",
-                  "semconv": true
-                }
-              ]
-            },
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -18001,106 +16948,6 @@
         {
           "when": "default",
           "metrics": [
-            {
-              "name": "db.client.connections.create_time",
-              "description": "The time it took to create a new connection.",
-              "type": "HISTOGRAM",
-              "unit": "ms",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.idle.min",
-              "description": "The minimum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.pending_requests",
-              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
-              "type": "LONG_SUM",
-              "unit": "requests",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.timeouts",
-              "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
-              "type": "LONG_SUM",
-              "unit": "timeouts",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.use_time",
-              "description": "The time between borrowing a connection and returning it to the pool.",
-              "type": "HISTOGRAM",
-              "unit": "ms",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.wait_time",
-              "description": "The time it took to obtain an open connection from the pool.",
-              "type": "HISTOGRAM",
-              "unit": "ms",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
             {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
@@ -20794,46 +19641,6 @@
         {
           "when": "default",
           "metrics": [
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.pending_requests",
-              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
-              "type": "LONG_SUM",
-              "unit": "requests",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
             {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
@@ -23964,70 +22771,6 @@
           "when": "default",
           "metrics": [
             {
-              "name": "db.client.connections.idle.max",
-              "description": "The maximum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.idle.min",
-              "description": "The minimum number of idle open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.pending_requests",
-              "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
-              "type": "LONG_SUM",
-              "unit": "requests",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
               "type": "LONG_SUM",
@@ -24494,94 +23237,6 @@
       "telemetry": [
         {
           "when": "default",
-          "spans": [
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.operation",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.redis.database_index",
-                  "type": "LONG"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.system",
-                  "type": "STRING"
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            },
-            {
-              "span_kind": "CLIENT",
-              "attributes": [
-                {
-                  "name": "db.namespace",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.query.text",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.system.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "network.peer.port",
-                  "type": "LONG",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ]
-            }
-          ],
           "metrics": [
             {
               "name": "db.client.operation.duration",
@@ -24626,6 +23281,53 @@
                 }
               ],
               "semconv": true
+            }
+          ],
+          "spans": [
+            {
+              "span_kind": "CLIENT",
+              "attributes": [
+                {
+                  "name": "db.namespace",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "db.query.text",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "db.system.name",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "network.peer.port",
+                  "type": "LONG",
+                  "semconv": true
+                },
+                {
+                  "name": "server.address",
+                  "type": "STRING",
+                  "semconv": true
+                },
+                {
+                  "name": "server.port",
+                  "type": "LONG",
+                  "semconv": true
+                }
+              ]
             }
           ]
         }
@@ -24661,29 +23363,27 @@
       "telemetry": [
         {
           "when": "default",
-          "spans": [
+          "metrics": [
             {
-              "span_kind": "CLIENT",
+              "name": "db.client.operation.duration",
+              "description": "Duration of database client operations.",
+              "type": "HISTOGRAM",
+              "unit": "s",
               "attributes": [
                 {
-                  "name": "db.name",
-                  "type": "STRING"
+                  "name": "db.collection.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
+                  "name": "db.namespace",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.sql.table",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.user",
-                  "type": "STRING"
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
                   "name": "server.address",
@@ -24695,8 +23395,11 @@
                   "type": "LONG",
                   "semconv": true
                 }
-              ]
-            },
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -24741,42 +23444,6 @@
                   "semconv": true
                 }
               ]
-            }
-          ],
-          "metrics": [
-            {
-              "name": "db.client.operation.duration",
-              "description": "Duration of database client operations.",
-              "type": "HISTOGRAM",
-              "unit": "s",
-              "attributes": [
-                {
-                  "name": "db.collection.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.namespace",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
             }
           ]
         }
@@ -24800,29 +23467,27 @@
       "telemetry": [
         {
           "when": "default",
-          "spans": [
+          "metrics": [
             {
-              "span_kind": "CLIENT",
+              "name": "db.client.operation.duration",
+              "description": "Duration of database client operations.",
+              "type": "HISTOGRAM",
+              "unit": "s",
               "attributes": [
                 {
-                  "name": "db.name",
-                  "type": "STRING"
+                  "name": "db.collection.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.operation",
-                  "type": "STRING"
+                  "name": "db.namespace",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
-                  "name": "db.sql.table",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.statement",
-                  "type": "STRING"
-                },
-                {
-                  "name": "db.user",
-                  "type": "STRING"
+                  "name": "db.operation.name",
+                  "type": "STRING",
+                  "semconv": true
                 },
                 {
                   "name": "server.address",
@@ -24834,8 +23499,11 @@
                   "type": "LONG",
                   "semconv": true
                 }
-              ]
-            },
+              ],
+              "semconv": true
+            }
+          ],
+          "spans": [
             {
               "span_kind": "CLIENT",
               "attributes": [
@@ -24880,42 +23548,6 @@
                   "semconv": true
                 }
               ]
-            }
-          ],
-          "metrics": [
-            {
-              "name": "db.client.operation.duration",
-              "description": "Duration of database client operations.",
-              "type": "HISTOGRAM",
-              "unit": "s",
-              "attributes": [
-                {
-                  "name": "db.collection.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.namespace",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "db.operation.name",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.address",
-                  "type": "STRING",
-                  "semconv": true
-                },
-                {
-                  "name": "server.port",
-                  "type": "LONG",
-                  "semconv": true
-                }
-              ],
-              "semconv": true
             }
           ]
         }
@@ -24956,34 +23588,6 @@
         {
           "when": "default",
           "metrics": [
-            {
-              "name": "db.client.connections.max",
-              "description": "The maximum number of open connections allowed.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                }
-              ]
-            },
-            {
-              "name": "db.client.connections.usage",
-              "description": "The number of connections that are currently in state described by the state attribute.",
-              "type": "LONG_SUM",
-              "unit": "connections",
-              "attributes": [
-                {
-                  "name": "pool.name",
-                  "type": "STRING"
-                },
-                {
-                  "name": "state",
-                  "type": "STRING"
-                }
-              ]
-            },
             {
               "name": "db.client.connection.count",
               "description": "The number of connections that are currently in state described by the state attribute.",
