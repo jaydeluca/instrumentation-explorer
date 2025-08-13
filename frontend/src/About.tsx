@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./About.css";
 import Header from "./components/Header";
+import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
 
 const About: React.FC = () => {
   const navigate = useNavigate();
@@ -14,10 +15,13 @@ const About: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         const versions = Object.keys(data);
+        const sortedVersions = sortVersionsDescending(versions);
 
-        setVersions(versions);
-        const defaultVersion = versions.includes("2.17") ? "2.17" : versions[0];
-        setSelectedVersion(defaultVersion);
+        setVersions(sortedVersions);
+        const defaultVersion = getDefaultVersion(versions);
+        if (defaultVersion) {
+          setSelectedVersion(defaultVersion);
+        }
       });
   }, []);
 
