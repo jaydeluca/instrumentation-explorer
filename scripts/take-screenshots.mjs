@@ -85,8 +85,8 @@ async function takeScreenshots() {
       await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
       
       // Select options in dropdowns and click compare button
-      await page.selectOption('#base-version-select', '2.17');
-      await page.selectOption('#compare-version-select', '2.18');
+      await page.selectOption('#base-version-select', '2.18');
+      await page.selectOption('#compare-version-select', '3.0');
       await page.click('button:has-text("Compare")');
 
       await page.waitForLoadState('networkidle', { timeout: 60000 });
@@ -113,8 +113,8 @@ async function takeScreenshots() {
       await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
       
       // Select options in dropdowns and click compare button
-      await page.selectOption('#base-version-select', '2.17');
-      await page.selectOption('#compare-version-select', '2.18');
+      await page.selectOption('#base-version-select', '2.18');
+      await page.selectOption('#compare-version-select', '3.0');
       await page.click('button:has-text("Compare")');
 
       await page.waitForLoadState('networkidle', { timeout: 60000 });
