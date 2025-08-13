@@ -4,6 +4,7 @@ import "./LibraryDetail.css";
 import TelemetryDiff from "./TelemetryDiff";
 import Header from "./components/Header"; // Import the new Header component
 import type { Library } from "./types";
+import { sortVersionsDescending } from "./utils/versionUtils";
 
 function LibraryDetail() {
   const { libraryName, version } = useParams();
@@ -22,7 +23,9 @@ function LibraryDetail() {
     fetch("/instrumentation-explorer/instrumentation-list-enriched.json")
       .then((response) => response.json())
       .then((data) => {
-        setVersions(Object.keys(data));
+        const versions = Object.keys(data);
+        const sortedVersions = sortVersionsDescending(versions);
+        setVersions(sortedVersions);
         if (selectedVersion && data[selectedVersion]) {
           const foundLibrary = data[selectedVersion].find(
             (lib: Library) => lib.name === libraryName

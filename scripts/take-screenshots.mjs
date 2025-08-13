@@ -58,60 +58,87 @@ async function takeScreenshots() {
   let browser;
   let page;
   try {
-    browser = await chromium.launch( );
+    console.log('Launching browser...');
+    browser = await chromium.launch({ headless: true });
     page = await browser.newPage();
     await page.setViewportSize({ width: 1800, height: 2000 });
+    
+    console.log('Taking home page screenshots...');
     // Navigate to the home page and take a screenshot
     await page.goto(URL);
-    await page.waitForLoadState('networkidle', { timeout: 60000 }); // Wait for network to be idle with longer timeout
-    await page.waitForSelector('body', { state: 'visible' }); // Wait for the page body to be visible
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.waitForSelector('body', { state: 'visible' });
     await page.screenshot({ path: `screenshots/home.png` });
 
     await page.selectOption('#theme-select', 'grafana');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/home-grafana.png` });
 
+    console.log('Taking ClickHouse client library screenshots...');
     // Take a full-page screenshot of the ClickHouse client library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/2.17/clickhouse-client-0.5`);
+    await page.goto(`${URL}library/2.18/clickhouse-client-0.5`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await page.waitForSelector('#base-version-select', { state: 'visible' }); // Wait for the dropdown to be visible
+    
+    // Wait for page to load and check if comparison selects exist
+    try {
+      await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
+      
+      // Select options in dropdowns and click compare button
+      await page.selectOption('#base-version-select', '2.18');
+      await page.selectOption('#compare-version-select', '3.0');
+      await page.click('button:has-text("Compare")');
 
-    // Select options in dropdowns and click compare button
-    await page.selectOption('#base-version-select', '2.17');
-    await page.selectOption('#compare-version-select', '3.0');
-    await page.click('button:has-text("Compare")');
-
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+      await page.waitForLoadState('networkidle', { timeout: 60000 });
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    } catch (error) {
+      console.log('Comparison selectors not found, taking screenshot without comparison');
+    }
+    
     await page.screenshot({ path: `screenshots/clickhouse-client.png`, fullPage: true });
 
     await page.selectOption('#theme-select', 'grafana');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/clickhouse-client-grafana.png`, fullPage: true });
 
+    console.log('Taking Alibaba Druid library screenshots...');
     // Take a full-page screenshot of the alibaba-druid-1.0 client library page
-    await page.goto(`${URL}library/2.17/alibaba-druid-1.0`);
+    await page.goto(`${URL}library/2.18/alibaba-druid-1.0`);
     await page.selectOption('#theme-select', 'default');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Select options in dropdowns and click compare button
-    await page.selectOption('#base-version-select', '2.17');
-    await page.selectOption('#compare-version-select', '3.0');
-    await page.click('button:has-text("Compare")');
+    // Try to do comparison if available
+    try {
+      await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
+      
+      // Select options in dropdowns and click compare button
+      await page.selectOption('#base-version-select', '2.18');
+      await page.selectOption('#compare-version-select', '3.0');
+      await page.click('button:has-text("Compare")');
 
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+      await page.waitForLoadState('networkidle', { timeout: 60000 });
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    } catch (error) {
+      console.log('Comparison selectors not found for alibaba-druid, taking screenshot without comparison');
+    }
+    
     await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
 
     await page.selectOption('#theme-select', 'grafana');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
 
+    console.log('Screenshots completed successfully!');
+
+  } catch (error) {
+    console.error('Error during screenshot process:', error);
+    throw error;
   } finally {
-    await browser.close();
-    await new Promise(resolve => server.close(resolve)); // Properly await server closure
+    if (browser) {
+      await browser.close();
+    }
+    await new Promise(resolve => server.close(resolve));
   }
 }
 
