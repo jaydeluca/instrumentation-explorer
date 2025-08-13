@@ -7,7 +7,9 @@
     "process-data": "cd data-processing && source .venv/bin/activate && python3 main.py",
     "dev": "npm run dev --workspace=frontend",
     "build": "npm run build --workspace=frontend",
-    "preview": "npm run preview --workspace=frontend"
+    "preview": "npm run preview --workspace=frontend",
+    "screenshots": "npm run build && node scripts/take-screenshots.mjs",
+    "install-browsers": "npx playwright install"
   },
   "devDependencies": {
     "playwright": "^1.54.1"

@@ -7,10 +7,6 @@ on:
   
   # Allow manual triggering
   workflow_dispatch:
-  
-  # Run when a new release is published (if watching the OpenTelemetry repo)
-  repository_dispatch:
-    types: [new-otel-release]
 
 jobs:
   update-instrumentation-list:
