@@ -59,11 +59,20 @@ export function getLatestVersion(versions: string[]): string | null {
 
 /**
  * Gets the default version to use in the application
- * Always returns the latest available version
+ * Returns the highest version that is NOT "3.0" (since 3.0 is hypothetical)
+ * Falls back to latest if no other versions exist
  */
 export function getDefaultVersion(versions: string[]): string | null {
   if (versions.length === 0) return null;
   
-  // Always use the latest version available
-  return getLatestVersion(versions);
+  // Filter out the hypothetical 3.0 version
+  const realVersions = versions.filter(v => v !== "3.0");
+  
+  if (realVersions.length === 0) {
+    // If only 3.0 exists, use it as fallback
+    return getLatestVersion(versions);
+  }
+  
+  // Return the latest real version (excluding 3.0)
+  return getLatestVersion(realVersions);
 }

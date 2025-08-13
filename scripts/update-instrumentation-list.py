@@ -79,6 +79,100 @@ def save_instrumentation_file(content, version):
         sys.exit(1)
 
 
+def generate_3_0_version(latest_content):
+    """
+    Generate a hypothetical 3.0 version where semconv opt-in features become defaults.
+    
+    This function processes the instrumentation data to simulate the upcoming 3.0 release
+    where features previously behind feature flags will become the default behavior.
+    """
+    try:
+        # Parse the YAML content
+        data = yaml.safe_load(latest_content)
+        
+        if not data or 'libraries' not in data:
+            print("Warning: Invalid YAML structure for 3.0 generation")
+            return latest_content
+        
+        processed_count = 0
+        opt_in_sections_found = 0
+        
+        # Process each library
+        for library_name, library_versions in data['libraries'].items():
+            for library_version in library_versions:
+                if 'telemetry' not in library_version:
+                    continue
+                
+                telemetry_blocks = library_version['telemetry']
+                new_telemetry_blocks = []
+                
+                # Find default and opt-in sections
+                default_block = None
+                opt_in_blocks = []
+                other_blocks = []
+                
+                for block in telemetry_blocks:
+                    when_condition = block.get('when', '')
+                    
+                    if when_condition == 'default':
+                        default_block = block
+                    elif when_condition.startswith('otel.semconv-stability.opt-in='):
+                        opt_in_blocks.append(block)
+                        opt_in_sections_found += 1
+                    else:
+                        other_blocks.append(block)
+                
+                # If we have both default and opt-in blocks, merge them
+                if default_block and opt_in_blocks:
+                    # Create new default block by merging opt-in content
+                    new_default_block = {'when': 'default'}
+                    
+                    # Start with default content
+                    if 'metrics' in default_block:
+                        new_default_block['metrics'] = default_block['metrics'].copy()
+                    if 'spans' in default_block:
+                        new_default_block['spans'] = default_block['spans'].copy()
+                    
+                    # Merge content from all opt-in blocks
+                    for opt_in_block in opt_in_blocks:
+                        # Merge metrics
+                        if 'metrics' in opt_in_block:
+                            if 'metrics' not in new_default_block:
+                                new_default_block['metrics'] = []
+                            new_default_block['metrics'].extend(opt_in_block['metrics'])
+                        
+                        # Merge spans
+                        if 'spans' in opt_in_block:
+                            if 'spans' not in new_default_block:
+                                new_default_block['spans'] = []
+                            new_default_block['spans'].extend(opt_in_block['spans'])
+                    
+                    new_telemetry_blocks.append(new_default_block)
+                    processed_count += 1
+                    
+                elif default_block:
+                    # Keep default block as-is if no opt-in blocks
+                    new_telemetry_blocks.append(default_block)
+                
+                # Add other non-default, non-opt-in blocks
+                new_telemetry_blocks.extend(other_blocks)
+                
+                # Update the library's telemetry
+                library_version['telemetry'] = new_telemetry_blocks
+        
+        print(f"Generated 3.0 version: processed {processed_count} libraries, found {opt_in_sections_found} opt-in sections")
+        
+        # Convert back to YAML
+        return yaml.dump(data, default_flow_style=False, sort_keys=False, allow_unicode=True)
+        
+    except yaml.YAMLError as e:
+        print(f"Error processing YAML for 3.0 generation: {e}")
+        return latest_content
+    except Exception as e:
+        print(f"Unexpected error during 3.0 generation: {e}")
+        return latest_content
+
+
 def run_data_processing():
     """Run the data processing script to generate the enriched JSON."""
     script_dir = Path(__file__).parent
@@ -129,14 +223,21 @@ def main():
         print(f"Downloaded content is not valid YAML: {e}")
         sys.exit(1)
     
-    # Save the file
+    # Save the latest version file
     filepath = save_instrumentation_file(content, version)
     
-    # Run data processing
+    # Generate and save the hypothetical 3.0 version
+    print("Generating hypothetical 3.0 version with semconv opt-in features as defaults...")
+    version_3_0_content = generate_3_0_version(content)
+    save_instrumentation_file(version_3_0_content, "3.0")
+    
+    # Run data processing (this will process all YAML files including the new 3.0)
     run_data_processing()
     
-    print(f"Update complete! New instrumentation list saved as instrumentation-list-{version}.yaml")
-    print("The enriched JSON file has been updated in frontend/public/instrumentation-list-enriched.json")
+    print(f"Update complete!")
+    print(f"- Latest version saved as: instrumentation-list-{version}.yaml")
+    print(f"- Hypothetical 3.0 version saved as: instrumentation-list-3.0.yaml")
+    print("- The enriched JSON file has been updated in frontend/public/instrumentation-list-enriched.json")
 
 
 if __name__ == "__main__":
