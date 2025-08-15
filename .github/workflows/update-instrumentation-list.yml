@@ -11,6 +11,8 @@ on:
 jobs:
   update-instrumentation-list:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # for git push to PR branch
     
     steps:
     - name: Checkout repository
