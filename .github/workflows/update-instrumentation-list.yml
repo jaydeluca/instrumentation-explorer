@@ -1,10 +1,10 @@
 name: Update Instrumentation List
 
 on:
-  # Run weekly on Mondays at 9 AM UTC
+  # Run daily at 9 AM UTC
   schedule:
-    - cron: '0 9 * * 1'
-  
+    - cron: '0 9 * * *'
+
   # Allow manual triggering
   workflow_dispatch:
 
@@ -52,7 +52,7 @@ jobs:
       if: steps.git-check.outputs.changes == 'true'
       uses: peter-evans/create-pull-request@v5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
         commit-message: 'chore: update instrumentation list with latest data'
         title: 'Update instrumentation list with latest data'
         body: |
