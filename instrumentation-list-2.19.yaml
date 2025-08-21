@@ -1,3 +1,7 @@
+# This file is generated and should not be manually edited.
+# The structure and contents are a work in progress and subject to change.
+# For more information see: https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/13468
+
 libraries:
   activej:
   - name: activej-http-6.0
@@ -165,10 +169,8 @@ libraries:
           type: STRING
   alibaba:
   - name: alibaba-druid-1.0
-    description: 'The Alibaba Druid instrumentation generates database connection
-      pool metrics for druid data sources.
-
-      '
+    description: |
+      The Alibaba Druid instrumentation generates database connection pool metrics for druid data sources.
     source_path: instrumentation/alibaba-druid-1.0
     scope:
       name: io.opentelemetry.alibaba-druid-1.0
@@ -179,6 +181,47 @@ libraries:
       - com.alibaba:druid:1.0.0
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.idle.max
+        description: The maximum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.idle.min
+        description: The minimum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.pending_requests
+        description: The number of pending requests for an open connection, cumulative
+          for the entire pool.
+        type: LONG_SUM
+        unit: requests
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -220,15 +263,9 @@ libraries:
           type: STRING
   apache:
   - name: apache-dbcp-2.0
-    description: 'This instrumentation enables database connection pools metrics for
-      Apache DBCP.
-
-      The instrumentation uses `MBeanRegistration` methods for lifecycle detection,
-      therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`.
-      If using Spring Boot, this happens automatically as all Spring beans that support
-      JMX registration are automatically registered by default.
-
-      '
+    description: |
+      This instrumentation enables database connection pools metrics for Apache DBCP.
+      The instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.
     source_path: instrumentation/apache-dbcp-2.0
     scope:
       name: io.opentelemetry.apache-dbcp-2.0
@@ -239,6 +276,39 @@ libraries:
       - org.apache.commons:commons-dbcp2:2.0
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.idle.max
+        description: The maximum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.idle.min
+        description: The minimum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -595,11 +665,8 @@ libraries:
         - name: url.full
           type: STRING
   - name: apache-shenyu-2.4
-    description: 'This instrumentation does not emit telemetry on its own. Instead,
-      it augments existing SERVER spans and HTTP server metrics with the HTTP route
-      and Shenyu specific attributes.
-
-      '
+    description: |
+      This instrumentation does not emit telemetry on its own. Instead, it augments existing SERVER spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.
     source_path: instrumentation/apache-shenyu-2.4
     scope:
       name: io.opentelemetry.apache-shenyu-2.4
@@ -608,11 +675,8 @@ libraries:
       - org.apache.shenyu:shenyu-web:[2.4.0,)
     configurations:
     - name: otel.instrumentation.apache-shenyu.experimental-span-attributes
-      description: 'Enables experimental `apache-shenyu.meta.` prefixed span attributes
-        `app-name`, `service-name`, `context-path`, `param-types`, `id`, `method-name`,
-        `rpc-type`, `path` and `rpc-ext`.
-
-        '
+      description: |
+        Enables experimental `apache-shenyu.meta.` prefixed span attributes `app-name`, `service-name`, `context-path`, `param-types`, `id`, `method-name`, `rpc-type`, `path` and `rpc-ext`.
       type: boolean
       default: false
   armeria:
@@ -846,11 +910,8 @@ libraries:
           type: STRING
   avaje:
   - name: avaje-jex-3.0
-    description: 'This instrumentation does not emit telemetry on its own. Instead,
-      it hooks into the Avaje Jex Context to extract the HTTP route and attach it
-      to existing SERVER spans and HTTP server metrics.
-
-      '
+    description: |
+      This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing SERVER spans and HTTP server metrics.
     source_path: instrumentation/avaje-jex-3.0
     minimum_java_version: 21
     scope:
@@ -860,14 +921,8 @@ libraries:
       - io.avaje:avaje-jex:[3.0,)
   aws:
   - name: aws-lambda-core-1.0
-    description: 'Provides lightweight instrumentation of the Lambda core library,
-      supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id`
-      attribute. Use this package if you only use `RequestStreamHandler` or know you
-      don''t use any event classes from `aws-lambda-java-events`. This also includes
-      when you are using `aws-serverless-java-container` to run e.g., a Spring Boot
-      application on Lambda.
-
-      '
+    description: |
+      Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.
     source_path: instrumentation/aws-lambda/aws-lambda-core-1.0
     scope:
       name: io.opentelemetry.aws-lambda-core-1.0
@@ -889,10 +944,8 @@ libraries:
         - name: faas.invocation_id
           type: STRING
   - name: aws-lambda-events-2.2
-    description: 'Provides full instrumentation of the Lambda library, including standard
-      and custom event types, from `aws-lambda-java-events` 2.2+.
-
-      '
+    description: |
+      Provides full instrumentation of the Lambda library, including standard and custom event types, from `aws-lambda-java-events` 2.2+.
     source_path: instrumentation/aws-lambda/aws-lambda-events-2.2
     scope:
       name: io.opentelemetry.aws-lambda-events-2.2
@@ -931,11 +984,8 @@ libraries:
         - name: user_agent.original
           type: STRING
   - name: aws-sdk-1.11
-    description: 'This instrumentation covers the AWS SDK 1.11+ client library, enabling
-      messaging and client spans and metrics for calls to AWS services including DynamoDB,
-      EC2, Kinesis, Lambda, RDS, S3, secrets manager, SNS/SQS and step functions.
-
-      '
+    description: |
+      This instrumentation covers the AWS SDK 1.11+ client library, enabling messaging and client spans and metrics for calls to AWS services including DynamoDB, EC2, Kinesis, Lambda, RDS, S3, secrets manager, SNS/SQS and step functions.
     source_path: instrumentation/aws-sdk/aws-sdk-1.11
     scope:
       name: io.opentelemetry.aws-sdk-1.11
@@ -948,19 +998,13 @@ libraries:
       - com.amazonaws:aws-java-sdk-core:1.11.0
     configurations:
     - name: otel.instrumentation.aws-sdk.experimental-span-attributes
-      description: 'Enables the experimental span attributes `aws.agent`, `aws.bucket.name`,
-        `aws.queue.url`, `aws.queue.name`, `aws.stream.name`, `aws.table.name`, `aws.lambda.function.arn`
-        and `aws.lambda.function.name` for AWS SDK instrumentation.
-
-        '
+      description: |
+        Enables the experimental span attributes `aws.agent`, `aws.bucket.name`, `aws.queue.url`, `aws.queue.name`, `aws.stream.name`, `aws.table.name`, `aws.lambda.function.arn` and `aws.lambda.function.name` for AWS SDK instrumentation.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -969,6 +1013,98 @@ libraries:
       default: ''
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: aws.agent
+          type: STRING
+        - name: aws.bucket.name
+          type: STRING
+        - name: aws.dynamodb.table_names
+          type: STRING_ARRAY
+        - name: aws.lambda.function.arn
+          type: STRING
+        - name: aws.lambda.function.name
+          type: STRING
+        - name: aws.lambda.resource_mapping.id
+          type: STRING
+        - name: aws.queue.name
+          type: STRING
+        - name: aws.queue.url
+          type: STRING
+        - name: aws.request_id
+          type: STRING
+        - name: aws.sns.topic.arn
+          type: STRING
+        - name: aws.step_functions.activity.arn
+          type: STRING
+        - name: aws.step_functions.state_machine.arn
+          type: STRING
+        - name: aws.stream.name
+          type: STRING
+        - name: aws.table.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: error.type
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: network.protocol.version
+          type: STRING
+        - name: rpc.method
+          type: STRING
+        - name: rpc.service
+          type: STRING
+        - name: rpc.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+      - span_kind: CONSUMER
+        attributes:
+        - name: aws.agent
+          type: STRING
+        - name: aws.queue.url
+          type: STRING
+        - name: aws.request_id
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: messaging.message.id
+          type: STRING
+        - name: messaging.operation
+          type: STRING
+        - name: messaging.system
+          type: STRING
+        - name: network.protocol.version
+          type: STRING
+        - name: rpc.method
+          type: STRING
+        - name: rpc.service
+          type: STRING
+        - name: rpc.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1075,11 +1211,8 @@ libraries:
         - name: url.full
           type: STRING
   - name: aws-sdk-2.2
-    description: 'This instrumentation covers the AWS SDK 2.2+ client library, enabling
-      messaging and client spans and metrics for calls to AWS services including DynamoDB,
-      EC2, Kinesis, Lambda, RDS, S3, SNS/SQS and Bedrock.
-
-      '
+    description: |
+      This instrumentation covers the AWS SDK 2.2+ client library, enabling messaging and client spans and metrics for calls to AWS services including DynamoDB, EC2, Kinesis, Lambda, RDS, S3, SNS/SQS and Bedrock.
     source_path: instrumentation/aws-sdk/aws-sdk-2.2
     scope:
       name: io.opentelemetry.aws-sdk-2.2
@@ -1098,11 +1231,8 @@ libraries:
       - software.amazon.awssdk:lambda:2.2.0
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -1110,10 +1240,8 @@ libraries:
       type: list
       default: ''
     - name: otel.instrumentation.aws-sdk.experimental-span-attributes
-      description: 'Enables experimental span attributes `aws.agent`, `aws.lambda.function.arn`
-        and `aws.lambda.function.name` for AWS SDK instrumentation.
-
-        '
+      description: |
+        Enables experimental span attributes `aws.agent`, `aws.lambda.function.arn` and `aws.lambda.function.name` for AWS SDK instrumentation.
       type: boolean
       default: false
     - name: otel.instrumentation.aws-sdk.experimental-use-propagator-for-messaging
@@ -1122,11 +1250,8 @@ libraries:
       type: boolean
       default: false
     - name: otel.instrumentation.genai.capture-message-content
-      description: 'Determines whether Generative AI events include full content of
-        user and assistant messages. Note that full content can have data privacy
-        and size concerns and care should be taken when enabling this
-
-        '
+      description: |
+        Determines whether Generative AI events include full content of user and assistant messages. Note that full content can have data privacy and size concerns and care should be taken when enabling this
       type: boolean
       default: false
     - name: otel.instrumentation.aws-sdk.experimental-record-individual-http-error
@@ -1136,6 +1261,177 @@ libraries:
       default: false
     telemetry:
     - when: default
+      metrics:
+      - name: gen_ai.client.operation.duration
+        description: GenAI operation duration.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: gen_ai.operation.name
+          type: STRING
+        - name: gen_ai.request.model
+          type: STRING
+        - name: gen_ai.system
+          type: STRING
+      - name: gen_ai.client.token.usage
+        description: Measures number of input and output tokens used.
+        type: HISTOGRAM
+        unit: token
+        attributes:
+        - name: gen_ai.operation.name
+          type: STRING
+        - name: gen_ai.request.model
+          type: STRING
+        - name: gen_ai.system
+          type: STRING
+        - name: gen_ai.token.type
+          type: STRING
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: aws.agent
+          type: STRING
+        - name: aws.bucket.name
+          type: STRING
+        - name: aws.dynamodb.global_secondary_indexes
+          type: STRING
+        - name: aws.dynamodb.limit
+          type: STRING
+        - name: aws.dynamodb.provisioned_throughput.read_capacity_units
+          type: STRING
+        - name: aws.dynamodb.provisioned_throughput.write_capacity_units
+          type: STRING
+        - name: aws.dynamodb.select
+          type: STRING
+        - name: aws.lambda.function.arn
+          type: STRING
+        - name: aws.lambda.function.name
+          type: STRING
+        - name: aws.lambda.resource_mapping.id
+          type: STRING
+        - name: aws.queue.name
+          type: STRING
+        - name: aws.queue.url
+          type: STRING
+        - name: aws.request_id
+          type: STRING
+        - name: aws.secretsmanager.secret.arn
+          type: STRING
+        - name: aws.sns.topic.arn
+          type: STRING
+        - name: aws.step_functions.activity.arn
+          type: STRING
+        - name: aws.step_functions.state_machine.arn
+          type: STRING
+        - name: aws.stream.name
+          type: STRING
+        - name: aws.table.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: gen_ai.operation.name
+          type: STRING
+        - name: gen_ai.request.max_tokens
+          type: LONG
+        - name: gen_ai.request.model
+          type: STRING
+        - name: gen_ai.request.stop_sequences
+          type: STRING_ARRAY
+        - name: gen_ai.request.temperature
+          type: DOUBLE
+        - name: gen_ai.request.top_p
+          type: DOUBLE
+        - name: gen_ai.response.finish_reasons
+          type: STRING_ARRAY
+        - name: gen_ai.system
+          type: STRING
+        - name: gen_ai.usage.input_tokens
+          type: LONG
+        - name: gen_ai.usage.output_tokens
+          type: LONG
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: rpc.method
+          type: STRING
+        - name: rpc.service
+          type: STRING
+        - name: rpc.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+      - span_kind: CONSUMER
+        attributes:
+        - name: aws.agent
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: messaging.batch.message_count
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: messaging.message.id
+          type: STRING
+        - name: messaging.operation
+          type: STRING
+        - name: messaging.system
+          type: STRING
+        - name: rpc.method
+          type: STRING
+        - name: rpc.service
+          type: STRING
+        - name: rpc.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+      - span_kind: PRODUCER
+        attributes:
+        - name: aws.agent
+          type: STRING
+        - name: aws.queue.url
+          type: STRING
+        - name: aws.request_id
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: messaging.message.id
+          type: STRING
+        - name: messaging.operation
+          type: STRING
+        - name: messaging.system
+          type: STRING
+        - name: rpc.method
+          type: STRING
+        - name: rpc.service
+          type: STRING
+        - name: rpc.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1314,6 +1610,26 @@ libraries:
     telemetry:
     - when: default
       metrics:
+      - name: db.client.connections.pending_requests
+        description: The number of pending requests for an open connection, cumulative
+          for the entire pool.
+        type: LONG_SUM
+        unit: requests
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
+      metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
@@ -1333,12 +1649,8 @@ libraries:
           type: STRING
   camel:
   - name: camel-2.20
-    description: 'This instrumentation enables tracing for Apache Camel 2.x applications
-      by generating spans for each route execution. For Camel versions 3.5 and newer,
-      users should instead use the native ''camel-opentelemetry'' component provided
-      directly by the Camel project.
-
-      '
+    description: |
+      This instrumentation enables tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.
     source_path: instrumentation/camel-2.20
     scope:
       name: io.opentelemetry.camel-2.20
@@ -1347,10 +1659,8 @@ libraries:
       - org.apache.camel:camel-core:[2.19,3)
     configurations:
     - name: otel.instrumentation.camel.experimental-span-attributes
-      description: 'Enable the capture of experimental `camel.uri`, `camel.kafka.partitionKey`,
-        `camel.kafka.key` and `camel.kafka.offset` span attributes.
-
-        '
+      description: |
+        Enable the capture of experimental `camel.uri`, `camel.kafka.partitionKey`, `camel.kafka.key` and `camel.kafka.offset` span attributes.
       type: boolean
       default: false
     telemetry:
@@ -1358,11 +1668,11 @@ libraries:
       spans:
       - span_kind: CLIENT
         attributes:
-        - name: db.namespace
+        - name: db.name
           type: STRING
-        - name: db.query.text
+        - name: db.statement
           type: STRING
-        - name: db.system.name
+        - name: db.system
           type: STRING
         - name: http.request.method
           type: STRING
@@ -1428,12 +1738,44 @@ libraries:
           type: LONG
         - name: url.full
           type: STRING
+    - when: otel.semconv-stability.opt-in=database
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.namespace
+          type: STRING
+        - name: db.query.text
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: url.full
+          type: STRING
+      - span_kind: INTERNAL
+        attributes:
+        - name: http.request.method
+          type: STRING
+        - name: messaging.destination.name
+          type: STRING
+        - name: messaging.message.id
+          type: STRING
+        - name: url.full
+          type: STRING
+      - span_kind: SERVER
+        attributes:
+        - name: http.request.method
+          type: STRING
+        - name: http.response.status_code
+          type: LONG
+        - name: url.full
+          type: STRING
   cassandra:
   - name: cassandra-3.0
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
-
-      '
+    description: |
+      Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.
     source_path: instrumentation/cassandra/cassandra-3.0
     scope:
       name: io.opentelemetry.cassandra-3.0
@@ -1447,6 +1789,30 @@ libraries:
       default: true
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.cassandra.table
+          type: STRING
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       spans:
       - span_kind: CLIENT
         attributes:
@@ -1471,10 +1837,8 @@ libraries:
         - name: server.port
           type: LONG
   - name: cassandra-4.0
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
-
-      '
+    description: |
+      Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.
     source_path: instrumentation/cassandra/cassandra-4.0
     scope:
       name: io.opentelemetry.cassandra-4.0
@@ -1488,6 +1852,42 @@ libraries:
       default: true
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.cassandra.consistency_level
+          type: STRING
+        - name: db.cassandra.coordinator.dc
+          type: STRING
+        - name: db.cassandra.coordinator.id
+          type: STRING
+        - name: db.cassandra.idempotence
+          type: BOOLEAN
+        - name: db.cassandra.page_size
+          type: LONG
+        - name: db.cassandra.speculative_execution_count
+          type: LONG
+        - name: db.cassandra.table
+          type: STRING
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       spans:
       - span_kind: CLIENT
         attributes:
@@ -1524,10 +1924,8 @@ libraries:
         - name: server.port
           type: LONG
   - name: cassandra-4.4
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
-
-      '
+    description: |
+      Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.
     source_path: instrumentation/cassandra/cassandra-4.4
     scope:
       name: io.opentelemetry.cassandra-4.4
@@ -1543,6 +1941,42 @@ libraries:
       default: true
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.cassandra.consistency_level
+          type: STRING
+        - name: db.cassandra.coordinator.dc
+          type: STRING
+        - name: db.cassandra.coordinator.id
+          type: STRING
+        - name: db.cassandra.idempotence
+          type: BOOLEAN
+        - name: db.cassandra.page_size
+          type: LONG
+        - name: db.cassandra.speculative_execution_count
+          type: LONG
+        - name: db.cassandra.table
+          type: STRING
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       spans:
       - span_kind: CLIENT
         attributes:
@@ -1595,6 +2029,22 @@ libraries:
       default: true
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1632,12 +2082,8 @@ libraries:
           type: LONG
   couchbase:
   - name: couchbase-2.0
-    description: 'This instrumentation enables database CLIENT spans and metrics for
-      Couchbase 2.0 operations. It automatically traces key-value operations (get,
-      upsert, replace, remove), view queries, N1QL queries, and cluster management
-      operations.
-
-      '
+    description: |
+      This instrumentation enables database CLIENT spans and metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.
     source_path: instrumentation/couchbase/couchbase-2.0
     scope:
       name: io.opentelemetry.couchbase-2.0
@@ -1646,6 +2092,18 @@ libraries:
       - com.couchbase.client:java-client:[2,3)
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1668,12 +2126,8 @@ libraries:
         - name: db.system.name
           type: STRING
   - name: couchbase-2.6
-    description: 'This instrumentation enables database CLIENT spans and metrics for
-      Couchbase 2.6 operations. It automatically traces key-value operations (get,
-      upsert, replace, remove), view queries, N1QL queries, and cluster management
-      operations.
-
-      '
+    description: |
+      This instrumentation enables database CLIENT spans and metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.
     source_path: instrumentation/couchbase/couchbase-2.6
     scope:
       name: io.opentelemetry.couchbase-2.6
@@ -1682,39 +2136,22 @@ libraries:
       - com.couchbase.client:java-client:[2.6.0,3)
     configurations:
     - name: otel.instrumentation.couchbase.experimental-span-attributes
-      description: 'Enables experimental span attributes `couchbase.operation_id`
-        and `couchbase.local.address`. Different operation types receive different
-        experimental attributes.
-
-        '
+      description: |
+        Enables experimental span attributes `couchbase.operation_id` and `couchbase.local.address`. Different operation types receive different experimental attributes.
       type: boolean
       default: false
     telemetry:
     - when: default
-      metrics:
-      - name: db.client.operation.duration
-        description: Duration of database client operations.
-        type: HISTOGRAM
-        unit: s
-        attributes:
-        - name: db.operation.name
-          type: STRING
-        - name: db.system.name
-          type: STRING
-        - name: network.peer.address
-          type: STRING
-        - name: network.peer.port
-          type: LONG
       spans:
       - span_kind: CLIENT
         attributes:
-        - name: db.namespace
+        - name: db.name
           type: STRING
-        - name: db.operation.name
+        - name: db.operation
           type: STRING
-        - name: db.query.text
+        - name: db.statement
           type: STRING
-        - name: db.system.name
+        - name: db.system
           type: STRING
         - name: network.peer.address
           type: STRING
@@ -1744,12 +2181,41 @@ libraries:
           type: LONG
         - name: network.type
           type: STRING
+    - when: otel.semconv-stability.opt-in=database
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.namespace
+          type: STRING
+        - name: db.operation.name
+          type: STRING
+        - name: db.query.text
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
   - name: couchbase-3.1
-    description: 'Couchbase instrumentation is owned by the Couchbase project for
-      versions 3+. This instrumentation automatically configures the instrumentation
-      provided by the Couchbase library.
-
-      '
+    description: |
+      Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.
     source_path: instrumentation/couchbase/couchbase-3.1
     scope:
       name: io.opentelemetry.couchbase-3.1
@@ -1757,11 +2223,8 @@ libraries:
       javaagent:
       - com.couchbase.client:java-client:[3.1,3.1.6)
   - name: couchbase-3.1.6
-    description: 'Couchbase instrumentation is owned by the Couchbase project for
-      versions 3+. This instrumentation automatically configures the instrumentation
-      provided by the Couchbase library.
-
-      '
+    description: |
+      Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.
     source_path: instrumentation/couchbase/couchbase-3.1.6
     scope:
       name: io.opentelemetry.couchbase-3.1.6
@@ -1769,11 +2232,8 @@ libraries:
       javaagent:
       - com.couchbase.client:java-client:[3.1.6,3.2.0)
   - name: couchbase-3.2
-    description: 'Couchbase instrumentation is owned by the Couchbase project for
-      versions 3+. This instrumentation automatically configures the instrumentation
-      provided by the Couchbase library.
-
-      '
+    description: |
+      Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.
     source_path: instrumentation/couchbase/couchbase-3.2
     scope:
       name: io.opentelemetry.couchbase-3.2
@@ -1782,15 +2242,9 @@ libraries:
       - com.couchbase.client:java-client:[3.2.0,)
   dropwizard:
   - name: dropwizard-metrics-4.0
-    description: 'The dropwizard-metrics instrumentation for the dropwizard/codahale
-      metrics library produces OpenTelemetry compliant versions of the metrics generated
-      by the Dropwizard MetricRegistry.
-
-      The Dropwizard metrics API does not have a concept of metric labels/tags/attributes,
-      thus the data produced by this integration might be of very low quality, depending
-      on how the API is used in the instrumented application.
-
-      '
+    description: |
+      The dropwizard-metrics instrumentation for the dropwizard/codahale metrics library produces OpenTelemetry compliant versions of the metrics generated by the Dropwizard MetricRegistry.
+      The Dropwizard metrics API does not have a concept of metric labels/tags/attributes, thus the data produced by this integration might be of very low quality, depending on how the API is used in the instrumented application.
     disabled_by_default: true
     source_path: instrumentation/dropwizard/dropwizard-metrics-4.0
     scope:
@@ -1824,12 +2278,8 @@ libraries:
         attributes: []
   elasticsearch:
   - name: elasticsearch-api-client-7.16
-    description: 'This instrumentation extends the elasticsearch-rest-7.0 instrumentation
-      by adding additional `db.elasticsearch.path_parts.id` and `db.elasticsearch.path_parts.index`
-      attributes to Elasticsearch CLIENT spans. Versions 8.10 and later of the client
-      have native support for OpenTelemetry.
-
-      '
+    description: |
+      This instrumentation extends the elasticsearch-rest-7.0 instrumentation by adding additional `db.elasticsearch.path_parts.id` and `db.elasticsearch.path_parts.index` attributes to Elasticsearch CLIENT spans. Versions 8.10 and later of the client have native support for OpenTelemetry.
     source_path: instrumentation/elasticsearch/elasticsearch-api-client-7.16
     scope:
       name: io.opentelemetry.elasticsearch-api-client-7.16
@@ -1839,6 +2289,26 @@ libraries:
       - co.elastic.clients:elasticsearch-java:[8.0.0,8.10)
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.elasticsearch.path_parts.id
+          type: STRING
+        - name: db.elasticsearch.path_parts.index
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1884,21 +2354,31 @@ libraries:
       - org.elasticsearch.client:elasticsearch-rest-client:[5.0,6.4)
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
-      description: 'Enable the capture of search query bodies. It is important to
-        note that Elasticsearch queries may contain personal or sensitive information.
-
-        '
+      description: |
+        Enable the capture of search query bodies. It is important to note that Elasticsearch queries may contain personal or sensitive information.
       type: boolean
       default: false
     - name: otel.instrumentation.http.known-methods
-      description: 'Configures the instrumentation to recognize an alternative set
-        of HTTP request methods. All other methods will be treated as `_OTHER`.
-
-        '
+      description: |
+        Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.
       type: list
       default: CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.system
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1935,21 +2415,31 @@ libraries:
       - org.elasticsearch.client:elasticsearch-rest-client:[6.4,7.0)
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
-      description: 'Enable the capture of search query bodies. It is important to
-        note that Elasticsearch queries may contain personal or sensitive information.
-
-        '
+      description: |
+        Enable the capture of search query bodies. It is important to note that Elasticsearch queries may contain personal or sensitive information.
       type: boolean
       default: false
     - name: otel.instrumentation.http.known-methods
-      description: 'Configures the instrumentation to recognize an alternative set
-        of HTTP request methods. All other methods will be treated as `_OTHER`.
-
-        '
+      description: |
+        Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.
       type: list
       default: CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.system
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -1988,21 +2478,31 @@ libraries:
       - org.elasticsearch.client:elasticsearch-rest-client:7.0.0
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
-      description: 'Enable the capture of search query bodies. It is important to
-        note that Elasticsearch queries may contain personal or sensitive information.
-
-        '
+      description: |
+        Enable the capture of search query bodies. It is important to note that Elasticsearch queries may contain personal or sensitive information.
       type: boolean
       default: false
     - name: otel.instrumentation.http.known-methods
-      description: 'Configures the instrumentation to recognize an alternative set
-        of HTTP request methods. All other methods will be treated as `_OTHER`.
-
-        '
+      description: |
+        Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.
       type: list
       default: CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.system
+          type: STRING
+        - name: http.request.method
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+        - name: url.full
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -2029,11 +2529,8 @@ libraries:
         - name: url.full
           type: STRING
   - name: elasticsearch-transport-5.0
-    description: 'This instrumentation enables CLIENT spans and metrics for Elasticsearch
-      transport client requests. Each call produces a span named after the Elasticsearch
-      action, enriched with transport-specific attributes.
-
-      '
+    description: |
+      This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.
     source_path: instrumentation/elasticsearch/elasticsearch-transport-5.0
     scope:
       name: io.opentelemetry.elasticsearch-transport-5.0
@@ -2043,43 +2540,23 @@ libraries:
       - org.elasticsearch:elasticsearch:[5.0.0,5.3.0)
     configurations:
     - name: otel.instrumentation.elasticsearch.experimental-span-attributes
-      description: 'Enable the capture of the experimental span attributes `elasticsearch.action`,
-        `elasticsearch.id`, `elasticsearch.request`, `elasticsearch.request.indices`,
-        `elasticsearch.request.write.routing`, `elasticsearch.request.write.type`,
-        `elasticsearch.response.status`, `elasticsearch.shard.replication.failed`,
-        `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`,
-        `elasticsearch.type`, and `elasticsearch.version`.
-
-        '
+      description: |
+        Enable the capture of the experimental span attributes `elasticsearch.action`, `elasticsearch.id`, `elasticsearch.request`, `elasticsearch.request.indices`, `elasticsearch.request.write.routing`, `elasticsearch.request.write.type`, `elasticsearch.response.status`, `elasticsearch.shard.replication.failed`, `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`, `elasticsearch.type`, and `elasticsearch.version`.
       type: boolean
       default: false
     - name: otel.instrumentation.http.known-methods
-      description: 'Configures the instrumentation to recognize an alternative set
-        of HTTP request methods. All other methods will be treated as `_OTHER`.
-
-        '
+      description: |
+        Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.
       type: list
       default: CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE
     telemetry:
     - when: default
-      metrics:
-      - name: db.client.operation.duration
-        description: Duration of database client operations.
-        type: HISTOGRAM
-        unit: s
-        attributes:
-        - name: db.operation.name
-          type: STRING
-        - name: db.system.name
-          type: STRING
       spans:
       - span_kind: CLIENT
         attributes:
-        - name: db.operation.name
+        - name: db.operation
           type: STRING
-        - name: db.system.name
-          type: STRING
-        - name: error.type
+        - name: db.system
           type: STRING
         - name: network.peer.address
           type: STRING
@@ -2119,34 +2596,7 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-  - name: elasticsearch-transport-5.3
-    description: 'This instrumentation enables CLIENT spans and metrics for Elasticsearch
-      transport client requests. Each call produces a span named after the Elasticsearch
-      action, enriched with transport-specific attributes.
-
-      '
-    source_path: instrumentation/elasticsearch/elasticsearch-transport-5.3
-    scope:
-      name: io.opentelemetry.elasticsearch-transport-5.3
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:transport:[5.3.0,6.0.0)
-      - org.elasticsearch:elasticsearch:[5.3.0,6.0.0)
-    configurations:
-    - name: otel.instrumentation.elasticsearch.experimental-span-attributes
-      description: 'Enable the capture of `elasticsearch.action`, `elasticsearch.id`,
-        `elasticsearch.request`, `elasticsearch.request.indices`, `elasticsearch.request.search.types`,
-        `elasticsearch.request.write.type`, `elasticsearch.request.write.version`,
-        `elasticsearch.response.status`, `elasticsearch.shard.broadcast.failed`, `elasticsearch.shard.broadcast.successful`,
-        `elasticsearch.shard.broadcast.total`, `elasticsearch.shard.replication.failed`,
-        `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`,
-        `elasticsearch.type`, and `elasticsearch.version` experimental span attributes.
-
-        '
-      type: boolean
-      default: false
-    telemetry:
-    - when: default
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -2165,6 +2615,35 @@ libraries:
         - name: db.system.name
           type: STRING
         - name: error.type
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+  - name: elasticsearch-transport-5.3
+    description: |
+      This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.
+    source_path: instrumentation/elasticsearch/elasticsearch-transport-5.3
+    scope:
+      name: io.opentelemetry.elasticsearch-transport-5.3
+    target_versions:
+      javaagent:
+      - org.elasticsearch.client:transport:[5.3.0,6.0.0)
+      - org.elasticsearch:elasticsearch:[5.3.0,6.0.0)
+    configurations:
+    - name: otel.instrumentation.elasticsearch.experimental-span-attributes
+      description: |
+        Enable the capture of `elasticsearch.action`, `elasticsearch.id`, `elasticsearch.request`, `elasticsearch.request.indices`, `elasticsearch.request.search.types`, `elasticsearch.request.write.type`, `elasticsearch.request.write.version`, `elasticsearch.response.status`, `elasticsearch.shard.broadcast.failed`, `elasticsearch.shard.broadcast.successful`, `elasticsearch.shard.broadcast.total`, `elasticsearch.shard.replication.failed`, `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`, `elasticsearch.type`, and `elasticsearch.version` experimental span attributes.
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation
+          type: STRING
+        - name: db.system
           type: STRING
         - name: network.peer.address
           type: STRING
@@ -2214,32 +2693,7 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-  - name: elasticsearch-transport-6.0
-    description: 'This instrumentation enables CLIENT spans and metrics for Elasticsearch
-      transport client requests. Each call produces a span named after the Elasticsearch
-      action, enriched with transport-specific attributes.
-
-      '
-    source_path: instrumentation/elasticsearch/elasticsearch-transport-6.0
-    scope:
-      name: io.opentelemetry.elasticsearch-transport-6.0
-    target_versions:
-      javaagent:
-      - org.elasticsearch:elasticsearch:[6.0.0,8.0.0)
-      - org.elasticsearch.client:transport:[6.0.0,)
-    configurations:
-    - name: otel.instrumentation.elasticsearch.experimental-span-attributes
-      description: 'Enable the capture of `elasticsearch.action`, `elasticsearch.id`,
-        `elasticsearch.request`, `elasticsearch.request.indices`, `elasticsearch.request.write.type`,
-        `elasticsearch.request.write.version`, `elasticsearch.response.status`, `elasticsearch.shard.replication.failed`,
-        `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`,
-        `elasticsearch.type`, and `elasticsearch.version` experimental span attributes.
-
-        '
-      type: boolean
-      default: false
-    telemetry:
-    - when: default
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -2258,6 +2712,35 @@ libraries:
         - name: db.system.name
           type: STRING
         - name: error.type
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+  - name: elasticsearch-transport-6.0
+    description: |
+      This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.
+    source_path: instrumentation/elasticsearch/elasticsearch-transport-6.0
+    scope:
+      name: io.opentelemetry.elasticsearch-transport-6.0
+    target_versions:
+      javaagent:
+      - org.elasticsearch:elasticsearch:[6.0.0,8.0.0)
+      - org.elasticsearch.client:transport:[6.0.0,)
+    configurations:
+    - name: otel.instrumentation.elasticsearch.experimental-span-attributes
+      description: |
+        Enable the capture of `elasticsearch.action`, `elasticsearch.id`, `elasticsearch.request`, `elasticsearch.request.indices`, `elasticsearch.request.write.type`, `elasticsearch.request.write.version`, `elasticsearch.response.status`, `elasticsearch.shard.replication.failed`, `elasticsearch.shard.replication.successful`, `elasticsearch.shard.replication.total`, `elasticsearch.type`, and `elasticsearch.version` experimental span attributes.
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation
+          type: STRING
+        - name: db.system
           type: STRING
         - name: network.peer.address
           type: STRING
@@ -2303,16 +2786,36 @@ libraries:
           type: LONG
         - name: network.type
           type: STRING
+    - when: otel.semconv-stability.opt-in=database
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: error.type
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
   executors:
   - name: executors
-    description: 'The executor instrumentation ensures that context is automatically
-      propagated when using common Java executors (e.g., ThreadPoolExecutor, ScheduledThreadPoolExecutor,
-      ForkJoinPool). When a task is submitted, the current context is captured and
-      bound to the task. Then, when the task eventually runs, even if it’s on a different
-      thread, the instrumentation reactivates that context, enabling consistent correlation
-      across concurrent and asynchronous workflows.
-
-      '
+    description: |
+      The executor instrumentation ensures that context is automatically propagated when using common Java executors (e.g., ThreadPoolExecutor, ScheduledThreadPoolExecutor, ForkJoinPool). When a task is submitted, the current context is captured and bound to the task. Then, when the task eventually runs, even if it’s on a different thread, the instrumentation reactivates that context, enabling consistent correlation across concurrent and asynchronous workflows.
     source_path: instrumentation/executors
     scope:
       name: io.opentelemetry.executors
@@ -2330,12 +2833,8 @@ libraries:
       default: false
   finagle:
   - name: finagle-http-23.11
-    description: 'This instrumentation for Finagle HTTP clients and servers ensures
-      that telemetry is correctly generated by the underlying Netty instrumentation.
-      It augments existing telemetry by bridging the gap between Finagle''s abstractions
-      and Netty''s pipeline, primarily for context propagation.
-
-      '
+    description: |
+      This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.
     source_path: instrumentation/finagle-http-23.11
     scope:
       name: io.opentelemetry.finagle-http-23.11
@@ -2525,6 +3024,70 @@ libraries:
       - com.zaxxer:HikariCP:3.0.0
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.create_time
+        description: The time it took to create a new connection.
+        type: HISTOGRAM
+        unit: ms
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.idle.min
+        description: The minimum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.pending_requests
+        description: The number of pending requests for an open connection, cumulative
+          for the entire pool.
+        type: LONG_SUM
+        unit: requests
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.timeouts
+        description: The number of connection timeouts that have occurred trying to
+          obtain a connection from the pool.
+        type: LONG_SUM
+        unit: timeouts
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+      - name: db.client.connections.use_time
+        description: The time between borrowing a connection and returning it to the
+          pool.
+        type: HISTOGRAM
+        unit: ms
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.wait_time
+        description: The time it took to obtain an open connection from the pool.
+        type: HISTOGRAM
+        unit: ms
+        attributes:
+        - name: pool.name
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -2833,15 +3396,9 @@ libraries:
       - org.jboss.logmanager:jboss-logmanager:[1.1.0.GA,)
   jdbc:
   - name: jdbc
-    description: 'The JDBC instrumentation provides database client spans and metrics.
-      Each call produces a span named after the SQL verb, enriched with standard DB
-      client attributes (system, database, operation, sanitized statement, peer address)
-      and error details if an exception occurs.
-
-      There is also a "jdbc-datasource" instrumentation that creates spans for datasource
-      connections, but is disabled by default due to the volume of telemetry produced.
-
-      '
+    description: |
+      The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.
+      There is also a "jdbc-datasource" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.
     source_path: instrumentation/jdbc
     scope:
       name: io.opentelemetry.jdbc
@@ -2869,13 +3426,8 @@ libraries:
       type: map
       default: ''
     - name: otel.instrumentation.jdbc.experimental.capture-query-parameters
-      description: 'Sets whether the query parameters should be captured as span attributes
-        named <code>db.query.parameter.&lt;key&gt;</code>. Enabling this option disables
-        the statement sanitization.<p>WARNING: captured query parameters may contain
-        sensitive information such as passwords, personally identifiable information
-        or protected health info.
-
-        '
+      description: |
+        Sets whether the query parameters should be captured as span attributes named <code>db.query.parameter.&lt;key&gt;</code>. Enabling this option disables the statement sanitization.<p>WARNING: captured query parameters may contain sensitive information such as passwords, personally identifiable information or protected health info.
       type: boolean
       default: false
     - name: otel.instrumentation.jdbc-datasource.enabled
@@ -3129,11 +3681,8 @@ libraries:
       - org.apache.tomcat:tomcat-jasper:[7.0.19,10)
   kafka:
   - name: kafka-clients-0.11
-    description: 'This instrumentation enables messaging spans and metrics for Apache
-      Kafka 0.11 clients. It automatically traces message production and consumption,
-      propagates context, and emits metrics for production and consumption.
-
-      '
+    description: |
+      This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.
     source_path: instrumentation/kafka/kafka-clients/kafka-clients-0.11
     scope:
       name: io.opentelemetry.kafka-clients-0.11
@@ -3154,18 +3703,13 @@ libraries:
       type: list
       default: ''
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
   - name: kafka-clients-2.6
-    description: 'This instrumentation provides a library integration that enables
-      messaging spans and metrics for Apache Kafka 2.6+ clients.
-
-      '
+    description: |
+      This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.
     source_path: instrumentation/kafka/kafka-clients/kafka-clients-2.6
     scope:
       name: io.opentelemetry.kafka-clients-2.6
@@ -3786,11 +4330,8 @@ libraries:
       - com.openai:openai-java:1.1.0
     configurations:
     - name: otel.instrumentation.genai.capture-message-content
-      description: 'Enables including the full content of user and assistant messages
-        in emitted log events. Note that full content can have data privacy and size
-        concerns, and care should be taken when enabling this.
-
-        '
+      description: |
+        Enables including the full content of user and assistant messages in emitted log events. Note that full content can have data privacy and size concerns, and care should be taken when enabling this.
       type: boolean
       default: false
     telemetry:
@@ -3903,6 +4444,33 @@ libraries:
       - com.oracle.database.jdbc:ojdbc8:12.2.0.1
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.pending_requests
+        description: The number of pending requests for an open connection, cumulative
+          for the entire pool.
+        type: LONG_SUM
+        unit: requests
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -4649,10 +5217,8 @@ libraries:
       - jakarta.servlet:jakarta.servlet-api:[5.0.0,)
   spark:
   - name: spark-2.3
-    description: 'This instrumentation does not emit telemetry on its own. Instead,
-      it extracts the HTTP route and attaches it to SERVER spans and HTTP server metrics.
-
-      '
+    description: |
+      This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to SERVER spans and HTTP server metrics.
     source_path: instrumentation/spark-2.3
     scope:
       name: io.opentelemetry.spark-2.3
@@ -4693,11 +5259,8 @@ libraries:
         - name: job.system
           type: STRING
   - name: spring-boot-actuator-autoconfigure-2.0
-    description: 'This instrumentation configures the OpenTelemetry Micrometer bridge
-      to receive metrics from Spring Boot Actuator. It does not produce telemetry
-      on its own.
-
-      '
+    description: |
+      This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.
     disabled_by_default: true
     source_path: instrumentation/spring/spring-boot-actuator-autoconfigure-2.0
     scope:
@@ -4706,26 +5269,23 @@ libraries:
       javaagent:
       - org.springframework.boot:spring-boot-actuator-autoconfigure:[2.0.0.RELEASE,)
   - name: spring-boot-resources
-    description: "This instrumentation automatically detects the `service.name` and\
-      \ `service.version` for Spring Boot applications and sets them as resource attributes.\n\
-      It uses the following strategies (first successful wins):\n  - Check for the\
-      \ SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name\
-      \ system property\n  - Check for application.properties file on the classpath\n\
-      \  - Check for application.properties in the current working dir\n  - Check\
-      \ for application.yml on the classpath\n  - Check for application.yml in the\
-      \ current working dir\n  - Check for --spring.application.name program argument\
-      \ (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program\
-      \ argument via sun.java.command system property\n"
+    description: |
+      This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.
+      It uses the following strategies (first successful wins):
+        - Check for the SPRING_APPLICATION_NAME environment variable
+        - Check for spring.application.name system property
+        - Check for application.properties file on the classpath
+        - Check for application.properties in the current working dir
+        - Check for application.yml on the classpath
+        - Check for application.yml in the current working dir
+        - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle
+        - Check for --spring.application.name program argument via sun.java.command system property
     source_path: instrumentation/spring/spring-boot-resources
     scope:
       name: io.opentelemetry.spring-boot-resources
   - name: spring-cloud-aws-3.0
-    description: 'This instrumentation enhances tracing for Spring Cloud AWS. It augments
-      the existing AWS SDK instrumentation by providing higher-level tracing for SQS
-      operations, capturing details specific to Spring Cloud AWS SQS usage and linking
-      them to the underlying AWS SDK traces.
-
-      '
+    description: |
+      This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.
     source_path: instrumentation/spring/spring-cloud-aws-3.0
     minimum_java_version: 17
     scope:
@@ -4734,12 +5294,8 @@ libraries:
       javaagent:
       - io.awspring.cloud:spring-cloud-aws-sqs:[3.0.0,)
   - name: spring-cloud-gateway-2.0
-    description: 'This instrumentation enhances tracing for Spring Cloud Gateway.
-      It does not generate new telemetry on its own, but rather enriches existing
-      traces produced by other instrumentations like Netty and Spring WebFlux with
-      Spring Cloud Gateway-specific attributes.
-
-      '
+    description: |
+      This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.
     source_path: instrumentation/spring/spring-cloud-gateway/spring-cloud-gateway-2.0
     scope:
       name: io.opentelemetry.spring-cloud-gateway-2.0
@@ -4748,20 +5304,13 @@ libraries:
       - org.springframework.cloud:spring-cloud-starter-gateway:[2.0.0.RELEASE,]
     configurations:
     - name: otel.instrumentation.spring-cloud-gateway.experimental-span-attributes
-      description: 'Enables experimental `spring-cloud-gateway.route` attributes (e.g.,
-        `spring-cloud-gateway.route.id`, `spring-cloud-gateway.route.uri`, etc.) on
-        spans.
-
-        '
+      description: |
+        Enables experimental `spring-cloud-gateway.route` attributes (e.g., `spring-cloud-gateway.route.id`, `spring-cloud-gateway.route.uri`, etc.) on spans.
       type: boolean
       default: false
   - name: spring-core-2.0
-    description: 'This instrumentation ensures proper context propagation for asynchronous
-      operations within Spring Core. It modifies how tasks are submitted and executed
-      to ensure that spans created by other instrumentations are correctly linked
-      across thread boundaries, rather than generating any new telemetry itself.
-
-      '
+    description: |
+      This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.
     source_path: instrumentation/spring/spring-core-2.0
     minimum_java_version: 17
     scope:
@@ -4770,12 +5319,8 @@ libraries:
       javaagent:
       - org.springframework:spring-core:[2.0,]
   - name: spring-data-1.8
-    description: 'This instrumentation enhances tracing for Spring Data operations.
-      It works in conjunction with other instrumentations, such as JDBC, to provide
-      additional context and details for database interactions initiated through Spring
-      Data.
-
-      '
+    description: |
+      This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.
     source_path: instrumentation/spring/spring-data/spring-data-1.8
     scope:
       name: io.opentelemetry.spring-data-1.8
@@ -4805,12 +5350,8 @@ libraries:
       - org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,5.+)
     configurations:
     - name: otel.instrumentation.spring-integration.producer.enabled
-      description: 'Create producer spans when messages are sent to an output channel.
-        Enable when you''re using a messaging library that doesn''t have its own instrumentation
-        for generating producer spans. Note that the detection of output channels
-        only works for Spring Cloud Stream `DirectWithAttributesChannel`.
-
-        '
+      description: |
+        Create producer spans when messages are sent to an output channel. Enable when you're using a messaging library that doesn't have its own instrumentation for generating producer spans. Note that the detection of output channels only works for Spring Cloud Stream `DirectWithAttributesChannel`.
       type: boolean
       default: false
     - name: otel.instrumentation.spring-integration.global-channel-interceptor-patterns
@@ -4849,11 +5390,8 @@ libraries:
       - org.springframework:spring-jms:[2.0,6)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -4885,11 +5423,8 @@ libraries:
       - org.springframework:spring-jms:[6.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -4919,11 +5454,8 @@ libraries:
       - org.springframework.kafka:spring-kafka:[2.7.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -4996,11 +5528,8 @@ libraries:
       - org.springframework.pulsar:spring-pulsar:[1.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
-      description: 'Enables experimental receive telemetry, which will cause consumers
-        to start a new trace, with only a span link connecting it to the producer
-        trace.
-
-        '
+      description: |
+        Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.
       type: boolean
       default: false
     - name: otel.instrumentation.messaging.experimental.capture-headers
@@ -5008,10 +5537,8 @@ libraries:
       type: list
       default: ''
     - name: otel.instrumentation.pulsar.experimental-span-attributes
-      description: 'Enables capturing experimental span attribute `messaging.pulsar.message.type`
-        on PRODUCER spans.
-
-        '
+      description: |
+        Enables capturing experimental span attribute `messaging.pulsar.message.type` on PRODUCER spans.
       type: boolean
       default: false
     telemetry:
@@ -5117,14 +5644,9 @@ libraries:
         - name: job.system
           type: STRING
   - name: spring-security-config-6.0
-    description: 'This instrumentation does not emit any telemetry on its own. Instead,
-      it captures enduser attributes, and is only enabled when at least one of the
-      `enduser` configurations is enabled.
-
-      NOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+
-      of the java agent.
-
-      '
+    description: |
+      This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.
+      NOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.
     source_path: instrumentation/spring/spring-security-config-6.0
     minimum_java_version: 17
     scope:
@@ -5162,11 +5684,8 @@ libraries:
       type: string
       default: SCOPE_
   - name: spring-web-3.1
-    description: 'This instrumentation provides a library integration that enables
-      capturing HTTP client spans and metrics for Spring''s RestTemplate. The agent
-      integration enriches HTTP server spans and metrics with route information.
-
-      '
+    description: |
+      This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.
     source_path: instrumentation/spring/spring-web/spring-web-3.1
     scope:
       name: io.opentelemetry.spring-web-3.1
@@ -5214,10 +5733,8 @@ libraries:
       javaagent:
       - org.springframework:spring-web:[6.0.0,)
   - name: spring-webflux-5.0
-    description: 'This instrumentation enables HTTP client spans and metrics for Spring
-      WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.
-
-      '
+    description: |
+      This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.
     source_path: instrumentation/spring/spring-webflux/spring-webflux-5.0
     scope:
       name: io.opentelemetry.spring-webflux-5.0
@@ -5269,11 +5786,8 @@ libraries:
         - name: code.namespace
           type: STRING
   - name: spring-webflux-5.3
-    description: 'This instrumentation provides a library integration for the Spring
-      WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client
-      and server spans and metrics.
-
-      '
+    description: |
+      This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.
     source_path: instrumentation/spring/spring-webflux/spring-webflux-5.3
     scope:
       name: io.opentelemetry.spring-webflux-5.3
@@ -5353,10 +5867,8 @@ libraries:
         - name: user_agent.original
           type: STRING
   - name: spring-webmvc-3.1
-    description: 'This instrumentation enables optional Controller and View (INTERNAL)
-      spans for Spring WebMVC 3.1+.
-
-      '
+    description: |
+      This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.
     source_path: instrumentation/spring/spring-webmvc/spring-webmvc-3.1
     scope:
       name: io.opentelemetry.spring-webmvc-3.1
@@ -5365,10 +5877,8 @@ libraries:
       - org.springframework:spring-webmvc:[3.1.0.RELEASE,6)
     configurations:
     - name: otel.instrumentation.spring-webmvc.experimental-span-attributes
-      description: 'Enables the capture of experimental span attributes `spring-webmvc-view-name`
-        and `spring-webmvc.view.type`.
-
-        '
+      description: |
+        Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.
       type: boolean
       default: false
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
@@ -5399,11 +5909,8 @@ libraries:
         - name: spring-webmvc.view.type
           type: STRING
   - name: spring-webmvc-5.3
-    description: 'This instrumentation provides a library integration for Spring WebMVC
-      controllers, that enables the creation of HTTP server spans and metrics for
-      requests processed by the Spring servlet container.
-
-      '
+    description: |
+      This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.
     source_path: instrumentation/spring/spring-webmvc/spring-webmvc-5.3
     scope:
       name: io.opentelemetry.spring-webmvc-5.3
@@ -5459,10 +5966,8 @@ libraries:
         - name: user_agent.original
           type: STRING
   - name: spring-webmvc-6.0
-    description: 'This instrumentation enables optional Controller and View (INTERNAL)
-      spans for Spring WebMVC 6.0+.
-
-      '
+    description: |
+      This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.
     source_path: instrumentation/spring/spring-webmvc/spring-webmvc-6.0
     minimum_java_version: 17
     scope:
@@ -5472,10 +5977,8 @@ libraries:
       - org.springframework:spring-webmvc:[6.0.0,)
     configurations:
     - name: otel.instrumentation.spring-webmvc.experimental-span-attributes
-      description: 'Enables the capture of experimental span attributes `spring-webmvc-view-name`
-        and `spring-webmvc.view.type`.
-
-        '
+      description: |
+        Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.
       type: boolean
       default: false
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
@@ -5570,6 +6073,47 @@ libraries:
       - org.apache.tomcat:tomcat-jdbc:[8.5.0,)
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.idle.max
+        description: The maximum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.idle.min
+        description: The minimum number of idle open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.pending_requests
+        description: The number of pending requests for an open connection, cumulative
+          for the entire pool.
+        type: LONG_SUM
+        unit: requests
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -5786,6 +6330,26 @@ libraries:
       - io.vertx:vertx-redis-client:[4.0.0,)
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation
+          type: STRING
+        - name: db.redis.database_index
+          type: LONG
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -5841,6 +6405,24 @@ libraries:
       - io.vertx:vertx-sql-client:[4.0.0,5)
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.sql.table
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.user
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -5886,6 +6468,24 @@ libraries:
       - io.vertx:vertx-sql-client:[5.0.0,)
     telemetry:
     - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.name
+          type: STRING
+        - name: db.operation
+          type: STRING
+        - name: db.sql.table
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.user
+          type: STRING
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
@@ -5942,6 +6542,25 @@ libraries:
       - org.vibur:vibur-dbcp:11.0
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.connections.max
+        description: The maximum number of open connections allowed.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+      - name: db.client.connections.usage
+        description: The number of connections that are currently in state described
+          by the state attribute.
+        type: LONG_SUM
+        unit: connections
+        attributes:
+        - name: pool.name
+          type: STRING
+        - name: state
+          type: STRING
+    - when: otel.semconv-stability.opt-in=database
       metrics:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
@@ -6089,14 +6708,8 @@ internal:
   scope:
     name: io.opentelemetry.internal-url-class-loader
 - name: opentelemetry-extension-kotlin-1.0
-  description: 'Our Kotlin coroutine instrumentation relies on a shaded copy of the
-    opentelemetry-extension-kotlin library. This can cause conflicts when the application
-    itself also uses opentelemetry-extension-kotlin, because the shaded and unshaded
-    versions store the OpenTelemetry context under different keys. To resolve this
-    issue, this instrumentation modifies the application''s copy of opentelemetry-extension-kotlin
-    so that it delegates to the shaded version bundled within the agent.
-
-    '
+  description: |
+    Our Kotlin coroutine instrumentation relies on a shaded copy of the opentelemetry-extension-kotlin library. This can cause conflicts when the application itself also uses opentelemetry-extension-kotlin, because the shaded and unshaded versions store the OpenTelemetry context under different keys. To resolve this issue, this instrumentation modifies the application's copy of opentelemetry-extension-kotlin so that it delegates to the shaded version bundled within the agent.
   source_path: instrumentation/opentelemetry-extension-kotlin-1.0
   scope:
     name: io.opentelemetry.opentelemetry-extension-kotlin-1.0
@@ -6116,16 +6729,8 @@ internal:
     - io.opentelemetry:opentelemetry-api:[0.17.0,)
 custom:
 - name: external-annotations
-  description: 'The external-annotations instrumentation acts as a "shim" that automatically
-    instruments methods annotated with custom or third-party tracing annotations.
-    This is particularly useful if you have existing annotations (such as a custom
-    @Trace or third-party annotation) that you want to leverage with OpenTelemetry.
-    At runtime, this module recognizes those annotations and applies the appropriate
-    OpenTelemetry instrumentation logic, including span creation and context propagation.
-    Covers many common vendor annotations by default, and additional annotations can
-    be targeted using the configuration property "otel.instrumentation.external-annotations.include".
-
-    '
+  description: |
+    The external-annotations instrumentation acts as a "shim" that automatically instruments methods annotated with custom or third-party tracing annotations. This is particularly useful if you have existing annotations (such as a custom @Trace or third-party annotation) that you want to leverage with OpenTelemetry. At runtime, this module recognizes those annotations and applies the appropriate OpenTelemetry instrumentation logic, including span creation and context propagation. Covers many common vendor annotations by default, and additional annotations can be targeted using the configuration property "otel.instrumentation.external-annotations.include".
   source_path: instrumentation/external-annotations
   scope:
     name: io.opentelemetry.external-annotations
@@ -6133,10 +6738,8 @@ custom:
     javaagent:
     - Java 8+
 - name: opentelemetry-extension-annotations-1.0
-  description: 'Instruments methods annotated with OpenTelemetry extension annotations,
-    such as @WithSpan and @SpanAttribute.
-
-    '
+  description: |
+    Instruments methods annotated with OpenTelemetry extension annotations, such as @WithSpan and @SpanAttribute.
   source_path: instrumentation/opentelemetry-extension-annotations-1.0
   scope:
     name: io.opentelemetry.opentelemetry-extension-annotations-1.0
@@ -6144,10 +6747,8 @@ custom:
     javaagent:
     - io.opentelemetry:opentelemetry-extension-annotations:[0.16.0,)
 - name: opentelemetry-instrumentation-annotations-1.16
-  description: 'Instruments methods annotated with OpenTelemetry instrumentation annotations,
-    such as @WithSpan and @SpanAttribute.
-
-    '
+  description: |
+    Instruments methods annotated with OpenTelemetry instrumentation annotations, such as @WithSpan and @SpanAttribute.
   source_path: instrumentation/opentelemetry-instrumentation-annotations-1.16
   scope:
     name: io.opentelemetry.opentelemetry-instrumentation-annotations-1.16
@@ -6155,23 +6756,14 @@ custom:
     javaagent:
     - io.opentelemetry:opentelemetry-instrumentation-annotations:(,)
 - name: jmx-metrics
-  description: 'Collects and reports metrics exposed through Java Management Extensions
-    (JMX). It can be configured to extract JVM and application-level telemetry data
-    from JMX MBeans such as memory usage, thread counts, and garbage collection statistics,
-    and translate these measurements into OpenTelemetry metrics.
-
-    '
+  description: |
+    Collects and reports metrics exposed through Java Management Extensions (JMX). It can be configured to extract JVM and application-level telemetry data from JMX MBeans such as memory usage, thread counts, and garbage collection statistics, and translate these measurements into OpenTelemetry metrics.
   source_path: instrumentation/jmx-metrics
   scope:
     name: io.opentelemetry.jmx-metrics
 - name: methods
-  description: 'Provides a flexible way to capture telemetry at the method level in
-    JVM applications. By weaving instrumentation into targeted methods at runtime
-    based on the "otel.instrumentation.methods.include" configuration property, it
-    measures entry and exit points, execution duration and exception occurrences.
-    The resulting data is automatically translated into OpenTelemetry traces.
-
-    '
+  description: |
+    Provides a flexible way to capture telemetry at the method level in JVM applications. By weaving instrumentation into targeted methods at runtime based on the "otel.instrumentation.methods.include" configuration property, it measures entry and exit points, execution duration and exception occurrences. The resulting data is automatically translated into OpenTelemetry traces.
   source_path: instrumentation/methods
   scope:
     name: io.opentelemetry.methods

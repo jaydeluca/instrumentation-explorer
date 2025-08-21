@@ -2,3 +2,5 @@ node_modules
 .idea
 
 .semconv_cache
+
+*.DS_Store
