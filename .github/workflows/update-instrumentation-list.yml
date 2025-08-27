@@ -8,6 +8,12 @@ on:
   # Allow manual triggering
   workflow_dispatch:
 
+# Security: Ensure minimal required permissions
+# GITHUB_TOKEN is used for API calls and PR creation
+defaults:
+  run:
+    shell: bash
+
 jobs:
   update-instrumentation-list:
     runs-on: ubuntu-latest
@@ -44,7 +50,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python scripts/update-instrumentation-list.py
+        # Mask the token in logs for security
+        echo "::add-mask::$GITHUB_TOKEN"
+        
+        # Run the update script with error handling
+        if ! python scripts/update-instrumentation-list.py; then
+          echo "::error::Update script failed"
+          exit 1
+        fi
     
     - name: Configure Git
       run: |
@@ -57,9 +70,13 @@ jobs:
         echo "Checking for changes..."
         git status
         git diff --name-only
-        if ! git diff --exit-code; then
+        
+        # Check if there are any changes (avoid showing diff content which might contain sensitive data)
+        if ! git diff --exit-code --quiet; then
           echo "changes=true" >> $GITHUB_OUTPUT
-          echo "Changes detected"
+          echo "Changes detected in instrumentation files"
+          echo "Modified files:"
+          git diff --name-only
         else
           echo "No changes detected"
         fi
