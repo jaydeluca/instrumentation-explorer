@@ -8,12 +8,6 @@ on:
   # Allow manual triggering
   workflow_dispatch:
 
-# Security: Ensure minimal required permissions
-# GITHUB_TOKEN is used for API calls and PR creation
-defaults:
-  run:
-    shell: bash
-
 jobs:
   update-instrumentation-list:
     runs-on: ubuntu-latest
@@ -50,14 +44,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # Mask the token in logs for security
-        echo "::add-mask::$GITHUB_TOKEN"
-        
-        # Run the update script with error handling
-        if ! python scripts/update-instrumentation-list.py; then
-          echo "::error::Update script failed"
-          exit 1
-        fi
+        python scripts/update-instrumentation-list.py
     
     - name: Configure Git
       run: |
