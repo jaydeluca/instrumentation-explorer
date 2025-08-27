@@ -11,7 +11,10 @@ on:
 jobs:
   update-instrumentation-list:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: write
+      pull-requests: write
+      
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -43,16 +46,29 @@ jobs:
       run: |
         python scripts/update-instrumentation-list.py
     
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    
     - name: Check for changes
       id: git-check
       run: |
-        git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+        echo "Checking for changes..."
+        git status
+        git diff --name-only
+        if ! git diff --exit-code; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "Changes detected"
+        else
+          echo "No changes detected"
+        fi
     
     - name: Create Pull Request
       if: steps.git-check.outputs.changes == 'true'
       uses: peter-evans/create-pull-request@v5
       with:
-        token: ${{ secrets.GH_PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'chore: update instrumentation list with latest data'
         title: 'Update instrumentation list with latest data'
         body: |
