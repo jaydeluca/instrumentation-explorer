@@ -19,7 +19,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -42,7 +42,7 @@ jobs:
     
     - name: Run update script
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       run: |
         python scripts/update-instrumentation-list.py
     
@@ -72,7 +72,7 @@ jobs:
       if: steps.git-check.outputs.changes == 'true'
       uses: peter-evans/create-pull-request@v5
       with:
-        token: ${{ secrets.PAT_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
         commit-message: 'chore: update instrumentation list with latest data'
         title: 'Update instrumentation list with latest data'
         body: |
