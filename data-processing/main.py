@@ -67,14 +67,26 @@ def get_convention_mappings():
         
         conv_type_cache_dir = os.path.join(CACHE_DIR, conv_type)
         os.makedirs(conv_type_cache_dir, exist_ok=True)
-
-        try:
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            files = response.json()
-        except (requests.exceptions.RequestException, ValueError) as e:
-            print(f"Error fetching convention files from {url}: {e}")
-            continue
+        
+        # Cache the directory listing as well to avoid API calls
+        dir_listing_cache = os.path.join(conv_type_cache_dir, "_directory_listing.json")
+        
+        if os.path.exists(dir_listing_cache):
+            print(f"Loading directory listing for {conv_type} from cache...")
+            with open(dir_listing_cache, "r") as f:
+                files = json.load(f)
+        else:
+            try:
+                print(f"Fetching directory listing for {conv_type}...")
+                response = requests.get(url, headers=headers)
+                response.raise_for_status()
+                files = response.json()
+                # Cache the directory listing
+                with open(dir_listing_cache, "w") as f:
+                    json.dump(files, f, indent=2)
+            except (requests.exceptions.RequestException, ValueError) as e:
+                print(f"Error fetching convention files from {url}: {e}")
+                continue
 
         for file in files:
             if not isinstance(file, dict) or not file.get("name", "").endswith(".yaml"):
@@ -142,13 +154,41 @@ def get_convention_mappings():
     return mappings
 
 
+def sort_data_recursively(data):
+    """
+    Recursively sorts data to ensure deterministic output.
+    Sorts dictionary keys and list elements where appropriate.
+    """
+    if isinstance(data, dict):
+        # Sort dictionary by keys and recursively sort values
+        return {key: sort_data_recursively(data[key]) for key in sorted(data.keys())}
+    elif isinstance(data, list):
+        # For lists, sort the elements if they are dictionaries with a 'name' field
+        # This ensures consistent ordering of metrics, attributes, spans, etc.
+        if data and isinstance(data[0], dict) and 'name' in data[0]:
+            # Sort by name field for named objects like metrics, attributes, spans
+            sorted_list = sorted(data, key=lambda x: x.get('name', ''))
+        else:
+            # For other lists (like semconv lists), just sort if all elements are strings
+            if data and all(isinstance(item, str) for item in data):
+                sorted_list = sorted(data)
+            else:
+                sorted_list = data
+        return [sort_data_recursively(item) for item in sorted_list]
+    else:
+        return data
+
+
 def enrich_instrumentation_data(instrumentation_data, mappings):
     """
     Enriches the instrumentation data with semantic convention information.
     """
     enriched_data = []
     libraries = instrumentation_data.get('libraries', {})
-    for library_name, details_list in libraries.items():
+    
+    # Sort libraries by name for deterministic processing
+    for library_name in sorted(libraries.keys()):
+        details_list = libraries[library_name]
         for details in details_list:
             semconv_matches = set()
 
@@ -181,6 +221,9 @@ def enrich_instrumentation_data(instrumentation_data, mappings):
 
             details["semconv"] = sorted(list(semconv_matches))
             enriched_data.append(details)
+    
+    # Sort the enriched data by library name for consistent output
+    enriched_data.sort(key=lambda x: x.get('name', ''))
     return enriched_data
 
 
@@ -211,8 +254,11 @@ def main():
         output_dir = os.path.dirname(OUTPUT_FILE)
         os.makedirs(output_dir, exist_ok=True)
 
+        # Sort the data recursively for deterministic output
+        sorted_data = sort_data_recursively(all_enriched_data)
+
         with open(OUTPUT_FILE, "w") as f:
-            json.dump(all_enriched_data, f, indent=2)
+            json.dump(sorted_data, f, indent=2, sort_keys=True)
         print(f"Successfully generated enriched data in {OUTPUT_FILE}")
     except IOError as e:
         print(f"Error writing to {OUTPUT_FILE}: {e}")
