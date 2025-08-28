@@ -4062,7 +4062,7 @@ libraries:
           type: STRING
         - name: gen_ai.response.model
           type: STRING
-        - name: gen_ai.system
+        - name: gen_ai.provider.name
           type: STRING
       - name: gen_ai.client.token.usage
         description: Measures number of input and output tokens used.
@@ -4075,7 +4075,7 @@ libraries:
           type: STRING
         - name: gen_ai.response.model
           type: STRING
-        - name: gen_ai.system
+        - name: gen_ai.provider.name
           type: STRING
         - name: gen_ai.token.type
           type: STRING
@@ -4090,7 +4090,7 @@ libraries:
           type: STRING
         - name: gen_ai.response.model
           type: STRING
-        - name: gen_ai.system
+        - name: gen_ai.provider.name
           type: STRING
         - name: gen_ai.usage.input_tokens
           type: LONG
@@ -4120,7 +4120,7 @@ libraries:
           type: STRING
         - name: gen_ai.response.model
           type: STRING
-        - name: gen_ai.system
+        - name: gen_ai.provider.name
           type: STRING
         - name: gen_ai.usage.input_tokens
           type: LONG
