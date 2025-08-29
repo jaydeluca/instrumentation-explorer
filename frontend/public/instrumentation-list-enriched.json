@@ -23976,7 +23976,7 @@
           "type": "int"
         }
       ],
-      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\n",
+      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
       "name": "aws-lambda-core-1.0",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
@@ -24015,9 +24015,15 @@
           "description": "Flush timeout in milliseconds.",
           "name": "otel.instrumentation.aws-lambda.flush-timeout",
           "type": "int"
+        },
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
         }
       ],
-      "description": "Provides full instrumentation of the Lambda library, including standard and custom event types, from `aws-lambda-java-events` 2.2+.\n",
+      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
       "name": "aws-lambda-events-2.2",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-2.2"
@@ -24093,18 +24099,106 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": 10000,
+          "description": "Flush timeout in milliseconds.",
+          "name": "otel.instrumentation.aws-lambda.flush-timeout",
+          "type": "int"
+        }
+      ],
+      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
       "name": "aws-lambda-events-3.11",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-3.11"
       },
-      "semconv": [],
+      "semconv": [
+        "Cloud",
+        "Database Client",
+        "HTTP",
+        "Messaging"
+      ],
       "source_path": "instrumentation/aws-lambda/aws-lambda-events-3.11",
       "target_versions": {
         "library": [
           "com.amazonaws:aws-lambda-java-core:1.0.0",
           "com.amazonaws:aws-lambda-java-events:3.11.0"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.message.id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CONSUMER"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "cloud.account.id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "cloud.resource_id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "faas.invocation_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "faas.trigger",
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "url.full",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "user_agent.original",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
       "configurations": [
@@ -30168,6 +30262,20 @@
       }
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
       "name": "kafka-clients-2.6",
       "scope": {
@@ -37883,7 +37991,7 @@
           "type": "int"
         }
       ],
-      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\n",
+      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
       "name": "aws-lambda-core-1.0",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
@@ -37922,9 +38030,15 @@
           "description": "Flush timeout in milliseconds.",
           "name": "otel.instrumentation.aws-lambda.flush-timeout",
           "type": "int"
+        },
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
         }
       ],
-      "description": "Provides full instrumentation of the Lambda library, including standard and custom event types, from `aws-lambda-java-events` 2.2+.\n",
+      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
       "name": "aws-lambda-events-2.2",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-2.2"
@@ -38000,18 +38114,106 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": 10000,
+          "description": "Flush timeout in milliseconds.",
+          "name": "otel.instrumentation.aws-lambda.flush-timeout",
+          "type": "int"
+        }
+      ],
+      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
       "name": "aws-lambda-events-3.11",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-3.11"
       },
-      "semconv": [],
+      "semconv": [
+        "Cloud",
+        "Database Client",
+        "HTTP",
+        "Messaging"
+      ],
       "source_path": "instrumentation/aws-lambda/aws-lambda-events-3.11",
       "target_versions": {
         "library": [
           "com.amazonaws:aws-lambda-java-core:1.0.0",
           "com.amazonaws:aws-lambda-java-events:3.11.0"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.message.id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CONSUMER"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "cloud.account.id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "cloud.resource_id",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "faas.invocation_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "faas.trigger",
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "url.full",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "user_agent.original",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
       "configurations": [
@@ -42655,6 +42857,20 @@
       }
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "A comma-separated list of header names to capture as span attributes.",
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+          "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
       "name": "kafka-clients-2.6",
       "scope": {
