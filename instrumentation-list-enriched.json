@@ -25059,6 +25059,10 @@
                   "type": "STRING"
                 },
                 {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -25134,6 +25138,10 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -25380,6 +25388,10 @@
                   "type": "STRING"
                 },
                 {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -25455,6 +25467,10 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -33544,6 +33560,10 @@
             {
               "attributes": [
                 {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
                   "name": "messaging.operation",
                   "type": "STRING"
                 }
@@ -33678,6 +33698,14 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Int_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -33960,6 +33988,10 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.body.size",
@@ -38774,6 +38806,10 @@
                   "type": "STRING"
                 },
                 {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -38849,6 +38885,10 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -46094,6 +46134,10 @@
             {
               "attributes": [
                 {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
                   "name": "messaging.operation",
                   "type": "STRING"
                 }
@@ -46228,6 +46272,14 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Int_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -46510,6 +46562,10 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
+                },
+                {
+                  "name": "messaging.header.Test_Message_Header",
+                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.body.size",
