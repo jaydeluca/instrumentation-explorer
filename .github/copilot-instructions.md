@@ -157,6 +157,7 @@ npm run build
 - **Python:** requests, pyyaml
 - **Node.js:** React 19, TypeScript, Vite, Material-UI, Playwright
 - **Development:** ESLint, Vite dev server
+- **Testing:** Vitest (unit tests), Playwright (E2E tests), Testing Library
 
 ### Build Artifacts and Outputs:
 - `frontend/public/instrumentation-list-enriched.json` - Enriched data from Python pipeline (**NEVER MODIFY**: This is a generated file created by the data processing pipeline)
@@ -168,6 +169,8 @@ npm run build
 - **Playwright installation fails:** Common in restricted environments. Document as limitation but not blocking for core functionality.
 - **Build warnings about chunk size:** Expected due to large data files and Material-UI bundle. Not an error.
 - **Missing enriched data file:** Run data processing pipeline first before building frontend.
+- **Direct URL access not working:** This is fixed with the GitHub Pages routing system (404.html redirect + client-side restoration).
+- **Tests failing:** Run `npm run test:run` to see specific failures. Common issues: missing build artifacts for E2E tests.
 
 ### Environment Requirements:
 - **Python 3.x** with pip access
@@ -181,5 +184,14 @@ This tool helps developers explore OpenTelemetry Java instrumentation libraries 
 - Showing semantic convention compliance
 - Enabling version-by-version comparison of telemetry changes
 - Providing searchable, filterable interface
+- **JAR Analysis:** Analyze multiple instrumentations simultaneously
+- **Direct URL support:** Fixed GitHub Pages routing for shareable links
 
 The frontend consumes enriched JSON data that combines instrumentation specifications with OpenTelemetry semantic convention information, processed by the Python pipeline.
+
+## Important Development Notes
+
+- **Always run tests before committing:** Use `npm run test:all` to verify everything works
+- **GitHub Pages routing:** The app uses client-side routing with a special 404.html redirect system
+- **Testing is comprehensive:** Unit tests (Vitest) and E2E tests (Playwright) with CI integration
+- **Direct URLs work:** Links like `/analyze?instrumentations=...` are properly handled

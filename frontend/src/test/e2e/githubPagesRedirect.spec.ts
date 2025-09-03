@@ -1,11 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('GitHub Pages Redirect Flow', () => {
-  test.beforeEach(async ({ page }) => {
-    // Mock the 404.html redirect behavior by navigating directly to the redirect URL
-    // In a real scenario, GitHub Pages would serve 404.html and then redirect
-  });
-
   test('should handle direct link to analyze page with instrumentations', async ({ page }) => {
     const base64Instrumentations = 'YXBhY2hlLWh0dHBjbGllbnQsZXhlY3V0b3JzLGhpa2FyaWNwLTMuMCxodHRwLXVybC1jb25uZWN0aW9uLGphdmEtaHR0cC1jbGllbnQsamF2YS1odHRwLXNlcnZlcixqZGJjLGthZmthLGxvZ2JhY2ssbWljcm9tZXRlcixybWksc3ByaW5nLHRvbWNhdA==';
     

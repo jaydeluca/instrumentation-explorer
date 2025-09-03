@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
 // Mock window.location methods for testing
 Object.defineProperty(window, 'location', {
