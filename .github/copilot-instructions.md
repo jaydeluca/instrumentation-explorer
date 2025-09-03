@@ -4,6 +4,19 @@ Instrumentation Explorer is a web-based tool for exploring Java instrumentation 
 
 **Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
 
+## Documentation References
+
+For detailed technical context, refer to these documentation files:
+- `TESTING.md` - Comprehensive testing guide including GitHub Pages routing fix
+- `.gemini/GEMINI.md` - Project overview and current state
+- `.gemini/requirements.md` - Project requirements and specifications
+- `.gemini/plan.md` - Development roadmap and planning notes
+- `.gemini/semconv.md` - Semantic convention data fetching system
+- `.gemini/telemetry_delta.md` - Telemetry version diff implementation
+- `.gemini/jar-analyzer.md` - JAR analysis functionality
+- `.gemini/screenshot-testing.md` - Screenshot testing setup
+- `.gemini/theme-switcher.md` - Theme switching implementation
+
 ## Working Effectively
 
 ### Bootstrap, Build, and Test the Repository
@@ -49,6 +62,17 @@ Instrumentation Explorer is a web-based tool for exploring Java instrumentation 
    ```
    - Takes ~5 seconds. Use timeout of 60+ seconds.
 
+6. **Run tests:**
+   ```bash
+   cd frontend
+   npm run test:run    # Unit tests
+   npm run test:e2e    # E2E tests (requires build first)
+   npm run test:all    # All tests (from root)
+   ```
+   - Unit tests take ~5 seconds. Use timeout of 60+ seconds.
+   - E2E tests take ~30 seconds. Use timeout of 180+ seconds.
+   - Requires Playwright browsers: `npx playwright install chromium`
+
 ### Running the Application
 
 **ALWAYS run the bootstrapping steps first.**
@@ -93,11 +117,16 @@ Use the production build artifacts in `frontend/dist/` with any static file serv
 ```bash
 cd frontend
 npm run lint
+npm run test:run
 npm run build
 ```
-- The CI build (.github/workflows/ci-build.yml) will fail if linting or building fails.
+- The CI build (.github/workflows/ci-build.yml) will fail if linting, testing, or building fails.
+- All PRs automatically run: linting, unit tests, build verification, and E2E tests.
 
-### Screenshot Testing:
+### Testing:
+- **Unit Tests (Vitest):** Test utility functions and component logic
+- **E2E Tests (Playwright):** Test complete user workflows including GitHub Pages routing
+- **GitHub Pages Routing Fix:** The app uses client-side routing with 404.html redirect handling
 - Screenshot automation exists but requires Playwright browser installation: `npx playwright install chromium`.
 - May fail in some environments due to download limitations - document in instructions as "may not work in all environments due to network restrictions."
 - Screenshots are automatically generated in GitHub Actions for PRs.
@@ -120,6 +149,7 @@ npm run build
 │   └── take-screenshots.mjs # Playwright screenshot automation
 ├── instrumentation-list-*.yaml # Source data files
 ├── package.json            # Root workspace configuration
+├── TESTING.md              # Comprehensive testing guide
 └── .github/workflows/      # CI/CD pipelines
 ```
 
@@ -127,6 +157,7 @@ npm run build
 - **Python:** requests, pyyaml
 - **Node.js:** React 19, TypeScript, Vite, Material-UI, Playwright
 - **Development:** ESLint, Vite dev server
+- **Testing:** Vitest (unit tests), Playwright (E2E tests), Testing Library
 
 ### Build Artifacts and Outputs:
 - `frontend/public/instrumentation-list-enriched.json` - Enriched data from Python pipeline (**NEVER MODIFY**: This is a generated file created by the data processing pipeline)
@@ -138,6 +169,8 @@ npm run build
 - **Playwright installation fails:** Common in restricted environments. Document as limitation but not blocking for core functionality.
 - **Build warnings about chunk size:** Expected due to large data files and Material-UI bundle. Not an error.
 - **Missing enriched data file:** Run data processing pipeline first before building frontend.
+- **Direct URL access not working:** This is fixed with the GitHub Pages routing system (404.html redirect + client-side restoration).
+- **Tests failing:** Run `npm run test:run` to see specific failures. Common issues: missing build artifacts for E2E tests.
 
 ### Environment Requirements:
 - **Python 3.x** with pip access
@@ -151,5 +184,14 @@ This tool helps developers explore OpenTelemetry Java instrumentation libraries 
 - Showing semantic convention compliance
 - Enabling version-by-version comparison of telemetry changes
 - Providing searchable, filterable interface
+- **JAR Analysis:** Analyze multiple instrumentations simultaneously
+- **Direct URL support:** Fixed GitHub Pages routing for shareable links
 
 The frontend consumes enriched JSON data that combines instrumentation specifications with OpenTelemetry semantic convention information, processed by the Python pipeline.
+
+## Important Development Notes
+
+- **Always run tests before committing:** Use `npm run test:all` to verify everything works
+- **GitHub Pages routing:** The app uses client-side routing with a special 404.html redirect system
+- **Testing is comprehensive:** Unit tests (Vitest) and E2E tests (Playwright) with CI integration
+- **Direct URLs work:** Links like `/analyze?instrumentations=...` are properly handled

@@ -5,6 +5,16 @@ import { withFaroRouterInstrumentation, initializeFaro, createReactRouterV6DataO
 import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 import { matchRoutes } from 'react-router-dom';
 
+// Handle GitHub Pages 404 redirect
+import { handleGitHubPagesRedirect } from './utils/githubPagesRouting';
+
+const urlParams = new URLSearchParams(window.location.search);
+const redirectedUrl = handleGitHubPagesRedirect(urlParams);
+if (redirectedUrl) {
+  const fullUrl = redirectedUrl + window.location.hash;
+  window.history.replaceState(null, '', fullUrl);
+}
+
 initializeFaro({
     url: 'https://faro-collector-prod-us-east-2.grafana.net/collect/40daccd6ee8227fd2eb316a9e81e7436',
     app: {
