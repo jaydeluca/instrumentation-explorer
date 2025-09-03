@@ -15,7 +15,9 @@ export function handleGitHubPagesRedirect(searchParams: URLSearchParams): string
   newParams.delete('p');
   
   const newSearch = newParams.toString();
-  const newUrl = redirectPath + (newSearch ? '?' + newSearch : '');
+  // Preserve the base path by prepending it to the redirect path
+  const baseUrl = '/instrumentation-explorer';
+  const newUrl = baseUrl + redirectPath + (newSearch ? '?' + newSearch : '');
   
   return newUrl;
 }
