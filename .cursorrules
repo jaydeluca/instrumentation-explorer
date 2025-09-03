@@ -17,6 +17,7 @@ Please refer to the following documentation files in the .gemini/ directory for 
 - `.gemini/jar-analyzer.md` - JAR analysis functionality
 - `.gemini/screenshot-testing.md` - Screenshot testing setup
 - `.gemini/theme-switcher.md` - Theme switching implementation
+- `TESTING.md` - Testing guide for GitHub Pages routing fix and general testing setup
 
 ## Key Project Details
 - **Frontend**: React + TypeScript + Vite
@@ -35,3 +36,5 @@ Please refer to the following documentation files in the .gemini/ directory for 
 - Test changes across different instrumentation versions
 - Ensure semantic convention highlighting continues to work
 - Maintain the clean, modern UI design
+- **Run tests before making changes**: Use `npm run test:all` to verify everything works
+- **GitHub Pages routing**: The app uses client-side routing with a special 404.html redirect system

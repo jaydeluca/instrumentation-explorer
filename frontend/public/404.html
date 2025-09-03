@@ -4,18 +4,38 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // Get the base URL from the current path
+    // GitHub Pages 404 handling for client-side routing
+    // This script redirects to the base URL with the path and query as a parameter
+    // so React Router can handle the routing on the client side
+    
     var pathSegments = window.location.pathname.split('/');
-    // Assuming the repo name is the second segment (e.g., /repo-name/)
-    // Adjust this if your GitHub Pages URL structure is different
-    var repoName = pathSegments[1];
+    var repoName = pathSegments[1]; // e.g., 'instrumentation-explorer'
     var baseUrl = '/' + repoName + '/';
-
-    // Redirect to the base URL, letting React Router handle the rest
-    window.location.replace(baseUrl);
+    
+    // Get the path after the repo name
+    var routePath = '/' + pathSegments.slice(2).join('/');
+    var search = window.location.search;
+    var hash = window.location.hash;
+    
+    // If we're already at the base URL, don't redirect
+    if (window.location.pathname === baseUrl) {
+      return;
+    }
+    
+    // Construct the redirect URL with path and query as parameters
+    var redirectUrl = baseUrl + '?p=' + encodeURIComponent(routePath);
+    if (search) {
+      redirectUrl += '&' + search.substring(1); // Remove the '?' from search
+    }
+    if (hash) {
+      redirectUrl += hash;
+    }
+    
+    window.location.replace(redirectUrl);
   </script>
 </head>
 <body>
-  If you are not redirected automatically, follow this <a href="/">link to the application</a>.
+  <p>Redirecting...</p>
+  <p>If you are not redirected automatically, <a href="/instrumentation-explorer/">click here to go to the application</a>.</p>
 </body>
 </html>
