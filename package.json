@@ -9,7 +9,11 @@
     "build": "npm run build --workspace=frontend",
     "preview": "npm run preview --workspace=frontend",
     "screenshots": "npm run build && node scripts/take-screenshots.mjs",
-    "install-browsers": "npx playwright install"
+    "install-browsers": "npx playwright install",
+    "test": "npm run test --workspace=frontend",
+    "test:run": "npm run test:run --workspace=frontend",
+    "test:e2e": "npm run test:e2e --workspace=frontend",
+    "test:all": "npm run test:run && npm run build && npm run test:e2e"
   },
   "devDependencies": {
     "playwright": "^1.54.1"

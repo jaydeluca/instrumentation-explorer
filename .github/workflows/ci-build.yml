@@ -1,4 +1,4 @@
-name: CI Build Check
+name: CI Build and Test
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,6 +35,22 @@ jobs:
         run: npm install
         working-directory: ./frontend
 
+      - name: Run linting
+        run: npm run lint
+        working-directory: ./frontend
+
+      - name: Run unit tests
+        run: npm run test:run
+        working-directory: ./frontend
+
       - name: Build frontend
         run: npm run build
+        working-directory: ./frontend
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+        working-directory: ./frontend
+
+      - name: Run E2E tests
+        run: npm run test:e2e
         working-directory: ./frontend

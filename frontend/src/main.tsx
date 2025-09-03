@@ -6,15 +6,13 @@ import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 import { matchRoutes } from 'react-router-dom';
 
 // Handle GitHub Pages 404 redirect
-// Check if we have a 'p' parameter which contains the original path
+import { handleGitHubPagesRedirect } from './utils/githubPagesRouting';
+
 const urlParams = new URLSearchParams(window.location.search);
-const redirectPath = urlParams.get('p');
-if (redirectPath) {
-  // Remove the 'p' parameter and reconstruct the URL
-  urlParams.delete('p');
-  const newSearch = urlParams.toString();
-  const newUrl = redirectPath + (newSearch ? '?' + newSearch : '') + window.location.hash;
-  window.history.replaceState(null, '', newUrl);
+const redirectedUrl = handleGitHubPagesRedirect(urlParams);
+if (redirectedUrl) {
+  const fullUrl = redirectedUrl + window.location.hash;
+  window.history.replaceState(null, '', fullUrl);
 }
 
 initializeFaro({

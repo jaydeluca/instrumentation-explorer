@@ -20,6 +20,8 @@ The application is in a good state. We have successfully:
 *   Implemented a telemetry version diff tool on the detail page to highlight differences in emitted telemetry between versions.
 *   Implemented description truncation on the main list page with a "Show more/Show less" button for expansion, ensuring consistent library container height.
 *   Improved the display of telemetry and semantic convention tags with distinct, labeled sections for clarity and better styling.
+*   **Fixed GitHub Pages routing**: Implemented client-side routing fix for direct URL access (e.g., `/analyze?instrumentations=...`)
+*   **Added comprehensive testing**: Unit tests (Vitest), E2E tests (Playwright), and CI integration for all PRs
 
 ## Key Technologies
 
@@ -36,5 +38,9 @@ There are requirement files and other GEMINI resources under the .gemini directo
 .gemini/requirements.md
 .gemini/semconv.md
 .gemini/telemetry_delta.md
+.gemini/screenshot-testing.md
+.gemini/theme-switcher.md
+
+Additionally, see the root-level TESTING.md for comprehensive testing documentation including the GitHub Pages routing fix.
 
 Do not try and run "npm run dev", it does not work for you
