@@ -21,7 +21,7 @@ describe('GitHub Pages Redirect Integration Logic', () => {
     const searchParams = new URLSearchParams('?p=%2Fanalyze&version=2.19');
     const redirectedUrl = handleGitHubPagesRedirect(searchParams);
     
-    expect(redirectedUrl).toBe('/analyze?version=2.19');
+    expect(redirectedUrl).toBe('/instrumentation-explorer/analyze?version=2.19');
   });
 
   it('should handle redirect logic with hash', () => {
@@ -37,7 +37,7 @@ describe('GitHub Pages Redirect Integration Logic', () => {
     expect(mockReplaceState).toHaveBeenCalledWith(
       null, 
       '', 
-      '/analyze?version=2.19#section1'
+      '/instrumentation-explorer/analyze?version=2.19#section1'
     );
   });
 
@@ -64,7 +64,7 @@ describe('GitHub Pages Redirect Integration Logic', () => {
     expect(mockReplaceState).toHaveBeenCalledWith(
       null, 
       '', 
-      `/analyze?instrumentations=${encodeURIComponent(base64Instrumentations)}&version=2.19`
+      `/instrumentation-explorer/analyze?instrumentations=${encodeURIComponent(base64Instrumentations)}&version=2.19`
     );
   });
 });

@@ -11,19 +11,19 @@ describe('handleGitHubPagesRedirect', () => {
   it('should handle redirect with path only', () => {
     const params = new URLSearchParams('p=%2Fanalyze');
     const result = handleGitHubPagesRedirect(params);
-    expect(result).toBe('/analyze');
+    expect(result).toBe('/instrumentation-explorer/analyze');
   });
 
   it('should handle redirect with path and query parameters', () => {
     const params = new URLSearchParams('p=%2Fanalyze&version=2.19&instrumentations=test');
     const result = handleGitHubPagesRedirect(params);
-    expect(result).toBe('/analyze?version=2.19&instrumentations=test');
+    expect(result).toBe('/instrumentation-explorer/analyze?version=2.19&instrumentations=test');
   });
 
   it('should handle redirect with encoded path containing special characters', () => {
     const params = new URLSearchParams('p=%2Flibrary%2F2.19%2Fapache-httpclient');
     const result = handleGitHubPagesRedirect(params);
-    expect(result).toBe('/library/2.19/apache-httpclient');
+    expect(result).toBe('/instrumentation-explorer/library/2.19/apache-httpclient');
   });
 
   it('should handle complex instrumentation URL from the issue', () => {
@@ -32,7 +32,7 @@ describe('handleGitHubPagesRedirect', () => {
     const params = new URLSearchParams(`p=%2Fanalyze&instrumentations=${base64Instrumentations}&version=2.19`);
     const result = handleGitHubPagesRedirect(params);
     // The result will have URL-encoded = signs (%3D%3D instead of ==)
-    expect(result).toBe(`/analyze?instrumentations=${encodeURIComponent(base64Instrumentations)}&version=2.19`);
+    expect(result).toBe(`/instrumentation-explorer/analyze?instrumentations=${encodeURIComponent(base64Instrumentations)}&version=2.19`);
   });
 
   it('should not modify the original URLSearchParams object', () => {
