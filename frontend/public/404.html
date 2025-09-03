@@ -17,21 +17,19 @@
     var search = window.location.search;
     var hash = window.location.hash;
     
-    // If we're already at the base URL, don't redirect
-    if (window.location.pathname === baseUrl) {
-      return;
+    // If we're not already at the base URL, redirect
+    if (window.location.pathname !== baseUrl) {
+      // Construct the redirect URL with path and query as parameters
+      var redirectUrl = baseUrl + '?p=' + encodeURIComponent(routePath);
+      if (search) {
+        redirectUrl += '&' + search.substring(1); // Remove the '?' from search
+      }
+      if (hash) {
+        redirectUrl += hash;
+      }
+      
+      window.location.replace(redirectUrl);
     }
-    
-    // Construct the redirect URL with path and query as parameters
-    var redirectUrl = baseUrl + '?p=' + encodeURIComponent(routePath);
-    if (search) {
-      redirectUrl += '&' + search.substring(1); // Remove the '?' from search
-    }
-    if (hash) {
-      redirectUrl += hash;
-    }
-    
-    window.location.replace(redirectUrl);
   </script>
 </head>
 <body>
