@@ -28825,11 +28825,43 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "A comma-separated list of request metadata keys. gRPC client instrumentation will capture metadata values corresponding to configured keys as span attributes.\n",
+          "name": "otel.instrumentation.grpc.capture-metadata.client.request",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "A comma-separated list of request metadata keys. gRPC server instrumentation will capture metadata values corresponding to configured keys as span attributes.\n",
+          "name": "otel.instrumentation.grpc.capture-metadata.server.request",
+          "type": "list"
+        },
+        {
+          "default": true,
+          "description": "Determines whether to emit a span event for each individual message received and sent.",
+          "name": "otel.instrumentation.grpc.emit-message-events",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental span attributes `grpc.received.message_count`, `grpc.sent.message_count` and `grpc.canceled`.\n",
+          "name": "otel.instrumentation.grpc.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables RPC CLIENT and SERVER spans and metrics for gRPC version 1.6 and above.",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
       },
-      "semconv": [],
+      "semconv": [
+        "Aws",
+        "Database Client",
+        "Network",
+        "Rpc"
+      ],
       "source_path": "instrumentation/grpc-1.6",
       "target_versions": {
         "javaagent": [
@@ -28838,7 +28870,375 @@
         "library": [
           "io.grpc:grpc-core:1.6.0"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "grpc.received.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "grpc.sent.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "grpc.received.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "grpc.sent.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "otel.instrumentation.grpc.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "guava-10.0",
@@ -41549,11 +41949,43 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "A comma-separated list of request metadata keys. gRPC client instrumentation will capture metadata values corresponding to configured keys as span attributes.\n",
+          "name": "otel.instrumentation.grpc.capture-metadata.client.request",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "A comma-separated list of request metadata keys. gRPC server instrumentation will capture metadata values corresponding to configured keys as span attributes.\n",
+          "name": "otel.instrumentation.grpc.capture-metadata.server.request",
+          "type": "list"
+        },
+        {
+          "default": true,
+          "description": "Determines whether to emit a span event for each individual message received and sent.",
+          "name": "otel.instrumentation.grpc.emit-message-events",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental span attributes `grpc.received.message_count`, `grpc.sent.message_count` and `grpc.canceled`.\n",
+          "name": "otel.instrumentation.grpc.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables RPC CLIENT and SERVER spans and metrics for gRPC version 1.6 and above.",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
       },
-      "semconv": [],
+      "semconv": [
+        "Aws",
+        "Database Client",
+        "Network",
+        "Rpc"
+      ],
       "source_path": "instrumentation/grpc-1.6",
       "target_versions": {
         "javaagent": [
@@ -41562,7 +41994,375 @@
         "library": [
           "io.grpc:grpc-core:1.6.0"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "grpc.received.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "grpc.sent.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "grpc.received.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "grpc.sent.message_count",
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.grpc.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "otel.instrumentation.grpc.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "guava-10.0",
