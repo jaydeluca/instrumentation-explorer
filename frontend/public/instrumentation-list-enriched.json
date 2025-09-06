@@ -25059,10 +25059,6 @@
                   "type": "STRING"
                 },
                 {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -25138,10 +25134,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -25388,10 +25380,6 @@
                   "type": "STRING"
                 },
                 {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -25467,10 +25455,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -29301,6 +29285,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "name": "hibernate-3.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-3.3"
@@ -29311,9 +29304,43 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[3.3.0.GA,4.0.0.Final)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "name": "hibernate-4.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-4.0"
@@ -29324,9 +29351,43 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[4.0.0.Final,6)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
       "scope": {
@@ -29338,7 +29399,32 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[6.0.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "hibernate-procedure-call-4.3",
@@ -33960,10 +34046,6 @@
             {
               "attributes": [
                 {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
                   "name": "messaging.operation",
                   "type": "STRING"
                 }
@@ -34098,14 +34180,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Int_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -34388,10 +34462,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.body.size",
@@ -39206,10 +39276,6 @@
                   "type": "STRING"
                 },
                 {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
                   "name": "messaging.message.id",
                   "semconv": true,
                   "type": "STRING"
@@ -39285,10 +39351,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -42425,6 +42487,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "name": "hibernate-3.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-3.3"
@@ -42435,9 +42506,43 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[3.3.0.GA,4.0.0.Final)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "name": "hibernate-4.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-4.0"
@@ -42448,9 +42553,43 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[4.0.0.Final,6)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
       "scope": {
@@ -42462,7 +42601,32 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[6.0.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "hibernate-procedure-call-4.3",
@@ -46934,10 +47098,6 @@
             {
               "attributes": [
                 {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
                   "name": "messaging.operation",
                   "type": "STRING"
                 }
@@ -47072,14 +47232,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Int_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.id",
@@ -47362,10 +47514,6 @@
                   "name": "messaging.destination.name",
                   "semconv": true,
                   "type": "STRING"
-                },
-                {
-                  "name": "messaging.header.Test_Message_Header",
-                  "type": "STRING_ARRAY"
                 },
                 {
                   "name": "messaging.message.body.size",
