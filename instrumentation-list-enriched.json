@@ -29427,6 +29427,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-procedure-call-4.3"
@@ -29437,9 +29446,35 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[4.3.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
       "name": "hibernate-reactive-1.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-reactive-1.0"
@@ -42629,6 +42664,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+          "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-procedure-call-4.3"
@@ -42639,9 +42683,35 @@
         "javaagent": [
           "org.hibernate:hibernate-core:[4.3.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hibernate.session_id",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hibernate.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
       "name": "hibernate-reactive-1.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-reactive-1.0"
