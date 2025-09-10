@@ -2,20 +2,20 @@
 
 Instrumentation Explorer is a web-based tool for exploring Java instrumentation libraries. It consists of a Python data processing pipeline that enriches instrumentation data and a React frontend that displays the data with search, filter, and comparison capabilities.
 
-**Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
+## Primary Documentation
 
-## Documentation References
+**For complete development guidance, refer to `AGENTS.md` in the repository root.**
 
-For detailed technical context, refer to these documentation files:
-- `TESTING.md` - Comprehensive testing guide including GitHub Pages routing fix
-- `.gemini/GEMINI.md` - Project overview and current state
-- `.gemini/requirements.md` - Project requirements and specifications
-- `.gemini/plan.md` - Development roadmap and planning notes
-- `.gemini/semconv.md` - Semantic convention data fetching system
-- `.gemini/telemetry_delta.md` - Telemetry version diff implementation
-- `.gemini/jar-analyzer.md` - JAR analysis functionality
-- `.gemini/screenshot-testing.md` - Screenshot testing setup
-- `.gemini/theme-switcher.md` - Theme switching implementation
+The AGENTS.md file contains comprehensive instructions for:
+- Project architecture and setup
+- Development environment configuration
+- Build and test commands
+- Code style guidelines
+- Pull request requirements
+- Common troubleshooting
+
+## Additional References
+- `TESTING.md` - Detailed testing procedures including GitHub Pages routing
 
 ## Working Effectively
 
