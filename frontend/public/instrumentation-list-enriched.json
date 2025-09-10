@@ -22005,7 +22005,7 @@
   ],
   "2.19": [
     {
-      "description": "This instrumentation enables SERVER spans and metrics for the ActiveJ HTTP server.",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
       "minimum_java_version": 17,
       "name": "activej-http-6.0",
       "scope": {
@@ -22159,7 +22159,7 @@
       }
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Akka HTTP client and server.",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "name": "akka-http-10.0",
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
@@ -22683,7 +22683,7 @@
           "type": "map"
         }
       ],
-      "description": "The Apache Dubbo instrumentation provides client and server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
       "name": "apache-dubbo-2.7",
       "scope": {
         "name": "io.opentelemetry.apache-dubbo-2.7"
@@ -22767,7 +22767,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for the Apache HttpAsyncClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Apache HttpAsyncClient.",
       "name": "apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
@@ -22872,7 +22872,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
       "name": "apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
@@ -22972,7 +22972,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 4 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 4 of the Apache HttpClient.",
       "name": "apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
@@ -23078,7 +23078,7 @@
       ]
     },
     {
-      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
       "name": "apache-httpclient-4.3",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.3"
@@ -23188,7 +23188,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 5 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 5 of the Apache HttpClient.",
       "name": "apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
@@ -23293,7 +23293,7 @@
       ]
     },
     {
-      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
       "name": "apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
@@ -23411,7 +23411,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing SERVER spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing HTTP server spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
       "name": "apache-shenyu-2.4",
       "scope": {
         "name": "io.opentelemetry.apache-shenyu-2.4"
@@ -23425,7 +23425,7 @@
       }
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria HTTP client and server.",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Armeria HTTP client, and HTTP server spans and metrics for the Armeria HTTP server.\n",
       "name": "armeria-1.3",
       "scope": {
         "name": "io.opentelemetry.armeria-1.3"
@@ -23648,7 +23648,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria gRPC client and server.",
+      "description": "This instrumentation enables RPC client spans and metrics for the Armeria gRPC client, and RPC server spans and metrics for the Armeria gRPC server.\n",
       "name": "armeria-grpc-1.14",
       "scope": {
         "name": "io.opentelemetry.armeria-grpc-1.14"
@@ -23743,7 +23743,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
       "name": "async-http-client-1.9",
       "scope": {
         "name": "io.opentelemetry.async-http-client-1.9"
@@ -23838,7 +23838,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
       "name": "async-http-client-2.0",
       "scope": {
         "name": "io.opentelemetry.async-http-client-2.0"
@@ -23953,7 +23953,7 @@
       ]
     },
     {
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing SERVER spans and HTTP server metrics.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing HTTP server spans and HTTP server metrics.\n",
       "minimum_java_version": 21,
       "name": "avaje-jex-3.0",
       "scope": {
@@ -23976,7 +23976,7 @@
           "type": "int"
         }
       ],
-      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
+      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS server spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
       "name": "aws-lambda-core-1.0",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
@@ -26619,7 +26619,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables database CLIENT spans and metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
       "name": "couchbase-2.0",
       "scope": {
         "name": "io.opentelemetry.couchbase-2.0"
@@ -26722,7 +26722,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
       "name": "couchbase-2.6",
       "scope": {
         "name": "io.opentelemetry.couchbase-2.6"
@@ -27163,7 +27163,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-5.0"
@@ -27291,7 +27291,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-6.4",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-6.4"
@@ -27418,7 +27418,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-7.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-7.0"
@@ -27548,7 +27548,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.0"
@@ -27731,7 +27731,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-5.3",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.3"
@@ -27934,7 +27934,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-6.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-6.0"
@@ -28219,7 +28219,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Apache Geode cache operations.",
+      "description": "This instrumentation enables database client spans and database client metrics for Apache Geode cache operations.",
       "name": "geode-1.4",
       "scope": {
         "name": "io.opentelemetry.geode-1.4"
@@ -28357,7 +28357,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables HTTP CLIENT spans and metrics for Google HTTP Client requests.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Google HTTP Client requests.",
       "name": "google-http-client-1.19",
       "scope": {
         "name": "io.opentelemetry.google-http-client-1.19"
@@ -28455,7 +28455,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enriches existing SERVER spans with route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
       "name": "grails-3.0",
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
@@ -28678,7 +28678,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables HTTP SERVER spans and metrics for Grizzly applications.",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly applications.",
       "name": "grizzly-2.3",
       "scope": {
         "name": "io.opentelemetry.grizzly-2.3"
@@ -28835,7 +28835,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables RPC CLIENT and SERVER spans and metrics for gRPC version 1.6 and above.",
+      "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
@@ -29241,7 +29241,7 @@
       }
     },
     {
-      "description": "This instrumentation enables SERVER spans for GWT RPC requests.",
+      "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
       "name": "gwt-2.0",
       "scope": {
         "name": "io.opentelemetry.gwt-2.0"
@@ -29834,6 +29834,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables capturing the experimental `hystrix.command`, `hystrix.circuit_open` and `hystrix.group` span attributes.",
+          "name": "otel.instrumentation.hystrix.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
       "name": "hystrix-1.4",
       "scope": {
         "name": "io.opentelemetry.hystrix-1.4"
@@ -29844,7 +29853,40 @@
         "javaagent": [
           "com.netflix.hystrix:hystrix-core:[1.4.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hystrix.circuit_open",
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "hystrix.command",
+                  "type": "STRING"
+                },
+                {
+                  "name": "hystrix.group",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hystrix.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "influxdb-2.4",
@@ -33860,7 +33902,7 @@
       }
     },
     {
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to SERVER spans and HTTP server metrics.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
       "name": "spark-2.3",
       "scope": {
         "name": "io.opentelemetry.spark-2.3"
@@ -34060,7 +34102,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables PRODUCER and CONSUMER spans for Spring Integration.",
+      "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
       "name": "spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -34130,7 +34172,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
       "name": "spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -34191,7 +34233,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
       "minimum_java_version": 17,
       "name": "spring-jms-6.0",
       "scope": {
@@ -34259,7 +34301,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring Kafka listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
       "name": "spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -34413,7 +34455,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring Pulsar listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
       "minimum_java_version": 17,
       "name": "spring-pulsar-1.0",
       "scope": {
@@ -34474,7 +34516,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring RabbitMQ listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
       "name": "spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -34521,7 +34563,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans for Spring RMI applications.",
+      "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
       "name": "spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
@@ -36683,7 +36725,7 @@
   ],
   "3.0": [
     {
-      "description": "This instrumentation enables SERVER spans and metrics for the ActiveJ HTTP server.",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
       "minimum_java_version": 17,
       "name": "activej-http-6.0",
       "scope": {
@@ -36837,7 +36879,7 @@
       }
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Akka HTTP client and server.",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "name": "akka-http-10.0",
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
@@ -37235,7 +37277,7 @@
           "type": "map"
         }
       ],
-      "description": "The Apache Dubbo instrumentation provides client and server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
       "name": "apache-dubbo-2.7",
       "scope": {
         "name": "io.opentelemetry.apache-dubbo-2.7"
@@ -37319,7 +37361,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for the Apache HttpAsyncClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Apache HttpAsyncClient.",
       "name": "apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
@@ -37424,7 +37466,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for versions 2 and 3 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
       "name": "apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
@@ -37524,7 +37566,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 4 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 4 of the Apache HttpClient.",
       "name": "apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
@@ -37630,7 +37672,7 @@
       ]
     },
     {
-      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
       "name": "apache-httpclient-4.3",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.3"
@@ -37740,7 +37782,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 5 of the Apache HttpClient.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 5 of the Apache HttpClient.",
       "name": "apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
@@ -37845,7 +37887,7 @@
       ]
     },
     {
-      "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
       "name": "apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
@@ -37963,7 +38005,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing SERVER spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing HTTP server spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
       "name": "apache-shenyu-2.4",
       "scope": {
         "name": "io.opentelemetry.apache-shenyu-2.4"
@@ -37977,7 +38019,7 @@
       }
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria HTTP client and server.",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Armeria HTTP client, and HTTP server spans and metrics for the Armeria HTTP server.\n",
       "name": "armeria-1.3",
       "scope": {
         "name": "io.opentelemetry.armeria-1.3"
@@ -38200,7 +38242,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans and metrics for the Armeria gRPC client and server.",
+      "description": "This instrumentation enables RPC client spans and metrics for the Armeria gRPC client, and RPC server spans and metrics for the Armeria gRPC server.\n",
       "name": "armeria-grpc-1.14",
       "scope": {
         "name": "io.opentelemetry.armeria-grpc-1.14"
@@ -38295,7 +38337,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
       "name": "async-http-client-1.9",
       "scope": {
         "name": "io.opentelemetry.async-http-client-1.9"
@@ -38390,7 +38432,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT spans and metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
       "name": "async-http-client-2.0",
       "scope": {
         "name": "io.opentelemetry.async-http-client-2.0"
@@ -38505,7 +38547,7 @@
       ]
     },
     {
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing SERVER spans and HTTP server metrics.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing HTTP server spans and HTTP server metrics.\n",
       "minimum_java_version": 21,
       "name": "avaje-jex-3.0",
       "scope": {
@@ -38528,7 +38570,7 @@
           "type": "int"
         }
       ],
-      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS SERVER spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
+      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS server spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
       "name": "aws-lambda-core-1.0",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
@@ -40186,7 +40228,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables database CLIENT spans and metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
       "name": "couchbase-2.0",
       "scope": {
         "name": "io.opentelemetry.couchbase-2.0"
@@ -40263,7 +40305,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
       "name": "couchbase-2.6",
       "scope": {
         "name": "io.opentelemetry.couchbase-2.6"
@@ -40617,7 +40659,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-5.0"
@@ -40711,7 +40753,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-6.4",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-6.4"
@@ -40804,7 +40846,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Elasticsearch REST clients.",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
       "name": "elasticsearch-rest-7.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-rest-7.0"
@@ -40900,7 +40942,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-5.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.0"
@@ -41055,7 +41097,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-5.3",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-5.3"
@@ -41230,7 +41272,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CLIENT spans and metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
       "name": "elasticsearch-transport-6.0",
       "scope": {
         "name": "io.opentelemetry.elasticsearch-transport-6.0"
@@ -41482,7 +41524,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables database CLIENT spans and metrics for Apache Geode cache operations.",
+      "description": "This instrumentation enables database client spans and database client metrics for Apache Geode cache operations.",
       "name": "geode-1.4",
       "scope": {
         "name": "io.opentelemetry.geode-1.4"
@@ -41594,7 +41636,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables HTTP CLIENT spans and metrics for Google HTTP Client requests.",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Google HTTP Client requests.",
       "name": "google-http-client-1.19",
       "scope": {
         "name": "io.opentelemetry.google-http-client-1.19"
@@ -41692,7 +41734,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enriches existing SERVER spans with route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
       "name": "grails-3.0",
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
@@ -41915,7 +41957,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables HTTP SERVER spans and metrics for Grizzly applications.",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly applications.",
       "name": "grizzly-2.3",
       "scope": {
         "name": "io.opentelemetry.grizzly-2.3"
@@ -42072,7 +42114,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables RPC CLIENT and SERVER spans and metrics for gRPC version 1.6 and above.",
+      "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
@@ -42478,7 +42520,7 @@
       }
     },
     {
-      "description": "This instrumentation enables SERVER spans for GWT RPC requests.",
+      "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
       "name": "gwt-2.0",
       "scope": {
         "name": "io.opentelemetry.gwt-2.0"
@@ -42966,6 +43008,15 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables capturing the experimental `hystrix.command`, `hystrix.circuit_open` and `hystrix.group` span attributes.",
+          "name": "otel.instrumentation.hystrix.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
       "name": "hystrix-1.4",
       "scope": {
         "name": "io.opentelemetry.hystrix-1.4"
@@ -42976,7 +43027,40 @@
         "javaagent": [
           "com.netflix.hystrix:hystrix-core:[1.4.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "hystrix.circuit_open",
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "hystrix.command",
+                  "type": "STRING"
+                },
+                {
+                  "name": "hystrix.group",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.hystrix.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "influxdb-2.4",
@@ -46947,7 +47031,7 @@
       }
     },
     {
-      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to SERVER spans and HTTP server metrics.\n",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
       "name": "spark-2.3",
       "scope": {
         "name": "io.opentelemetry.spark-2.3"
@@ -47147,7 +47231,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables PRODUCER and CONSUMER spans for Spring Integration.",
+      "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
       "name": "spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -47217,7 +47301,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
       "name": "spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -47278,7 +47362,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of CONSUMER spans for Spring JMS.",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
       "minimum_java_version": 17,
       "name": "spring-jms-6.0",
       "scope": {
@@ -47346,7 +47430,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring Kafka listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
       "name": "spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -47500,7 +47584,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring Pulsar listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
       "minimum_java_version": 17,
       "name": "spring-pulsar-1.0",
       "scope": {
@@ -47561,7 +47645,7 @@
           "type": "list"
         }
       ],
-      "description": "This instrumentation enables CONSUMER spans for Spring RabbitMQ listeners.",
+      "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
       "name": "spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -47608,7 +47692,7 @@
       ]
     },
     {
-      "description": "This instrumentation enables CLIENT and SERVER spans for Spring RMI applications.",
+      "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
       "name": "spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
