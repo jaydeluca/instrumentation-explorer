@@ -1,6 +1,9 @@
 # Instrumentation Explorer
 
-This project is a web-based tool designed to explore and display information about Java instrumentation libraries. It provides a clear, searchable, and filterable interface for understanding the capabilities of each library, including the telemetry data they generate (metrics and spans), their adherence to semantic conventions, and changes between different versions.
+This project is a web-based tool designed to explore and display information about Java instrumentation libraries. It
+provides a searchable and filterable interface for understanding the capabilities of each library, including the
+telemetry data they generate (metrics and spans), their adherence to semantic conventions, and changes between different
+versions.
 
 The instrumentation data is automatically kept up to date with the latest releases from the [OpenTelemetry Java Instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation) repository.
 
