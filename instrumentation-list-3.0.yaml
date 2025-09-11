@@ -3,6 +3,7 @@ libraries:
   - name: activej-http-6.0
     description: This instrumentation enables HTTP server spans and HTTP server metrics
       for the ActiveJ HTTP server.
+    library_link: https://activej.io/
     source_path: instrumentation/activej-http-6.0
     minimum_java_version: 17
     scope:
@@ -57,6 +58,7 @@ libraries:
   - name: akka-actor-2.3
     description: This instrumentation provides context propagation for Akka actors,
       it does not emit any telemetry on its own.
+    library_link: https://doc.akka.io/libraries/akka-core/current/typed/index.html
     source_path: instrumentation/akka/akka-actor-2.3
     scope:
       name: io.opentelemetry.akka-actor-2.3
@@ -68,6 +70,7 @@ libraries:
   - name: akka-actor-fork-join-2.5
     description: This instrumentation provides context propagation for the Akka Fork-Join
       Pool, it does not emit any telemetry on its own.
+    library_link: https://doc.akka.io/libraries/akka-core/current/typed/index.html
     source_path: instrumentation/akka/akka-actor-fork-join-2.5
     scope:
       name: io.opentelemetry.akka-actor-fork-join-2.5
@@ -81,6 +84,7 @@ libraries:
       Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.
 
       '
+    library_link: https://doc.akka.io/docs/akka-http/current/index.html
     source_path: instrumentation/akka/akka-http-10.0
     scope:
       name: io.opentelemetry.akka-http-10.0
@@ -171,6 +175,7 @@ libraries:
       pool metrics for druid data sources.
 
       '
+    library_link: https://github.com/alibaba/druid
     source_path: instrumentation/alibaba-druid-1.0
     scope:
       name: io.opentelemetry.alibaba-druid-1.0
@@ -231,6 +236,7 @@ libraries:
       JMX registration are automatically registered by default.
 
       '
+    library_link: https://commons.apache.org/proper/commons-dbcp/
     source_path: instrumentation/apache-dbcp-2.0
     scope:
       name: io.opentelemetry.apache-dbcp-2.0
@@ -278,6 +284,7 @@ libraries:
       server spans for Apache Dubbo RPC calls. Each call produces a span named after
       the Dubbo method, enriched with standard RPC attributes (system, service, method),
       network attributes, and error details if an exception occurs.
+    library_link: https://github.com/apache/dubbo/
     source_path: instrumentation/apache-dubbo-2.7
     scope:
       name: io.opentelemetry.apache-dubbo-2.7
@@ -320,6 +327,7 @@ libraries:
   - name: apache-httpasyncclient-4.1
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for the Apache HttpAsyncClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpasyncclient-4.1
     scope:
       name: io.opentelemetry.apache-httpasyncclient-4.1
@@ -366,6 +374,7 @@ libraries:
   - name: apache-httpclient-2.0
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for versions 2 and 3 of the Apache HttpClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpclient/apache-httpclient-2.0
     scope:
       name: io.opentelemetry.apache-httpclient-2.0
@@ -410,6 +419,7 @@ libraries:
   - name: apache-httpclient-4.0
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for version 4 of the Apache HttpClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpclient/apache-httpclient-4.0
     scope:
       name: io.opentelemetry.apache-httpclient-4.0
@@ -457,6 +467,7 @@ libraries:
   - name: apache-httpclient-4.3
     description: This instrumentation provides a library integration that enables
       HTTP client spans and HTTP client metrics for the Apache HttpClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpclient/apache-httpclient-4.3
     scope:
       name: io.opentelemetry.apache-httpclient-4.3
@@ -505,6 +516,7 @@ libraries:
   - name: apache-httpclient-5.0
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for version 5 of the Apache HttpClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpclient/apache-httpclient-5.0
     scope:
       name: io.opentelemetry.apache-httpclient-5.0
@@ -551,6 +563,7 @@ libraries:
   - name: apache-httpclient-5.2
     description: This instrumentation provides a library integration that enables
       HTTP client spans and HTTP client metrics for the Apache HttpClient.
+    library_link: https://hc.apache.org/index.html
     source_path: instrumentation/apache-httpclient/apache-httpclient-5.2
     scope:
       name: io.opentelemetry.apache-httpclient-5.2
@@ -602,6 +615,7 @@ libraries:
       route and Shenyu specific attributes.
 
       '
+    library_link: https://shenyu.apache.org/
     source_path: instrumentation/apache-shenyu-2.4
     scope:
       name: io.opentelemetry.apache-shenyu-2.4
@@ -624,6 +638,7 @@ libraries:
       server.
 
       '
+    library_link: https://armeria.dev/
     source_path: instrumentation/armeria/armeria-1.3
     scope:
       name: io.opentelemetry.armeria-1.3
@@ -721,6 +736,7 @@ libraries:
       Armeria gRPC client, and RPC server spans and metrics for the Armeria gRPC server.
 
       '
+    library_link: https://armeria.dev/
     source_path: instrumentation/armeria/armeria-grpc-1.14
     scope:
       name: io.opentelemetry.armeria-grpc-1.14
@@ -762,6 +778,7 @@ libraries:
   - name: async-http-client-1.9
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for version 1 of the AsyncHttpClient (AHC) HTTP client.
+    library_link: https://github.com/AsyncHttpClient/async-http-client
     source_path: instrumentation/async-http-client/async-http-client-1.9
     scope:
       name: io.opentelemetry.async-http-client-1.9
@@ -804,6 +821,7 @@ libraries:
   - name: async-http-client-2.0
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for version 2 of the AsyncHttpClient (AHC) HTTP client.
+    library_link: https://github.com/AsyncHttpClient/async-http-client
     source_path: instrumentation/async-http-client/async-http-client-2.0
     scope:
       name: io.opentelemetry.async-http-client-2.0
@@ -858,6 +876,7 @@ libraries:
       to existing HTTP server spans and HTTP server metrics.
 
       '
+    library_link: https://avaje.io/jex/
     source_path: instrumentation/avaje-jex-3.0
     minimum_java_version: 21
     scope:
@@ -880,6 +899,7 @@ libraries:
       one of wrappers as your lambda `Handler`.
 
       '
+    library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-core-1.0
     scope:
       name: io.opentelemetry.aws-lambda-core-1.0
@@ -907,6 +927,7 @@ libraries:
       to cover the Lambda library, including standard and custom event types.
 
       '
+    library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-events-2.2
     scope:
       name: io.opentelemetry.aws-lambda-events-2.2
@@ -957,6 +978,7 @@ libraries:
       and custom event types.
 
       '
+    library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-events-3.11
     scope:
       name: io.opentelemetry.aws-lambda-events-3.11
@@ -1006,6 +1028,7 @@ libraries:
       EC2, Kinesis, Lambda, RDS, S3, secrets manager, SNS/SQS and step functions.
 
       '
+    library_link: https://aws.amazon.com/sdk-for-java/
     source_path: instrumentation/aws-sdk/aws-sdk-1.11
     scope:
       name: io.opentelemetry.aws-sdk-1.11
@@ -1150,6 +1173,7 @@ libraries:
       EC2, Kinesis, Lambda, RDS, S3, SNS/SQS and Bedrock.
 
       '
+    library_link: https://aws.amazon.com/sdk-for-java/
     source_path: instrumentation/aws-sdk/aws-sdk-2.2
     scope:
       name: io.opentelemetry.aws-sdk-2.2
@@ -1345,6 +1369,7 @@ libraries:
   - name: azure-core-1.14
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
+    library_link: https://learn.microsoft.com/en-us/java/api/overview/azure/core-readme?view=azure-java-stable
     source_path: instrumentation/azure-core/azure-core-1.14
     scope:
       name: io.opentelemetry.azure-core-1.14
@@ -1354,6 +1379,7 @@ libraries:
   - name: azure-core-1.19
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
+    library_link: https://learn.microsoft.com/en-us/java/api/overview/azure/core-readme?view=azure-java-stable
     source_path: instrumentation/azure-core/azure-core-1.19
     scope:
       name: io.opentelemetry.azure-core-1.19
@@ -1363,6 +1389,7 @@ libraries:
   - name: azure-core-1.36
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
+    library_link: https://learn.microsoft.com/en-us/java/api/overview/azure/core-readme?view=azure-java-stable
     source_path: instrumentation/azure-core/azure-core-1.36
     scope:
       name: io.opentelemetry.azure-core-1.36
@@ -1373,6 +1400,7 @@ libraries:
   - name: c3p0-0.9
     description: The c3p0 instrumentation provides connection pool metrics for c3p0
       data sources.
+    library_link: https://github.com/swaldman/c3p0
     source_path: instrumentation/c3p0-0.9
     scope:
       name: io.opentelemetry.c3p0-0.9
@@ -1409,6 +1437,7 @@ libraries:
       directly by the Camel project.
 
       '
+    library_link: https://camel.apache.org/
     source_path: instrumentation/camel-2.20
     scope:
       name: io.opentelemetry.camel-2.20
@@ -1504,6 +1533,7 @@ libraries:
       spans and metrics for Cassandra queries.
 
       '
+    library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-3.0
     scope:
       name: io.opentelemetry.cassandra-3.0
@@ -1545,6 +1575,7 @@ libraries:
       spans and metrics for Cassandra queries.
 
       '
+    library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-4.0
     scope:
       name: io.opentelemetry.cassandra-4.0
@@ -1598,6 +1629,7 @@ libraries:
       spans and metrics for Cassandra queries.
 
       '
+    library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-4.4
     scope:
       name: io.opentelemetry.cassandra-4.4
@@ -1652,6 +1684,7 @@ libraries:
   - name: clickhouse-client-0.5
     description: Instruments the V1 ClickHouseClient, providing database client spans
       and metrics.
+    library_link: https://github.com/ClickHouse/clickhouse-java
     source_path: instrumentation/clickhouse-client-0.5
     scope:
       name: io.opentelemetry.clickhouse-client-0.5
@@ -1708,6 +1741,7 @@ libraries:
       management operations.
 
       '
+    library_link: https://github.com/couchbase/couchbase-java-client
     source_path: instrumentation/couchbase/couchbase-2.0
     scope:
       name: io.opentelemetry.couchbase-2.0
@@ -1744,6 +1778,7 @@ libraries:
       management operations.
 
       '
+    library_link: https://github.com/couchbase/couchbase-java-client
     source_path: instrumentation/couchbase/couchbase-2.6
     scope:
       name: io.opentelemetry.couchbase-2.6
@@ -1820,6 +1855,7 @@ libraries:
       provided by the Couchbase library.
 
       '
+    library_link: https://github.com/couchbase/couchbase-java-client
     source_path: instrumentation/couchbase/couchbase-3.1
     scope:
       name: io.opentelemetry.couchbase-3.1
@@ -1832,6 +1868,7 @@ libraries:
       provided by the Couchbase library.
 
       '
+    library_link: https://github.com/couchbase/couchbase-java-client
     source_path: instrumentation/couchbase/couchbase-3.1.6
     scope:
       name: io.opentelemetry.couchbase-3.1.6
@@ -1844,6 +1881,7 @@ libraries:
       provided by the Couchbase library.
 
       '
+    library_link: https://github.com/couchbase/couchbase-java-client
     source_path: instrumentation/couchbase/couchbase-3.2
     scope:
       name: io.opentelemetry.couchbase-3.2
@@ -1861,6 +1899,7 @@ libraries:
       on how the API is used in the instrumented application.
 
       '
+    library_link: https://metrics.dropwizard.io/4.2.0/
     disabled_by_default: true
     source_path: instrumentation/dropwizard/dropwizard-metrics-4.0
     scope:
@@ -1876,6 +1915,7 @@ libraries:
   - name: dropwizard-views-0.7
     description: This instrumentation enables the creation of spans for Dropwizard
       views.
+    library_link: https://www.dropwizard.io/en/latest/manual/views.html
     source_path: instrumentation/dropwizard/dropwizard-views-0.7
     scope:
       name: io.opentelemetry.dropwizard-views-0.7
@@ -1896,10 +1936,11 @@ libraries:
   - name: elasticsearch-api-client-7.16
     description: 'This instrumentation extends the elasticsearch-rest-7.0 instrumentation
       by adding additional `db.elasticsearch.path_parts.id` and `db.elasticsearch.path_parts.index`
-      attributes to Elasticsearch CLIENT spans. Versions 8.10 and later of the client
-      have native support for OpenTelemetry.
+      attributes to Elasticsearch database client spans. Versions 8.10 and later of
+      the client have native support for OpenTelemetry.
 
       '
+    library_link: https://www.elastic.co/docs/reference/elasticsearch/clients/java
     source_path: instrumentation/elasticsearch/elasticsearch-api-client-7.16
     scope:
       name: io.opentelemetry.elasticsearch-api-client-7.16
@@ -1945,6 +1986,7 @@ libraries:
   - name: elasticsearch-rest-5.0
     description: This instrumentation enables database client spans and database client
       metrics for Elasticsearch REST clients.
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-rest
     source_path: instrumentation/elasticsearch/elasticsearch-rest-5.0
     scope:
       name: io.opentelemetry.elasticsearch-rest-5.0
@@ -1997,6 +2039,7 @@ libraries:
   - name: elasticsearch-rest-6.4
     description: This instrumentation enables database client spans and database client
       metrics for Elasticsearch REST clients.
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-rest
     source_path: instrumentation/elasticsearch/elasticsearch-rest-6.4
     scope:
       name: io.opentelemetry.elasticsearch-rest-6.4
@@ -2048,6 +2091,7 @@ libraries:
   - name: elasticsearch-rest-7.0
     description: This instrumentation enables database client spans and database client
       metrics for Elasticsearch REST clients.
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-rest
     source_path: instrumentation/elasticsearch/elasticsearch-rest-7.0
     scope:
       name: io.opentelemetry.elasticsearch-rest-7.0
@@ -2105,6 +2149,7 @@ libraries:
       attributes.
 
       '
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-api/
     source_path: instrumentation/elasticsearch/elasticsearch-transport-5.0
     scope:
       name: io.opentelemetry.elasticsearch-transport-5.0
@@ -2197,6 +2242,7 @@ libraries:
       attributes.
 
       '
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-api/
     source_path: instrumentation/elasticsearch/elasticsearch-transport-5.3
     scope:
       name: io.opentelemetry.elasticsearch-transport-5.3
@@ -2293,6 +2339,7 @@ libraries:
       attributes.
 
       '
+    library_link: https://www.elastic.co/guide/en/elasticsearch/client/java-api/
     source_path: instrumentation/elasticsearch/elasticsearch-transport-6.0
     scope:
       name: io.opentelemetry.elasticsearch-transport-6.0
@@ -2481,6 +2528,7 @@ libraries:
   - name: google-http-client-1.19
     description: This instrumentation enables HTTP client spans and HTTP client metrics
       for Google HTTP Client requests.
+    library_link: https://github.com/googleapis/google-http-java-client
     source_path: instrumentation/google-http-client-1.19
     scope:
       name: io.opentelemetry.google-http-client-1.19
@@ -2577,6 +2625,7 @@ libraries:
   graphql:
   - name: graphql-java-12.0
     description: This instrumentation enables spans for GraphQL Java operations.
+    library_link: https://www.graphql-java.com/
     source_path: instrumentation/graphql-java/graphql-java-12.0
     scope:
       name: io.opentelemetry.graphql-java-12.0
