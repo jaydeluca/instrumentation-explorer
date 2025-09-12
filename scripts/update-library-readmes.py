@@ -192,9 +192,6 @@ def download_readme_content(github_client: GitHubClient, readme_path: str, commi
     
     return content
 
-
-
-
 def save_readme(content: str, library_name: str, version: str) -> str:
     """Save README content to the versioned directory."""
     script_dir = Path(__file__).parent
@@ -217,9 +214,6 @@ def save_readme(content: str, library_name: str, version: str) -> str:
     except IOError as e:
         print(f"  Error saving README for {library_name}: {e}")
         return ""
-
-
-
 
 def process_readmes(github_client: GitHubClient, commit_sha: str, version: str, libraries: List[Tuple[str, str]], delay: float = 0.5):
     """
