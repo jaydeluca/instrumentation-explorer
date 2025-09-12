@@ -20,7 +20,7 @@ The instrumentation data is automatically kept up to date with the latest releas
 *   **Automated Updates:** Instrumentation data is automatically updated weekly and with new releases.
 
 
-<img src="./screenshots/clickhouse-client.png" width="800">
+<img src="./screenshots/couchbase-2.6.png" width="800">
 
 
 ## Project Structure

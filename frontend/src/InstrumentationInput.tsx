@@ -38,7 +38,7 @@ const InstrumentationInput: React.FC<InstrumentationInputProps> = ({ onAnalyze, 
 
   return (
     <div className="instrumentation-input">
-      <p>Enter a comma-separated list of instrumentation names (e.g., `clickhouse-client-0.5,activej-http-6.0`):</p>
+      <p>Enter a comma-separated list of instrumentation names (e.g., `clickhouse-client-v1-0.5,activej-http-6.0`):</p>
       <textarea
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
