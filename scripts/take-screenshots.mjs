@@ -74,10 +74,10 @@ async function takeScreenshots() {
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/home-grafana.png` });
 
-    console.log('Taking ClickHouse client library screenshots...');
-    // Take a full-page screenshot of the ClickHouse client library page
+    console.log('Taking Couchbase library screenshots...');
+    // Take a full-page screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/2.18/clickhouse-client-v1-0.5`);
+    await page.goto(`${URL}library/2.18/couchbase-2.6`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     
     // Wait for page to load and check if comparison selects exist
@@ -95,15 +95,41 @@ async function takeScreenshots() {
       console.log('Comparison selectors not found, taking screenshot without comparison');
     }
     
-    await page.screenshot({ path: `screenshots/clickhouse-client.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/couchbase-2.6.png`, fullPage: true });
 
+    // Wait for theme selector to be available and switch to Grafana theme
+    // First try to expand mobile menu if needed
+    try {
+      const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
+      if (await mobileMenuToggle.isVisible()) {
+        await mobileMenuToggle.click();
+        await page.waitForTimeout(500); // Wait for animation
+      }
+    } catch (error) {
+      console.log('Mobile menu toggle not found or not needed');
+    }
+    
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
     await page.selectOption('#theme-select', 'grafana');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await page.screenshot({ path: `screenshots/clickhouse-client-grafana.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png`, fullPage: true });
 
     console.log('Taking Alibaba Druid library screenshots...');
     // Take a full-page screenshot of the alibaba-druid-1.0 client library page
     await page.goto(`${URL}library/2.18/alibaba-druid-1.0`);
+    
+    // First try to expand mobile menu if needed
+    try {
+      const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
+      if (await mobileMenuToggle.isVisible()) {
+        await mobileMenuToggle.click();
+        await page.waitForTimeout(500); // Wait for animation
+      }
+    } catch (error) {
+      console.log('Mobile menu toggle not found or not needed');
+    }
+    
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
     await page.selectOption('#theme-select', 'default');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await new Promise(resolve => setTimeout(resolve, 2000));
@@ -125,6 +151,18 @@ async function takeScreenshots() {
     
     await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
 
+    // First try to expand mobile menu if needed
+    try {
+      const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
+      if (await mobileMenuToggle.isVisible()) {
+        await mobileMenuToggle.click();
+        await page.waitForTimeout(500); // Wait for animation
+      }
+    } catch (error) {
+      console.log('Mobile menu toggle not found or not needed');
+    }
+    
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
     await page.selectOption('#theme-select', 'grafana');
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
