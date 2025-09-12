@@ -2,6 +2,7 @@ import json
 import requests
 import yaml
 import os
+import glob
 
 # Constants
 BASE_SEMCONV_URL = "https://api.github.com/repos/open-telemetry/semantic-conventions/contents/model"
@@ -154,6 +155,41 @@ def get_convention_mappings():
     return mappings
 
 
+def load_markdown_content():
+    """
+    Loads markdown content from the data/ directory for each version.
+    Returns a dictionary mapping version -> library_name -> markdown_content.
+    """
+    markdown_data = {}
+    
+    # Look for data directories for each version
+    data_dirs = glob.glob("../data/*/library_readme/")
+    
+    for data_dir in data_dirs:
+        # Extract version from path like ../data/2.18.0/library_readme/
+        version_match = data_dir.split('/')
+        if len(version_match) >= 3:
+            version = version_match[-3]  # Get the version part
+            
+            markdown_data[version] = {}
+            
+            # Load all markdown files in this directory
+            md_files = glob.glob(os.path.join(data_dir, "*.md"))
+            
+            for md_file in md_files:
+                # Get library name from filename (remove .md extension)
+                library_name = os.path.basename(md_file)[:-3]  # Remove .md
+                
+                try:
+                    with open(md_file, 'r', encoding='utf-8') as f:
+                        markdown_data[version][library_name] = f.read()
+                    print(f"Loaded markdown for {library_name} (v{version})")
+                except IOError as e:
+                    print(f"Error reading markdown file {md_file}: {e}")
+    
+    return markdown_data
+
+
 def sort_data_recursively(data):
     """
     Recursively sorts data to ensure deterministic output.
@@ -179,9 +215,9 @@ def sort_data_recursively(data):
         return data
 
 
-def enrich_instrumentation_data(instrumentation_data, mappings):
+def enrich_instrumentation_data(instrumentation_data, mappings, markdown_data, version):
     """
-    Enriches the instrumentation data with semantic convention information.
+    Enriches the instrumentation data with semantic convention information and markdown content.
     """
     enriched_data = []
     libraries = instrumentation_data.get('libraries', {})
@@ -220,6 +256,19 @@ def enrich_instrumentation_data(instrumentation_data, mappings):
                                         attr['semconv'] = True
 
             details["semconv"] = sorted(list(semconv_matches))
+            
+            # Add markdown content if available for this library and version
+            library_identifier = details.get("name", "")
+            # Try both exact version match and version with .0 suffix
+            markdown_version = None
+            if version in markdown_data:
+                markdown_version = version
+            elif f"{version}.0" in markdown_data:
+                markdown_version = f"{version}.0"
+            
+            if markdown_version and library_identifier in markdown_data[markdown_version]:
+                details["markdown_content"] = markdown_data[markdown_version][library_identifier]
+            
             enriched_data.append(details)
     
     # Sort the enriched data by library name for consistent output
@@ -231,10 +280,9 @@ def main():
     """
     Main function to orchestrate the fetching and enrichment process for all versions.
     """
-    import glob
-
     all_enriched_data = {}
     mappings = get_convention_mappings()
+    markdown_data = load_markdown_content()
 
     for filepath in glob.glob("../instrumentation-list-*.yaml"):
         try:
@@ -242,7 +290,7 @@ def main():
             with open(filepath, "r") as f:
                 instrumentation_data = yaml.safe_load(f)
             
-            enriched_data = enrich_instrumentation_data(instrumentation_data, mappings)
+            enriched_data = enrich_instrumentation_data(instrumentation_data, mappings, markdown_data, version)
             all_enriched_data[version] = enriched_data
 
         except (IOError, yaml.YAMLError) as e:

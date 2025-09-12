@@ -50,6 +50,7 @@ export interface Library {
     default: string | boolean | number;
   }[];
   semconv?: string[];
+  markdown_content?: string;
 }
 
 export interface DiffResult {
