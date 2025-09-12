@@ -9,9 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Specific version/tag to process (e.g., v2.9.0, 2.19). Leave empty for latest release.'
+        description: 'Git tag to process. Examples: "v2.9.0", "v2.8.0", "v1.32.1". Use exact GitHub release tag format. Leave empty to use latest release.'
         required: false
         type: string
+        default: ''
 
 jobs:
   update-library-readmes:
@@ -59,26 +60,41 @@ jobs:
       run: |
         echo "Checking for changes..."
         git status
-        git diff --name-only
         
-        # Check if there are any changes in the data directory
-        if ! git diff --exit-code --quiet data/; then
-          echo "changes=true" >> $GITHUB_OUTPUT
-          echo "Changes detected in library README files"
-          echo "Modified files:"
-          git diff --name-only data/
+        # Check if data directory exists and has files
+        if [ -d "data" ] && [ "$(find data -name '*.md' -type f | wc -l)" -gt 0 ]; then
+          echo "Data directory exists with README files"
           
-          # Count new/modified README files
-          NEW_FILES=$(git diff --name-only --diff-filter=A data/ | grep '\.md$' | wc -l)
-          MODIFIED_FILES=$(git diff --name-only --diff-filter=M data/ | grep '\.md$' | wc -l)
+          # Add all files in data directory to staging to detect them
+          git add data/
           
-          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
-          echo "modified_files=$MODIFIED_FILES" >> $GITHUB_OUTPUT
-          
-          echo "New README files: $NEW_FILES"
-          echo "Modified README files: $MODIFIED_FILES"
+          # Check if there are any staged changes
+          if ! git diff --cached --exit-code --quiet; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in library README files"
+            
+            # Count new and modified files in data directory
+            NEW_FILES=$(git diff --cached --name-only --diff-filter=A | grep '^data/.*\.md$' | wc -l || echo "0")
+            MODIFIED_FILES=$(git diff --cached --name-only --diff-filter=M | grep '^data/.*\.md$' | wc -l || echo "0")
+            
+            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+            echo "modified_files=$MODIFIED_FILES" >> $GITHUB_OUTPUT
+            
+            echo "New README files: $NEW_FILES"
+            echo "Modified README files: $MODIFIED_FILES"
+            
+            echo "All changed files:"
+            git diff --cached --name-only
+            
+            echo "README files specifically:"
+            git diff --cached --name-only | grep '^data/.*\.md$' || echo "None"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No staged changes detected"
+          fi
         else
-          echo "No changes detected"
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No data directory or README files found"
         fi
     
     - name: Create Pull Request
@@ -97,11 +113,13 @@ jobs:
           - **New README files**: ${{ steps.git-check.outputs.new_files }}
           - **Modified README files**: ${{ steps.git-check.outputs.modified_files }}
           
-          ### Details:
-          The script automatically downloads README files from each instrumentation library's `/library/` directory and stores them in a versioned structure under `/data/{version}/library_readme/`.
+          ### Source Details:
+          - **Repository**: https://github.com/open-telemetry/opentelemetry-java-instrumentation
+          - **Tag/Version**: ${{ inputs.version || 'latest release' }}
+          - **Target Directory**: `data/{version}/library_readme/`
           
-          ### Source Repository:
-          https://github.com/open-telemetry/opentelemetry-java-instrumentation
+          ### What This Does:
+          Downloads README.md files from each instrumentation library's `/library/` subdirectory and stores them locally for the instrumentation explorer to reference.
           
           ### Files Updated:
           ```
