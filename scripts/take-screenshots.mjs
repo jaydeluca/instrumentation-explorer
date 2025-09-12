@@ -77,7 +77,7 @@ async function takeScreenshots() {
     console.log('Taking ClickHouse client library screenshots...');
     // Take a full-page screenshot of the ClickHouse client library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/2.18/clickhouse-client-0.5`);
+    await page.goto(`${URL}library/2.18/clickhouse-client-v1-0.5`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     
     // Wait for page to load and check if comparison selects exist
