@@ -9,9 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Specific version/tag to process (e.g., v2.9.0, 2.19). Leave empty for latest release.'
+        description: 'Git tag to process. Examples: "v2.9.0", "v2.8.0", "v1.32.1". Use exact GitHub release tag format. Leave empty to use latest release.'
         required: false
         type: string
+        default: ''
 
 jobs:
   update-library-readmes:
@@ -97,11 +98,13 @@ jobs:
           - **New README files**: ${{ steps.git-check.outputs.new_files }}
           - **Modified README files**: ${{ steps.git-check.outputs.modified_files }}
           
-          ### Details:
-          The script automatically downloads README files from each instrumentation library's `/library/` directory and stores them in a versioned structure under `/data/{version}/library_readme/`.
+          ### Source Details:
+          - **Repository**: https://github.com/open-telemetry/opentelemetry-java-instrumentation
+          - **Tag/Version**: ${{ inputs.version || 'latest release' }}
+          - **Target Directory**: `data/{version}/library_readme/`
           
-          ### Source Repository:
-          https://github.com/open-telemetry/opentelemetry-java-instrumentation
+          ### What This Does:
+          Downloads README.md files from each instrumentation library's `/library/` subdirectory and stores them locally for the instrumentation explorer to reference.
           
           ### Files Updated:
           ```
