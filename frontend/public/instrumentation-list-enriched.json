@@ -26511,19 +26511,168 @@
           "type": "boolean"
         }
       ],
-      "description": "Instruments the V1 ClickHouseClient, providing database client spans and metrics.",
+      "description": "This instrumentation enables database client spans and metrics for the V1 ClickHouse client.",
       "library_link": "https://github.com/ClickHouse/clickhouse-java",
-      "name": "clickhouse-client-0.5",
+      "name": "clickhouse-client-v1-0.5",
       "scope": {
-        "name": "io.opentelemetry.clickhouse-client-0.5"
+        "name": "io.opentelemetry.clickhouse-client-v1-0.5"
       },
       "semconv": [
         "Database Client"
       ],
-      "source_path": "instrumentation/clickhouse-client-0.5",
+      "source_path": "instrumentation/clickhouse/clickhouse-client-v1-0.5",
       "target_versions": {
         "javaagent": [
           "com.clickhouse.client:clickhouse-client:[0.5.0,)"
+        ]
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.name",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.statement",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system",
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.response.status_code",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "error.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "otel.semconv-stability.opt-in=database"
+        }
+      ]
+    },
+    {
+      "configurations": [
+        {
+          "default": true,
+          "description": "Enables statement sanitization for database queries.",
+          "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables database client spans and metrics for the V2 ClickHouse client.",
+      "library_link": "https://github.com/ClickHouse/clickhouse-java",
+      "name": "clickhouse-client-v2-0.8",
+      "scope": {
+        "name": "io.opentelemetry.clickhouse-client-v2-0.8"
+      },
+      "semconv": [
+        "Database Client"
+      ],
+      "source_path": "instrumentation/clickhouse/clickhouse-client-v2-0.8",
+      "target_versions": {
+        "javaagent": [
+          "com.clickhouse:client-v2:[0.6.4,)"
         ]
       },
       "telemetry": [
@@ -28191,6 +28340,7 @@
         }
       ],
       "description": "The executor instrumentation ensures that context is automatically propagated when using common Java executors (e.g., ThreadPoolExecutor, ScheduledThreadPoolExecutor, ForkJoinPool). When a task is submitted, the current context is captured and bound to the task. Then, when the task eventually runs, even if it\u2019s on a different thread, the instrumentation reactivates that context, enabling consistent correlation across concurrent and asynchronous workflows.\n",
+      "library_link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html",
       "name": "executors",
       "scope": {
         "name": "io.opentelemetry.executors"
@@ -28205,6 +28355,7 @@
     },
     {
       "description": "This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.\n",
+      "library_link": "https://github.com/twitter/finagle",
       "name": "finagle-http-23.11",
       "scope": {
         "name": "io.opentelemetry.finagle-http-23.11"
@@ -28220,6 +28371,7 @@
     },
     {
       "description": "This instrumentation for the Finatra web framework augments the telemetry generated by the underlying Netty instrumentation. It provides more specific, high-level context, such as route information, to the spans generated by Netty.",
+      "library_link": "https://github.com/twitter/finatra",
       "name": "finatra-2.9",
       "scope": {
         "name": "io.opentelemetry.finatra-2.9"
@@ -28267,6 +28419,7 @@
         }
       ],
       "description": "This instrumentation enables database client spans and database client metrics for Apache Geode cache operations.",
+      "library_link": "https://geode.apache.org/",
       "name": "geode-1.4",
       "scope": {
         "name": "io.opentelemetry.geode-1.4"
@@ -28504,6 +28657,7 @@
         }
       ],
       "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "library_link": "https://grails.apache.org/",
       "name": "grails-3.0",
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
@@ -28616,6 +28770,7 @@
         }
       ],
       "description": "This instrumentation enables spans for GraphQL Java operations.",
+      "library_link": "https://www.graphql-java.com/",
       "minimum_java_version": 11,
       "name": "graphql-java-20.0",
       "scope": {
@@ -28728,6 +28883,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly applications.",
+      "library_link": "https://javaee.github.io/grizzly/httpserverframework.html",
       "name": "grizzly-2.3",
       "scope": {
         "name": "io.opentelemetry.grizzly-2.3"
@@ -28885,6 +29041,7 @@
         }
       ],
       "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+      "library_link": "https://github.com/grpc/grpc-java",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
@@ -29291,6 +29448,7 @@
     },
     {
       "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
+      "library_link": "https://www.gwtproject.org/",
       "name": "gwt-2.0",
       "scope": {
         "name": "io.opentelemetry.gwt-2.0"
@@ -29343,6 +29501,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-3.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-3.3"
@@ -29390,6 +29549,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-4.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-4.0"
@@ -29437,6 +29597,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
       "scope": {
@@ -29485,6 +29646,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-procedure-call-4.3"
@@ -29524,6 +29686,7 @@
     },
     {
       "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
+      "library_link": "https://hibernate.org/reactive/",
       "name": "hibernate-reactive-1.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-reactive-1.0"
@@ -29538,6 +29701,7 @@
     },
     {
       "description": "This instrumentation provides database client metrics for HikariCP 3.0+ connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+      "library_link": "https://github.com/brettwooldridge/HikariCP",
       "name": "hikaricp-3.0",
       "scope": {
         "name": "io.opentelemetry.hikaricp-3.0"
@@ -29824,6 +29988,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of HTTP client spans and HTTP client metrics for requests made using `java.net.HttpURLConnection`.\n",
+      "library_link": "https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/HttpURLConnection.html",
       "name": "http-url-connection",
       "scope": {
         "name": "io.opentelemetry.http-url-connection"
@@ -29932,6 +30097,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "library_link": "https://github.com/Netflix/Hystrix",
       "name": "hystrix-1.4",
       "scope": {
         "name": "io.opentelemetry.hystrix-1.4"
@@ -29979,6 +30145,7 @@
     },
     {
       "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+      "library_link": "https://github.com/influxdata/influxdb-java",
       "name": "influxdb-2.4",
       "scope": {
         "name": "io.opentelemetry.influxdb-2.4"
@@ -30147,6 +30314,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for requests made using the Java HTTP client.",
+      "library_link": "https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/package-summary.html",
       "minimum_java_version": 11,
       "name": "java-http-client",
       "scope": {
@@ -30285,6 +30453,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Java HTTP server.",
+      "library_link": "https://docs.oracle.com/en/java/javase/21/docs/api/jdk.httpserver/module-summary.html",
       "name": "java-http-server",
       "scope": {
         "name": "io.opentelemetry.java-http-server"
@@ -30421,6 +30590,7 @@
     },
     {
       "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
+      "library_link": "https://javalin.io/",
       "minimum_java_version": 11,
       "name": "javalin-5.0",
       "scope": {
@@ -30690,6 +30860,7 @@
         }
       ],
       "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
+      "library_link": "https://docs.oracle.com/javase/8/docs/api/java/sql/package-summary.html",
       "name": "jdbc",
       "scope": {
         "name": "io.opentelemetry.jdbc"
@@ -31229,6 +31400,7 @@
         }
       ],
       "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
+      "library_link": "https://kafka.apache.org/",
       "name": "kafka-clients-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-0.11"
@@ -31257,6 +31429,7 @@
         }
       ],
       "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
+      "library_link": "https://kafka.apache.org/",
       "name": "kafka-clients-2.6",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-2.6"
@@ -31270,6 +31443,7 @@
       }
     },
     {
+      "library_link": "https://kafka.apache.org/documentation/streams/",
       "name": "kafka-streams-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-streams-0.11"
@@ -32546,6 +32720,7 @@
         }
       ],
       "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "library_link": "https://github.com/openai/openai-java",
       "name": "openai-java-1.1",
       "scope": {
         "name": "io.opentelemetry.openai-java-1.1"
@@ -32780,6 +32955,7 @@
     },
     {
       "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+      "library_link": "https://docs.oracle.com/database/121/JJUCP/",
       "name": "oracle-ucp-11.2",
       "scope": {
         "name": "io.opentelemetry.oracle-ucp-11.2"
@@ -32907,6 +33083,7 @@
         }
       ],
       "description": "When the OSHI library is detected on the classpath, this instrumentation will use the system class loader to load classes from the oshi-core jar that are then used to generate system metrics.",
+      "library_link": "https://github.com/oshi/oshi/",
       "name": "oshi",
       "scope": {
         "name": "io.opentelemetry.oshi"
@@ -34304,6 +34481,7 @@
     },
     {
       "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+      "library_link": "https://sparkjava.com/",
       "name": "spark-2.3",
       "scope": {
         "name": "io.opentelemetry.spark-2.3"
@@ -34339,6 +34517,7 @@
       ],
       "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-batch",
       "name": "spring-batch-3.0",
       "scope": {
         "name": "io.opentelemetry.spring-batch-3.0"
@@ -34370,6 +34549,7 @@
     {
       "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-boot",
       "name": "spring-boot-actuator-autoconfigure-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-boot-actuator-autoconfigure-2.0"
@@ -34384,6 +34564,7 @@
     },
     {
       "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
+      "library_link": "https://spring.io/projects/spring-boot",
       "name": "spring-boot-resources",
       "scope": {
         "name": "io.opentelemetry.spring-boot-resources"
@@ -34393,6 +34574,7 @@
     },
     {
       "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
+      "library_link": "https://spring.io/projects/spring-cloud-aws",
       "minimum_java_version": 17,
       "name": "spring-cloud-aws-3.0",
       "scope": {
@@ -34416,6 +34598,7 @@
         }
       ],
       "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
+      "library_link": "https://github.com/spring-cloud/spring-cloud-gateway",
       "name": "spring-cloud-gateway-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-cloud-gateway-2.0"
@@ -34430,6 +34613,7 @@
     },
     {
       "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/package-summary.html",
       "minimum_java_version": 17,
       "name": "spring-core-2.0",
       "scope": {
@@ -34445,6 +34629,7 @@
     },
     {
       "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
+      "library_link": "https://spring.io/projects/spring-data",
       "name": "spring-data-1.8",
       "scope": {
         "name": "io.opentelemetry.spring-data-1.8"
@@ -34504,6 +34689,7 @@
         }
       ],
       "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
+      "library_link": "https://spring.io/projects/spring-integration",
       "name": "spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -34574,6 +34760,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "library_link": "https://docs.spring.io/spring-framework/reference/integration/jms.html",
       "name": "spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -34635,6 +34822,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "library_link": "https://docs.spring.io/spring-framework/reference/integration/jms.html",
       "minimum_java_version": 17,
       "name": "spring-jms-6.0",
       "scope": {
@@ -34703,6 +34891,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
+      "library_link": "https://spring.io/projects/spring-kafka",
       "name": "spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -34857,6 +35046,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
+      "library_link": "https://spring.io/projects/spring-pulsar",
       "minimum_java_version": 17,
       "name": "spring-pulsar-1.0",
       "scope": {
@@ -34918,6 +35108,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
+      "library_link": "https://spring.io/projects/spring-amqp",
       "name": "spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -34965,6 +35156,7 @@
     },
     {
       "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
+      "library_link": "https://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/remoting/rmi/package-summary.html",
       "name": "spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
@@ -35036,6 +35228,7 @@
         }
       ],
       "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/package-summary.html",
       "name": "spring-scheduling-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-scheduling-3.1"
@@ -35130,6 +35323,7 @@
         }
       ],
       "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
+      "library_link": "https://spring.io/projects/spring-security",
       "minimum_java_version": 17,
       "name": "spring-security-config-6.0",
       "scope": {
@@ -35152,6 +35346,7 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
+      "library_link": "https://github.com/spring-projects/spring-framework",
       "name": "spring-web-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-web-3.1"
@@ -35242,6 +35437,8 @@
     },
     {
       "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "library_link": "https://github.com/spring-projects/spring-framework",
+      "minimum_java_version": 17,
       "name": "spring-web-6.0",
       "scope": {
         "name": "io.opentelemetry.spring-web-6.0"
@@ -35264,6 +35461,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.0",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.0"
@@ -35372,6 +35570,7 @@
     },
     {
       "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.3"
@@ -35582,6 +35781,7 @@
         }
       ],
       "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-3.1"
@@ -35644,6 +35844,7 @@
     },
     {
       "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-5.3"
@@ -35800,6 +36001,7 @@
         }
       ],
       "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "minimum_java_version": 17,
       "name": "spring-webmvc-6.0",
       "scope": {
@@ -35863,6 +36065,7 @@
     },
     {
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-ws",
       "name": "spring-ws-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-ws-2.0"
@@ -36966,6 +37169,7 @@
     },
     {
       "description": "Instrumentation for the vibur-dbcp library, which provides connection pool metrics.",
+      "library_link": "https://www.vibur.org/",
       "name": "vibur-dbcp-11.0",
       "scope": {
         "name": "io.opentelemetry.vibur-dbcp-11.0"
@@ -40557,19 +40761,132 @@
           "type": "boolean"
         }
       ],
-      "description": "Instruments the V1 ClickHouseClient, providing database client spans and metrics.",
+      "description": "This instrumentation enables database client spans and metrics for the V1 ClickHouse client.",
       "library_link": "https://github.com/ClickHouse/clickhouse-java",
-      "name": "clickhouse-client-0.5",
+      "name": "clickhouse-client-v1-0.5",
       "scope": {
-        "name": "io.opentelemetry.clickhouse-client-0.5"
+        "name": "io.opentelemetry.clickhouse-client-v1-0.5"
       },
       "semconv": [
         "Database Client"
       ],
-      "source_path": "instrumentation/clickhouse-client-0.5",
+      "source_path": "instrumentation/clickhouse/clickhouse-client-v1-0.5",
       "target_versions": {
         "javaagent": [
           "com.clickhouse.client:clickhouse-client:[0.5.0,)"
+        ]
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.response.status_code",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "error.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        }
+      ]
+    },
+    {
+      "configurations": [
+        {
+          "default": true,
+          "description": "Enables statement sanitization for database queries.",
+          "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables database client spans and metrics for the V2 ClickHouse client.",
+      "library_link": "https://github.com/ClickHouse/clickhouse-java",
+      "name": "clickhouse-client-v2-0.8",
+      "scope": {
+        "name": "io.opentelemetry.clickhouse-client-v2-0.8"
+      },
+      "semconv": [
+        "Database Client"
+      ],
+      "source_path": "instrumentation/clickhouse/clickhouse-client-v2-0.8",
+      "target_versions": {
+        "javaagent": [
+          "com.clickhouse:client-v2:[0.6.4,)"
         ]
       },
       "telemetry": [
@@ -41897,6 +42214,7 @@
         }
       ],
       "description": "The executor instrumentation ensures that context is automatically propagated when using common Java executors (e.g., ThreadPoolExecutor, ScheduledThreadPoolExecutor, ForkJoinPool). When a task is submitted, the current context is captured and bound to the task. Then, when the task eventually runs, even if it\u2019s on a different thread, the instrumentation reactivates that context, enabling consistent correlation across concurrent and asynchronous workflows.\n",
+      "library_link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html",
       "name": "executors",
       "scope": {
         "name": "io.opentelemetry.executors"
@@ -41911,6 +42229,7 @@
     },
     {
       "description": "This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.\n",
+      "library_link": "https://github.com/twitter/finagle",
       "name": "finagle-http-23.11",
       "scope": {
         "name": "io.opentelemetry.finagle-http-23.11"
@@ -41926,6 +42245,7 @@
     },
     {
       "description": "This instrumentation for the Finatra web framework augments the telemetry generated by the underlying Netty instrumentation. It provides more specific, high-level context, such as route information, to the spans generated by Netty.",
+      "library_link": "https://github.com/twitter/finatra",
       "name": "finatra-2.9",
       "scope": {
         "name": "io.opentelemetry.finatra-2.9"
@@ -41973,6 +42293,7 @@
         }
       ],
       "description": "This instrumentation enables database client spans and database client metrics for Apache Geode cache operations.",
+      "library_link": "https://geode.apache.org/",
       "name": "geode-1.4",
       "scope": {
         "name": "io.opentelemetry.geode-1.4"
@@ -42184,6 +42505,7 @@
         }
       ],
       "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "library_link": "https://grails.apache.org/",
       "name": "grails-3.0",
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
@@ -42296,6 +42618,7 @@
         }
       ],
       "description": "This instrumentation enables spans for GraphQL Java operations.",
+      "library_link": "https://www.graphql-java.com/",
       "minimum_java_version": 11,
       "name": "graphql-java-20.0",
       "scope": {
@@ -42408,6 +42731,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly applications.",
+      "library_link": "https://javaee.github.io/grizzly/httpserverframework.html",
       "name": "grizzly-2.3",
       "scope": {
         "name": "io.opentelemetry.grizzly-2.3"
@@ -42565,6 +42889,7 @@
         }
       ],
       "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+      "library_link": "https://github.com/grpc/grpc-java",
       "name": "grpc-1.6",
       "scope": {
         "name": "io.opentelemetry.grpc-1.6"
@@ -42971,6 +43296,7 @@
     },
     {
       "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
+      "library_link": "https://www.gwtproject.org/",
       "name": "gwt-2.0",
       "scope": {
         "name": "io.opentelemetry.gwt-2.0"
@@ -43023,6 +43349,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-3.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-3.3"
@@ -43070,6 +43397,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-4.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-4.0"
@@ -43117,6 +43445,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
       "scope": {
@@ -43165,6 +43494,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
         "name": "io.opentelemetry.hibernate-procedure-call-4.3"
@@ -43204,6 +43534,7 @@
     },
     {
       "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
+      "library_link": "https://hibernate.org/reactive/",
       "name": "hibernate-reactive-1.0",
       "scope": {
         "name": "io.opentelemetry.hibernate-reactive-1.0"
@@ -43218,6 +43549,7 @@
     },
     {
       "description": "This instrumentation provides database client metrics for HikariCP 3.0+ connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+      "library_link": "https://github.com/brettwooldridge/HikariCP",
       "name": "hikaricp-3.0",
       "scope": {
         "name": "io.opentelemetry.hikaricp-3.0"
@@ -43399,6 +43731,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of HTTP client spans and HTTP client metrics for requests made using `java.net.HttpURLConnection`.\n",
+      "library_link": "https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/HttpURLConnection.html",
       "name": "http-url-connection",
       "scope": {
         "name": "io.opentelemetry.http-url-connection"
@@ -43507,6 +43840,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "library_link": "https://github.com/Netflix/Hystrix",
       "name": "hystrix-1.4",
       "scope": {
         "name": "io.opentelemetry.hystrix-1.4"
@@ -43554,6 +43888,7 @@
     },
     {
       "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+      "library_link": "https://github.com/influxdata/influxdb-java",
       "name": "influxdb-2.4",
       "scope": {
         "name": "io.opentelemetry.influxdb-2.4"
@@ -43686,6 +44021,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for requests made using the Java HTTP client.",
+      "library_link": "https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/package-summary.html",
       "minimum_java_version": 11,
       "name": "java-http-client",
       "scope": {
@@ -43824,6 +44160,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Java HTTP server.",
+      "library_link": "https://docs.oracle.com/en/java/javase/21/docs/api/jdk.httpserver/module-summary.html",
       "name": "java-http-server",
       "scope": {
         "name": "io.opentelemetry.java-http-server"
@@ -43960,6 +44297,7 @@
     },
     {
       "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
+      "library_link": "https://javalin.io/",
       "minimum_java_version": 11,
       "name": "javalin-5.0",
       "scope": {
@@ -44229,6 +44567,7 @@
         }
       ],
       "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
+      "library_link": "https://docs.oracle.com/javase/8/docs/api/java/sql/package-summary.html",
       "name": "jdbc",
       "scope": {
         "name": "io.opentelemetry.jdbc"
@@ -44768,6 +45107,7 @@
         }
       ],
       "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
+      "library_link": "https://kafka.apache.org/",
       "name": "kafka-clients-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-0.11"
@@ -44796,6 +45136,7 @@
         }
       ],
       "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
+      "library_link": "https://kafka.apache.org/",
       "name": "kafka-clients-2.6",
       "scope": {
         "name": "io.opentelemetry.kafka-clients-2.6"
@@ -44809,6 +45150,7 @@
       }
     },
     {
+      "library_link": "https://kafka.apache.org/documentation/streams/",
       "name": "kafka-streams-0.11",
       "scope": {
         "name": "io.opentelemetry.kafka-streams-0.11"
@@ -46085,6 +46427,7 @@
         }
       ],
       "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "library_link": "https://github.com/openai/openai-java",
       "name": "openai-java-1.1",
       "scope": {
         "name": "io.opentelemetry.openai-java-1.1"
@@ -46319,6 +46662,7 @@
     },
     {
       "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+      "library_link": "https://docs.oracle.com/database/121/JJUCP/",
       "name": "oracle-ucp-11.2",
       "scope": {
         "name": "io.opentelemetry.oracle-ucp-11.2"
@@ -46401,6 +46745,7 @@
         }
       ],
       "description": "When the OSHI library is detected on the classpath, this instrumentation will use the system class loader to load classes from the oshi-core jar that are then used to generate system metrics.",
+      "library_link": "https://github.com/oshi/oshi/",
       "name": "oshi",
       "scope": {
         "name": "io.opentelemetry.oshi"
@@ -47798,6 +48143,7 @@
     },
     {
       "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+      "library_link": "https://sparkjava.com/",
       "name": "spark-2.3",
       "scope": {
         "name": "io.opentelemetry.spark-2.3"
@@ -47833,6 +48179,7 @@
       ],
       "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-batch",
       "name": "spring-batch-3.0",
       "scope": {
         "name": "io.opentelemetry.spring-batch-3.0"
@@ -47864,6 +48211,7 @@
     {
       "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-boot",
       "name": "spring-boot-actuator-autoconfigure-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-boot-actuator-autoconfigure-2.0"
@@ -47878,6 +48226,7 @@
     },
     {
       "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
+      "library_link": "https://spring.io/projects/spring-boot",
       "name": "spring-boot-resources",
       "scope": {
         "name": "io.opentelemetry.spring-boot-resources"
@@ -47887,6 +48236,7 @@
     },
     {
       "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
+      "library_link": "https://spring.io/projects/spring-cloud-aws",
       "minimum_java_version": 17,
       "name": "spring-cloud-aws-3.0",
       "scope": {
@@ -47910,6 +48260,7 @@
         }
       ],
       "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
+      "library_link": "https://github.com/spring-cloud/spring-cloud-gateway",
       "name": "spring-cloud-gateway-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-cloud-gateway-2.0"
@@ -47924,6 +48275,7 @@
     },
     {
       "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/package-summary.html",
       "minimum_java_version": 17,
       "name": "spring-core-2.0",
       "scope": {
@@ -47939,6 +48291,7 @@
     },
     {
       "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
+      "library_link": "https://spring.io/projects/spring-data",
       "name": "spring-data-1.8",
       "scope": {
         "name": "io.opentelemetry.spring-data-1.8"
@@ -47998,6 +48351,7 @@
         }
       ],
       "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
+      "library_link": "https://spring.io/projects/spring-integration",
       "name": "spring-integration-4.1",
       "scope": {
         "name": "io.opentelemetry.spring-integration-4.1"
@@ -48068,6 +48422,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "library_link": "https://docs.spring.io/spring-framework/reference/integration/jms.html",
       "name": "spring-jms-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-jms-2.0"
@@ -48129,6 +48484,7 @@
         }
       ],
       "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "library_link": "https://docs.spring.io/spring-framework/reference/integration/jms.html",
       "minimum_java_version": 17,
       "name": "spring-jms-6.0",
       "scope": {
@@ -48197,6 +48553,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
+      "library_link": "https://spring.io/projects/spring-kafka",
       "name": "spring-kafka-2.7",
       "scope": {
         "name": "io.opentelemetry.spring-kafka-2.7"
@@ -48351,6 +48708,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
+      "library_link": "https://spring.io/projects/spring-pulsar",
       "minimum_java_version": 17,
       "name": "spring-pulsar-1.0",
       "scope": {
@@ -48412,6 +48770,7 @@
         }
       ],
       "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
+      "library_link": "https://spring.io/projects/spring-amqp",
       "name": "spring-rabbit-1.0",
       "scope": {
         "name": "io.opentelemetry.spring-rabbit-1.0"
@@ -48459,6 +48818,7 @@
     },
     {
       "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
+      "library_link": "https://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/remoting/rmi/package-summary.html",
       "name": "spring-rmi-4.0",
       "scope": {
         "name": "io.opentelemetry.spring-rmi-4.0"
@@ -48530,6 +48890,7 @@
         }
       ],
       "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/package-summary.html",
       "name": "spring-scheduling-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-scheduling-3.1"
@@ -48624,6 +48985,7 @@
         }
       ],
       "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
+      "library_link": "https://spring.io/projects/spring-security",
       "minimum_java_version": 17,
       "name": "spring-security-config-6.0",
       "scope": {
@@ -48646,6 +49008,7 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
+      "library_link": "https://github.com/spring-projects/spring-framework",
       "name": "spring-web-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-web-3.1"
@@ -48736,6 +49099,8 @@
     },
     {
       "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "library_link": "https://github.com/spring-projects/spring-framework",
+      "minimum_java_version": 17,
       "name": "spring-web-6.0",
       "scope": {
         "name": "io.opentelemetry.spring-web-6.0"
@@ -48758,6 +49123,7 @@
         }
       ],
       "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.0",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.0"
@@ -48866,6 +49232,7 @@
     },
     {
       "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webflux-5.3"
@@ -49076,6 +49443,7 @@
         }
       ],
       "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-3.1",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-3.1"
@@ -49138,6 +49506,7 @@
     },
     {
       "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-5.3",
       "scope": {
         "name": "io.opentelemetry.spring-webmvc-5.3"
@@ -49294,6 +49663,7 @@
         }
       ],
       "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "minimum_java_version": 17,
       "name": "spring-webmvc-6.0",
       "scope": {
@@ -49357,6 +49727,7 @@
     },
     {
       "disabled_by_default": true,
+      "library_link": "https://spring.io/projects/spring-ws",
       "name": "spring-ws-2.0",
       "scope": {
         "name": "io.opentelemetry.spring-ws-2.0"
@@ -50265,6 +50636,7 @@
     },
     {
       "description": "Instrumentation for the vibur-dbcp library, which provides connection pool metrics.",
+      "library_link": "https://www.vibur.org/",
       "name": "vibur-dbcp-11.0",
       "scope": {
         "name": "io.opentelemetry.vibur-dbcp-11.0"
