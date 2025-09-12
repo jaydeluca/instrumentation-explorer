@@ -63,44 +63,6 @@ function LibraryDetail() {
 
   const renderDetailsTab = () => (
     <>
-      {library.technology && (
-        <p>
-          <strong>Technology:</strong> {library.technology}
-        </p>
-      )}
-      {library.type && (
-        <p>
-          <strong>Type:</strong> {library.type}
-        </p>
-      )}
-      {library.maturity && (
-        <p>
-          <strong>Maturity:</strong> {library.maturity}
-        </p>
-      )}
-      {library.links && (
-        <div className="links-section">
-          <h3>Links:</h3>
-          <ul>
-            {Object.entries(library.links).map(([key, value]) => (
-              <li key={key}>
-                <a
-                  href={value as string}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {key}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {library.notes && (
-        <p>
-          <strong>Notes:</strong> {library.notes}
-        </p>
-      )}
       {library.configurations && library.configurations.length > 0 && (
         <div className="configurations-section">
           <h3>Configurations:</h3>
@@ -148,7 +110,7 @@ function LibraryDetail() {
             {library.target_versions.library &&
               library.target_versions.library.length > 0 && (
                 <div className="target-version-section">
-                  <h4>Library:</h4>
+                  <h4>Standalone Library:</h4>
                   <ul>
                     {library.target_versions.library.map((version, index) => (
                       <li key={index}>{version}</li>

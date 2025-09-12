@@ -39,7 +39,6 @@ export interface Library {
   telemetry?: Telemetry[];
   technology?: string;
   type?: string;
-  maturity?: string;
   links?: { [key: string]: string };
   notes?: string;
   disabled_by_default?: boolean;
