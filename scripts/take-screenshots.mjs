@@ -167,6 +167,43 @@ async function takeScreenshots() {
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
 
+    console.log('Taking Apache DBCP library screenshots with Standalone Library tab...');
+    // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
+    await page.goto(`${URL}library/2.18/apache-dbcp-2.0`);
+    
+    // First try to expand mobile menu if needed
+    try {
+      const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
+      if (await mobileMenuToggle.isVisible()) {
+        await mobileMenuToggle.click();
+        await page.waitForTimeout(500); // Wait for animation
+      }
+    } catch (error) {
+      console.log('Mobile menu toggle not found or not needed');
+    }
+    
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.selectOption('#theme-select', 'default');
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    
+    // Wait for the tabs to load and click on the "Standalone Library" tab
+    try {
+      await page.waitForSelector('.tab-navigation', { state: 'visible', timeout: 10000 });
+      await page.click('button:has-text("Standalone Library")');
+      await page.waitForLoadState('networkidle', { timeout: 30000 });
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for tab content to render
+    } catch (error) {
+      console.log('Standalone Library tab not found, taking screenshot of Details tab');
+    }
+    
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png`, fullPage: true });
+
+    // Switch to Grafana theme for the same library
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.selectOption('#theme-select', 'grafana');
+    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png`, fullPage: true });
+
     console.log('Screenshots completed successfully!');
 
   } catch (error) {
