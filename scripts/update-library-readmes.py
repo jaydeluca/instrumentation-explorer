@@ -52,11 +52,24 @@ class GitHubClient:
     
     def get_commit_sha_for_tag(self, repo: str, tag: str):
         """Get the commit SHA for a specific tag."""
+        # Try the specific tag ref endpoint first
         api_url = f"{self.base_url}/repos/{repo}/git/refs/tags/{tag}"
         
         response = self._get(api_url)
         if response and response.status_code == 200:
             ref_data = response.json()
+            
+            # Handle case where API returns a list of refs
+            if isinstance(ref_data, list):
+                if not ref_data:
+                    return None
+                # Find exact match or take the first one
+                for ref in ref_data:
+                    if ref["ref"] == f"refs/tags/{tag}":
+                        ref_data = ref
+                        break
+                else:
+                    ref_data = ref_data[0]
             
             # Handle both lightweight and annotated tags
             if ref_data["object"]["type"] == "commit":
@@ -68,6 +81,14 @@ class GitHubClient:
                 if tag_response and tag_response.status_code == 200:
                     tag_data = tag_response.json()
                     return tag_data["object"]["sha"]
+        
+        # Fallback: try to get commit SHA from releases API
+        releases_url = f"{self.base_url}/repos/{repo}/releases/tags/{tag}"
+        response = self._get(releases_url)
+        if response and response.status_code == 200:
+            release_data = response.json()
+            return release_data.get("target_commitish")
+            
         return None
     
     def get_latest_release_tag(self, repo: str):
