@@ -13,7 +13,7 @@ test.describe('GitHub Pages Redirect Flow', () => {
     await page.waitForLoadState('domcontentloaded');
     
     // Check that the URL has been corrected by the client-side redirect
-    await expect(page).toHaveURL(/\/analyze\?instrumentations=.*&version=2\.19/);
+    await expect(page).toHaveURL(/\/instrumentation-explorer\/analyze\?instrumentations=.*&version=2\.19/);
     
     // Verify the analyze page is loaded by checking the URL path
     expect(page.url()).toContain('/analyze');
@@ -32,7 +32,7 @@ test.describe('GitHub Pages Redirect Flow', () => {
     await page.waitForLoadState('domcontentloaded');
     
     // Check that the URL has been corrected
-    await expect(page).toHaveURL(`/library/${version}/${libraryName}`);
+    await expect(page).toHaveURL(`/instrumentation-explorer/library/${version}/${libraryName}`);
     
     // Verify the correct path is in the URL
     expect(page.url()).toContain(`/library/${version}/${libraryName}`);
@@ -45,7 +45,7 @@ test.describe('GitHub Pages Redirect Flow', () => {
     await page.waitForLoadState('domcontentloaded');
     
     // Check that both the path and hash are preserved
-    await expect(page).toHaveURL('/analyze?version=2.19#results');
+    await expect(page).toHaveURL('/instrumentation-explorer/analyze?version=2.19#results');
     
     // Verify the URL components
     expect(page.url()).toContain('/analyze');
@@ -71,7 +71,7 @@ test.describe('GitHub Pages Redirect Flow', () => {
     await page.goto(`http://localhost:4173${redirectUrl}`);
     await page.waitForLoadState('domcontentloaded');
     
-    await expect(page).toHaveURL('/about');
+    await expect(page).toHaveURL('/instrumentation-explorer/about');
     
     // Verify the URL is correct
     expect(page.url()).toContain('/about');
