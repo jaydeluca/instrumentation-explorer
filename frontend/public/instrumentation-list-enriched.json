@@ -6029,7 +6029,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -6169,7 +6168,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -17938,7 +17936,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -18078,7 +18075,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -33274,7 +33270,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -33414,7 +33409,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -46949,7 +46943,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -47089,7 +47082,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
