@@ -6029,7 +6029,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -6169,7 +6168,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -17938,7 +17936,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -18078,7 +18075,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -22045,6 +22041,7 @@
   "2.19": [
     {
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
+      "display_name": "ActiveJ",
       "library_link": "https://activej.io/",
       "minimum_java_version": 17,
       "name": "activej-http-6.0",
@@ -22168,6 +22165,7 @@
     },
     {
       "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
+      "display_name": "Akka Actors",
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-2.3",
       "scope": {
@@ -22185,6 +22183,7 @@
     },
     {
       "description": "This instrumentation provides context propagation for the Akka Fork-Join Pool, it does not emit any telemetry on its own.",
+      "display_name": "Akka Actors",
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-fork-join-2.5",
       "scope": {
@@ -22202,6 +22201,7 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
+      "display_name": "Akka HTTP",
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
       "name": "akka-http-10.0",
       "scope": {
@@ -33274,7 +33274,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -33414,7 +33413,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -37408,6 +37406,7 @@
   "3.0": [
     {
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
+      "display_name": "ActiveJ",
       "library_link": "https://activej.io/",
       "minimum_java_version": 17,
       "name": "activej-http-6.0",
@@ -37531,6 +37530,7 @@
     },
     {
       "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
+      "display_name": "Akka Actors",
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-2.3",
       "scope": {
@@ -37548,6 +37548,7 @@
     },
     {
       "description": "This instrumentation provides context propagation for the Akka Fork-Join Pool, it does not emit any telemetry on its own.",
+      "display_name": "Akka Actors",
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-fork-join-2.5",
       "scope": {
@@ -37565,6 +37566,7 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
+      "display_name": "Akka HTTP",
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
       "name": "akka-http-10.0",
       "scope": {
@@ -46949,7 +46951,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -47089,7 +47090,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
