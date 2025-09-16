@@ -183,9 +183,12 @@ button {
 
 .library-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
   padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start; /* Allow items to grow independently */
 }
 
 .library-card {
@@ -194,6 +197,7 @@ button {
   text-align: left;
   display: flex;
   flex-direction: column;
+  flex: 1; /* Fill available space in flex container */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Default shadow, can be overridden */
 }
 
@@ -431,7 +435,7 @@ td {
 /* Telemetry Tabs */
 .telemetry-tabs {
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
 }
 
 .telemetry-tabs button {
@@ -455,7 +459,7 @@ td {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .telemetry-section {
@@ -570,4 +574,12 @@ td {
 .target-version-section li:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+/* Responsive grid layout */
+@media (max-width: 960px) {
+  .library-list {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
 }

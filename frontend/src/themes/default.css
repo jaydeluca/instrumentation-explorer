@@ -410,3 +410,115 @@
   background-color: rgba(255, 0, 0, 0.05);
   color: #cb2431;
 }
+
+/* Library Group Component - Default Theme */
+
+.theme-default .library-group.multi-library {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-default .library-group.multi-library:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-default .group-header:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.theme-default .group-title {
+  color: #212529;
+}
+
+.theme-default .library-count {
+  color: #6c757d;
+  background: #f8f9fa;
+}
+
+.theme-default .expand-button {
+  color: #6c757d;
+}
+
+.theme-default .expand-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-default .expanded-libraries {
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+}
+
+.theme-default .expanded-title {
+  color: #6c757d;
+}
+
+.theme-default .library-card.grouped-library {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+}
+
+.theme-default .library-card.grouped-library:hover {
+  border-color: #d0d0d0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.theme-default .grouped-library-title {
+  color: #007bff;
+}
+
+.theme-default .single-library-title {
+  color: #212529;
+}
+
+/* Links Section Component - Default Theme */
+.theme-default .links-section {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.theme-default .links-section h3 {
+  color: #212529;
+}
+
+.theme-default .link-item {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+.theme-default .link-item:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+  color: #333333;
+}
+
+.theme-default .link-item.library-documentation svg {
+  color: #1976d2;
+}
+
+.theme-default .link-item.repository svg {
+  color: #333333;
+}
+
+.theme-default .link-item.javadoc svg {
+  color: #f57c00;
+}
+
+/* Library Detail Header - Default Theme */
+.theme-default .library-title-section h1 {
+  color: #212529;
+}
+
+.theme-default .library-raw-name {
+  color: #6c757d;
+}
+
+.theme-default .library-raw-name code {
+  background: #f8f9fa;
+  color: #d73a49;
+}
+
+.theme-default .library-description {
+  color: #333333;
+}

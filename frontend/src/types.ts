@@ -26,6 +26,8 @@ export interface Telemetry {
 
 export interface Library {
   name: string;
+  display_name?: string;
+  library_link?: string;
   description?: string;
   source_path: string;
   minimum_java_version?: number;
@@ -50,6 +52,17 @@ export interface Library {
   }[];
   semconv?: string[];
   markdown_content?: string;
+}
+
+export interface GroupedLibrary {
+  display_name: string;
+  library_link?: string;
+  libraries: Library[];
+  expanded: boolean;
+}
+
+export interface LibraryGroups {
+  [display_name: string]: GroupedLibrary;
 }
 
 export interface DiffResult {

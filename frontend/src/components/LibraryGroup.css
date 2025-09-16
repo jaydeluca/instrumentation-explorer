@@ -1,0 +1,143 @@
+/* Base Library Group Styles */
+.library-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Single Library Styles */
+.library-group.single-library {
+  position: relative;
+}
+
+/* Multi Library Group Styles */
+.library-group.multi-library {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  border-radius: 12px 12px 0 0;
+  transition: background-color 0.2s ease;
+}
+
+.group-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.group-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.library-count {
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.group-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.group-summary {
+  padding: 0 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Allow the summary to grow and push footer to bottom */
+}
+
+/* Ensure the library-card-footer in group summary is pushed to bottom */
+.group-summary .library-card-footer {
+  margin-top: auto;
+}
+
+/* Expanded Libraries */
+.expanded-libraries {
+  padding: 1rem 1.25rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.expanded-title {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.grouped-libraries-list {
+  display: grid;
+  gap: 1rem;
+  align-items: stretch; /* Ensure grouped library cards have equal height */
+}
+
+/* Grouped Library Cards */
+.library-card.grouped-library {
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.grouped-library-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.single-library-title {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .group-header {
+    padding: 0.875rem 1rem;
+  }
+  
+  .group-title {
+    font-size: 1.25rem;
+  }
+  
+  .library-count {
+    font-size: 0.75rem;
+  }
+  
+  .group-summary,
+  .expanded-libraries {
+    padding: 0 1rem 0.875rem;
+  }
+  
+  .library-card.grouped-library {
+    padding: 0.875rem;
+  }
+}
