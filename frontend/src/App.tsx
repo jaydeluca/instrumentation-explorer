@@ -1,20 +1,22 @@
-import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useLayoutEffect } from "react";
 import "./App.css";
 import SearchAndFilter from "./SearchAndFilter";
-import TruncatedDescription from "./TruncatedDescription";
-import type { Library } from "./types";
+import type { Library, LibraryGroups } from "./types";
 import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
+import { 
+  groupLibrariesByDisplayName, 
+  groupMatchesSearch
+} from "./utils/displayNameUtils";
 
-import { Link } from "react-router-dom"; // Keep Link for library cards
-import Header from "./components/Header"; // Import the new Header component
+import Header from "./components/Header";
+import LibraryGroup from "./components/LibraryGroup";
 
 function App() {
   const [libraries, setLibraries] = useState<Library[]>([]);
   const [allLibraries, setAllLibraries] = useState<{
     [key: string]: Library[];
   }>({});
+  const [libraryGroups, setLibraryGroups] = useState<LibraryGroups>({});
   const [versions, setVersions] = useState<string[]>([]);
   const [selectedVersion, setSelectedVersion] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,8 +45,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedVersion) {
-      setLibraries(allLibraries[selectedVersion]);
+    if (selectedVersion && allLibraries[selectedVersion]) {
+      const versionLibraries = allLibraries[selectedVersion];
+      setLibraries(versionLibraries);
+      const groups = groupLibrariesByDisplayName(versionLibraries);
+      setLibraryGroups(groups);
     }
   }, [selectedVersion, allLibraries]);
 
@@ -84,42 +89,130 @@ function App() {
     setActiveFilters(newFilters);
   };
 
-  const filteredLibraries = libraries.filter((library) => {
-    const matchesSearchTerm = library.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesSemconvFilters =
-      activeSemconvFilters.length > 0
-        ? activeSemconvFilters.every((filter) =>
-            library.semconv?.includes(filter)
-          )
-        : true;
-    const matchesTelemetryFilters =
-      activeTelemetryFilters.length > 0
-        ? activeTelemetryFilters.every((filter) => {
-            if (filter === "Spans")
-              return library.telemetry?.some((t) => t.spans?.length);
-            if (filter === "Metrics")
-              return library.telemetry?.some((t) => t.metrics?.length);
-            return false;
-          })
-        : true;
-    const matchesTargetFilters =
-      activeTargetFilters.length > 0
-        ? activeTargetFilters.every(
-            (filter) =>
-              library.target_versions &&
-              (library.target_versions[
-                filter as keyof typeof library.target_versions
-              ]?.length || 0) > 0
-          )
-        : true;
-    return (
-      matchesSearchTerm &&
-      matchesSemconvFilters &&
-      matchesTelemetryFilters &&
-      matchesTargetFilters
-    );
+  const handleToggleExpanded = (displayName: string) => {
+    setLibraryGroups(prev => ({
+      ...prev,
+      [displayName]: {
+        ...prev[displayName],
+        expanded: !prev[displayName].expanded
+      }
+    }));
+  };
+
+  // Function to equalize heights of collapsed library groups
+  const equalizeCollapsedHeights = useCallback(() => {
+    const libraryList = document.querySelector('.library-list') as HTMLElement;
+    if (!libraryList) return;
+
+    const libraryGroups = libraryList.querySelectorAll('.library-group') as NodeListOf<HTMLElement>;
+    
+    // Reset all heights first
+    libraryGroups.forEach(group => {
+      group.style.height = 'auto';
+    });
+
+    // Group elements by row (based on their top position)
+    const rows: HTMLElement[][] = [];
+    const groupPositions = Array.from(libraryGroups).map(group => ({
+      element: group,
+      top: group.getBoundingClientRect().top,
+      isExpanded: group.querySelector('.expanded-libraries') !== null
+    }));
+
+    groupPositions.forEach(({ element, top, isExpanded }) => {
+      const existingRow = rows.find(row => 
+        Math.abs(row[0].getBoundingClientRect().top - top) < 5
+      );
+      
+      if (existingRow) {
+        existingRow.push(element);
+      } else {
+        rows.push([element]);
+      }
+    });
+
+    // For each row, equalize heights only if no items are expanded
+    rows.forEach(row => {
+      const hasExpandedItem = row.some(element => 
+        element.querySelector('.expanded-libraries') !== null
+      );
+
+      if (!hasExpandedItem && row.length > 1) {
+        // Get the natural height of each collapsed item
+        const heights = row.map(element => {
+          const rect = element.getBoundingClientRect();
+          return rect.height;
+        });
+        
+        const maxHeight = Math.max(...heights);
+        
+        // Apply the max height to all items in the row
+        row.forEach(element => {
+          element.style.height = `${maxHeight}px`;
+        });
+      }
+    });
+  }, []);
+
+  // Run height equalization after layout changes
+  useLayoutEffect(() => {
+    const timeoutId = setTimeout(equalizeCollapsedHeights, 0);
+    return () => clearTimeout(timeoutId);
+  }, [libraryGroups, equalizeCollapsedHeights]);
+
+  // Also run on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      equalizeCollapsedHeights();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [equalizeCollapsedHeights]);
+
+  // Filter groups based on search and filters
+  const filteredGroups = Object.values(libraryGroups).filter((group) => {
+    // Check if group matches search
+    if (!groupMatchesSearch(group, searchTerm)) {
+      return false;
+    }
+
+    // Check if any library in the group matches filters
+    const matchingLibraries = group.libraries.filter((library) => {
+      const matchesSemconvFilters =
+        activeSemconvFilters.length > 0
+          ? activeSemconvFilters.every((filter) =>
+              library.semconv?.includes(filter)
+            )
+          : true;
+      const matchesTelemetryFilters =
+        activeTelemetryFilters.length > 0
+          ? activeTelemetryFilters.every((filter) => {
+              if (filter === "Spans")
+                return library.telemetry?.some((t) => t.spans?.length);
+              if (filter === "Metrics")
+                return library.telemetry?.some((t) => t.metrics?.length);
+              return false;
+            })
+          : true;
+      const matchesTargetFilters =
+        activeTargetFilters.length > 0
+          ? activeTargetFilters.every(
+              (filter) =>
+                library.target_versions &&
+                (library.target_versions[
+                  filter as keyof typeof library.target_versions
+                ]?.length || 0) > 0
+            )
+          : true;
+      return (
+        matchesSemconvFilters &&
+        matchesTelemetryFilters &&
+        matchesTargetFilters
+      );
+    });
+
+    return matchingLibraries.length > 0;
   });
 
   return (
@@ -149,55 +242,13 @@ function App() {
         }
       />
       <div className="library-list">
-        {filteredLibraries.map((library) => (
-          <div key={library.name} className="library-card">
-            <Link to={`/library/${selectedVersion}/${library.name}`}>
-              <h2>{library.name}</h2>
-            </Link>
-            <div className="target-tags">
-              {library.target_versions?.javaagent && (
-                <span className="target-tag javaagent">
-                  <SmartToyIcon />
-                </span>
-              )}
-              {library.target_versions?.library && (
-                <span className="target-tag library">
-                  <LocalLibraryIcon />
-                </span>
-              )}
-            </div>
-            <TruncatedDescription description={library.description} />
-            {library.telemetry && library.semconv && (
-              <div className="divider"></div>
-            )}
-
-            <div className="library-card-footer">
-              {(library.telemetry?.some((t) => t.spans?.length) ||
-                library.telemetry?.some((t) => t.metrics?.length)) && (
-                <div className="telemetry-tags">
-                  <h4>Telemetry</h4>
-                  {library.telemetry?.some((t) => t.spans?.length) && (
-                    <span className="telemetry-tag spans">Spans</span>
-                  )}
-                  {library.telemetry?.some((t) => t.metrics?.length) && (
-                    <span className="telemetry-tag metrics">Metrics</span>
-                  )}
-                </div>
-              )}
-              {library.semconv && library.semconv.length > 0 && (
-                <div className="semconv-tags-container">
-                  <h4>Semantic Conventions</h4>
-                  <div className="semconv-tags">
-                    {library.semconv.map((tag) => (
-                      <span key={tag} className="semconv-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+        {filteredGroups.map((group) => (
+          <LibraryGroup
+            key={group.display_name}
+            group={group}
+            selectedVersion={selectedVersion}
+            onToggleExpanded={handleToggleExpanded}
+          />
         ))}
       </div>
     </div>

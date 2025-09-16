@@ -3,9 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import "./LibraryDetail.css";
 import TelemetryDiff from "./TelemetryDiff";
-import Header from "./components/Header"; // Import the new Header component
+import Header from "./components/Header";
+import LinksSection from "./components/LinksSection";
 import type { Library } from "./types";
 import { sortVersionsDescending } from "./utils/versionUtils";
+import { getEffectiveDisplayName } from "./utils/displayNameUtils";
 
 function LibraryDetail() {
   const { libraryName, version } = useParams();
@@ -254,8 +256,21 @@ function LibraryDetail() {
         versions={versions}
       />
       <div className="library-detail library-card">
-        <h1>{library.name}</h1>
-        {library.description && <p>{library.description}</p>}
+        <div className="library-header">
+          <div className="library-title-section">
+            <h1>{getEffectiveDisplayName(library)}</h1>
+            {library.display_name && library.display_name !== library.name && (
+              <p className="library-raw-name">
+                <span className="raw-name-label">Instrumentation Name:</span> 
+                <code>{library.name}</code>
+              </p>
+            )}
+          </div>
+        </div>
+        
+        {library.description && <p className="library-description">{library.description}</p>}
+        
+        <LinksSection library={library} />
         
         {/* Tab Navigation - only show when there's markdown content */}
         {library.markdown_content && (
