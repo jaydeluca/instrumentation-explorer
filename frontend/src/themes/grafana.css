@@ -420,3 +420,115 @@
 .theme-grafana .telemetry-source-label {
   color: #c7c7c7;
 }
+
+/* Library Group Component - Grafana Theme */
+
+.theme-grafana .library-group.multi-library {
+  background: #2c2e34;
+  border: 1px solid #3a3d46;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.theme-grafana .library-group.multi-library:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-grafana .group-header:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.theme-grafana .group-title {
+  color: #e0e0e0;
+}
+
+.theme-grafana .library-count {
+  color: #c7c7c7;
+  background: #3a3d46;
+}
+
+.theme-grafana .expand-button {
+  color: #c7c7c7;
+}
+
+.theme-grafana .expand-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-grafana .expanded-libraries {
+  border-top: 1px solid #3a3d46;
+  background: #25272c;
+}
+
+.theme-grafana .expanded-title {
+  color: #c7c7c7;
+}
+
+.theme-grafana .library-card.grouped-library {
+  background: #2c2e34;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .library-card.grouped-library:hover {
+  border-color: #5c5f66;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-grafana .grouped-library-title {
+  color: #629e51;
+}
+
+.theme-grafana .single-library-title {
+  color: #e0e0e0;
+}
+
+/* Links Section Component - Grafana Theme */
+.theme-grafana .links-section {
+  background: #25272c;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .links-section h3 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .link-item {
+  background: #2c2e34;
+  border: 1px solid #3a3d46;
+  color: #e0e0e0;
+}
+
+.theme-grafana .link-item:hover {
+  background: #3a3d46;
+  border-color: #5c5f66;
+  color: #e0e0e0;
+}
+
+.theme-grafana .link-item.library-documentation svg {
+  color: #629e51;
+}
+
+.theme-grafana .link-item.repository svg {
+  color: #e0e0e0;
+}
+
+.theme-grafana .link-item.javadoc svg {
+  color: #e67e22;
+}
+
+/* Library Detail Header - Grafana Theme */
+.theme-grafana .library-title-section h1 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .library-raw-name {
+  color: #c7c7c7;
+}
+
+.theme-grafana .library-raw-name code {
+  background: #3a3d46;
+  color: #8cd26a;
+}
+
+.theme-grafana .library-description {
+  color: #c7c7c7;
+}

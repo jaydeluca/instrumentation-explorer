@@ -74,7 +74,7 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
               ) : tag === 'library' ? (
                 <>
                   <LocalLibraryIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
-                  Library
+                  Standalone
                 </>
               ) : (
                 tag
