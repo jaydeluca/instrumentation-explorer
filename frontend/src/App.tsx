@@ -115,11 +115,10 @@ function App() {
     const rows: HTMLElement[][] = [];
     const groupPositions = Array.from(libraryGroups).map(group => ({
       element: group,
-      top: group.getBoundingClientRect().top,
-      isExpanded: group.querySelector('.expanded-libraries') !== null
+      top: group.getBoundingClientRect().top
     }));
 
-    groupPositions.forEach(({ element, top, isExpanded }) => {
+    groupPositions.forEach(({ element, top }) => {
       const existingRow = rows.find(row => 
         Math.abs(row[0].getBoundingClientRect().top - top) < 5
       );
