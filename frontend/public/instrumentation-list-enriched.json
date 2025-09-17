@@ -6029,7 +6029,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -6169,7 +6168,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -17938,7 +17936,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -18078,7 +18075,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -33278,7 +33274,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -33418,7 +33413,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -37419,6 +37413,10 @@
       "scope": {
         "name": "io.opentelemetry.activej-http-6.0"
       },
+      "semantic_conventions": [
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
       "semconv": [
         "Client",
         "Database Client",
@@ -37578,6 +37576,12 @@
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS",
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
       "semconv": [
         "Client",
         "Database Client",
@@ -37782,6 +37786,9 @@
       "scope": {
         "name": "io.opentelemetry.alibaba-druid-1.0"
       },
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
       "semconv": [
         "Database Client"
       ],
@@ -37948,12 +37955,16 @@
     },
     {
       "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
+      "display_name": "Apache DBCP",
       "library_link": "https://commons.apache.org/proper/commons-dbcp/",
       "markdown_content": "# Library Instrumentation for Apache DBCP version 2.0 and higher\n\nProvides OpenTelemetry instrumentation for [Apache DBCP](https://commons.apache.org/proper/commons-dbcp/).\n\n## Quickstart\n\n### Add these dependencies to your project\n\nReplace `OPENTELEMETRY_VERSION` with the [latest\nrelease](https://central.sonatype.com/artifact/io.opentelemetry.instrumentation/opentelemetry-apache-dbcp-2.0).\n\nFor Maven, add to your `pom.xml` dependencies:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry.instrumentation</groupId>\n    <artifactId>opentelemetry-apache-dbcp-2.0</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n</dependencies>\n```\n\nFor Gradle, add to your dependencies:\n\n```groovy\nimplementation(\"io.opentelemetry.instrumentation:opentelemetry-apache-dbcp-2.0:OPENTELEMETRY_VERSION\")\n```\n\n### Usage\n\nThe instrumentation library allows registering `BasicDataSourceMXBean` instances for collecting\nOpenTelemetry-based metrics. A non-null name of the data source must be explicitly provided.\n\n```java\nApacheDbcpTelemetry apacheDbcpTelemetry;\n\nvoid configure(OpenTelemetry openTelemetry, BasicDataSourceMXBean dataSource, String dataSourceName) {\n  apacheDbcpTelemetry = ApacheDbcpTelemetry.create(openTelemetry);\n  apacheDbcpTelemetry.registerMetrics(dataSource, dataSourceName);\n}\n\nvoid destroy(BasicDataSourceMXBean dataSource) {\n  apacheDbcpTelemetry.unregisterMetrics(dataSource);\n}\n```\n",
       "name": "apache-dbcp-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-dbcp-2.0"
       },
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
       "semconv": [
         "Database Client"
       ],
@@ -38102,11 +38113,16 @@
         }
       ],
       "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "display_name": "Apache Dubbo",
       "library_link": "https://github.com/apache/dubbo/",
       "name": "apache-dubbo-2.7",
       "scope": {
         "name": "io.opentelemetry.apache-dubbo-2.7"
       },
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_SERVER_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client"
@@ -38187,11 +38203,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Apache HttpAsyncClient.",
+      "display_name": "Apache HttpAsyncClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -38293,11 +38314,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -38394,11 +38420,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 4 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -38501,12 +38532,17 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "markdown_content": "# Library Instrumentation for Apache HttpClient version 4.3 and higher\n\nProvides OpenTelemetry instrumentation for the [Apache HttpClient](https://hc.apache.org/httpcomponents-client-ga/), enabling HTTP client spans and metrics.\n\n## Quickstart\n\n### Add these dependencies to your project\n\nReplace `OPENTELEMETRY_VERSION` with the [latest release](https://central.sonatype.com/artifact/io.opentelemetry.instrumentation/opentelemetry-apache-httpclient-4.3).\n\nFor Maven, add to your `pom.xml` dependencies:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry.instrumentation</groupId>\n    <artifactId>opentelemetry-apache-httpclient-4.3</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n</dependencies>\n```\n\nFor Gradle, add to your dependencies:\n\n```kotlin\nimplementation(\"io.opentelemetry.instrumentation:opentelemetry-apache-httpclient-4.3:OPENTELEMETRY_VERSION\")\n```\n\n### Usage\n\n```java\nimport io.opentelemetry.api.OpenTelemetry;\nimport io.opentelemetry.instrumentation.apachehttpclient.v4_3.ApacheHttpClientTelemetry;\nimport org.apache.http.impl.client.CloseableHttpClient;\n\n// ...\n\n// Get an OpenTelemetry instance\nOpenTelemetry openTelemetry = ...;\n\n// Create an ApacheHttpClientTelemetry instance\nApacheHttpClientTelemetry telemetry = ApacheHttpClientTelemetry.create(openTelemetry);\n\n// Get a traced HttpClient\nCloseableHttpClient httpClient = telemetry.newHttpClient();\n\n// ... use the httpClient to make requests\n```\n",
       "name": "apache-httpclient-4.3",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.3"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -38613,11 +38649,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 5 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -38719,12 +38760,17 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "markdown_content": "# Library Instrumentation for Apache Http client version 5.2\n\nProvides OpenTelemetry instrumentation for [Apache Http Client 5.2](https://hc.apache.org/httpcomponents-client-5.2.x/).\n\n## Quickstart\n\n### Add these dependencies to your project\n\nReplace `OPENTELEMETRY_VERSION` with the [latest\nrelease]( https://central.sonatype.com/artifact/io.opentelemetry.instrumentation/opentelemetry-apache-httpclient-5.2).\n\nFor Maven, add to your `pom.xml` dependencies:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry.instrumentation</groupId>\n    <artifactId>opentelemetry-apache-httpclient-5.2</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n</dependencies>\n```\n\nFor Gradle, add to your dependencies:\n\n```groovy\nimplementation(\"io.opentelemetry.instrumentation:opentelemetry-apache-httpclient-5.2:OPENTELEMETRY_VERSION\")\n```\n\n### Usage\n\nThe instrumentation library provides the class `ApacheHttpClientTelemetry` that has a builder\nmethod and allows the creation of an instance of the `HttpClientBuilder` to provide\nOpenTelemetry-based spans and context propagation:\n\n```java\nimport io.opentelemetry.api.OpenTelemetry;\nimport io.opentelemetry.instrumentation.apachehttpclient.v5_2.ApacheHttpClientTelemetry;\nimport org.apache.hc.client5.http.classic.HttpClient;\nimport org.apache.hc.client5.http.impl.classic.HttpClientBuilder;\n\npublic class ApacheHttpClientConfiguration {\n\n  private OpenTelemetry openTelemetry;\n\n  public ApacheHttpClientConfiguration(OpenTelemetry openTelemetry) {\n    this.openTelemetry = openTelemetry;\n  }\n\n  // creates a new http client builder for constructing http clients with opentelemetry instrumentation\n  public HttpClientBuilder createBuilder() {\n    return ApacheHttpClientTelemetry.builder(openTelemetry).build().newHttpClientBuilder();\n  }\n\n  // creates a new http client with opentelemetry instrumentation\n  public HttpClient newHttpClient() {\n    return ApacheHttpClientTelemetry.builder(openTelemetry).build().newHttpClient();\n  }\n}\n```\n",
       "name": "apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -48653,7 +48699,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -48793,7 +48838,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -52794,6 +52838,10 @@
       "scope": {
         "name": "io.opentelemetry.activej-http-6.0"
       },
+      "semantic_conventions": [
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
       "semconv": [
         "Client",
         "Database Client",
@@ -52953,6 +53001,12 @@
       "scope": {
         "name": "io.opentelemetry.akka-http-10.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS",
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
       "semconv": [
         "Client",
         "Database Client",
@@ -53156,6 +53210,9 @@
       "scope": {
         "name": "io.opentelemetry.alibaba-druid-1.0"
       },
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
       "semconv": [
         "Database Client"
       ],
@@ -53253,11 +53310,15 @@
     },
     {
       "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
+      "display_name": "Apache DBCP",
       "library_link": "https://commons.apache.org/proper/commons-dbcp/",
       "name": "apache-dbcp-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-dbcp-2.0"
       },
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
       "semconv": [
         "Database Client"
       ],
@@ -53349,11 +53410,16 @@
         }
       ],
       "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "display_name": "Apache Dubbo",
       "library_link": "https://github.com/apache/dubbo/",
       "name": "apache-dubbo-2.7",
       "scope": {
         "name": "io.opentelemetry.apache-dubbo-2.7"
       },
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_SERVER_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client"
@@ -53434,11 +53500,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Apache HttpAsyncClient.",
+      "display_name": "Apache HttpAsyncClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpasyncclient-4.1",
       "scope": {
         "name": "io.opentelemetry.apache-httpasyncclient-4.1"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -53540,11 +53611,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-2.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-2.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -53641,11 +53717,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 4 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-4.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -53748,11 +53829,16 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-4.3",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-4.3"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -53859,11 +53945,16 @@
     },
     {
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 5 of the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-5.0",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.0"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -53965,11 +54056,16 @@
     },
     {
       "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "display_name": "Apache HttpClient",
       "library_link": "https://hc.apache.org/index.html",
       "name": "apache-httpclient-5.2",
       "scope": {
         "name": "io.opentelemetry.apache-httpclient-5.2"
       },
+      "semantic_conventions": [
+        "HTTP_CLIENT_METRICS",
+        "HTTP_CLIENT_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP"
@@ -62332,7 +62428,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
@@ -62472,7 +62567,6 @@
               ],
               "description": "System network packets",
               "name": "system.network.packets",
-              "semconv": true,
               "type": "LONG_SUM",
               "unit": "packets"
             }
