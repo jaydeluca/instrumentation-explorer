@@ -43866,7 +43866,7 @@
                 }
               ],
               "description": "Count of circuit breaker state changes.",
-              "name": "failsafe.circuit_breaker.state_changes.count",
+              "name": "failsafe.circuit_breaker.state_change.count",
               "type": "LONG_SUM",
               "unit": "execution"
             }
@@ -46133,128 +46133,634 @@
       }
     },
     {
-      "disabled_by_default": true,
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 1.x",
+      "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/ws/rs/package-summary.html",
       "name": "jaxrs-1.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-1.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-1.0",
       "target_versions": {
         "javaagent": [
           "javax.ws.rs:jsr311-api:[0.5,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 2.x",
+      "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/ws/rs/package-summary.html",
       "name": "jaxrs-2.0-annotations",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-annotations"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-annotations",
       "target_versions": {
         "javaagent": [
           "javax.ws.rs:javax.ws.rs-api:[,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Apache CXF, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Apache CXF JAX-RS 2.x",
+      "library_link": "https://cxf.apache.org/",
       "name": "jaxrs-2.0-cxf-3.2",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-cxf-3.2"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-cxf-3.2",
       "target_versions": {
         "javaagent": [
           "org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)",
           "org.apache.tomee:openejb-cxf-rs:(8,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Eclipse Jersey JAX-RS 2.x",
+      "library_link": "https://eclipse-ee4j.github.io/jersey/",
       "name": "jaxrs-2.0-jersey-2.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-jersey-2.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-jersey-2.0",
       "target_versions": {
         "javaagent": [
           "org.glassfish.jersey.containers:jersey-container-servlet:[2.0,3.0.0)",
           "org.glassfish.jersey.core:jersey-server:[2.0,3.0.0)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_link": "https://resteasy.dev/",
       "name": "jaxrs-2.0-resteasy-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-resteasy-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.0",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-jaxrs:[3.0.0.Final,3.1.0.Final)",
           "org.jboss.resteasy:resteasy-jaxrs:[3.5.0.Final,4)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_link": "https://resteasy.dev/",
       "name": "jaxrs-2.0-resteasy-3.1",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-resteasy-3.1"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.1",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-core:[4.0.0.Final,6)",
           "org.jboss.resteasy:resteasy-jaxrs:[3.1.0.Final,3.5.0.Final)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 3.x",
+      "library_link": "https://jakarta.ee/specifications/restful-ws/3.0/",
       "name": "jaxrs-3.0-annotations",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-annotations"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-annotations",
       "target_versions": {
         "javaagent": [
           "jakarta.ws.rs:jakarta.ws.rs-api:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Eclipse Jersey JAX-RS 3.x",
+      "library_link": "https://eclipse-ee4j.github.io/jersey/",
       "minimum_java_version": 11,
       "name": "jaxrs-3.0-jersey-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-jersey-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-jersey-3.0",
       "target_versions": {
         "javaagent": [
           "org.glassfish.jersey.core:jersey-server:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 3.x",
+      "library_link": "https://resteasy.dev/",
       "minimum_java_version": 11,
       "name": "jaxrs-3.0-resteasy-6.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-resteasy-6.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-resteasy-6.0",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-core:[6.0.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "jaxws-2.0",
@@ -57882,7 +58388,7 @@
                 }
               ],
               "description": "Count of circuit breaker state changes.",
-              "name": "failsafe.circuit_breaker.state_changes.count",
+              "name": "failsafe.circuit_breaker.state_change.count",
               "type": "LONG_SUM",
               "unit": "execution"
             }
@@ -59976,128 +60482,634 @@
       }
     },
     {
-      "disabled_by_default": true,
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 1.x",
+      "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/ws/rs/package-summary.html",
       "name": "jaxrs-1.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-1.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-1.0",
       "target_versions": {
         "javaagent": [
           "javax.ws.rs:jsr311-api:[0.5,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 2.x",
+      "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/ws/rs/package-summary.html",
       "name": "jaxrs-2.0-annotations",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-annotations"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-annotations",
       "target_versions": {
         "javaagent": [
           "javax.ws.rs:javax.ws.rs-api:[,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Apache CXF, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Apache CXF JAX-RS 2.x",
+      "library_link": "https://cxf.apache.org/",
       "name": "jaxrs-2.0-cxf-3.2",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-cxf-3.2"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-cxf-3.2",
       "target_versions": {
         "javaagent": [
           "org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)",
           "org.apache.tomee:openejb-cxf-rs:(8,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Eclipse Jersey JAX-RS 2.x",
+      "library_link": "https://eclipse-ee4j.github.io/jersey/",
       "name": "jaxrs-2.0-jersey-2.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-jersey-2.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-jersey-2.0",
       "target_versions": {
         "javaagent": [
           "org.glassfish.jersey.containers:jersey-container-servlet:[2.0,3.0.0)",
           "org.glassfish.jersey.core:jersey-server:[2.0,3.0.0)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_link": "https://resteasy.dev/",
       "name": "jaxrs-2.0-resteasy-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-resteasy-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.0",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-jaxrs:[3.0.0.Final,3.1.0.Final)",
           "org.jboss.resteasy:resteasy-jaxrs:[3.5.0.Final,4)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_link": "https://resteasy.dev/",
       "name": "jaxrs-2.0-resteasy-3.1",
       "scope": {
         "name": "io.opentelemetry.jaxrs-2.0-resteasy-3.1"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.1",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-core:[4.0.0.Final,6)",
           "org.jboss.resteasy:resteasy-jaxrs:[3.1.0.Final,3.5.0.Final)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JAX-RS 3.x",
+      "library_link": "https://jakarta.ee/specifications/restful-ws/3.0/",
       "name": "jaxrs-3.0-annotations",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-annotations"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-annotations",
       "target_versions": {
         "javaagent": [
           "jakarta.ws.rs:jakarta.ws.rs-api:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "Eclipse Jersey JAX-RS 3.x",
+      "library_link": "https://eclipse-ee4j.github.io/jersey/",
       "minimum_java_version": 11,
       "name": "jaxrs-3.0-jersey-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-jersey-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-jersey-3.0",
       "target_versions": {
         "javaagent": [
           "org.glassfish.jersey.core:jersey-server:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+          "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "display_name": "JBoss RESTEasy JAX-RS 3.x",
+      "library_link": "https://resteasy.dev/",
       "minimum_java_version": 11,
       "name": "jaxrs-3.0-resteasy-6.0",
       "scope": {
         "name": "io.opentelemetry.jaxrs-3.0-resteasy-6.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-resteasy-6.0",
       "target_versions": {
         "javaagent": [
           "org.jboss.resteasy:resteasy-core:[6.0.0.Final,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "jaxrs.canceled",
+                  "type": "BOOLEAN"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.jaxrs.experimental-span-attributes=true"
+        }
+      ]
     },
     {
       "name": "jaxws-2.0",
