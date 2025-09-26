@@ -38125,7 +38125,8 @@
       ],
       "semconv": [
         "Aws",
-        "Database Client"
+        "Database Client",
+        "Rpc"
       ],
       "source_path": "instrumentation/apache-dubbo-2.7",
       "target_versions": {
@@ -38135,6 +38136,66 @@
       },
       "telemetry": [
         {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
           "spans": [
             {
               "attributes": [
@@ -50421,19 +50482,6 @@
       "source_path": "instrumentation/runtime-telemetry/runtime-telemetry-java8"
     },
     {
-      "name": "rxjava-1.0",
-      "scope": {
-        "name": "io.opentelemetry.rxjava-1.0"
-      },
-      "semconv": [],
-      "source_path": "instrumentation/rxjava/rxjava-1.0",
-      "target_versions": {
-        "library": [
-          "io.reactivex:rxjava:1.0.7"
-        ]
-      }
-    },
-    {
       "name": "rxjava-2.0",
       "scope": {
         "name": "io.opentelemetry.rxjava-2.0"
@@ -53982,7 +54030,8 @@
       ],
       "semconv": [
         "Aws",
-        "Database Client"
+        "Database Client",
+        "Rpc"
       ],
       "source_path": "instrumentation/apache-dubbo-2.7",
       "target_versions": {
@@ -53992,6 +54041,66 @@
       },
       "telemetry": [
         {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                }
+              ],
+              "description": "The duration of an outbound RPC invocation.",
+              "name": "rpc.client.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "rpc.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.service",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "rpc.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "The duration of an inbound RPC invocation.",
+              "name": "rpc.server.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "ms"
+            }
+          ],
           "spans": [
             {
               "attributes": [
@@ -64703,19 +64812,6 @@
       },
       "semconv": [],
       "source_path": "instrumentation/runtime-telemetry/runtime-telemetry-java8"
-    },
-    {
-      "name": "rxjava-1.0",
-      "scope": {
-        "name": "io.opentelemetry.rxjava-1.0"
-      },
-      "semconv": [],
-      "source_path": "instrumentation/rxjava/rxjava-1.0",
-      "target_versions": {
-        "library": [
-          "io.reactivex:rxjava:1.0.7"
-        ]
-      }
     },
     {
       "name": "rxjava-2.0",
