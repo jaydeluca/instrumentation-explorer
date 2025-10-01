@@ -37535,6 +37535,9 @@
     {
       "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
       "display_name": "Akka Actors",
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-2.3",
       "scope": {
@@ -37553,6 +37556,9 @@
     {
       "description": "This instrumentation provides context propagation for the Akka Fork-Join Pool, it does not emit any telemetry on its own.",
       "display_name": "Akka Actors",
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-fork-join-2.5",
       "scope": {
@@ -37571,6 +37577,9 @@
     {
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "display_name": "Akka HTTP",
+      "features": [
+        "HTTP_ROUTE"
+      ],
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
       "name": "akka-http-10.0",
       "scope": {
@@ -53568,6 +53577,9 @@
     {
       "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
       "display_name": "Akka Actors",
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-2.3",
       "scope": {
@@ -53586,6 +53598,9 @@
     {
       "description": "This instrumentation provides context propagation for the Akka Fork-Join Pool, it does not emit any telemetry on its own.",
       "display_name": "Akka Actors",
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
       "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
       "name": "akka-actor-fork-join-2.5",
       "scope": {
@@ -53604,6 +53619,9 @@
     {
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "display_name": "Akka HTTP",
+      "features": [
+        "HTTP_ROUTE"
+      ],
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
       "name": "akka-http-10.0",
       "scope": {
