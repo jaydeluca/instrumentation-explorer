@@ -37405,6 +37405,32 @@
   ],
   "2.20": [
     {
+      "configurations": [
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
       "display_name": "ActiveJ",
       "library_link": "https://activej.io/",
@@ -37575,9 +37601,66 @@
       }
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Used to specify a mapping from host names or IP addresses to peer services.",
+          "name": "otel.instrumentation.common.peer-service-mapping",
+          "type": "map"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP client telemetry.",
+          "name": "otel.instrumentation.http.client.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP client telemetry.",
+          "name": "otel.instrumentation.http.client.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP client telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.client.request.size` and `http.client.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.client.emit-experimental-telemetry",
+          "type": "boolean"
+        },
+        {
+          "default": true,
+          "description": "Redact sensitive URL parameters. See https://opentelemetry.io/docs/specs/semconv/http/http-spans.",
+          "name": "otel.instrumentation.http.client.experimental.redact-query-parameters",
+          "type": "boolean"
+        },
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "display_name": "Akka HTTP",
       "features": [
+        "CONTEXT_PROPAGATION",
         "HTTP_ROUTE"
       ],
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
@@ -37788,6 +37871,14 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Opt-in to emit stable semantic conventions instead of the old experimental semantic conventions. Accepts a comma-separated list of semantic convention groups (e.g., `database`, `http`, `messaging`). Use `<group>/dup` to emit both old and new conventions simultaneously. Stable semantic conventions will become the default in version 3.0 of the agent.\n",
+          "name": "otel.semconv-stability.opt-in",
+          "type": "list"
+        }
+      ],
       "description": "The Alibaba Druid instrumentation generates database connection pool metrics for druid data sources.\n",
       "library_link": "https://github.com/alibaba/druid",
       "markdown_content": "# Library Instrumentation for Alibaba Druid version 1.0 and higher\n\nProvides OpenTelemetry instrumentation for [Alibaba Druid](https://github.com/alibaba/druid),\nenabling database connection pool metrics for druid data sources.\n\n## Quickstart\n\n### Add these dependencies to your project\n\nReplace `OPENTELEMETRY_VERSION` with the [latest release](https://central.sonatype.com/artifact/io.opentelemetry.instrumentation/opentelemetry-alibaba-druid-1.0).\n\nFor Maven, add to your `pom.xml` dependencies:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry.instrumentation</groupId>\n    <artifactId>opentelemetry-alibaba-druid-1.0</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n</dependencies>\n```\n\nFor Gradle, add to your dependencies:\n\n```kotlin\nimplementation(\"io.opentelemetry.instrumentation:opentelemetry-alibaba-druid-1.0:OPENTELEMETRY_VERSION\")\n```\n\n### Usage\n\n```java\nimport com.alibaba.druid.pool.DruidDataSource;\nimport io.opentelemetry.api.OpenTelemetry;\nimport io.opentelemetry.instrumentation.alibabadruid.v1_0.DruidTelemetry;\n\n// ...\n\n// Get an OpenTelemetry instance\nOpenTelemetry openTelemetry = ...;\n\n// Create a DruidTelemetry instance\nDruidTelemetry druidTelemetry = DruidTelemetry.create(openTelemetry);\n\n// Create a DruidDataSource\nDruidDataSource dataSource = new DruidDataSource();\n// ... configure the dataSource\n\n// Register the dataSource for metrics\ndruidTelemetry.registerMetrics(dataSource, \"my-druid-pool\");\n\n// Unregister the dataSource when it's no longer needed\ndruidTelemetry.unregisterMetrics(dataSource);\n```\n",
@@ -37963,6 +38054,14 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Opt-in to emit stable semantic conventions instead of the old experimental semantic conventions. Accepts a comma-separated list of semantic convention groups (e.g., `database`, `http`, `messaging`). Use `<group>/dup` to emit both old and new conventions simultaneously. Stable semantic conventions will become the default in version 3.0 of the agent.\n",
+          "name": "otel.semconv-stability.opt-in",
+          "type": "list"
+        }
+      ],
       "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
       "display_name": "Apache DBCP",
       "library_link": "https://commons.apache.org/proper/commons-dbcp/",
@@ -38121,7 +38220,7 @@
           "type": "map"
         }
       ],
-      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and metrics, and RPC server spans and metrics for Apache Dubbo RPC calls.\n",
       "display_name": "Apache Dubbo",
       "library_link": "https://github.com/apache/dubbo/",
       "name": "apache-dubbo-2.7",
@@ -38129,7 +38228,9 @@
         "name": "io.opentelemetry.apache-dubbo-2.7"
       },
       "semantic_conventions": [
+        "RPC_CLIENT_METRICS",
         "RPC_CLIENT_SPANS",
+        "RPC_SERVER_METRICS",
         "RPC_SERVER_SPANS"
       ],
       "semconv": [
@@ -47911,6 +48012,114 @@
       }
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Allows configuring headers to capture as span attributes.",
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "type": "list"
+        }
+      ],
+      "description": "This instrumentation provides messaging spans for NATS",
+      "name": "nats-2.17",
+      "scope": {
+        "name": "io.opentelemetry.nats-2.17"
+      },
+      "semconv": [
+        "Messaging"
+      ],
+      "source_path": "instrumentation/nats/nats-2.17",
+      "target_versions": {
+        "javaagent": [
+          "io.nats:jnats:[2.17.2,)"
+        ],
+        "library": [
+          "io.nats:jnats:2.17.2"
+        ]
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.temporary",
+                  "semconv": true,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "messaging.header.captured_header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CONSUMER"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.temporary",
+                  "semconv": true,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "messaging.header.captured_header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "PRODUCER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
+    },
+    {
       "name": "netty-3.8",
       "scope": {
         "name": "io.opentelemetry.netty-3.8"
@@ -53447,6 +53656,32 @@
   ],
   "3.0": [
     {
+      "configurations": [
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
       "display_name": "ActiveJ",
       "library_link": "https://activej.io/",
@@ -53617,9 +53852,66 @@
       }
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Used to specify a mapping from host names or IP addresses to peer services.",
+          "name": "otel.instrumentation.common.peer-service-mapping",
+          "type": "map"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP client telemetry.",
+          "name": "otel.instrumentation.http.client.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP client telemetry.",
+          "name": "otel.instrumentation.http.client.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP client telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.client.request.size` and `http.client.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.client.emit-experimental-telemetry",
+          "type": "boolean"
+        },
+        {
+          "default": true,
+          "description": "Redact sensitive URL parameters. See https://opentelemetry.io/docs/specs/semconv/http/http-spans.",
+          "name": "otel.instrumentation.http.client.experimental.redact-query-parameters",
+          "type": "boolean"
+        },
+        {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
       "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
       "display_name": "Akka HTTP",
       "features": [
+        "CONTEXT_PROPAGATION",
         "HTTP_ROUTE"
       ],
       "library_link": "https://doc.akka.io/docs/akka-http/current/index.html",
@@ -53830,6 +54122,14 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Opt-in to emit stable semantic conventions instead of the old experimental semantic conventions. Accepts a comma-separated list of semantic convention groups (e.g., `database`, `http`, `messaging`). Use `<group>/dup` to emit both old and new conventions simultaneously. Stable semantic conventions will become the default in version 3.0 of the agent.\n",
+          "name": "otel.semconv-stability.opt-in",
+          "type": "list"
+        }
+      ],
       "description": "The Alibaba Druid instrumentation generates database connection pool metrics for druid data sources.\n",
       "library_link": "https://github.com/alibaba/druid",
       "name": "alibaba-druid-1.0",
@@ -53935,6 +54235,14 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Opt-in to emit stable semantic conventions instead of the old experimental semantic conventions. Accepts a comma-separated list of semantic convention groups (e.g., `database`, `http`, `messaging`). Use `<group>/dup` to emit both old and new conventions simultaneously. Stable semantic conventions will become the default in version 3.0 of the agent.\n",
+          "name": "otel.semconv-stability.opt-in",
+          "type": "list"
+        }
+      ],
       "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
       "display_name": "Apache DBCP",
       "library_link": "https://commons.apache.org/proper/commons-dbcp/",
@@ -54035,7 +54343,7 @@
           "type": "map"
         }
       ],
-      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and metrics, and RPC server spans and metrics for Apache Dubbo RPC calls.\n",
       "display_name": "Apache Dubbo",
       "library_link": "https://github.com/apache/dubbo/",
       "name": "apache-dubbo-2.7",
@@ -54043,7 +54351,9 @@
         "name": "io.opentelemetry.apache-dubbo-2.7"
       },
       "semantic_conventions": [
+        "RPC_CLIENT_METRICS",
         "RPC_CLIENT_SPANS",
+        "RPC_SERVER_METRICS",
         "RPC_SERVER_SPANS"
       ],
       "semconv": [
@@ -62303,6 +62613,114 @@
           "org.mybatis:mybatis:[3.2.0,)"
         ]
       }
+    },
+    {
+      "configurations": [
+        {
+          "default": "",
+          "description": "Allows configuring headers to capture as span attributes.",
+          "name": "otel.instrumentation.messaging.experimental.capture-headers",
+          "type": "list"
+        }
+      ],
+      "description": "This instrumentation provides messaging spans for NATS",
+      "name": "nats-2.17",
+      "scope": {
+        "name": "io.opentelemetry.nats-2.17"
+      },
+      "semconv": [
+        "Messaging"
+      ],
+      "source_path": "instrumentation/nats/nats-2.17",
+      "target_versions": {
+        "javaagent": [
+          "io.nats:jnats:[2.17.2,)"
+        ],
+        "library": [
+          "io.nats:jnats:2.17.2"
+        ]
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.temporary",
+                  "semconv": true,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "messaging.header.captured_header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CONSUMER"
+            },
+            {
+              "attributes": [
+                {
+                  "name": "messaging.client_id",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.destination.temporary",
+                  "semconv": true,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "name": "messaging.header.captured_header",
+                  "type": "STRING_ARRAY"
+                },
+                {
+                  "name": "messaging.message.body.size",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "messaging.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "messaging.system",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "PRODUCER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
       "name": "netty-3.8",
