@@ -44355,7 +44355,9 @@
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/grails-3.0",
       "target_versions": {
         "javaagent": [
@@ -44366,7 +44368,18 @@
         {
           "spans": [
             {
-              "attributes": [],
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
               "span_kind": "INTERNAL"
             }
           ],
@@ -59117,7 +59130,9 @@
       "scope": {
         "name": "io.opentelemetry.grails-3.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/grails-3.0",
       "target_versions": {
         "javaagent": [
@@ -59128,7 +59143,18 @@
         {
           "spans": [
             {
-              "attributes": [],
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
               "span_kind": "INTERNAL"
             }
           ],
