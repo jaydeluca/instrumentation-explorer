@@ -42801,7 +42801,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         }
@@ -44344,12 +44344,12 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller spans for Grails applications.\n",
       "library_link": "https://grails.apache.org/",
       "name": "grails-3.0",
       "scope": {
@@ -45203,13 +45203,187 @@
     {
       "configurations": [
         {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Helidon HTTP server.",
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://helidon.io/",
+      "minimum_java_version": 21,
+      "name": "helidon-4.3",
+      "scope": {
+        "name": "io.opentelemetry.helidon-4.3"
+      },
+      "semantic_conventions": [
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ],
+      "source_path": "instrumentation/helidon-4.3",
+      "target_versions": {
+        "javaagent": [
+          "io.helidon.webserver:helidon-webserver:[4.3.0,)"
+        ],
+        "library": [
+          "io.helidon.webserver:helidon-webserver:4.3.0"
+        ]
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "http.route",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.protocol.version",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.scheme",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of HTTP server requests.",
+              "name": "http.server.request.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "error.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "http.route",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.protocol.version",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "url.path",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.query",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.scheme",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "user_agent.original",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
+    },
+    {
+      "configurations": [
+        {
           "default": false,
           "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
           "name": "otel.instrumentation.hibernate.experimental-span-attributes",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-3.3",
       "scope": {
@@ -45257,7 +45431,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-4.0",
       "scope": {
@@ -45305,7 +45479,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
@@ -45354,7 +45528,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "description": "This instrumentation enables the generation of spans for Hibernate stored procedure calls.",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
@@ -45806,7 +45980,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "description": "This instrumentation enables the generation of spans for Hystrix command executions and fallbacks.",
       "library_link": "https://github.com/Netflix/Hystrix",
       "name": "hystrix-1.4",
       "scope": {
@@ -46320,7 +46494,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
@@ -46368,7 +46542,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46422,7 +46596,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46501,7 +46675,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46580,7 +46754,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46659,7 +46833,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46738,7 +46912,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46792,7 +46966,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46871,7 +47045,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -46947,19 +47121,72 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables controller spans for JAX-WS Provider implementations (controller spans are disabled by default).\n",
+      "display_name": "JAX-WS",
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "library_link": "https://github.com/jakartaee/jax-ws-api",
       "name": "jaxws-2.0",
       "scope": {
         "name": "io.opentelemetry.jaxws-2.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxws/jaxws-2.0",
       "target_versions": {
         "javaagent": [
           "javax.xml.ws:jaxws-api:[2.0,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Axis2 JAX-WS web services (controller spans are disabled by default).\n",
+      "display_name": "Apache Axis2 1.6 JAX-WS 2.x",
+      "features": [
+        "CONTROLLER_SPANS",
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://axis.apache.org/axis2/java/core/",
       "name": "jaxws-2.0-axis2-1.6",
       "scope": {
         "name": "io.opentelemetry.jaxws-2.0-axis2-1.6"
@@ -46970,9 +47197,35 @@
         "javaagent": [
           "org.apache.axis2:axis2-jaxws:[1.6.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache CXF JAX-WS web services (controller spans are disabled by default).\n",
+      "display_name": "Apache CXF 3.x JAX-WS",
+      "features": [
+        "CONTROLLER_SPANS",
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://cxf.apache.org/",
       "name": "jaxws-cxf-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxws-cxf-3.0"
@@ -46983,21 +47236,70 @@
         "javaagent": [
           "org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables controller spans for methods annotated with the @WebService annotation from the JWS API (controller spans are disabled by default).\n",
       "disabled_by_default": true,
+      "display_name": "JWS API",
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "library_link": "https://github.com/jakartaee/jws-api",
       "name": "jaxws-jws-api-1.1",
       "scope": {
         "name": "io.opentelemetry.jaxws-jws-api-1.1"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxws/jaxws-jws-api-1.1",
       "target_versions": {
         "javaagent": [
           "javax.jws:javax.jws-api:[1.1,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
       "name": "jaxws-metro-2.2",
@@ -49266,32 +49568,280 @@
       ]
     },
     {
+      "description": "This instrumentation enables database client spans and database client metrics for the OpenSearch Java client.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/java/",
+      "minimum_java_version": 11,
+      "name": "opensearch-java-3.0",
+      "scope": {
+        "name": "io.opentelemetry.opensearch-java-3.0"
+      },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
+      "source_path": "instrumentation/opensearch/opensearch-java-3.0",
+      "target_versions": {
+        "javaagent": [
+          "org.opensearch.client:opensearch-java:[3.0,)"
+        ]
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.statement",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "otel.semconv-stability.opt-in=database"
+        }
+      ]
+    },
+    {
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/",
       "minimum_java_version": 11,
       "name": "opensearch-rest-1.0",
       "scope": {
         "name": "io.opentelemetry.opensearch-rest-1.0"
       },
-      "semconv": [],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
       "source_path": "instrumentation/opensearch/opensearch-rest-1.0",
       "target_versions": {
         "javaagent": [
           "org.opensearch.client:opensearch-rest-client:[1.0,3.0)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.statement",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "otel.semconv-stability.opt-in=database"
+        }
+      ]
     },
     {
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/",
       "minimum_java_version": 11,
       "name": "opensearch-rest-3.0",
       "scope": {
         "name": "io.opentelemetry.opensearch-rest-3.0"
       },
-      "semconv": [],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
       "source_path": "instrumentation/opensearch/opensearch-rest-3.0",
       "target_versions": {
         "javaagent": [
           "org.opensearch.client:opensearch-rest-client:[3.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.statement",
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system",
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        },
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "otel.semconv-stability.opt-in=database"
+        }
+      ]
     },
     {
       "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
@@ -50848,7 +51398,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
+      "description": "This instrumentation enables spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
       "library_link": "https://spring.io/projects/spring-batch",
       "name": "spring-batch-3.0",
@@ -51790,12 +52340,12 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller spans.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.0",
       "scope": {
@@ -52099,13 +52649,13 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         },
@@ -52116,7 +52666,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 3.1+.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-3.1",
       "scope": {
@@ -52320,13 +52870,13 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         },
@@ -52337,7 +52887,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 6.0+.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "markdown_content": "# Library Instrumentation for Spring Web MVC version 6.0.0 and higher\n\nProvides OpenTelemetry instrumentation for Spring WebMVC controllers.\n\n## Quickstart\n\n### Add these dependencies to your project\n\nReplace `SPRING_VERSION` with the version of spring you're using.\n\n- `Minimum version: 6.0.0`\n\nReplace `OPENTELEMETRY_VERSION` with the [latest\nrelease]( https://central.sonatype.com/artifact/io.opentelemetry.instrumentation/opentelemetry-spring-webmvc-6.0).\n\nFor Maven add the following to your `pom.xml`:\n\n```xml\n<dependencies>\n  <!-- OpenTelemetry instrumentation -->\n  <dependency>\n    <groupId>io.opentelemetry.instrumentation</groupId>\n    <artifactId>opentelemetry-spring-webmvc-6.0</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n\n   <!-- OpenTelemetry exporter -->\n   <!-- replace this default exporter with your OpenTelemetry exporter (ex. otlp/zipkin/..) -->\n   <dependency>\n    <groupId>io.opentelemetry</groupId>\n    <artifactId>opentelemetry-exporter-logging</artifactId>\n    <version>OPENTELEMETRY_VERSION</version>\n  </dependency>\n\n  <!-- required to instrument Spring WebMVC -->\n  <!-- this artifact should already be present in your application -->\n  <dependency>\n    <groupId>org.springframework</groupId>\n    <artifactId>spring-webmvc</artifactId>\n    <version>SPRING_VERSION</version>\n  </dependency>\n\n</dependencies>\n```\n\nFor Gradle add the following to your dependencies:\n\n```groovy\n\n// OpenTelemetry instrumentation\nimplementation(\"io.opentelemetry.instrumentation:opentelemetry-spring-webmvc-6.0:OPENTELEMETRY_VERSION\")\n\n// OpenTelemetry exporter\n// replace this default exporter with your OpenTelemetry exporter (ex. otlp/zipkin/..)\nimplementation(\"io.opentelemetry:opentelemetry-exporter-logging:OPENTELEMETRY_VERSION\")\n\n// required to instrument Spring WebMVC\n// this artifact should already be present in your application\nimplementation(\"org.springframework:spring-webmvc:SPRING_VERSION\")\n```\n\n### Features\n\n#### `SpringWebMvcTelemetry`\n\n`SpringWebMvcTelemetry` enables creating OpenTelemetry server spans around HTTP requests processed\nby the Spring servlet container.\n\n##### Usage in Spring Boot\n\nSpring Boot allows servlet `Filter`s to be registered as beans:\n\n```java\nimport io.opentelemetry.api.OpenTelemetry;\nimport io.opentelemetry.instrumentation.spring.webmvc.v6_0.SpringWebMvcTelemetry;\nimport jakarta.servlet.Filter;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\n\n@Configuration\npublic class SpringWebMvcTelemetryConfiguration {\n\n   @Bean\n   public Filter telemetryFilter(OpenTelemetry openTelemetry) {\n      return SpringWebMvcTelemetry.create(openTelemetry).createServletFilter();\n   }\n}\n```\n\n### Starter Guide\n\nCheck\nout [OpenTelemetry Manual Instrumentation](https://opentelemetry.io/docs/instrumentation/java/manual/)\nto learn more about using the OpenTelemetry API to instrument your code.\n",
       "minimum_java_version": 17,
@@ -57840,7 +58390,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         }
@@ -59119,12 +59669,12 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller spans for Grails applications.\n",
       "library_link": "https://grails.apache.org/",
       "name": "grails-3.0",
       "scope": {
@@ -59975,13 +60525,187 @@
     {
       "configurations": [
         {
+          "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE",
+          "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+          "name": "otel.instrumentation.http.known-methods",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-request-headers",
+          "type": "list"
+        },
+        {
+          "default": "",
+          "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+          "name": "otel.instrumentation.http.server.capture-response-headers",
+          "type": "list"
+        },
+        {
+          "default": false,
+          "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+          "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Helidon HTTP server.",
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://helidon.io/",
+      "minimum_java_version": 21,
+      "name": "helidon-4.3",
+      "scope": {
+        "name": "io.opentelemetry.helidon-4.3"
+      },
+      "semantic_conventions": [
+        "HTTP_SERVER_METRICS",
+        "HTTP_SERVER_SPANS"
+      ],
+      "semconv": [
+        "Client",
+        "Database Client",
+        "HTTP"
+      ],
+      "source_path": "instrumentation/helidon-4.3",
+      "target_versions": {
+        "javaagent": [
+          "io.helidon.webserver:helidon-webserver:[4.3.0,)"
+        ],
+        "library": [
+          "io.helidon.webserver:helidon-webserver:4.3.0"
+        ]
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "http.route",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.protocol.version",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.scheme",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of HTTP server requests.",
+              "name": "http.server.request.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "client.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "error.type",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.request.method",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "http.response.status_code",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "http.route",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "network.peer.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "network.protocol.version",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.address",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "server.port",
+                  "semconv": true,
+                  "type": "LONG"
+                },
+                {
+                  "name": "url.path",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.query",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "url.scheme",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "user_agent.original",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "SERVER"
+            }
+          ],
+          "when": "default"
+        }
+      ]
+    },
+    {
+      "configurations": [
+        {
           "default": false,
           "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
           "name": "otel.instrumentation.hibernate.experimental-span-attributes",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-3.3",
       "scope": {
@@ -60029,7 +60753,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-4.0",
       "scope": {
@@ -60077,7 +60801,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "minimum_java_version": 11,
       "name": "hibernate-6.0",
@@ -60126,7 +60850,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "description": "This instrumentation enables the generation of spans for Hibernate stored procedure calls.",
       "library_link": "https://github.com/hibernate/hibernate-orm",
       "name": "hibernate-procedure-call-4.3",
       "scope": {
@@ -60472,7 +61196,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "description": "This instrumentation enables the generation of spans for Hystrix command executions and fallbacks.",
       "library_link": "https://github.com/Netflix/Hystrix",
       "name": "hystrix-1.4",
       "scope": {
@@ -60948,7 +61672,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
@@ -60996,7 +61720,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61050,7 +61774,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61129,7 +61853,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61208,7 +61932,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61287,7 +62011,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61366,7 +62090,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61420,7 +62144,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61499,7 +62223,7 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
@@ -61575,19 +62299,72 @@
       ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables controller spans for JAX-WS Provider implementations (controller spans are disabled by default).\n",
+      "display_name": "JAX-WS",
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "library_link": "https://github.com/jakartaee/jax-ws-api",
       "name": "jaxws-2.0",
       "scope": {
         "name": "io.opentelemetry.jaxws-2.0"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxws/jaxws-2.0",
       "target_versions": {
         "javaagent": [
           "javax.xml.ws:jaxws-api:[2.0,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Axis2 JAX-WS web services (controller spans are disabled by default).\n",
+      "display_name": "Apache Axis2 1.6 JAX-WS 2.x",
+      "features": [
+        "CONTROLLER_SPANS",
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://axis.apache.org/axis2/java/core/",
       "name": "jaxws-2.0-axis2-1.6",
       "scope": {
         "name": "io.opentelemetry.jaxws-2.0-axis2-1.6"
@@ -61598,9 +62375,35 @@
         "javaagent": [
           "org.apache.axis2:axis2-jaxws:[1.6.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache CXF JAX-WS web services (controller spans are disabled by default).\n",
+      "display_name": "Apache CXF 3.x JAX-WS",
+      "features": [
+        "CONTROLLER_SPANS",
+        "HTTP_ROUTE"
+      ],
+      "library_link": "https://cxf.apache.org/",
       "name": "jaxws-cxf-3.0",
       "scope": {
         "name": "io.opentelemetry.jaxws-cxf-3.0"
@@ -61611,21 +62414,70 @@
         "javaagent": [
           "org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
+      "configurations": [
+        {
+          "default": false,
+          "description": "Enables the creation of experimental controller spans.",
+          "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+          "type": "boolean"
+        }
+      ],
+      "description": "This instrumentation enables controller spans for methods annotated with the @WebService annotation from the JWS API (controller spans are disabled by default).\n",
       "disabled_by_default": true,
+      "display_name": "JWS API",
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "library_link": "https://github.com/jakartaee/jws-api",
       "name": "jaxws-jws-api-1.1",
       "scope": {
         "name": "io.opentelemetry.jaxws-jws-api-1.1"
       },
-      "semconv": [],
+      "semconv": [
+        "Code"
+      ],
       "source_path": "instrumentation/jaxws/jaxws-jws-api-1.1",
       "target_versions": {
         "javaagent": [
           "javax.jws:javax.jws-api:[1.1,]"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "code.function",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "code.namespace",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "INTERNAL"
+            }
+          ],
+          "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true"
+        }
+      ]
     },
     {
       "name": "jaxws-metro-2.2",
@@ -63880,32 +64732,214 @@
       ]
     },
     {
+      "description": "This instrumentation enables database client spans and database client metrics for the OpenSearch Java client.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/java/",
+      "minimum_java_version": 11,
+      "name": "opensearch-java-3.0",
+      "scope": {
+        "name": "io.opentelemetry.opensearch-java-3.0"
+      },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
+      "source_path": "instrumentation/opensearch/opensearch-java-3.0",
+      "target_versions": {
+        "javaagent": [
+          "org.opensearch.client:opensearch-java:[3.0,)"
+        ]
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        }
+      ]
+    },
+    {
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/",
       "minimum_java_version": 11,
       "name": "opensearch-rest-1.0",
       "scope": {
         "name": "io.opentelemetry.opensearch-rest-1.0"
       },
-      "semconv": [],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
       "source_path": "instrumentation/opensearch/opensearch-rest-1.0",
       "target_versions": {
         "javaagent": [
           "org.opensearch.client:opensearch-rest-client:[1.0,3.0)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
+      "library_link": "https://docs.opensearch.org/latest/clients/",
       "minimum_java_version": 11,
       "name": "opensearch-rest-3.0",
       "scope": {
         "name": "io.opentelemetry.opensearch-rest-3.0"
       },
-      "semconv": [],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS"
+      ],
+      "semconv": [
+        "Database Client"
+      ],
       "source_path": "instrumentation/opensearch/opensearch-rest-3.0",
       "target_versions": {
         "javaagent": [
           "org.opensearch.client:opensearch-rest-client:[3.0,)"
         ]
-      }
+      },
+      "telemetry": [
+        {
+          "metrics": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "description": "Duration of database client operations.",
+              "name": "db.client.operation.duration",
+              "semconv": true,
+              "type": "HISTOGRAM",
+              "unit": "s"
+            }
+          ],
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "name": "db.operation.name",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.query.text",
+                  "semconv": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "db.system.name",
+                  "semconv": true,
+                  "type": "STRING"
+                }
+              ],
+              "span_kind": "CLIENT"
+            }
+          ],
+          "when": "default"
+        }
+      ]
     },
     {
       "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
@@ -65411,7 +66445,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
+      "description": "This instrumentation enables spans for jobs run by the Spring Batch framework.",
       "disabled_by_default": true,
       "library_link": "https://spring.io/projects/spring-batch",
       "name": "spring-batch-3.0",
@@ -66351,12 +67385,12 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller spans.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
       "name": "spring-webflux-5.0",
       "scope": {
@@ -66659,13 +67693,13 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         },
@@ -66676,7 +67710,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 3.1+.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "name": "spring-webmvc-3.1",
       "scope": {
@@ -66879,13 +67913,13 @@
       "configurations": [
         {
           "default": false,
-          "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+          "description": "Enables the creation of experimental controller spans.",
           "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
           "type": "boolean"
         },
         {
           "default": false,
-          "description": "Enables the creation of experimental view (INTERNAL) spans.",
+          "description": "Enables the creation of experimental view spans.",
           "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
           "type": "boolean"
         },
@@ -66896,7 +67930,7 @@
           "type": "boolean"
         }
       ],
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 6.0+.\n",
       "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
       "minimum_java_version": 17,
       "name": "spring-webmvc-6.0",
