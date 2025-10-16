@@ -116,6 +116,18 @@ const JarAnalyzerPage: React.FC = () => {
         {instrumentationNames.length > 0 && selectedVersion && (
           <div className="analysis-results">
             <h2>Analysis Results for Version {selectedVersion}</h2>
+            
+            {combinedMetrics.length > 0 && (
+              <div className="metrics-list-section">
+                <h3>All Metrics Emitted</h3>
+                <ul>
+                  {combinedMetrics.map((metric, index) => (
+                    <li key={index}>{metric.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
             <CombinedTelemetryDisplay
               metrics={combinedMetrics}
               spans={combinedSpans}
