@@ -25,10 +25,12 @@ The instrumentation data is automatically kept up to date with the latest releas
 
 ## Project Structure
 
-*   **`data-processing/`**: Contains the Python script for processing and enriching instrumentation data.
-*   **`frontend/`**: Contains the React frontend application.
-   *   **`frontend/public/instrumentation-list-enriched.json`**: The enriched data file used by the frontend.
-*   **`scripts/`**: Contains automation scripts for updating instrumentation data.
+*   **`data-processing/`**: Python script for processing and enriching instrumentation data (v1).
+*   **`data-processing-v2/`**: **New!** TypeScript pipeline with content-addressed storage for multi-version support.
+*   **`frontend/`**: React frontend application.
+   *   **`frontend/public/instrumentation-list-enriched.json`**: V1 enriched data (single version).
+   *   **`frontend/public/data/`**: V2 content-addressed data (multi-version).
+*   **`scripts/`**: Automation scripts for updating instrumentation data.
 *   **`.github/workflows/`**: GitHub Actions workflows for automated updates.
 *   **`instrumentation-list-*.yaml`**: Versioned instrumentation data files from OpenTelemetry.
 
@@ -96,6 +98,27 @@ python3 main.py
 ```
 
 This will generate `frontend/public/instrumentation-list-enriched.json`.
+
+### Alternative: Use V2 Pipeline (Recommended for Multi-Version Support)
+
+The new V2 pipeline provides content-addressed storage with deduplication and multi-version support:
+
+```bash
+# Install V2 dependencies
+cd data-processing-v2
+npm install
+cd ..
+
+# Generate and deploy to frontend
+npm run process-data-v2:deploy
+```
+
+This generates data in `frontend/public/data/` with support for multiple versions (currently 2.19 and 2.20).
+
+**V2 Commands:**
+- `npm run process-data-v2` - Generate data only
+- `npm run process-data-v2:deploy` - Generate and copy to frontend
+- See [`data-processing-v2/USAGE.md`](./data-processing-v2/USAGE.md) for detailed documentation
 
 ### 3. Start the Frontend Application
 

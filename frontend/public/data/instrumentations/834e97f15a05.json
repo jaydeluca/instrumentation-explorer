@@ -1,0 +1,13 @@
+{
+  "id": "twilio-6.6",
+  "library_group": "twilio",
+  "source_path": "instrumentation/twilio-6.6",
+  "scope": {
+    "name": "io.opentelemetry.twilio-6.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.twilio.sdk:twilio:(,8.0.0)"
+    ]
+  }
+}

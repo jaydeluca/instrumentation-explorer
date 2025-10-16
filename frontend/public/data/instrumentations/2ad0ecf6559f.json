@@ -1,0 +1,168 @@
+{
+  "id": "pekko-http-1.0",
+  "library_group": "pekko",
+  "source_path": "instrumentation/pekko/pekko-http-1.0",
+  "scope": {
+    "name": "io.opentelemetry.pekko-http-1.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.softwaremill.sttp.tapir:tapir-pekko-http-server_3:[1.7,)",
+      "com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.12:[1.7,)",
+      "org.apache.pekko:pekko-http_2.12:[1.0,)",
+      "org.apache.pekko:pekko-http_3:[1.0,)",
+      "com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.13:[1.7,)",
+      "org.apache.pekko:pekko-http_2.13:[1.0,)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING"
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG"
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING"
+            },
+            {
+              "name": "server.address",
+              "type": "STRING"
+            },
+            {
+              "name": "server.port",
+              "type": "LONG"
+            }
+          ]
+        },
+        {
+          "name": "http.server.request.duration",
+          "description": "Duration of HTTP server requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING"
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG"
+            },
+            {
+              "name": "http.route",
+              "type": "STRING"
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING"
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING"
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING"
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING"
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG"
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING"
+            },
+            {
+              "name": "server.address",
+              "type": "STRING"
+            },
+            {
+              "name": "server.port",
+              "type": "LONG"
+            },
+            {
+              "name": "url.full",
+              "type": "STRING"
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "client.address",
+              "type": "STRING"
+            },
+            {
+              "name": "error.type",
+              "type": "STRING"
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING"
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG"
+            },
+            {
+              "name": "http.route",
+              "type": "STRING"
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING"
+            },
+            {
+              "name": "server.address",
+              "type": "STRING"
+            },
+            {
+              "name": "server.port",
+              "type": "LONG"
+            },
+            {
+              "name": "url.path",
+              "type": "STRING"
+            },
+            {
+              "name": "url.query",
+              "type": "STRING"
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING"
+            },
+            {
+              "name": "user_agent.original",
+              "type": "STRING"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

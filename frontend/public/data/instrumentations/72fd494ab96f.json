@@ -1,0 +1,13 @@
+{
+  "id": "rmi",
+  "library_group": "rmi",
+  "source_path": "instrumentation/rmi",
+  "scope": {
+    "name": "io.opentelemetry.rmi"
+  },
+  "target_versions": {
+    "javaagent": [
+      "Java 8+"
+    ]
+  }
+}

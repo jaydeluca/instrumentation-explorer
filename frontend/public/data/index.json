@@ -1,0 +1,2258 @@
+{
+  "generated_at": "2025-10-02T14:37:32.347Z",
+  "latest_version": "2.20",
+  "instrumentations": [
+    {
+      "id": "activej-http-6.0",
+      "display_name": "ActiveJ",
+      "library_group": "activej",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
+      "tags": [
+        "activej",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "akka-actor-2.3",
+      "display_name": "Akka Actors",
+      "library_group": "akka",
+      "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
+      "tags": [
+        "akka"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "akka-actor-fork-join-2.5",
+      "display_name": "Akka Actors",
+      "library_group": "akka",
+      "description": "This instrumentation provides context propagation for the Akka Fork-Join Pool, it does not emit any telemetry on its own.",
+      "tags": [
+        "akka"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "akka-http-10.0",
+      "display_name": "Akka HTTP",
+      "library_group": "akka",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Akka HTTP client, and HTTP server spans and metrics for the Akka HTTP server.\n",
+      "tags": [
+        "akka",
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "alibaba-druid-1.0",
+      "library_group": "alibaba",
+      "description": "The Alibaba Druid instrumentation generates database connection pool metrics for druid data sources.\n",
+      "tags": [
+        "alibaba",
+        "database",
+        "database_pool_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-dbcp-2.0",
+      "display_name": "Apache DBCP",
+      "library_group": "apache",
+      "description": "This instrumentation enables database connection pools metrics for Apache DBCP.\nThe instrumentation uses `MBeanRegistration` methods for lifecycle detection, therefore it only activates if the `BasicDataSource` is registered to an `MBeanServer`. If using Spring Boot, this happens automatically as all Spring beans that support JMX registration are automatically registered by default.\n",
+      "tags": [
+        "apache",
+        "spring",
+        "server",
+        "database",
+        "database_pool_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-dubbo-2.7",
+      "display_name": "Apache Dubbo",
+      "library_group": "apache",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "tags": [
+        "apache",
+        "client",
+        "server",
+        "rpc",
+        "rpc_client_spans",
+        "rpc_server_spans"
+      ],
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_SERVER_SPANS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpasyncclient-4.1",
+      "display_name": "Apache HttpAsyncClient",
+      "library_group": "apache",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Apache HttpAsyncClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpclient-2.0",
+      "display_name": "Apache HttpClient",
+      "library_group": "apache",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpclient-4.0",
+      "display_name": "Apache HttpClient",
+      "library_group": "apache",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 4 of the Apache HttpClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpclient-4.3",
+      "display_name": "Apache HttpClient",
+      "library_group": "apache",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpclient-5.0",
+      "display_name": "Apache HttpClient",
+      "library_group": "apache",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 5 of the Apache HttpClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-httpclient-5.2",
+      "display_name": "Apache HttpClient",
+      "library_group": "apache",
+      "description": "This instrumentation provides a library integration that enables HTTP client spans and HTTP client metrics for the Apache HttpClient.",
+      "tags": [
+        "apache",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "apache-shenyu-2.4",
+      "library_group": "apache",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it augments existing HTTP server spans and HTTP server metrics with the HTTP route and Shenyu specific attributes.\n",
+      "tags": [
+        "apache",
+        "http",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "armeria-1.3",
+      "library_group": "armeria",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Armeria HTTP client, and HTTP server spans and metrics for the Armeria HTTP server.\n",
+      "tags": [
+        "armeria",
+        "http",
+        "client",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "armeria-grpc-1.14",
+      "library_group": "armeria",
+      "description": "This instrumentation enables RPC client spans and metrics for the Armeria gRPC client, and RPC server spans and metrics for the Armeria gRPC server.\n",
+      "tags": [
+        "armeria",
+        "grpc",
+        "client",
+        "server",
+        "rpc"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "async-http-client-1.9",
+      "library_group": "async",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
+      "tags": [
+        "async",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "async-http-client-2.0",
+      "library_group": "async",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
+      "tags": [
+        "async",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "avaje-jex-3.0",
+      "library_group": "avaje",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it hooks into the Avaje Jex Context to extract the HTTP route and attach it to existing HTTP server spans and HTTP server metrics.\n",
+      "tags": [
+        "avaje",
+        "http",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "aws-lambda-core-1.0",
+      "library_group": "aws",
+      "description": "Provides lightweight instrumentation of the Lambda core library, supporting all versions. It generates FaaS server spans with the `faas.invocation_id` attribute. Use this package if you only use `RequestStreamHandler` or know you don't use any event classes from `aws-lambda-java-events`. This also includes when you are using `aws-serverless-java-container` to run e.g., a Spring Boot application on Lambda.\nFor custom wrappers when using library instrumentation, you can configure the `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` environment variable to contain your lambda handler method (in the format `package.ClassName::methodName`) and use one of wrappers as your lambda `Handler`.\n",
+      "tags": [
+        "aws",
+        "spring",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "aws-lambda-events-2.2",
+      "library_group": "aws",
+      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "tags": [
+        "aws"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "aws-lambda-events-3.11",
+      "library_group": "aws",
+      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "tags": [
+        "aws"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "aws-sdk-1.11",
+      "library_group": "aws",
+      "description": "This instrumentation covers the AWS SDK 1.11+ client library, enabling messaging and client spans and metrics for calls to AWS services including DynamoDB, EC2, Kinesis, Lambda, RDS, S3, secrets manager, SNS/SQS and step functions.\n",
+      "tags": [
+        "aws",
+        "client",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "aws-sdk-2.2",
+      "library_group": "aws",
+      "description": "This instrumentation covers the AWS SDK 2.2+ client library, enabling messaging and client spans and metrics for calls to AWS services including DynamoDB, EC2, Kinesis, Lambda, RDS, S3, SNS/SQS and Bedrock.\n",
+      "tags": [
+        "aws",
+        "client",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "azure-core-1.14",
+      "library_group": "azure",
+      "description": "This instrumentation enables context propagation for the Azure Core library, it does not emit any telemetry on its own.",
+      "tags": [
+        "azure"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "azure-core-1.19",
+      "library_group": "azure",
+      "description": "This instrumentation enables context propagation for the Azure Core library, it does not emit any telemetry on its own.",
+      "tags": [
+        "azure"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "azure-core-1.36",
+      "library_group": "azure",
+      "description": "This instrumentation enables context propagation for the Azure Core library, it does not emit any telemetry on its own.",
+      "tags": [
+        "azure"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "c3p0-0.9",
+      "library_group": "c3p0",
+      "description": "The c3p0 instrumentation provides connection pool metrics for c3p0 data sources.",
+      "tags": [
+        "c3p0"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "camel-2.20",
+      "library_group": "camel",
+      "description": "This instrumentation enables tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
+      "tags": [
+        "camel"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "cassandra-3.0",
+      "library_group": "cassandra",
+      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "tags": [
+        "cassandra",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "cassandra-4.0",
+      "library_group": "cassandra",
+      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "tags": [
+        "cassandra",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "cassandra-4.4",
+      "library_group": "cassandra",
+      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "tags": [
+        "cassandra",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "clickhouse-client-v1-0.5",
+      "library_group": "clickhouse",
+      "description": "This instrumentation enables database client spans and metrics for the V1 ClickHouse client.",
+      "tags": [
+        "clickhouse",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "clickhouse-client-v2-0.8",
+      "library_group": "clickhouse",
+      "description": "This instrumentation enables database client spans and metrics for the V2 ClickHouse client.",
+      "tags": [
+        "clickhouse",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "couchbase-2.0",
+      "library_group": "couchbase",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "tags": [
+        "couchbase",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "couchbase-2.6",
+      "library_group": "couchbase",
+      "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.6 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+      "tags": [
+        "couchbase",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "couchbase-3.1",
+      "library_group": "couchbase",
+      "description": "Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.\n",
+      "tags": [
+        "couchbase"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "couchbase-3.1.6",
+      "library_group": "couchbase",
+      "description": "Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.\n",
+      "tags": [
+        "couchbase"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "couchbase-3.2",
+      "library_group": "couchbase",
+      "description": "Couchbase instrumentation is owned by the Couchbase project for versions 3+. This instrumentation automatically configures the instrumentation provided by the Couchbase library.\n",
+      "tags": [
+        "couchbase"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "dropwizard-metrics-4.0",
+      "library_group": "dropwizard",
+      "description": "The dropwizard-metrics instrumentation for the dropwizard/codahale metrics library produces OpenTelemetry compliant versions of the metrics generated by the Dropwizard MetricRegistry.\nThe Dropwizard metrics API does not have a concept of metric labels/tags/attributes, thus the data produced by this integration might be of very low quality, depending on how the API is used in the instrumented application.\n",
+      "tags": [
+        "dropwizard"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "dropwizard-views-0.7",
+      "library_group": "dropwizard",
+      "description": "This instrumentation enables the creation of spans for Dropwizard views.",
+      "tags": [
+        "dropwizard"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-api-client-7.16",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation extends the elasticsearch-rest-7.0 instrumentation by adding additional `db.elasticsearch.path_parts.id` and `db.elasticsearch.path_parts.index` attributes to Elasticsearch database client spans. Versions 8.10 and later of the client have native support for OpenTelemetry.\n",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-rest-5.0",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-rest-6.4",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-rest-7.0",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-transport-5.0",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-transport-5.3",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "elasticsearch-transport-6.0",
+      "library_group": "elasticsearch",
+      "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+      "tags": [
+        "elasticsearch",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "executors",
+      "library_group": "executors",
+      "description": "The executor instrumentation ensures that context is automatically propagated when using common Java executors (e.g., ThreadPoolExecutor, ScheduledThreadPoolExecutor, ForkJoinPool). When a task is submitted, the current context is captured and bound to the task. Then, when the task eventually runs, even if it’s on a different thread, the instrumentation reactivates that context, enabling consistent correlation across concurrent and asynchronous workflows.\n",
+      "tags": [
+        "executors"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "failsafe-3.0",
+      "library_group": "failsafe",
+      "description": "This standalone instrumentation enables metrics for Failsafe circuit breakers.",
+      "tags": [
+        "failsafe"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "finagle-http-23.11",
+      "library_group": "finagle",
+      "description": "This instrumentation for Finagle HTTP clients and servers ensures that telemetry is correctly generated by the underlying Netty instrumentation. It augments existing telemetry by bridging the gap between Finagle's abstractions and Netty's pipeline, primarily for context propagation.\n",
+      "tags": [
+        "finagle",
+        "http",
+        "netty",
+        "client",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "finatra-2.9",
+      "library_group": "finatra",
+      "description": "This instrumentation for the Finatra web framework augments the telemetry generated by the underlying Netty instrumentation. It provides more specific, high-level context, such as route information, to the spans generated by Netty.",
+      "tags": [
+        "finatra",
+        "netty"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "geode-1.4",
+      "library_group": "geode",
+      "description": "This instrumentation enables database client spans and database client metrics for Apache Geode cache operations.",
+      "tags": [
+        "geode",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "google-http-client-1.19",
+      "library_group": "google",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Google HTTP Client requests.",
+      "tags": [
+        "google",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "grails-3.0",
+      "library_group": "grails",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "tags": [
+        "grails",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "graphql-java-12.0",
+      "library_group": "graphql",
+      "description": "This instrumentation enables spans for GraphQL Java operations.",
+      "tags": [
+        "graphql"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "graphql-java-20.0",
+      "library_group": "graphql",
+      "description": "This instrumentation enables spans for GraphQL Java operations.",
+      "tags": [
+        "graphql"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "grizzly-2.3",
+      "library_group": "grizzly",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly applications.",
+      "tags": [
+        "grizzly",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "grpc-1.6",
+      "library_group": "grpc",
+      "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+      "tags": [
+        "grpc",
+        "client",
+        "server",
+        "rpc"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "guava-10.0",
+      "library_group": "guava",
+      "tags": [
+        "guava"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "gwt-2.0",
+      "library_group": "gwt",
+      "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
+      "tags": [
+        "gwt",
+        "server",
+        "rpc"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hibernate-3.3",
+      "library_group": "hibernate",
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "tags": [
+        "hibernate"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hibernate-4.0",
+      "library_group": "hibernate",
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "tags": [
+        "hibernate"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hibernate-6.0",
+      "library_group": "hibernate",
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "tags": [
+        "hibernate"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hibernate-procedure-call-4.3",
+      "library_group": "hibernate",
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "tags": [
+        "hibernate"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hibernate-reactive-1.0",
+      "library_group": "hibernate",
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
+      "tags": [
+        "hibernate"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "hikaricp-3.0",
+      "library_group": "hikaricp",
+      "description": "This instrumentation provides database client metrics for HikariCP 3.0+ connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+      "tags": [
+        "hikaricp",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "http-url-connection",
+      "library_group": "http",
+      "description": "This instrumentation enables the generation of HTTP client spans and HTTP client metrics for requests made using `java.net.HttpURLConnection`.\n",
+      "tags": [
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "hystrix-1.4",
+      "library_group": "hystrix",
+      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "tags": [
+        "hystrix"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "influxdb-2.4",
+      "library_group": "influxdb",
+      "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+      "tags": [
+        "influxdb",
+        "client",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "java-http-client",
+      "library_group": "java",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for requests made using the Java HTTP client.",
+      "tags": [
+        "java",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "java-http-server",
+      "library_group": "java",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Java HTTP server.",
+      "tags": [
+        "java",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "javalin-5.0",
+      "library_group": "javalin",
+      "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
+      "tags": [
+        "javalin",
+        "http",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jaxrs-1.0",
+      "display_name": "JAX-RS 1.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-2.0-annotations",
+      "display_name": "JAX-RS 2.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-2.0-cxf-3.2",
+      "display_name": "Apache CXF JAX-RS 2.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using Apache CXF, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-2.0-jersey-2.0",
+      "display_name": "Eclipse Jersey JAX-RS 2.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-2.0-resteasy-3.0",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-2.0-resteasy-3.1",
+      "display_name": "JBoss RESTEasy JAX-RS 2.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-3.0-annotations",
+      "display_name": "JAX-RS 3.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-3.0-jersey-3.0",
+      "display_name": "Eclipse Jersey JAX-RS 3.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxrs-3.0-resteasy-6.0",
+      "display_name": "JBoss RESTEasy JAX-RS 3.x",
+      "library_group": "jaxrs",
+      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "tags": [
+        "jaxrs",
+        "http",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jaxws-2.0",
+      "library_group": "jaxws",
+      "tags": [
+        "jaxws"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jaxws-2.0-axis2-1.6",
+      "library_group": "jaxws",
+      "tags": [
+        "jaxws"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jaxws-cxf-3.0",
+      "library_group": "jaxws",
+      "tags": [
+        "jaxws"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jaxws-jws-api-1.1",
+      "library_group": "jaxws",
+      "tags": [
+        "jaxws"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jaxws-metro-2.2",
+      "library_group": "jaxws",
+      "tags": [
+        "jaxws"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jboss-logmanager-appender-1.1",
+      "library_group": "jboss",
+      "tags": [
+        "jboss"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jboss-logmanager-mdc-1.1",
+      "library_group": "jboss",
+      "tags": [
+        "jboss"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jdbc",
+      "library_group": "jdbc",
+      "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
+      "tags": [
+        "jdbc",
+        "sql",
+        "client",
+        "database"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jedis-1.4",
+      "library_group": "jedis",
+      "tags": [
+        "jedis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jedis-3.0",
+      "library_group": "jedis",
+      "tags": [
+        "jedis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jedis-4.0",
+      "library_group": "jedis",
+      "tags": [
+        "jedis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jetty-11.0",
+      "library_group": "jetty",
+      "tags": [
+        "jetty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jetty-12.0",
+      "library_group": "jetty",
+      "tags": [
+        "jetty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jetty-8.0",
+      "library_group": "jetty",
+      "tags": [
+        "jetty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jetty-httpclient-12.0",
+      "library_group": "jetty",
+      "tags": [
+        "jetty",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jetty-httpclient-9.2",
+      "library_group": "jetty",
+      "tags": [
+        "jetty",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jms-1.1",
+      "library_group": "jms",
+      "tags": [
+        "jms"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jms-3.0",
+      "library_group": "jms",
+      "tags": [
+        "jms"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jodd-http-4.2",
+      "library_group": "jodd",
+      "tags": [
+        "jodd",
+        "http"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "jsf-mojarra-1.2",
+      "library_group": "jsf",
+      "tags": [
+        "jsf"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jsf-mojarra-3.0",
+      "library_group": "jsf",
+      "tags": [
+        "jsf"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jsf-myfaces-1.2",
+      "library_group": "jsf",
+      "tags": [
+        "jsf"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jsf-myfaces-3.0",
+      "library_group": "jsf",
+      "tags": [
+        "jsf"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "jsp-2.3",
+      "library_group": "jsp",
+      "tags": [
+        "jsp"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kafka-clients-0.11",
+      "library_group": "kafka",
+      "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
+      "tags": [
+        "kafka",
+        "client",
+        "messaging"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kafka-clients-2.6",
+      "library_group": "kafka",
+      "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
+      "tags": [
+        "kafka",
+        "client",
+        "messaging"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kafka-streams-0.11",
+      "library_group": "kafka",
+      "tags": [
+        "kafka"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kotlinx-coroutines-1.0",
+      "library_group": "kotlinx",
+      "tags": [
+        "kotlinx"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kotlinx-coroutines-flow-1.3",
+      "library_group": "kotlinx",
+      "tags": [
+        "kotlinx"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "ktor-1.0",
+      "library_group": "ktor",
+      "tags": [
+        "ktor"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "ktor-2.0",
+      "library_group": "ktor",
+      "tags": [
+        "ktor"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "ktor-3.0",
+      "library_group": "ktor",
+      "tags": [
+        "ktor"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "kubernetes-client-7.0",
+      "library_group": "kubernetes",
+      "tags": [
+        "kubernetes",
+        "client"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "lettuce-4.0",
+      "library_group": "lettuce",
+      "tags": [
+        "lettuce"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "lettuce-5.0",
+      "library_group": "lettuce",
+      "tags": [
+        "lettuce"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "lettuce-5.1",
+      "library_group": "lettuce",
+      "tags": [
+        "lettuce"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "liberty-20.0",
+      "library_group": "liberty",
+      "tags": [
+        "liberty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "liberty-dispatcher-20.0",
+      "library_group": "liberty",
+      "tags": [
+        "liberty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "log4j-appender-1.2",
+      "library_group": "log4j",
+      "tags": [
+        "log4j"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "log4j-appender-2.17",
+      "library_group": "log4j",
+      "tags": [
+        "log4j"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "log4j-context-data-2.17",
+      "library_group": "log4j",
+      "tags": [
+        "log4j"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "log4j-context-data-2.7",
+      "library_group": "log4j",
+      "tags": [
+        "log4j"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "log4j-mdc-1.2",
+      "library_group": "log4j",
+      "tags": [
+        "log4j"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "logback-appender-1.0",
+      "library_group": "logback",
+      "tags": [
+        "logback"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "logback-mdc-1.0",
+      "library_group": "logback",
+      "tags": [
+        "logback"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "micrometer-1.5",
+      "library_group": "micrometer",
+      "tags": [
+        "micrometer"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "mongo-3.1",
+      "library_group": "mongo",
+      "tags": [
+        "mongo"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "mongo-3.7",
+      "library_group": "mongo",
+      "tags": [
+        "mongo"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "mongo-4.0",
+      "library_group": "mongo",
+      "tags": [
+        "mongo"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "mongo-async-3.3",
+      "library_group": "mongo",
+      "tags": [
+        "mongo"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "mybatis-3.2",
+      "library_group": "mybatis",
+      "tags": [
+        "mybatis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "netty-3.8",
+      "library_group": "netty",
+      "tags": [
+        "netty"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "netty-4.0",
+      "library_group": "netty",
+      "tags": [
+        "netty"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "netty-4.1",
+      "library_group": "netty",
+      "tags": [
+        "netty"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "okhttp-2.2",
+      "library_group": "okhttp",
+      "tags": [
+        "okhttp",
+        "http"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "okhttp-3.0",
+      "library_group": "okhttp",
+      "tags": [
+        "okhttp",
+        "http"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "openai-java-1.1",
+      "library_group": "openai",
+      "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "tags": [
+        "openai",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "opensearch-rest-1.0",
+      "library_group": "opensearch",
+      "tags": [
+        "opensearch"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "opensearch-rest-3.0",
+      "library_group": "opensearch",
+      "tags": [
+        "opensearch"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "oracle-ucp-11.2",
+      "library_group": "oracle",
+      "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+      "tags": [
+        "oracle"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "oshi",
+      "library_group": "oshi",
+      "description": "When the OSHI library is detected on the classpath, this instrumentation will use the system class loader to load classes from the oshi-core jar that are then used to generate system metrics.",
+      "tags": [
+        "oshi"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "payara",
+      "library_group": "payara",
+      "tags": [
+        "payara"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "pekko-actor-1.0",
+      "library_group": "pekko",
+      "tags": [
+        "pekko"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "pekko-http-1.0",
+      "library_group": "pekko",
+      "tags": [
+        "pekko",
+        "http"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "play-mvc-2.4",
+      "library_group": "play",
+      "tags": [
+        "play"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "play-mvc-2.6",
+      "library_group": "play",
+      "tags": [
+        "play"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "play-ws-1.0",
+      "library_group": "play",
+      "tags": [
+        "play"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "play-ws-2.0",
+      "library_group": "play",
+      "tags": [
+        "play"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "play-ws-2.1",
+      "library_group": "play",
+      "tags": [
+        "play"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "powerjob-4.0",
+      "library_group": "powerjob",
+      "tags": [
+        "powerjob"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "pulsar-2.8",
+      "library_group": "pulsar",
+      "tags": [
+        "pulsar"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "quarkus-resteasy-reactive",
+      "library_group": "quarkus",
+      "tags": [
+        "quarkus"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "quartz-2.0",
+      "library_group": "quartz",
+      "tags": [
+        "quartz"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "r2dbc-1.0",
+      "library_group": "r2dbc",
+      "tags": [
+        "r2dbc"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rabbitmq-2.7",
+      "library_group": "rabbitmq",
+      "tags": [
+        "rabbitmq"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "ratpack-1.4",
+      "library_group": "ratpack",
+      "tags": [
+        "ratpack"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "ratpack-1.7",
+      "library_group": "ratpack",
+      "tags": [
+        "ratpack"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "reactor-3.1",
+      "library_group": "reactor",
+      "tags": [
+        "reactor"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "reactor-3.4",
+      "library_group": "reactor",
+      "tags": [
+        "reactor"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "reactor-kafka-1.0",
+      "library_group": "reactor",
+      "tags": [
+        "reactor",
+        "kafka"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "reactor-netty-0.9",
+      "library_group": "reactor",
+      "tags": [
+        "reactor",
+        "netty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "reactor-netty-1.0",
+      "library_group": "reactor",
+      "tags": [
+        "reactor",
+        "netty"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "rediscala-1.8",
+      "library_group": "rediscala",
+      "tags": [
+        "rediscala",
+        "redis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "redisson-3.0",
+      "library_group": "redisson",
+      "tags": [
+        "redisson",
+        "redis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "redisson-3.17",
+      "library_group": "redisson",
+      "tags": [
+        "redisson",
+        "redis"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "resources",
+      "library_group": "resources",
+      "tags": [
+        "resources"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "restlet-1.1",
+      "library_group": "restlet",
+      "tags": [
+        "restlet"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "restlet-2.0",
+      "library_group": "restlet",
+      "tags": [
+        "restlet"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rmi",
+      "library_group": "rmi",
+      "tags": [
+        "rmi"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rocketmq-client-4.8",
+      "library_group": "rocketmq",
+      "tags": [
+        "rocketmq",
+        "client"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rocketmq-client-5.0",
+      "library_group": "rocketmq",
+      "tags": [
+        "rocketmq",
+        "client"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "runtime-telemetry-java17",
+      "library_group": "runtime",
+      "tags": [
+        "runtime"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "runtime-telemetry-java8",
+      "library_group": "runtime",
+      "tags": [
+        "runtime"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rxjava-2.0",
+      "library_group": "rxjava",
+      "tags": [
+        "rxjava"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rxjava-3.0",
+      "library_group": "rxjava",
+      "tags": [
+        "rxjava"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "rxjava-3.1.1",
+      "library_group": "rxjava",
+      "tags": [
+        "rxjava"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "scala-fork-join-2.8",
+      "library_group": "scala",
+      "tags": [
+        "scala"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "servlet-2.2",
+      "library_group": "servlet",
+      "tags": [
+        "servlet"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "servlet-3.0",
+      "library_group": "servlet",
+      "tags": [
+        "servlet"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "servlet-5.0",
+      "library_group": "servlet",
+      "tags": [
+        "servlet"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spark-2.3",
+      "library_group": "spark",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+      "tags": [
+        "spark",
+        "http",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-batch-3.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-boot-actuator-autoconfigure-2.0",
+      "library_group": "spring",
+      "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-boot-resources",
+      "library_group": "spring",
+      "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-cloud-aws-3.0",
+      "library_group": "spring",
+      "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-cloud-gateway-2.0",
+      "library_group": "spring",
+      "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
+      "tags": [
+        "spring",
+        "netty"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-core-2.0",
+      "library_group": "spring",
+      "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-data-1.8",
+      "library_group": "spring",
+      "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
+      "tags": [
+        "spring",
+        "jdbc",
+        "database"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-integration-4.1",
+      "library_group": "spring",
+      "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
+      "tags": [
+        "spring",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-jms-2.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "tags": [
+        "spring",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-jms-6.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "tags": [
+        "spring",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-kafka-2.7",
+      "library_group": "spring",
+      "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
+      "tags": [
+        "spring",
+        "kafka",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-pulsar-1.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
+      "tags": [
+        "spring",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-rabbit-1.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
+      "tags": [
+        "spring",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-rmi-4.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
+      "tags": [
+        "spring",
+        "client",
+        "server",
+        "rpc"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-scheduling-3.1",
+      "library_group": "spring",
+      "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-security-config-6.0",
+      "library_group": "spring",
+      "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-web-3.1",
+      "library_group": "spring",
+      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
+      "tags": [
+        "spring",
+        "http",
+        "client",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-web-6.0",
+      "library_group": "spring",
+      "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "tags": [
+        "spring",
+        "http",
+        "server"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spring-webflux-5.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "tags": [
+        "spring",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-webflux-5.3",
+      "library_group": "spring",
+      "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+      "tags": [
+        "spring",
+        "http",
+        "client",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-webmvc-3.1",
+      "library_group": "spring",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-webmvc-5.3",
+      "library_group": "spring",
+      "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
+      "tags": [
+        "spring",
+        "http",
+        "servlet",
+        "server"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-webmvc-6.0",
+      "library_group": "spring",
+      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-ws-2.0",
+      "library_group": "spring",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "spymemcached-2.12",
+      "library_group": "spymemcached",
+      "tags": [
+        "spymemcached"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "struts-2.3",
+      "library_group": "struts",
+      "tags": [
+        "struts"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "struts-7.0",
+      "library_group": "struts",
+      "tags": [
+        "struts"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "tapestry-5.4",
+      "library_group": "tapestry",
+      "tags": [
+        "tapestry"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "tomcat-10.0",
+      "library_group": "tomcat",
+      "tags": [
+        "tomcat"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "tomcat-7.0",
+      "library_group": "tomcat",
+      "tags": [
+        "tomcat"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "tomcat-jdbc",
+      "library_group": "tomcat",
+      "tags": [
+        "tomcat",
+        "jdbc"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "twilio-6.6",
+      "library_group": "twilio",
+      "tags": [
+        "twilio"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "undertow-1.4",
+      "library_group": "undertow",
+      "tags": [
+        "undertow"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "vaadin-14.2",
+      "library_group": "vaadin",
+      "tags": [
+        "vaadin"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "vertx-http-client-3.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-http-client-4.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-http-client-5.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "http",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-kafka-client-3.6",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "kafka",
+        "client"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "vertx-redis-client-4.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "redis",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-rx-java-3.5",
+      "library_group": "vertx",
+      "tags": [
+        "vertx"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "vertx-sql-client-4.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "sql",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-sql-client-5.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx",
+        "sql",
+        "client"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "vertx-web-3.0",
+      "library_group": "vertx",
+      "tags": [
+        "vertx"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "vibur-dbcp-11.0",
+      "library_group": "vibur",
+      "description": "Instrumentation for the vibur-dbcp library, which provides connection pool metrics.",
+      "tags": [
+        "vibur"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "wicket-8.0",
+      "library_group": "wicket",
+      "tags": [
+        "wicket"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "xxl-job-1.9.2",
+      "library_group": "xxl",
+      "tags": [
+        "xxl"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "xxl-job-2.1.2",
+      "library_group": "xxl",
+      "tags": [
+        "xxl"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "xxl-job-2.3.0",
+      "library_group": "xxl",
+      "tags": [
+        "xxl"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "zio-2.0",
+      "library_group": "zio",
+      "tags": [
+        "zio"
+      ],
+      "has_telemetry": false
+    }
+  ]
+}
