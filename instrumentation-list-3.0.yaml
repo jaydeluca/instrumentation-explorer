@@ -1340,6 +1340,8 @@ libraries:
       one of wrappers as your lambda `Handler`.
 
       '
+    semantic_conventions:
+    - FAAS_SERVER_SPANS
     library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-core-1.0
     scope:
@@ -1363,11 +1365,13 @@ libraries:
           type: STRING
   - name: aws-lambda-events-2.2
     description: 'This version of the library instrumentation is deprecated, please
-      use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation
-      builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support
-      to cover the Lambda library, including standard and custom event types.
+      use `aws-lambda-events-3.11` instead. This instrumentation enables FaaS spans
+      and messaging spans for AWS Lambda functions handling event types.
 
       '
+    semantic_conventions:
+    - FAAS_SERVER_SPANS
+    - MESSAGING_SPANS
     library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-events-2.2
     scope:
@@ -1414,11 +1418,13 @@ libraries:
         - name: user_agent.original
           type: STRING
   - name: aws-lambda-events-3.11
-    description: 'This instrumentation builds on top of the `aws-lambda-core-1.0`
-      instrumentation, expanding support to cover the Lambda library, including standard
-      and custom event types.
+    description: 'This library instrumentation provides FaaS spans and messaging spans
+      for AWS Lambda functions handling event types.
 
       '
+    semantic_conventions:
+    - FAAS_SERVER_SPANS
+    - MESSAGING_SPANS
     library_link: https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
     source_path: instrumentation/aws-lambda/aws-lambda-events-3.11
     scope:
@@ -1469,6 +1475,13 @@ libraries:
       EC2, Kinesis, Lambda, RDS, S3, secrets manager, SNS/SQS and step functions.
 
       '
+    semantic_conventions:
+    - HTTP_CLIENT_SPANS
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
+    - MESSAGING_SPANS
+    - GENAI_CLIENT_SPANS
+    - GENAI_CLIENT_METRICS
     library_link: https://aws.amazon.com/sdk-for-java/
     source_path: instrumentation/aws-sdk/aws-sdk-1.11
     scope:
@@ -1614,6 +1627,13 @@ libraries:
       EC2, Kinesis, Lambda, RDS, S3, SNS/SQS and Bedrock.
 
       '
+    semantic_conventions:
+    - HTTP_CLIENT_SPANS
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
+    - MESSAGING_SPANS
+    - GENAI_CLIENT_SPANS
+    - GENAI_CLIENT_METRICS
     library_link: https://aws.amazon.com/sdk-for-java/
     source_path: instrumentation/aws-sdk/aws-sdk-2.2
     scope:
@@ -4722,6 +4742,16 @@ libraries:
     - name: otel.instrumentation.jdbc.experimental.transaction.enabled
       description: Enables experimental instrumentation to create spans for COMMIT
         and ROLLBACK operations.
+      type: boolean
+      default: false
+    - name: otel.instrumentation.jdbc.experimental.sqlcommenter.enabled
+      description: 'Enables augmenting queries with a comment containing the tracing
+        information. See [sqlcommenter](https://google.github.io/sqlcommenter/) for
+        more info. WARNING: augmenting queries with tracing context will make query
+        texts unique, which may have adverse impact on database performance. Consult
+        with database experts before enabling.
+
+        '
       type: boolean
       default: false
     - name: otel.instrumentation.common.peer-service-mapping
