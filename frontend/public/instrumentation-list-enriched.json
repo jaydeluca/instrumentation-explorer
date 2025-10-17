@@ -39941,6 +39941,9 @@
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS"
+      ],
       "semconv": [],
       "source_path": "instrumentation/aws-lambda/aws-lambda-core-1.0",
       "target_versions": {
@@ -39983,13 +39986,17 @@
           "type": "list"
         }
       ],
-      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This version of the library instrumentation is deprecated, please use `aws-lambda-events-3.11` instead. This instrumentation enables FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "library_link": "https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html",
       "markdown_content": "# AWS Lambda Instrumentation\n\nThis package contains libraries to help instrument AWS lambda functions in your code.\n\n## Using wrappers\n\nTo use the instrumentation, configure `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` env property to your lambda handler method in following format `package.ClassName::methodName`\nand use one of wrappers as your lambda `Handler`.\n\nIn order to configure a span flush timeout (default is set to 10 seconds), please configure `OTEL_INSTRUMENTATION_AWS_LAMBDA_FLUSH_TIMEOUT` env property. The value is in milliseconds.\n\nAvailable wrappers:\n\n- `io.opentelemetry.instrumentation.awslambdaevents.v2_2.TracingRequestWrapper` - for wrapping regular handlers (implementing `RequestHandler`)\n- `io.opentelemetry.instrumentation.awslambdaevents.v2_2.TracingRequestApiGatewayWrapper` - for wrapping regular handlers (implementing `RequestHandler`) proxied through API Gateway, enabling HTTP context propagation\n- `io.opentelemetry.instrumentation.awslambdacore.v1_0.TracingRequestStreamWrapper` - for wrapping streaming handlers (implementing `RequestStreamHandler`), enabling HTTP context propagation for HTTP requests\n\nIf you are only using `TracingRequestStreamWrapper`, consider using [aws-lambda-core-1.0](../../aws-lambda-core-1.0/library) instead to reduce the size of\nyour compiled function.\n\n## Using handlers\n\nTo use the instrumentation, replace your function classes that implement `RequestHandler` (or `RequestStreamHandler`) with those\nthat extend `TracingRequestHandler` (or `TracingRequestStreamHandler`). You will need to change the method name to `doHandleRequest`\nand pass an initialized `OpenTelemetrySdk` to the base class.\n\n```java\npublic class MyRequestHandler extends TracingRequestHandler<String, String> {\n\n  private static final OpenTelemetrySdk SDK = OpenTelemetrySdk.builder()\n      .addSpanProcessor(spanProcessor)\n      .buildAndRegisterGlobal();\n\n  public MyRequestHandler() {\n    super(SDK);\n  }\n\n  // Note the method is named doHandleRequest instead of handleRequest.\n  @Override\n  protected String doHandleRequest(String input, Context context) {\n    if (input.equals(\"hello\")) {\n      return \"world\";\n    }\n    return \"goodbye\";\n  }\n}\n```\n\nA `SERVER` span will be created with the name you specify for the function when deploying it.\n\nIn addition, it is recommended to set up X-Ray trace propagation to be able to\nlink to tracing information provided by Lambda itself. To do so, add a dependency on\n`opentelemetry-extension-tracepropagators`. Make sure the version matches the version of the SDK\nyou use.\n\nGradle:\n\n```kotlin\ndependencies {\n  implementation(\"io.opentelemetry:opentelemetry-extension-trace-propagators:0.8.0\")\n}\n```\n\nMaven:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry</groupId>\n    <artifactId>opentelemetry-extension-trace-propagators</artifactId>\n    <version>0.8.0</version>\n  </dependency>\n</dependencies>\n```\n\n## SQS Handler\n\nThis package provides a special handler for SQS-triggered functions to include messaging data.\nIf using SQS, it is recommended to use them instead of `TracingRequestHandler`.\n\nIf your application processes one message at a time, each independently, it is recommended to extend\n`TracingSQSMessageHandler`. This will create a single span corresponding to a received batch of\nmessages along with one span for each of the messages as you process them.\n\n```java\npublic class MyMessageHandler extends TracingSQSMessageHandler {\n  @Override\n  protected void handleMessage(SQSMessage message, Context context) {\n    System.out.println(message.getBody());\n  }\n}\n```\n\nIf you handle a batch of messages together, for example by aggregating them into a single unit,\nextend `TracingSQSEventHandler` to process a batch at a time.\n\n```java\npublic class MyBatchHandler extends TracingSQSEventHandler {\n  @Override\n  protected void handleEvent(SQSEvent event, Context context) {\n    System.out.println(event.getRecords().size());\n  }\n}\n```\n\n## Trace propagation\n\nContext propagation for this instrumentation can be done either with X-Ray propagation or regular HTTP propagation. If X-Ray is enabled for instrumented lambda, it will be preferred. If X-Ray is disabled, HTTP propagation will be tried (that is HTTP headers will be read to check for a valid trace context).\n\n### X-Ray propagation\n\nThis instrumentation supports propagating traces using the `X-Amzn-Trace-Id` format for both normal\nrequests and SQS requests. X-Ray propagation is always enabled, there is no need to configure it explicitly.\n\n### HTTP headers based propagation\n\nFor API Gateway (HTTP) requests instrumented by using one of following methods:\n\n- extending `TracingRequestStreamHandler` or `TracingRequestHandler`\n- wrapping with `TracingRequestStreamWrapper` or `TracingRequestApiGatewayWrapper`\n  traces can be propagated with supported HTTP headers (see <https://github.com/open-telemetry/opentelemetry-java/tree/main/extensions/trace-propagators>).\n\nIn order to enable requested propagation for a handler, configure it on the SDK you build.\n\n```java\n  static {\n    OpenTelemetrySdk.builder()\n      ...\n      .setPropagators(ContextPropagators.create(B3Propagator.injectingSingleHeader()))\n      .buildAndRegisterGlobal();\n  }\n```\n\nIf using the wrappers, set the `OTEL_PROPAGATORS` environment variable as described [here](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#propagator).\n",
       "name": "aws-lambda-events-2.2",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-2.2"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP",
@@ -40069,13 +40076,17 @@
           "type": "int"
         }
       ],
-      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This library instrumentation provides FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "library_link": "https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html",
       "markdown_content": "# AWS Lambda Instrumentation\n\nThis package contains libraries to help instrument AWS lambda functions in your code.\n\n## Using wrappers\n\nTo use the instrumentation, configure `OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER` env property to your lambda handler method in following format `package.ClassName::methodName`\nand use one of wrappers as your lambda `Handler`.\n\nIn order to configure a span flush timeout (default is set to 10 seconds), please configure `OTEL_INSTRUMENTATION_AWS_LAMBDA_FLUSH_TIMEOUT` env property. The value is in milliseconds.\n\nAvailable wrappers:\n\n- `io.opentelemetry.instrumentation.awslambdaevents.v3_11.TracingRequestWrapper` - for wrapping regular handlers (implementing `RequestHandler`)\n- `io.opentelemetry.instrumentation.awslambdaevents.v3_11.TracingRequestApiGatewayWrapper` - for wrapping regular handlers (implementing `RequestHandler`) proxied through API Gateway, enabling HTTP context propagation\n- `io.opentelemetry.instrumentation.awslambdacore.v1_0.TracingRequestStreamWrapper` - for wrapping streaming handlers (implementing `RequestStreamHandler`), enabling HTTP context propagation for HTTP requests\n\nIf you are only using `TracingRequestStreamWrapper`, consider using [aws-lambda-core-1.0](../../aws-lambda-core-1.0/library) instead to reduce the size of\nyour compiled function.\n\n## Using handlers\n\nTo use the instrumentation, replace your function classes that implement `RequestHandler` (or `RequestStreamHandler`) with those\nthat extend `TracingRequestHandler` (or `TracingRequestStreamHandler`). You will need to change the method name to `doHandleRequest`\nand pass an initialized `OpenTelemetrySdk` to the base class.\n\n```java\npublic class MyRequestHandler extends TracingRequestHandler<String, String> {\n\n  private static final OpenTelemetrySdk SDK = OpenTelemetrySdk.builder()\n      .addSpanProcessor(spanProcessor)\n      .buildAndRegisterGlobal();\n\n  public MyRequestHandler() {\n    super(SDK);\n  }\n\n  // Note the method is named doHandleRequest instead of handleRequest.\n  @Override\n  protected String doHandleRequest(String input, Context context) {\n    if (input.equals(\"hello\")) {\n      return \"world\";\n    }\n    return \"goodbye\";\n  }\n}\n```\n\nA `SERVER` span will be created with the name you specify for the function when deploying it.\n\nIn addition, it is recommended to set up X-Ray trace propagation to be able to\nlink to tracing information provided by Lambda itself. To do so, add a dependency on\n`opentelemetry-extension-tracepropagators`. Make sure the version matches the version of the SDK\nyou use.\n\nGradle:\n\n```kotlin\ndependencies {\n  implementation(\"io.opentelemetry:opentelemetry-extension-trace-propagators:0.8.0\")\n}\n```\n\nMaven:\n\n```xml\n<dependencies>\n  <dependency>\n    <groupId>io.opentelemetry</groupId>\n    <artifactId>opentelemetry-extension-trace-propagators</artifactId>\n    <version>0.8.0</version>\n  </dependency>\n</dependencies>\n```\n\n## SQS Handler\n\nThis package provides a special handler for SQS-triggered functions to include messaging data.\nIf using SQS, it is recommended to use them instead of `TracingRequestHandler`.\n\nIf your application processes one message at a time, each independently, it is recommended to extend\n`TracingSQSMessageHandler`. This will create a single span corresponding to a received batch of\nmessages along with one span for each of the messages as you process them.\n\n```java\npublic class MyMessageHandler extends TracingSQSMessageHandler {\n  @Override\n  protected boolean handleMessage(SQSMessage message, Context context) {\n    System.out.println(message.getBody());\n    return true;\n  }\n}\n```\n\nIf you handle a batch of messages together, for example by aggregating them into a single unit,\nextend `TracingSQSEventHandler` to process a batch at a time.\n\n```java\npublic class MyBatchHandler extends TracingSQSEventHandler {\n  @Override\n  protected SQSBatchResponse handleEvent(SQSEvent event, Context context) {\n    System.out.println(event.getRecords().size());\n    return null;\n  }\n}\n```\n\n## Trace propagation\n\nContext propagation for this instrumentation can be done either with X-Ray propagation or regular HTTP propagation. If X-Ray is enabled for instrumented lambda, it will be preferred. If X-Ray is disabled, HTTP propagation will be tried (that is HTTP headers will be read to check for a valid trace context).\n\n### X-Ray propagation\n\nThis instrumentation supports propagating traces using the `X-Amzn-Trace-Id` format for both normal\nrequests and SQS requests. X-Ray propagation is always enabled, there is no need to configure it explicitly.\n\n### HTTP headers based propagation\n\nFor API Gateway (HTTP) requests instrumented by using one of following methods:\n\n- extending `TracingRequestStreamHandler` or `TracingRequestHandler`\n- wrapping with `TracingRequestStreamWrapper` or `TracingRequestApiGatewayWrapper`\n  traces can be propagated with supported HTTP headers (see <https://github.com/open-telemetry/opentelemetry-java/tree/main/extensions/trace-propagators>).\n\nIn order to enable requested propagation for a handler, configure it on the SDK you build.\n\n```java\n  static {\n    OpenTelemetrySdk.builder()\n      ...\n      .setPropagators(ContextPropagators.create(B3Propagator.injectingSingleHeader()))\n      .buildAndRegisterGlobal();\n  }\n```\n\nIf using the wrappers, set the `OTEL_PROPAGATORS` environment variable as described [here](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#propagator).\n",
       "name": "aws-lambda-events-3.11",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-3.11"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Cloud",
         "Database Client",
@@ -40191,6 +40202,14 @@
       "scope": {
         "name": "io.opentelemetry.aws-sdk-1.11"
       },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS",
+        "GENAI_CLIENT_SPANS",
+        "HTTP_CLIENT_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client",
@@ -40724,6 +40743,14 @@
       "scope": {
         "name": "io.opentelemetry.aws-sdk-2.2"
       },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS",
+        "GENAI_CLIENT_SPANS",
+        "HTTP_CLIENT_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client",
@@ -47671,6 +47698,12 @@
           "default": false,
           "description": "Sets whether the query parameters should be captured as span attributes named <code>db.query.parameter.&lt;key&gt;</code>. Enabling this option disables the statement sanitization.<p>WARNING: captured query parameters may contain sensitive information such as passwords, personally identifiable information or protected health info.\n",
           "name": "otel.instrumentation.jdbc.experimental.capture-query-parameters",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables augmenting queries with a comment containing the tracing information. See [sqlcommenter](https://google.github.io/sqlcommenter/) for more info. WARNING: augmenting queries with tracing context will make query texts unique, which may have adverse impact on database performance. Consult with database experts before enabling.\n",
+          "name": "otel.instrumentation.jdbc.experimental.sqlcommenter.enabled",
           "type": "boolean"
         },
         {
@@ -56930,6 +56963,9 @@
       "scope": {
         "name": "io.opentelemetry.aws-lambda-core-1.0"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS"
+      ],
       "semconv": [],
       "source_path": "instrumentation/aws-lambda/aws-lambda-core-1.0",
       "target_versions": {
@@ -56972,12 +57008,16 @@
           "type": "list"
         }
       ],
-      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This version of the library instrumentation is deprecated, please use `aws-lambda-events-3.11` instead. This instrumentation enables FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "library_link": "https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html",
       "name": "aws-lambda-events-2.2",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-2.2"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Database Client",
         "HTTP",
@@ -57057,12 +57097,16 @@
           "type": "int"
         }
       ],
-      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This library instrumentation provides FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "library_link": "https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html",
       "name": "aws-lambda-events-3.11",
       "scope": {
         "name": "io.opentelemetry.aws-lambda-events-3.11"
       },
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Cloud",
         "Database Client",
@@ -57178,6 +57222,14 @@
       "scope": {
         "name": "io.opentelemetry.aws-sdk-1.11"
       },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS",
+        "GENAI_CLIENT_SPANS",
+        "HTTP_CLIENT_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client",
@@ -57493,6 +57545,14 @@
       "scope": {
         "name": "io.opentelemetry.aws-sdk-2.2"
       },
+      "semantic_conventions": [
+        "DATABASE_CLIENT_METRICS",
+        "DATABASE_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS",
+        "GENAI_CLIENT_SPANS",
+        "HTTP_CLIENT_SPANS",
+        "MESSAGING_SPANS"
+      ],
       "semconv": [
         "Aws",
         "Database Client",
@@ -63156,6 +63216,12 @@
           "default": false,
           "description": "Sets whether the query parameters should be captured as span attributes named <code>db.query.parameter.&lt;key&gt;</code>. Enabling this option disables the statement sanitization.<p>WARNING: captured query parameters may contain sensitive information such as passwords, personally identifiable information or protected health info.\n",
           "name": "otel.instrumentation.jdbc.experimental.capture-query-parameters",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Enables augmenting queries with a comment containing the tracing information. See [sqlcommenter](https://google.github.io/sqlcommenter/) for more info. WARNING: augmenting queries with tracing context will make query texts unique, which may have adverse impact on database performance. Consult with database experts before enabling.\n",
+          "name": "otel.instrumentation.jdbc.experimental.sqlcommenter.enabled",
           "type": "boolean"
         },
         {
