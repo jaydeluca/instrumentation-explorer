@@ -2032,10 +2032,13 @@ libraries:
           type: STRING
   cassandra:
   - name: cassandra-3.0
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
+    description: 'This instrumentation enables database client spans and database
+      client metrics for the DataStax Cassandra Driver.
 
       '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
     library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-3.0
     scope:
@@ -2050,6 +2053,24 @@ libraries:
       default: true
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
       spans:
       - span_kind: CLIENT
         attributes:
@@ -2074,10 +2095,13 @@ libraries:
         - name: server.port
           type: LONG
   - name: cassandra-4.0
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
+    description: 'This instrumentation enables database client spans and database
+      client metrics for the DataStax Cassandra Driver.
 
       '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
     library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-4.0
     scope:
@@ -2092,6 +2116,24 @@ libraries:
       default: true
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
       spans:
       - span_kind: CLIENT
         attributes:
@@ -2128,10 +2170,13 @@ libraries:
         - name: server.port
           type: LONG
   - name: cassandra-4.4
-    description: 'Instruments the Cassandra database client, providing database client
-      spans and metrics for Cassandra queries.
+    description: 'This instrumentation enables database client spans and database
+      client metrics for the DataStax Cassandra Driver.
 
       '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
     library_link: https://github.com/apache/cassandra-java-driver
     source_path: instrumentation/cassandra/cassandra-4.4
     scope:
@@ -2148,6 +2193,24 @@ libraries:
       default: true
     telemetry:
     - when: default
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: server.address
+          type: STRING
+        - name: server.port
+          type: LONG
       spans:
       - span_kind: CLIENT
         attributes:
@@ -2185,8 +2248,13 @@ libraries:
           type: LONG
   clickhouse:
   - name: clickhouse-client-v1-0.5
-    description: This instrumentation enables database client spans and metrics for
-      the V1 ClickHouse client.
+    description: 'This instrumentation enables database client spans and database
+      client metrics for the ClickHouse Java Client.
+
+      '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
     library_link: https://github.com/ClickHouse/clickhouse-java
     source_path: instrumentation/clickhouse/clickhouse-client-v1-0.5
     scope:
@@ -2237,8 +2305,13 @@ libraries:
         - name: server.port
           type: LONG
   - name: clickhouse-client-v2-0.8
-    description: This instrumentation enables database client spans and metrics for
-      the V2 ClickHouse client.
+    description: 'This instrumentation enables database client spans and database
+      client metrics for the ClickHouse Java Client.
+
+      '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
     library_link: https://github.com/ClickHouse/clickhouse-java
     source_path: instrumentation/clickhouse/clickhouse-client-v2-0.8
     scope:
@@ -5120,6 +5193,35 @@ libraries:
         '
       type: boolean
       default: false
+  - name: kafka-connect-2.6
+    description: This instrumentation enables messaging spans for Kafka Connect sink
+      tasks.
+    semantic_conventions:
+    - MESSAGING_SPANS
+    library_link: https://kafka.apache.org/documentation/#connect
+    source_path: instrumentation/kafka/kafka-connect-2.6
+    scope:
+      name: io.opentelemetry.kafka-connect-2.6
+    target_versions:
+      javaagent:
+      - org.apache.kafka:connect-api:[2.6.0,)
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: CONSUMER
+        attributes:
+        - name: messaging.batch.message_count
+          type: LONG
+        - name: messaging.destination.name
+          type: STRING
+        - name: messaging.operation
+          type: STRING
+        - name: messaging.system
+          type: STRING
+        - name: thread.id
+          type: LONG
+        - name: thread.name
+          type: STRING
   - name: kafka-streams-0.11
     library_link: https://kafka.apache.org/documentation/streams/
     source_path: instrumentation/kafka/kafka-streams-0.11
@@ -7246,9 +7348,9 @@ libraries:
       - org.springframework.security:spring-security-config:[6.0.0,]
       library:
       - io.projectreactor:reactor-core:3.5.0
+      - jakarta.servlet:jakarta.servlet-api:[6.0.0,6.1.0)
       - org.springframework.security:spring-security-config:6.0.0
       - org.springframework:spring-web:6.0.0
-      - jakarta.servlet:jakarta.servlet-api:6.0.0
       - org.springframework.security:spring-security-web:6.0.0
     configurations:
     - name: otel.instrumentation.common.enduser.id.enabled
@@ -7275,8 +7377,7 @@ libraries:
       default: SCOPE_
   - name: spring-web-3.1
     description: 'This instrumentation provides a library integration that enables
-      capturing HTTP client spans and metrics for Spring''s RestTemplate. The agent
-      integration enriches HTTP server spans and metrics with route information.
+      capturing HTTP client spans and metrics for Spring''s RestTemplate.
 
       '
     library_link: https://github.com/spring-projects/spring-framework
@@ -7318,8 +7419,10 @@ libraries:
         - name: url.full
           type: STRING
   - name: spring-web-6.0
-    description: This instrumentation enriches HTTP server spans and metrics with
-      route information.
+    description: 'This instrumentation provides a library integration that enables
+      capturing HTTP client spans and metrics for Spring''s RestTemplate.
+
+      '
     library_link: https://github.com/spring-projects/spring-framework
     source_path: instrumentation/spring/spring-web/spring-web-6.0
     minimum_java_version: 17
