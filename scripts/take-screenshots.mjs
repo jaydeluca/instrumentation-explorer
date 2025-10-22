@@ -56,22 +56,37 @@ async function takeScreenshots() {
     page = await browser.newPage();
     await page.setViewportSize({ width: 1800, height: 2000 });
     
+    // Block external requests that can cause timeouts (Google Analytics, fonts, etc.)
+    await page.route('**/*', (route) => {
+      const url = route.request().url();
+      if (url.includes('googletagmanager.com') || 
+          url.includes('google-analytics.com') ||
+          url.includes('fonts.googleapis.com') ||
+          url.includes('fonts.gstatic.com')) {
+        console.log(`Blocking external request: ${url}`);
+        route.abort();
+      } else {
+        route.continue();
+      }
+    });
+    
     console.log('Taking home page screenshots...');
     // Navigate to the home page and take a screenshot
-    await page.goto(URL);
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
-    await page.waitForSelector('body', { state: 'visible' });
+    await page.goto(URL, { waitUntil: 'load', timeout: 30000 });
+    await page.waitForSelector('body', { state: 'visible', timeout: 10000 });
+    // Wait a bit for data to load
+    await new Promise(resolve => setTimeout(resolve, 3000));
     await page.screenshot({ path: `screenshots/home.png` });
 
     await page.selectOption('#theme-select', 'grafana');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 1000));
     await page.screenshot({ path: `screenshots/home-grafana.png` });
 
     console.log('Taking Couchbase library screenshots...');
     // Take a full-page screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`);
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'load', timeout: 30000 });
+    await new Promise(resolve => setTimeout(resolve, 2000));
     
     // Wait for page to load and check if comparison selects exist
     try {
@@ -82,7 +97,7 @@ async function takeScreenshots() {
       await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
 
-      await page.waitForLoadState('networkidle', { timeout: 60000 });
+      await new Promise(resolve => setTimeout(resolve, 2000));
       await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error) {
       console.log('Comparison selectors not found, taking screenshot without comparison');
@@ -136,7 +151,7 @@ async function takeScreenshots() {
       await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
 
-      await page.waitForLoadState('networkidle', { timeout: 60000 });
+      await new Promise(resolve => setTimeout(resolve, 2000));
       await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error) {
       console.log('Comparison selectors not found for alibaba-druid, taking screenshot without comparison');
@@ -183,7 +198,7 @@ async function takeScreenshots() {
     try {
       await page.waitForSelector('.tab-navigation', { state: 'visible', timeout: 10000 });
       await page.click('button:has-text("Standalone Library")');
-      await page.waitForLoadState('networkidle', { timeout: 30000 });
+      await new Promise(resolve => setTimeout(resolve, 1000));
       await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for tab content to render
     } catch (error) {
       console.log('Standalone Library tab not found, taking screenshot of Details tab');
