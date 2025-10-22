@@ -20,41 +20,32 @@ async function takeScreenshots() {
 
     // Adjust URL for serveStatic if it starts with the base path
     if (originalUrl.startsWith(BASE_PATH)) {
-      req.url = originalUrl.substring(BASE_PATH.length - 1); // Remove base path, keep leading slash
+      req.url = originalUrl.substring(BASE_PATH.length); // Remove base path entirely
+      if (!req.url.startsWith('/')) {
+        req.url = '/' + req.url; // Ensure leading slash
+      }
     }
 
+    const done = finalhandler(req, res);
     serve(req, res, function onNext(err) {
       if (err) {
-        finalhandler(req, res)(err);
+        done(err);
         return;
       }
 
       // If serveStatic didn't find a file, serve index.html for client-side routing
       if (!res.headersSent) {
-        req.url = '/index.html'; // Serve index.html
-        serve(req, res, finalhandler(req, res));
+        req.url = '/index.html';
+        serve(req, res, done);
       }
     });
   });
 
-  server.listen(PORT);
-
-  // Wait for the server to be ready
-  await new Promise((resolve, reject) => {
-    const start = Date.now();
-    const interval = setInterval(() => {
-      http.get(URL, (res) => {
-        if (res.statusCode === 200) {
-          clearInterval(interval);
-          resolve();
-        }
-      }).on('error', () => {
-        if (Date.now() - start > 10000) { // 10-second timeout
-          clearInterval(interval);
-          reject(new Error('Server did not become ready in time.'));
-        }
-      });
-    }, 100); // Check every 100ms
+  await new Promise((resolve) => {
+    server.listen(PORT, () => {
+      console.log(`Server listening on http://localhost:${PORT}${BASE_PATH}`);
+      resolve();
+    });
   });
 
   let browser;
