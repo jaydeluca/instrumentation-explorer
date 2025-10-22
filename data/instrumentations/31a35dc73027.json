@@ -1,0 +1,18 @@
+{
+  "id": "ktor-3.0",
+  "library_group": "ktor",
+  "source_path": "instrumentation/ktor/ktor-3.0",
+  "scope": {
+    "name": "io.opentelemetry.ktor-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.ktor:ktor-server-core:[3.0.0,)",
+      "io.ktor:ktor-client-core:[3.0.0,)"
+    ],
+    "library": [
+      "io.ktor:ktor-server-core:3.0.0",
+      "io.ktor:ktor-client-core:3.0.0"
+    ]
+  }
+}

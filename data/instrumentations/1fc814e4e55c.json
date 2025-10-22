@@ -1,0 +1,89 @@
+{
+  "id": "apache-dubbo-2.7",
+  "library_group": "apache",
+  "description": "The Apache Dubbo instrumentation provides client and server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+  "source_path": "instrumentation/apache-dubbo-2.7",
+  "scope": {
+    "name": "io.opentelemetry.apache-dubbo-2.7"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.dubbo:dubbo:[2.7,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.peer-service-mapping",
+      "description": "Used to specify a mapping from host names or IP addresses to peer services.",
+      "type": "map",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

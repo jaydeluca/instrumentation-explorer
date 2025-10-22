@@ -1,0 +1,8 @@
+{
+  "id": "payara",
+  "library_group": "payara",
+  "source_path": "instrumentation/payara",
+  "scope": {
+    "name": "io.opentelemetry.payara"
+  }
+}

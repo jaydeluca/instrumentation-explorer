@@ -1,0 +1,13 @@
+{
+  "id": "jaxws-jws-api-1.1",
+  "library_group": "jaxws",
+  "source_path": "instrumentation/jaxws/jaxws-jws-api-1.1",
+  "scope": {
+    "name": "io.opentelemetry.jaxws-jws-api-1.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "javax.jws:javax.jws-api:[1.1,]"
+    ]
+  }
+}

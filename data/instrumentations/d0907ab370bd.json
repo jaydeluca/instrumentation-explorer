@@ -1,0 +1,13 @@
+{
+  "id": "xxl-job-2.3.0",
+  "library_group": "xxl",
+  "source_path": "instrumentation/xxl-job/xxl-job-2.3.0",
+  "scope": {
+    "name": "io.opentelemetry.xxl-job-2.3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.xuxueli:xxl-job-core:[2.3.0,)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "jaxws-2.0-axis2-1.6",
+  "library_group": "jaxws",
+  "source_path": "instrumentation/jaxws/jaxws-2.0-axis2-1.6",
+  "scope": {
+    "name": "io.opentelemetry.jaxws-2.0-axis2-1.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.axis2:axis2-jaxws:[1.6.0,)"
+    ]
+  }
+}

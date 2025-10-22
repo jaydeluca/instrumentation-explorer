@@ -1,0 +1,13 @@
+{
+  "id": "jetty-8.0",
+  "library_group": "jetty",
+  "source_path": "instrumentation/jetty/jetty-8.0",
+  "scope": {
+    "name": "io.opentelemetry.jetty-8.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.eclipse.jetty:jetty-server:[8.0.0.v20110901,11)"
+    ]
+  }
+}

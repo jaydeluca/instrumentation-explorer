@@ -1,0 +1,13 @@
+{
+  "id": "tapestry-5.4",
+  "library_group": "tapestry",
+  "source_path": "instrumentation/tapestry-5.4",
+  "scope": {
+    "name": "io.opentelemetry.tapestry-5.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.tapestry:tapestry-core:[5.4.0,)"
+    ]
+  }
+}

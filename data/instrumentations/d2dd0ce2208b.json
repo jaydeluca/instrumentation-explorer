@@ -1,0 +1,13 @@
+{
+  "id": "play-mvc-2.4",
+  "library_group": "play",
+  "source_path": "instrumentation/play/play-mvc/play-mvc-2.4",
+  "scope": {
+    "name": "io.opentelemetry.play-mvc-2.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.typesafe.play:play_2.11:[2.4.0,2.6)"
+    ]
+  }
+}

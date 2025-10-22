@@ -1,0 +1,49 @@
+{
+  "id": "hibernate-procedure-call-4.3",
+  "library_group": "hibernate",
+  "description": "This instrumentation enables the generation of spans for Hibernate stored procedure calls.",
+  "library_link": "https://github.com/hibernate/hibernate-orm",
+  "source_path": "instrumentation/hibernate/hibernate-procedure-call-4.3",
+  "scope": {
+    "name": "io.opentelemetry.hibernate-procedure-call-4.3"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.hibernate:hibernate-core:[4.3.0.Final,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.hibernate.experimental-span-attributes",
+      "description": "Enables the addition of the experimental `hibernate.session_id` span attribute.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": []
+        }
+      ]
+    },
+    "otel.instrumentation.hibernate.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "hibernate.session_id",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

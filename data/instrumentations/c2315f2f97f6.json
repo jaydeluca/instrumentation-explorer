@@ -1,0 +1,18 @@
+{
+  "id": "rocketmq-client-4.8",
+  "library_group": "rocketmq",
+  "source_path": "instrumentation/rocketmq/rocketmq-client/rocketmq-client-4.8",
+  "scope": {
+    "name": "io.opentelemetry.rocketmq-client-4.8"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.rocketmq:rocketmq-client:[4.0.0,)"
+    ],
+    "library": [
+      "org.apache.rocketmq:rocketmq-client:4.8.0"
+    ]
+  },
+  "markdown_hash": "2beaa76f99be",
+  "markdown_url": "/data/markdown/2beaa76f99be.md"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "elasticsearch-api-client-7.16",
+  "library_group": "elasticsearch",
+  "description": "This instrumentation enables client spans for Elasticsearch API client requests for version 7 of the client. Versions 8.10 and later have native support for OpenTelemetry.",
+  "source_path": "instrumentation/elasticsearch/elasticsearch-api-client-7.16",
+  "scope": {
+    "name": "io.opentelemetry.elasticsearch-api-client-7.16"
+  },
+  "target_versions": {
+    "javaagent": [
+      "co.elastic.clients:elasticsearch-java:[7.16,7.17.20)",
+      "co.elastic.clients:elasticsearch-java:[8.0.0,8.10)"
+    ]
+  }
+}

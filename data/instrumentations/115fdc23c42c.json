@@ -1,0 +1,13 @@
+{
+  "id": "powerjob-4.0",
+  "library_group": "powerjob",
+  "source_path": "instrumentation/powerjob-4.0",
+  "scope": {
+    "name": "io.opentelemetry.powerjob-4.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "tech.powerjob:powerjob-worker:[4.0.0,)"
+    ]
+  }
+}
