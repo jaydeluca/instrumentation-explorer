@@ -1,0 +1,13 @@
+{
+  "id": "mybatis-3.2",
+  "library_group": "mybatis",
+  "source_path": "instrumentation/mybatis-3.2",
+  "scope": {
+    "name": "io.opentelemetry.mybatis-3.2"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.mybatis:mybatis:[3.2.0,)"
+    ]
+  }
+}

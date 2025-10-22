@@ -1,0 +1,13 @@
+{
+  "id": "jaxws-metro-2.2",
+  "library_group": "jaxws",
+  "source_path": "instrumentation/jaxws/jaxws-metro-2.2",
+  "scope": {
+    "name": "io.opentelemetry.jaxws-metro-2.2"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.sun.xml.ws:jaxws-rt:[2.2.0.1,)"
+    ]
+  }
+}

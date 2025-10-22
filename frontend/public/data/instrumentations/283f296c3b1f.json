@@ -1,0 +1,39 @@
+{
+  "id": "jaxws-2.0-axis2-1.6",
+  "display_name": "Apache Axis2 1.6 JAX-WS 2.x",
+  "library_group": "jaxws",
+  "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Axis2 JAX-WS web services (controller spans are disabled by default).\n",
+  "library_link": "https://axis.apache.org/axis2/java/core/",
+  "source_path": "instrumentation/jaxws/jaxws-2.0-axis2-1.6",
+  "features": [
+    "HTTP_ROUTE",
+    "CONTROLLER_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jaxws-2.0-axis2-1.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.axis2:axis2-jaxws:[1.6.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "otel.instrumentation.common.experimental.controller-telemetry.enabled=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": []
+        }
+      ]
+    }
+  }
+}

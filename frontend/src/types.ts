@@ -51,6 +51,7 @@ export interface Library {
     default: string | boolean | number;
   }[];
   semconv?: string[];
+  markdown_hash?: string;
   markdown_content?: string;
 }
 

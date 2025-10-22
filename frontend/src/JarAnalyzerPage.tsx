@@ -6,6 +6,8 @@ import InstrumentationInput from "./InstrumentationInput";
 import "./JarAnalyzerPage.css";
 import type { Library, Metric, Span } from "./types";
 import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
+import { loadVersions, loadAllInstrumentationsForVersion } from "./utils/dataLoader";
+import { convertV2ArrayToV1Libraries } from "./utils/dataAdapter";
 
 const JarAnalyzerPage: React.FC = () => {
   const location = useLocation();
@@ -26,25 +28,38 @@ const JarAnalyzerPage: React.FC = () => {
   >([]);
 
   useEffect(() => {
-    fetch("/instrumentation-explorer/instrumentation-list-enriched.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const loadedVersions = Object.keys(data);
-        const sortedVersions = sortVersionsDescending(loadedVersions);
-        setAllLibraries(data);
+    async function loadData() {
+      try {
+        const versionsData = await loadVersions();
+        const versionList = versionsData.versions.map(v => v.version);
+        const sortedVersions = sortVersionsDescending(versionList);
         setVersions(sortedVersions);
 
         const params = new URLSearchParams(location.search);
         const versionParam = params.get("version");
-        if (versionParam && loadedVersions.includes(versionParam)) {
-          setSelectedVersion(versionParam);
+        let versionToLoad: string | undefined = undefined;
+        
+        if (versionParam && versionList.includes(versionParam)) {
+          versionToLoad = versionParam;
         } else {
-          const defaultVersion = getDefaultVersion(loadedVersions);
-          if (defaultVersion) {
-            setSelectedVersion(defaultVersion);
+          const defaultVer = getDefaultVersion(versionList);
+          if (defaultVer) {
+            versionToLoad = defaultVer;
           }
         }
-      });
+        
+        if (versionToLoad) {
+          setSelectedVersion(versionToLoad);
+          const instrumentations = await loadAllInstrumentationsForVersion(versionToLoad);
+          const v1Libraries = convertV2ArrayToV1Libraries(instrumentations);
+          setAllLibraries({ [versionToLoad]: v1Libraries });
+        }
+      } catch (error) {
+        console.error("Failed to load data:", error);
+      }
+    }
+    
+    loadData();
   }, [location.search]);
 
   useEffect(() => {

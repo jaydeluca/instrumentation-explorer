@@ -1,0 +1,60 @@
+{
+  "id": "kafka-connect-2.6",
+  "library_group": "kafka",
+  "description": "This instrumentation enables messaging spans for Kafka Connect sink tasks.",
+  "library_link": "https://kafka.apache.org/documentation/#connect",
+  "source_path": "instrumentation/kafka/kafka-connect-2.6",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.kafka-connect-2.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.kafka:connect-api:[2.6.0,)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.batch.message_count",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "thread.id",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "thread.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

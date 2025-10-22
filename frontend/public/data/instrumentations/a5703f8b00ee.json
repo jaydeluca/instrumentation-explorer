@@ -1,0 +1,17 @@
+{
+  "id": "restlet-1.1",
+  "library_group": "restlet",
+  "source_path": "instrumentation/restlet/restlet-1.1",
+  "scope": {
+    "name": "io.opentelemetry.restlet-1.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.restlet:org.restlet:[1.1.0, 1.2-M1)"
+    ],
+    "library": [
+      "org.restlet:org.restlet:[1.1.5,1.+)",
+      "com.noelios.restlet:com.noelios.restlet:1.1.5"
+    ]
+  }
+}

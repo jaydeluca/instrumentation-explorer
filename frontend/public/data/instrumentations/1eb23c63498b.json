@@ -1,0 +1,14 @@
+{
+  "id": "jsf-mojarra-3.0",
+  "library_group": "jsf",
+  "source_path": "instrumentation/jsf/jsf-mojarra-3.0",
+  "minimum_java_version": 11,
+  "scope": {
+    "name": "io.opentelemetry.jsf-mojarra-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.glassfish:jakarta.faces:[3,)"
+    ]
+  }
+}

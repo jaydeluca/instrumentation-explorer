@@ -1,0 +1,21 @@
+{
+  "id": "akka-actor-2.3",
+  "display_name": "Akka Actors",
+  "library_group": "akka",
+  "description": "This instrumentation provides context propagation for Akka actors, it does not emit any telemetry on its own.",
+  "library_link": "https://doc.akka.io/libraries/akka-core/current/typed/index.html",
+  "source_path": "instrumentation/akka/akka-actor-2.3",
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.akka-actor-2.3"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.typesafe.akka:akka-actor_2.11:[2.3,)",
+      "com.typesafe.akka:akka-actor_2.12:[2.3,)",
+      "com.typesafe.akka:akka-actor_2.13:[2.3,)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rxjava-1.0",
+  "library_group": "rxjava",
+  "source_path": "instrumentation/rxjava/rxjava-1.0",
+  "scope": {
+    "name": "io.opentelemetry.rxjava-1.0"
+  },
+  "target_versions": {
+    "library": [
+      "io.reactivex:rxjava:1.0.7"
+    ]
+  }
+}

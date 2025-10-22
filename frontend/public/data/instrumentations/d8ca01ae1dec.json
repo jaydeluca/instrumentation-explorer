@@ -1,0 +1,73 @@
+{
+  "id": "aws-sdk-1.11",
+  "library_group": "aws",
+  "source_path": "instrumentation/aws-sdk/aws-sdk-1.11",
+  "scope": {
+    "name": "io.opentelemetry.aws-sdk-1.11"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.amazonaws:aws-java-sdk-sqs:[1.10.33,)",
+      "com.amazonaws:aws-java-sdk-core:[1.10.33,)"
+    ],
+    "library": [
+      "com.amazonaws:aws-java-sdk-sqs:[1.11.106,1.12.583)",
+      "com.amazonaws:aws-java-sdk-core:1.11.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.aws-sdk.experimental-span-attributes",
+      "description": "Enables experimental span attributes for AWS SDK instrumentation.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "Allows configuring headers to capture as span attributes.",
+      "type": "list",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "otel.semconv-stability.opt-in=database": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  }
+}

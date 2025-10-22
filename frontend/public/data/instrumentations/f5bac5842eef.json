@@ -1,0 +1,13 @@
+{
+  "id": "mongo-async-3.3",
+  "library_group": "mongo",
+  "source_path": "instrumentation/mongo/mongo-async-3.3",
+  "scope": {
+    "name": "io.opentelemetry.mongo-async-3.3"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.mongodb:mongodb-driver-async:[3.3,)"
+    ]
+  }
+}

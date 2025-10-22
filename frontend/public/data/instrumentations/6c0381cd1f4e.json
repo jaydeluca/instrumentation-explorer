@@ -1,0 +1,13 @@
+{
+  "id": "jedis-4.0",
+  "library_group": "jedis",
+  "source_path": "instrumentation/jedis/jedis-4.0",
+  "scope": {
+    "name": "io.opentelemetry.jedis-4.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "redis.clients:jedis:[4.0.0-beta1,)"
+    ]
+  }
+}

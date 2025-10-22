@@ -1,0 +1,14 @@
+{
+  "id": "struts-7.0",
+  "library_group": "struts",
+  "source_path": "instrumentation/struts/struts-7.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.struts-7.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.struts:struts2-core:[7.0.0,)"
+    ]
+  }
+}

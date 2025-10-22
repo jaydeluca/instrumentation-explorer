@@ -1,0 +1,15 @@
+{
+  "id": "play-mvc-2.6",
+  "library_group": "play",
+  "source_path": "instrumentation/play/play-mvc/play-mvc-2.6",
+  "scope": {
+    "name": "io.opentelemetry.play-mvc-2.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.typesafe.play:play_$scalaVersion:[2.6.0,)",
+      "com.typesafe.play:play_2.12:[2.6.0,)",
+      "com.typesafe.play:play_2.13:[2.6.0,)"
+    ]
+  }
+}

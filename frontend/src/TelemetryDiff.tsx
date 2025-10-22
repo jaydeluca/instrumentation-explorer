@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import type { Library, Metric, Span, Attribute, DiffResult } from './types';
+import { loadInstrumentationByIdAndVersion } from './utils/dataLoader';
+import { convertV2ToV1Library } from './utils/dataAdapter';
 import DiffResults from './DiffResults';
 import './TelemetryDiff.css';
 
@@ -12,6 +14,7 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
   const [baseVersion, setBaseVersion] = useState<string>('');
   const [compareVersion, setCompareVersion] = useState<string>('');
   const [diffResult, setDiffResult] = useState<DiffResult | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const compareAttributes = (baseAttrs: Attribute[], compareAttrs: Attribute[]) => {
     const added: Attribute[] = [];
@@ -108,18 +111,24 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
       return;
     }
 
-    const response = await fetch('/instrumentation-explorer/instrumentation-list-enriched.json');
-    const allData: { [key: string]: Library[] } = await response.json();
+    try {
+      setIsLoading(true);
+      // Load both versions using V2 data loader
+      const [baseData, compareData] = await Promise.all([
+        loadInstrumentationByIdAndVersion(library.name, baseVersion),
+        loadInstrumentationByIdAndVersion(library.name, compareVersion),
+      ]);
 
-    const baseLib = allData[baseVersion]?.find(lib => lib.name === library.name);
-    const compareLib = allData[compareVersion]?.find(lib => lib.name === library.name);
+      const baseLib = convertV2ToV1Library(baseData);
+      const compareLib = convertV2ToV1Library(compareData);
 
-    if (baseLib && compareLib) {
       const calculatedDiff = compareTelemetry(baseLib, compareLib);
       setDiffResult(calculatedDiff);
-    } else {
+    } catch (error) {
+      console.error("Could not load library data for one or both versions:", error);
       setDiffResult(null);
-      console.error("Could not find library data for one or both versions.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -153,7 +162,9 @@ const TelemetryDiff: React.FC<TelemetryDiffProps> = ({ versions, library }) => {
             ))}
           </select>
         </div>
-        <button onClick={handleCompare} disabled={!baseVersion || !compareVersion}>Compare</button>
+        <button onClick={handleCompare} disabled={!baseVersion || !compareVersion || isLoading}>
+          {isLoading ? 'Loading...' : 'Compare'}
+        </button>
       </div>
       <div className="diff-results">
         {baseVersion && compareVersion && (
