@@ -26,17 +26,17 @@ export function getSemanticConventionDisplayName(semconv: string): string {
     'MESSAGING': 'Messaging',
     
     // AWS patterns
-    'AWS': 'Aws',
+    'AWS': 'AWS',
     
     // RPC patterns
-    'RPC': 'Rpc',
+    'RPC': 'RPC',
     
     // Cloud patterns
     'CLOUD': 'Cloud',
     
     // Gen AI patterns
-    'GEN_AI': 'Gen Ai',
-    'GENAI': 'Gen Ai',
+    'GEN_AI': 'Gen AI',
+    'GENAI': 'Gen AI',
     
     // Network patterns
     'NETWORK': 'Network',
@@ -52,6 +52,10 @@ export function getSemanticConventionDisplayName(semconv: string): string {
     
     // System patterns
     'SYSTEM': 'System',
+    
+    // FaaS (Functions as a Service) patterns
+    'FAAS_SERVER': 'Functions',
+    'FAAS': 'Functions',
   };
 
   // Convert to uppercase and remove common suffixes

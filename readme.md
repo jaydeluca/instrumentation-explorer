@@ -94,9 +94,10 @@ This generates content-addressed data in `frontend/public/data/` with support fo
 
 **V2 Pipeline Features:**
 - Content-addressed storage with automatic deduplication (~45% space savings)
-- Multi-version support (currently 2.20 and 2.21)
+- Multi-version support (currently 2.20, 2.21, and 3.0-projected)
 - Lazy loading for fast initial page load
 - Automatic version detection from YAML files
+- Includes projected 3.0 version to demonstrate future breaking changes
 
 ### 3. Start the Frontend Application
 

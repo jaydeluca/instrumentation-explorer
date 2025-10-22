@@ -1,0 +1,80 @@
+{
+  "id": "influxdb-2.4",
+  "library_group": "influxdb",
+  "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+  "library_link": "https://github.com/influxdata/influxdb-java",
+  "source_path": "instrumentation/influxdb-2.4",
+  "scope": {
+    "name": "io.opentelemetry.influxdb-2.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.influxdb:influxdb-java:[2.4,)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.namespace",
+              "type": "STRING"
+            },
+            {
+              "name": "db.operation.name",
+              "type": "STRING"
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING"
+            },
+            {
+              "name": "server.address",
+              "type": "STRING"
+            },
+            {
+              "name": "server.port",
+              "type": "LONG"
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.namespace",
+              "type": "STRING"
+            },
+            {
+              "name": "db.operation.name",
+              "type": "STRING"
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING"
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING"
+            },
+            {
+              "name": "server.address",
+              "type": "STRING"
+            },
+            {
+              "name": "server.port",
+              "type": "LONG"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

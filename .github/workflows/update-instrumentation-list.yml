@@ -1,4 +1,4 @@
-name: Update Instrumentation List
+name: Update Instrumentation Data
 
 on:
   # Run daily at 9 AM UTC
@@ -7,9 +7,15 @@ on:
 
   # Allow manual triggering
   workflow_dispatch:
+    inputs:
+      readme_version:
+        description: 'Specific version for README updates (e.g., "v2.21.0"). Leave empty to use latest release.'
+        required: false
+        type: string
+        default: ''
 
 jobs:
-  update-instrumentation-list:
+  update-instrumentation-data:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,16 +32,6 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Install uv
-      run: pip install uv
-    
-    - name: Set up Python environment for data processing
-      run: |
-        cd data-processing
-        uv venv
-        source .venv/bin/activate
-        uv pip install -r requirements.txt
-    
     - name: Install Python dependencies for update script
       run: |
         pip install requests pyyaml
@@ -45,6 +41,36 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       run: |
         python scripts/update-instrumentation-list.py
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Install data-processing-v2 dependencies
+      run: |
+        cd data-processing-v2
+        npm install
+    
+    - name: Generate V2 data (with 3.0 hypothetical version)
+      run: |
+        cd data-processing-v2
+        npm run generate -- --include-3.0
+        npm run copy-to-frontend
+    
+    - name: Update library READMEs (latest release)
+      if: ${{ inputs.readme_version == '' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      run: |
+        python scripts/update-library-readmes.py
+    
+    - name: Update library READMEs (specific version)
+      if: ${{ inputs.readme_version != '' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      run: |
+        python scripts/update-library-readmes.py --version "${{ inputs.readme_version }}"
     
     - name: Configure Git
       run: |
@@ -56,15 +82,30 @@ jobs:
       run: |
         echo "Checking for changes..."
         git status
-        git diff --name-only
         
-        # Check if there are any changes (avoid showing diff content which might contain sensitive data)
-        if ! git diff --exit-code --quiet; then
+        # Add data directory to catch new README files
+        git add data/ frontend/public/data/ instrumentation-list-*.yaml 2>/dev/null || true
+        
+        # Check if there are any changes (staged or unstaged)
+        if ! git diff --exit-code --quiet || ! git diff --cached --exit-code --quiet; then
           echo "changes=true" >> $GITHUB_OUTPUT
-          echo "Changes detected in instrumentation files"
-          echo "Modified files:"
-          git diff --name-only
+          echo "Changes detected"
+          
+          # Count different types of changes
+          YAML_FILES=$(git diff --name-only --cached 2>/dev/null | grep 'instrumentation-list-.*\.yaml$' | wc -l || echo "0")
+          V2_DATA_FILES=$(git diff --name-only --cached 2>/dev/null | grep 'frontend/public/data/' | wc -l || echo "0")
+          README_FILES=$(git diff --name-only --cached 2>/dev/null | grep 'data/.*\.md$' | wc -l || echo "0")
+          
+          echo "yaml_files=$YAML_FILES" >> $GITHUB_OUTPUT
+          echo "v2_data_files=$V2_DATA_FILES" >> $GITHUB_OUTPUT
+          echo "readme_files=$README_FILES" >> $GITHUB_OUTPUT
+          
+          echo "Modified files by category:"
+          echo "- YAML files: $YAML_FILES"
+          echo "- V2 data files: $V2_DATA_FILES"
+          echo "- README files: $README_FILES"
         else
+          echo "changes=false" >> $GITHUB_OUTPUT
           echo "No changes detected"
         fi
     
@@ -73,21 +114,34 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GH_PAT }}
-        commit-message: 'chore: update instrumentation list with latest data'
-        title: 'Update instrumentation list with latest data'
+        commit-message: 'chore: update instrumentation data'
+        title: 'Update instrumentation data'
         body: |
-          ## Automated Update
+          ## Automated Instrumentation Data Update
           
-          This PR updates the instrumentation list with the latest data from the OpenTelemetry Java Instrumentation repository.
+          This PR updates instrumentation data from the OpenTelemetry Java Instrumentation repository.
           
           ### Changes:
-          - Downloaded latest instrumentation-list.yaml
-          - Regenerated enriched JSON with semantic convention data
+          - **YAML files**: ${{ steps.git-check.outputs.yaml_files }} updated
+          - **V2 data files**: ${{ steps.git-check.outputs.v2_data_files }} updated  
+          - **Library READMEs**: ${{ steps.git-check.outputs.readme_files }} updated
+          
+          ### Data Pipeline:
+          1. Downloaded latest `instrumentation-list.yaml`
+          2. Generated V2 content-addressed data (recent 2 versions)
+          3. Downloaded library README files for reference
+          
+          ### Data Format Features:
+          - Content-addressed storage with automatic deduplication (~45% space savings)
+          - Multi-version support with lazy loading
+          - In-flight request caching to prevent duplicate fetches
+          - Grouped semantic convention display names
           
           ### Source:
-          https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/instrumentation-list.yaml
+          - **Instrumentation List**: https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/instrumentation-list.yaml
+          - **Library READMEs**: https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation
           
           **Auto-generated by GitHub Actions**
-        branch: update-instrumentation-list
+        branch: update-instrumentation-data
         base: main
         delete-branch: true
