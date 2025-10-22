@@ -75,13 +75,10 @@ async function takeScreenshots() {
     });
     
     logTime('Taking home page screenshots...');
-    // Navigate to the home page and wait for data to load
-    await Promise.all([
-      page.waitForResponse(resp => resp.url().includes('/data/index.json') && resp.status() === 200),
-      page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 5000 })
-    ]);
-    // Wait for the library list to render
-    await page.waitForSelector('.library-group', { state: 'visible', timeout: 2000 });
+    // Navigate to the home page
+    await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 5000 });
+    // Wait for the library list to render (means data loaded)
+    await page.waitForSelector('.library-group', { state: 'visible', timeout: 3000 });
     await page.screenshot({ path: `screenshots/home.png` });
     logTime('Home default screenshot done');
 
@@ -91,97 +88,53 @@ async function takeScreenshots() {
     logTime('Home grafana screenshot done');
 
     logTime('Taking Couchbase library screenshots...');
-    // Take a full-page screenshot of the Couchbase library page
+    // Take a screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
-    // Wait for the instrumentation data to load
-    await Promise.all([
-      page.waitForResponse(resp => resp.url().includes('/data/instrumentations/') && resp.status() === 200),
-      page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'domcontentloaded', timeout: 3000 })
-    ]);
-    await page.waitForSelector('.library-detail', { state: 'visible', timeout: 1000 });
-    
-    // Wait for page to load and check if comparison selects exist
-    try {
-      await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 1000 });
-      
-      // Select options in dropdowns and click compare button, wait for diff to render
-      await page.selectOption('#base-version-select', AGENT_VERSION);
-      await page.selectOption('#compare-version-select', '3.0.0');
-      await page.click('button:has-text("Compare")');
-      // Wait for diff results to appear
-      await page.waitForSelector('.diff-section', { state: 'visible', timeout: 1000 }).catch(() => {});
-    } catch (error) {
-      console.log('Comparison selectors not found, taking screenshot without comparison');
-    }
-    
-    await page.screenshot({ path: `screenshots/couchbase-2.6.png`, fullPage: true });
+    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'domcontentloaded', timeout: 3000 });
+    await page.waitForSelector('.library-detail', { state: 'visible', timeout: 2000 });
+    await page.screenshot({ path: `screenshots/couchbase-2.6.png` });
     logTime('Couchbase default screenshot done');
 
-    // Switch to Grafana theme (theme selector already visible from previous operations)
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png` });
     logTime('Couchbase grafana screenshot done');
 
     logTime('Taking Alibaba Druid library screenshots...');
-    // Take a full-page screenshot of the alibaba-druid-1.0 client library page
+    // Take a screenshot of the alibaba-druid-1.0 client library page
     await page.selectOption('#theme-select', 'default');
-    await Promise.all([
-      page.waitForResponse(resp => resp.url().includes('/data/instrumentations/') && resp.status() === 200),
-      page.goto(`${URL}library/${AGENT_VERSION}/alibaba-druid-1.0`, { waitUntil: 'domcontentloaded', timeout: 3000 })
-    ]);
-    await page.waitForSelector('.library-detail', { state: 'visible', timeout: 1000 });
-
-    // Try to do comparison if available
-    try {
-      await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 1000 });
-      
-      // Select options in dropdowns and click compare button
-      await page.selectOption('#base-version-select', `${AGENT_VERSION}`);
-      await page.selectOption('#compare-version-select', '3.0.0');
-      await page.click('button:has-text("Compare")');
-      await page.waitForSelector('.diff-section', { state: 'visible', timeout: 1000 }).catch(() => {});
-    } catch (error) {
-      console.log('Comparison selectors not found for alibaba-druid, taking screenshot without comparison');
-    }
-    
-    await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
+    await page.goto(`${URL}library/${AGENT_VERSION}/alibaba-druid-1.0`, { waitUntil: 'domcontentloaded', timeout: 3000 });
+    await page.waitForSelector('.library-detail', { state: 'visible', timeout: 2000 });
+    await page.screenshot({ path: `screenshots/alibaba-druid.png` });
     logTime('Alibaba Druid default screenshot done');
 
-    // Switch to Grafana theme
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png` });
     logTime('Alibaba Druid grafana screenshot done');
 
     logTime('Taking Apache DBCP library screenshots with Standalone Library tab...');
     // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
     await page.selectOption('#theme-select', 'default');
-    await Promise.all([
-      page.waitForResponse(resp => resp.url().includes('/data/instrumentations/') && resp.status() === 200),
-      page.goto(`${URL}library/2.18.0/apache-dbcp-2.0`, { waitUntil: 'domcontentloaded', timeout: 3000 })
-    ]);
+    await page.goto(`${URL}library/2.18.0/apache-dbcp-2.0`, { waitUntil: 'domcontentloaded', timeout: 3000 });
     
     // Wait for the tabs to load and click on the "Standalone Library" tab
     try {
       await page.waitForSelector('.tab-navigation', { state: 'visible', timeout: 1000 });
-      // Wait for markdown to load when clicking the tab
-      await Promise.all([
-        page.waitForResponse(resp => resp.url().includes('/data/markdown/') && resp.status() === 200).catch(() => {}),
-        page.click('button:has-text("Standalone Library")')
-      ]);
-      await new Promise(resolve => setTimeout(resolve, 200)); // Brief wait for render
+      await page.click('button:has-text("Standalone Library")');
+      // Wait for markdown content to render
+      await new Promise(resolve => setTimeout(resolve, 500));
     } catch (error) {
       console.log('Standalone Library tab not found, taking screenshot of Details tab');
     }
     
-    await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png` });
     logTime('Apache DBCP default screenshot done');
 
     // Switch to Grafana theme for the same library
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png`, fullPage: true });
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png` });
     logTime('Apache DBCP grafana screenshot done');
 
     logTime('Screenshots completed successfully!');
