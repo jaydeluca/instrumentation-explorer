@@ -10,7 +10,7 @@ const PORT = 3000;
 const BASE_PATH = '/instrumentation-explorer/';
 const URL = `http://localhost:${PORT}${BASE_PATH}`;
 
-const AGENT_VERSION = "2.21"
+const AGENT_VERSION = "2.21.0"
 
 async function takeScreenshots() {
   const serve = serveStatic('frontend/dist', { 'index': ['index.html'] });
@@ -88,7 +88,7 @@ async function takeScreenshots() {
       
       // Select options in dropdowns and click compare button
       await page.selectOption('#base-version-select', AGENT_VERSION);
-      await page.selectOption('#compare-version-select', '3.0');
+      await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
 
       await page.waitForLoadState('networkidle', { timeout: 60000 });
@@ -142,7 +142,7 @@ async function takeScreenshots() {
       
       // Select options in dropdowns and click compare button
       await page.selectOption('#base-version-select', `${AGENT_VERSION}`);
-      await page.selectOption('#compare-version-select', '3.0');
+      await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
 
       await page.waitForLoadState('networkidle', { timeout: 60000 });
@@ -171,7 +171,7 @@ async function takeScreenshots() {
 
     console.log('Taking Apache DBCP library screenshots with Standalone Library tab...');
     // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
-    await page.goto(`${URL}library/2.18/apache-dbcp-2.0`);
+    await page.goto(`${URL}library/2.18.0/apache-dbcp-2.0`);
     
     // First try to expand mobile menu if needed
     try {
