@@ -45,6 +45,7 @@ import App from './App.tsx'
 import LibraryDetail from './LibraryDetail.tsx';
 import JarAnalyzerPage from './JarAnalyzerPage.tsx';
 import About from './About.tsx'; // Import the new About component
+import ConfigurationExplorer from './ConfigurationExplorer.tsx'; // Import ConfigurationExplorer
 import { ThemeProvider } from './ThemeProvider'; // Import ThemeProvider
 
 
@@ -60,6 +61,10 @@ const router = withFaroRouterInstrumentation(createBrowserRouter([
   {
     path: '/analyze',
     element: <JarAnalyzerPage />,
+  },
+  {
+    path: '/configurations',
+    element: <ConfigurationExplorer />,
   },
   {
     path: '/about',

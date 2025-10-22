@@ -1,0 +1,487 @@
+/* Configuration Explorer - Base Styles */
+.configuration-explorer {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.configuration-explorer-header {
+  margin-bottom: 2rem;
+  padding-bottom: 15px;
+  border-bottom: 2px solid;
+}
+
+.configuration-explorer-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5em;
+  font-weight: 600;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.configuration-explorer-subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.search-section {
+  margin-bottom: 1.5rem;
+  padding: 20px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.results-count {
+  font-size: 0.9rem;
+}
+
+.configuration-table-container {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.configuration-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+.configuration-table thead {
+  border-bottom: 2px solid;
+}
+
+.configuration-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.expand-column {
+  width: 40px;
+}
+
+.name-column {
+  width: 35%;
+  min-width: 300px;
+}
+
+.instrumentations-column {
+  width: 15%;
+  min-width: 120px;
+}
+
+.description-column {
+  width: 50%;
+}
+
+.config-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.config-row td {
+  padding: 1rem;
+  vertical-align: top;
+}
+
+.expand-cell {
+  text-align: center;
+}
+
+.expand-cell svg {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.name-cell code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  word-break: break-word;
+}
+
+.instrumentations-cell {
+  font-size: 0.85rem;
+}
+
+.instrumentation-count {
+  white-space: nowrap;
+}
+
+.description-cell {
+  line-height: 1.6;
+}
+
+.expanded-row {
+}
+
+.expanded-row td {
+  padding: 0;
+}
+
+.expanded-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.expanded-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.expanded-field {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.field-label {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.field-value code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.instrumentation-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.instrumentation-chip {
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border: 1px solid;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
+  overflow: visible;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+
+.instrumentation-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-results {
+  padding: 3rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Default Theme Styles */
+.theme-default .configuration-explorer-header {
+  border-bottom-color: #444444;
+}
+
+.theme-default .configuration-explorer-header h1 {
+  color: #212529;
+}
+
+.theme-default .configuration-explorer-subtitle {
+  color: #6c757d;
+}
+
+.theme-default .search-section {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.theme-default .search-input {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  color: #333333;
+}
+
+.theme-default .search-input:focus {
+  border-color: #007bff;
+}
+
+.theme-default .search-input::placeholder {
+  color: #6c757d;
+}
+
+.theme-default .results-count {
+  color: #6c757d;
+}
+
+.theme-default .configuration-table-container {
+  border: 1px solid #444444;
+  background-color: #ffffff;
+}
+
+.theme-default .configuration-table thead {
+  background-color: #808080;
+  border-bottom-color: #444444;
+}
+
+.theme-default .configuration-table th {
+  color: #ffffff;
+}
+
+.theme-default .config-row {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.theme-default .config-row:hover {
+  background-color: #f8f9fa;
+}
+
+.theme-default .config-row:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.theme-default .config-row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.theme-default .expand-cell {
+  color: #6c757d;
+}
+
+.theme-default .name-cell code {
+  background-color: #f8f9fa;
+  color: #d73a49;
+  border: 1px solid #e1e4e8;
+}
+
+.theme-default .instrumentations-cell {
+  color: #6c757d;
+}
+
+.theme-default .description-cell {
+  color: #333333;
+}
+
+.theme-default .expanded-row {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.theme-default .expanded-content {
+  border-top: 1px solid #e0e0e0;
+}
+
+.theme-default .field-label {
+  color: #333333;
+}
+
+.theme-default .field-value code {
+  background-color: #ffffff;
+  color: #d73a49;
+  border: 1px solid #e1e4e8;
+}
+
+.theme-default .instrumentation-chip {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #333333 !important;
+}
+
+.theme-default .instrumentation-chip:hover {
+  background-color: #007bff !important;
+  color: white !important;
+  border-color: #007bff !important;
+}
+
+.theme-default .no-results {
+  color: #6c757d;
+}
+
+/* Grafana Theme Styles */
+.theme-grafana .configuration-explorer-header {
+  border-bottom-color: #3a3d46;
+}
+
+.theme-grafana .configuration-explorer-header h1 {
+  color: #e0e0e0;
+}
+
+.theme-grafana .configuration-explorer-subtitle {
+  color: #c7c7c7;
+}
+
+.theme-grafana .search-section {
+  background-color: #25272c;
+  border: 1px solid #3a3d46;
+}
+
+.theme-grafana .search-input {
+  background-color: #25272c;
+  border: 1px solid #3a3d46;
+  color: #e0e0e0;
+}
+
+.theme-grafana .search-input:focus {
+  border-color: #629e51;
+}
+
+.theme-grafana .search-input::placeholder {
+  color: #8a8f98;
+}
+
+.theme-grafana .results-count {
+  color: #c7c7c7;
+}
+
+.theme-grafana .configuration-table-container {
+  border: 1px solid #3a3d46;
+  background-color: #1e1f22;
+}
+
+.theme-grafana .configuration-table thead {
+  background-color: #3a3d46;
+  border-bottom-color: #5c5f66;
+}
+
+.theme-grafana .configuration-table th {
+  color: #e0e0e0;
+}
+
+.theme-grafana .config-row {
+  border-bottom: 1px solid #3a3d46;
+}
+
+.theme-grafana .config-row:hover {
+  background-color: #25272c;
+}
+
+.theme-grafana .config-row:nth-child(even) {
+  background-color: #25272c;
+}
+
+.theme-grafana .config-row:nth-child(odd) {
+  background-color: #1e1f22;
+}
+
+.theme-grafana .expand-cell {
+  color: #8a8f98;
+}
+
+.theme-grafana .name-cell code {
+  background-color: #3a3d46;
+  color: #8cd26a;
+  border: 1px solid #5c5f66;
+}
+
+.theme-grafana .instrumentations-cell {
+  color: #c7c7c7;
+}
+
+.theme-grafana .description-cell {
+  color: #c7c7c7;
+}
+
+.theme-grafana .expanded-row {
+  background-color: #25272c;
+  border-bottom: 1px solid #3a3d46;
+}
+
+.theme-grafana .expanded-content {
+  border-top: 1px solid #3a3d46;
+}
+
+.theme-grafana .field-label {
+  color: #e0e0e0;
+}
+
+.theme-grafana .field-value code {
+  background-color: #1e1f22;
+  color: #8cd26a;
+  border: 1px solid #5c5f66;
+}
+
+.theme-grafana .instrumentation-chip {
+  background-color: #1e1f22;
+  border-color: #3a3d46;
+  color: #c7c7c7 !important;
+}
+
+.theme-grafana .instrumentation-chip:hover {
+  background-color: #629e51 !important;
+  color: white !important;
+  border-color: #629e51 !important;
+}
+
+.theme-grafana .no-results {
+  color: #8a8f98;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .configuration-explorer {
+    padding: 1rem;
+  }
+
+  .configuration-table {
+    font-size: 0.85rem;
+  }
+
+  .name-column {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .configuration-explorer-header h1 {
+    font-size: 1.8em;
+  }
+
+  .configuration-table-container {
+    overflow-x: auto;
+  }
+
+  .configuration-table {
+    min-width: 600px;
+  }
+
+  .config-row td,
+  .configuration-table th {
+    padding: 0.75rem;
+  }
+
+  .expanded-content {
+    padding: 1rem;
+  }
+
+  .instrumentation-chip {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
