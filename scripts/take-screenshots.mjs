@@ -51,10 +51,14 @@ async function takeScreenshots() {
   let browser;
   let page;
   try {
-    console.log('Launching browser...');
+    const startTime = Date.now();
+    const logTime = (label) => console.log(`[${((Date.now() - startTime) / 1000).toFixed(1)}s] ${label}`);
+    
+    logTime('Launching browser...');
     browser = await chromium.launch({ headless: true });
     page = await browser.newPage();
     await page.setViewportSize({ width: 1800, height: 2000 });
+    logTime('Browser ready');
     
     // Block external requests that can cause timeouts (Google Analytics, fonts, etc.)
     await page.route('**/*', (route) => {
@@ -70,21 +74,23 @@ async function takeScreenshots() {
       }
     });
     
-    console.log('Taking home page screenshots...');
+    logTime('Taking home page screenshots...');
     // Navigate to the home page and wait for data to load
-    const [response] = await Promise.all([
+    await Promise.all([
       page.waitForResponse(resp => resp.url().includes('/data/index.json') && resp.status() === 200),
       page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 5000 })
     ]);
     // Wait for the library list to render
     await page.waitForSelector('.library-group', { state: 'visible', timeout: 2000 });
     await page.screenshot({ path: `screenshots/home.png` });
+    logTime('Home default screenshot done');
 
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 300));
     await page.screenshot({ path: `screenshots/home-grafana.png` });
+    logTime('Home grafana screenshot done');
 
-    console.log('Taking Couchbase library screenshots...');
+    logTime('Taking Couchbase library screenshots...');
     // Take a full-page screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
     // Wait for the instrumentation data to load
@@ -109,13 +115,15 @@ async function takeScreenshots() {
     }
     
     await page.screenshot({ path: `screenshots/couchbase-2.6.png`, fullPage: true });
+    logTime('Couchbase default screenshot done');
 
     // Switch to Grafana theme (theme selector already visible from previous operations)
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
     await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png`, fullPage: true });
+    logTime('Couchbase grafana screenshot done');
 
-    console.log('Taking Alibaba Druid library screenshots...');
+    logTime('Taking Alibaba Druid library screenshots...');
     // Take a full-page screenshot of the alibaba-druid-1.0 client library page
     await page.selectOption('#theme-select', 'default');
     await Promise.all([
@@ -138,13 +146,15 @@ async function takeScreenshots() {
     }
     
     await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
+    logTime('Alibaba Druid default screenshot done');
 
     // Switch to Grafana theme
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
     await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
+    logTime('Alibaba Druid grafana screenshot done');
 
-    console.log('Taking Apache DBCP library screenshots with Standalone Library tab...');
+    logTime('Taking Apache DBCP library screenshots with Standalone Library tab...');
     // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
     await page.selectOption('#theme-select', 'default');
     await Promise.all([
@@ -166,13 +176,15 @@ async function takeScreenshots() {
     }
     
     await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png`, fullPage: true });
+    logTime('Apache DBCP default screenshot done');
 
     // Switch to Grafana theme for the same library
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
     await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png`, fullPage: true });
+    logTime('Apache DBCP grafana screenshot done');
 
-    console.log('Screenshots completed successfully!');
+    logTime('Screenshots completed successfully!');
 
   } catch (error) {
     console.error('Error during screenshot process:', error);
