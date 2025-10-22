@@ -72,21 +72,20 @@ async function takeScreenshots() {
     
     console.log('Taking home page screenshots...');
     // Navigate to the home page and take a screenshot
-    await page.goto(URL, { waitUntil: 'load', timeout: 30000 });
-    await page.waitForSelector('body', { state: 'visible', timeout: 10000 });
-    // Wait a bit for data to load
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await page.goto(URL, { waitUntil: 'load', timeout: 15000 });
+    // Wait for the library list to be visible (means data loaded)
+    await page.waitForSelector('.library-group', { state: 'visible', timeout: 5000 });
     await page.screenshot({ path: `screenshots/home.png` });
 
     await page.selectOption('#theme-select', 'grafana');
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 300));
     await page.screenshot({ path: `screenshots/home-grafana.png` });
 
     console.log('Taking Couchbase library screenshots...');
     // Take a full-page screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'load', timeout: 30000 });
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'load', timeout: 15000 });
+    await page.waitForSelector('.library-detail', { state: 'visible', timeout: 3000 });
     
     // Wait for page to load and check if comparison selects exist
     try {
@@ -96,9 +95,7 @@ async function takeScreenshots() {
       await page.selectOption('#base-version-select', AGENT_VERSION);
       await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
-
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (error) {
       console.log('Comparison selectors not found, taking screenshot without comparison');
     }
@@ -111,15 +108,15 @@ async function takeScreenshots() {
       const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
       if (await mobileMenuToggle.isVisible()) {
         await mobileMenuToggle.click();
-        await page.waitForTimeout(500); // Wait for animation
+        await page.waitForTimeout(200); // Wait for animation
       }
     } catch (error) {
       console.log('Mobile menu toggle not found or not needed');
     }
     
-    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 5000 });
     await page.selectOption('#theme-select', 'grafana');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 300));
     await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png`, fullPage: true });
 
     console.log('Taking Alibaba Druid library screenshots...');
@@ -131,15 +128,15 @@ async function takeScreenshots() {
       const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
       if (await mobileMenuToggle.isVisible()) {
         await mobileMenuToggle.click();
-        await page.waitForTimeout(500); // Wait for animation
+        await page.waitForTimeout(200); // Wait for animation
       }
     } catch (error) {
       console.log('Mobile menu toggle not found or not needed');
     }
     
-    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 5000 });
     await page.selectOption('#theme-select', 'default');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 300));
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Try to do comparison if available
@@ -150,9 +147,7 @@ async function takeScreenshots() {
       await page.selectOption('#base-version-select', `${AGENT_VERSION}`);
       await page.selectOption('#compare-version-select', '3.0.0');
       await page.click('button:has-text("Compare")');
-
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (error) {
       console.log('Comparison selectors not found for alibaba-druid, taking screenshot without comparison');
     }
@@ -164,42 +159,41 @@ async function takeScreenshots() {
       const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
       if (await mobileMenuToggle.isVisible()) {
         await mobileMenuToggle.click();
-        await page.waitForTimeout(500); // Wait for animation
+        await page.waitForTimeout(200); // Wait for animation
       }
     } catch (error) {
       console.log('Mobile menu toggle not found or not needed');
     }
     
-    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 5000 });
     await page.selectOption('#theme-select', 'grafana');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 300));
     await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
 
     console.log('Taking Apache DBCP library screenshots with Standalone Library tab...');
     // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
-    await page.goto(`${URL}library/2.18.0/apache-dbcp-2.0`);
+    await page.goto(`${URL}library/2.18.0/apache-dbcp-2.0`, { waitUntil: 'load', timeout: 15000 });
     
     // First try to expand mobile menu if needed
     try {
       const mobileMenuToggle = await page.locator('.mobile-menu-toggle');
       if (await mobileMenuToggle.isVisible()) {
         await mobileMenuToggle.click();
-        await page.waitForTimeout(500); // Wait for animation
+        await page.waitForTimeout(200); // Wait for animation
       }
     } catch (error) {
       console.log('Mobile menu toggle not found or not needed');
     }
     
-    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 5000 });
     await page.selectOption('#theme-select', 'default');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     // Wait for the tabs to load and click on the "Standalone Library" tab
     try {
-      await page.waitForSelector('.tab-navigation', { state: 'visible', timeout: 10000 });
+      await page.waitForSelector('.tab-navigation', { state: 'visible', timeout: 5000 });
       await page.click('button:has-text("Standalone Library")');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for tab content to render
+      await new Promise(resolve => setTimeout(resolve, 500)); // Wait for tab content to render
     } catch (error) {
       console.log('Standalone Library tab not found, taking screenshot of Details tab');
     }
@@ -207,9 +201,9 @@ async function takeScreenshots() {
     await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png`, fullPage: true });
 
     // Switch to Grafana theme for the same library
-    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 30000 });
+    await page.waitForSelector('#theme-select', { state: 'visible', timeout: 5000 });
     await page.selectOption('#theme-select', 'grafana');
-    await page.waitForLoadState('networkidle', { timeout: 60000 });
+    await new Promise(resolve => setTimeout(resolve, 300));
     await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png`, fullPage: true });
 
     console.log('Screenshots completed successfully!');
