@@ -22,6 +22,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const isMainListActive =
     location.pathname === "/" || location.pathname.startsWith("/library/");
   const isAnalyzeServiceActive = location.pathname === "/analyze";
+  const isConfigurationsActive = location.pathname === "/configurations";
   const isAboutActive = location.pathname === "/about";
 
   const toggleMobileMenu = () => {
@@ -41,6 +42,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             className={isAnalyzeServiceActive ? "active-nav-link" : ""}
           >
             Analyze Service
+          </Link>
+          <Link
+            to="/configurations"
+            className={isConfigurationsActive ? "active-nav-link" : ""}
+          >
+            Configurations
           </Link>
           <Link to="/about" className={isAboutActive ? "active-nav-link" : ""}>
             About
@@ -81,6 +88,14 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             }
           >
             Analyze Service
+          </Link>
+          <Link
+            to="/configurations"
+            className={
+              isConfigurationsActive ? "active-nav-link lg-only" : "lg-only"
+            }
+          >
+            Configurations
           </Link>
           <Link to="/about" className={isAboutActive ? "active-nav-link" : ""}>
             About
