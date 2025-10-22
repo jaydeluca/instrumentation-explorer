@@ -1,0 +1,14 @@
+{
+  "id": "jetty-11.0",
+  "library_group": "jetty",
+  "source_path": "instrumentation/jetty/jetty-11.0",
+  "minimum_java_version": 11,
+  "scope": {
+    "name": "io.opentelemetry.jetty-11.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.eclipse.jetty:jetty-server:[11, 12)"
+    ]
+  }
+}

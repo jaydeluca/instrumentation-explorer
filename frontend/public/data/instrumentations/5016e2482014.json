@@ -1,0 +1,13 @@
+{
+  "id": "servlet-3.0",
+  "library_group": "servlet",
+  "source_path": "instrumentation/servlet/servlet-3.0",
+  "scope": {
+    "name": "io.opentelemetry.servlet-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "javax.servlet:javax.servlet-api:[3.0,)"
+    ]
+  }
+}

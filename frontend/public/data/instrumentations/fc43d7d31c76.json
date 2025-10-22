@@ -1,0 +1,13 @@
+{
+  "id": "scala-fork-join-2.8",
+  "library_group": "scala",
+  "source_path": "instrumentation/scala-fork-join-2.8",
+  "scope": {
+    "name": "io.opentelemetry.scala-fork-join-2.8"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.scala-lang:scala-library:[2.8.0,2.12.0)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "influxdb-2.4",
+  "library_group": "influxdb",
+  "source_path": "instrumentation/influxdb-2.4",
+  "scope": {
+    "name": "io.opentelemetry.influxdb-2.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.influxdb:influxdb-java:[2.4,)"
+    ]
+  }
+}

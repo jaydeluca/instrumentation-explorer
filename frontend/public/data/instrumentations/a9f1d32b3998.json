@@ -1,0 +1,14 @@
+{
+  "id": "jaxrs-2.0-resteasy-3.1",
+  "library_group": "jaxrs",
+  "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.1",
+  "scope": {
+    "name": "io.opentelemetry.jaxrs-2.0-resteasy-3.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.jboss.resteasy:resteasy-jaxrs:[3.1.0.Final,3.5.0.Final)",
+      "org.jboss.resteasy:resteasy-core:[4.0.0.Final,6)"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "spring-web-6.0",
+  "library_group": "spring",
+  "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+  "library_link": "https://github.com/spring-projects/spring-framework",
+  "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.spring-web-6.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.springframework:spring-web:[6.0.0,)"
+    ]
+  }
+}

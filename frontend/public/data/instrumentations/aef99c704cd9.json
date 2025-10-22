@@ -1,0 +1,13 @@
+{
+  "id": "rocketmq-client-5.0",
+  "library_group": "rocketmq",
+  "source_path": "instrumentation/rocketmq/rocketmq-client/rocketmq-client-5.0",
+  "scope": {
+    "name": "io.opentelemetry.rocketmq-client-5.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.rocketmq:rocketmq-client-java:[5.0.0,)"
+    ]
+  }
+}

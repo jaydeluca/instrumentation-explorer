@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./About.css";
 import Header from "./components/Header";
 import { getDefaultVersion, sortVersionsDescending } from "./utils/versionUtils";
+import { loadVersions } from "./utils/dataLoader";
 
 const About: React.FC = () => {
   const navigate = useNavigate();
@@ -11,18 +12,23 @@ const About: React.FC = () => {
   const [selectedVersion, setSelectedVersion] = useState<string>("");
 
   useEffect(() => {
-    fetch("/instrumentation-explorer/instrumentation-list-enriched.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const versions = Object.keys(data);
-        const sortedVersions = sortVersionsDescending(versions);
+    async function loadData() {
+      try {
+        const versionsData = await loadVersions();
+        const versionList = versionsData.versions.map(v => v.version);
+        const sortedVersions = sortVersionsDescending(versionList);
 
         setVersions(sortedVersions);
-        const defaultVersion = getDefaultVersion(versions);
+        const defaultVersion = getDefaultVersion(versionList);
         if (defaultVersion) {
           setSelectedVersion(defaultVersion);
         }
-      });
+      } catch (error) {
+        console.error("Failed to load versions:", error);
+      }
+    }
+    
+    loadData();
   }, []);
 
   const handleVersionChange = (version: string) => {

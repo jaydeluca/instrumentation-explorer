@@ -1,0 +1,13 @@
+{
+  "id": "azure-core-1.14",
+  "library_group": "azure",
+  "source_path": "instrumentation/azure-core/azure-core-1.14",
+  "scope": {
+    "name": "io.opentelemetry.azure-core-1.14"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.azure:azure-core:[1.14.0,1.19.0)"
+    ]
+  }
+}

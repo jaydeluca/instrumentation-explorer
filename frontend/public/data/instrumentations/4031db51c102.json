@@ -1,0 +1,14 @@
+{
+  "id": "opensearch-rest-3.0",
+  "library_group": "opensearch",
+  "source_path": "instrumentation/opensearch/opensearch-rest-3.0",
+  "minimum_java_version": 11,
+  "scope": {
+    "name": "io.opentelemetry.opensearch-rest-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.opensearch.client:opensearch-rest-client:[3.0,)"
+    ]
+  }
+}
