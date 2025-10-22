@@ -2,8 +2,14 @@
   "versions": [
     {
       "version": "2.20",
-      "release_date": "2025-10-02",
+      "release_date": "2025-10-22",
       "manifest_url": "/data/versions/2.20.json",
+      "is_latest": false
+    },
+    {
+      "version": "2.21",
+      "release_date": "2025-10-22",
+      "manifest_url": "/data/versions/2.21.json",
       "is_latest": true
     }
   ]

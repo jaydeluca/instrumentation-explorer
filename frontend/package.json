@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "prebuild": "node scripts/parse-yaml.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",

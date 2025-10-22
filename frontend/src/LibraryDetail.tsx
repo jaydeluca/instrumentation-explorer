@@ -8,6 +8,8 @@ import LinksSection from "./components/LinksSection";
 import type { Library } from "./types";
 import { sortVersionsDescending } from "./utils/versionUtils";
 import { getEffectiveDisplayName } from "./utils/displayNameUtils";
+import { loadVersions, loadInstrumentationByIdAndVersion } from "./utils/dataLoader";
+import { convertV2ToV1Library } from "./utils/dataAdapter";
 
 function LibraryDetail() {
   const { libraryName, version } = useParams();
@@ -24,19 +26,25 @@ function LibraryDetail() {
   );
 
   useEffect(() => {
-    fetch("/instrumentation-explorer/instrumentation-list-enriched.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const versions = Object.keys(data);
-        const sortedVersions = sortVersionsDescending(versions);
+    async function loadData() {
+      try {
+        const versionsData = await loadVersions();
+        const versionList = versionsData.versions.map(v => v.version);
+        const sortedVersions = sortVersionsDescending(versionList);
         setVersions(sortedVersions);
-        if (selectedVersion && data[selectedVersion]) {
-          const foundLibrary = data[selectedVersion].find(
-            (lib: Library) => lib.name === libraryName
-          );
-          setLibrary(foundLibrary);
+        
+        if (selectedVersion && libraryName) {
+          const instrumentationData = await loadInstrumentationByIdAndVersion(libraryName, selectedVersion);
+          const v1Library = convertV2ToV1Library(instrumentationData);
+          setLibrary(v1Library);
         }
-      });
+      } catch (error) {
+        console.error("Failed to load library:", error);
+        setLibrary(null);
+      }
+    }
+    
+    loadData();
   }, [libraryName, selectedVersion]);
 
   const handleVersionChange = (newVersion: string) => {

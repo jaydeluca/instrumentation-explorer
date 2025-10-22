@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "update-instrumentation": "python3 scripts/update-instrumentation-list.py",
-    "setup-data-processing": "cd data-processing && uv venv && source .venv/bin/activate && uv pip install -r requirements.txt",
-    "process-data": "cd data-processing && source .venv/bin/activate && python3 main.py",
-    "process-data-v2": "cd data-processing-v2 && npm run generate",
-    "process-data-v2:deploy": "cd data-processing-v2 && npm run generate:deploy",
+    "process-data": "cd data-processing-v2 && npm run generate",
+    "process-data:deploy": "cd data-processing-v2 && npm run generate:deploy",
+    "process-data:legacy": "cd data-processing && python3 main.py",
     "dev": "npm run dev --workspace=frontend",
     "build": "npm run build --workspace=frontend",
     "preview": "npm run preview --workspace=frontend",

@@ -25,11 +25,10 @@ The instrumentation data is automatically kept up to date with the latest releas
 
 ## Project Structure
 
-*   **`data-processing/`**: Python script for processing and enriching instrumentation data (v1).
-*   **`data-processing-v2/`**: **New!** TypeScript pipeline with content-addressed storage for multi-version support.
+*   **`data-processing-v2/`**: TypeScript pipeline with content-addressed storage for multi-version support (current).
+*   **`data-processing/`**: Legacy Python script (V1, deprecated).
 *   **`frontend/`**: React frontend application.
-   *   **`frontend/public/instrumentation-list-enriched.json`**: V1 enriched data (single version).
-   *   **`frontend/public/data/`**: V2 content-addressed data (multi-version).
+   *   **`frontend/public/data/`**: V2 content-addressed data (multi-version, deduplicated).
 *   **`scripts/`**: Automation scripts for updating instrumentation data.
 *   **`.github/workflows/`**: GitHub Actions workflows for automated updates.
 *   **`instrumentation-list-*.yaml`**: Versioned instrumentation data files from OpenTelemetry.
@@ -64,61 +63,40 @@ This will:
 
 ## Running the Project
 
-### 1. Set Up Data Processing Environment (optional)
-
-First, set up the Python environment for data processing:
+### 1. Install Dependencies
 
 ```bash
-# Set up the data processing environment (only needed once)
-npm run setup-data-processing
+npm install
 ```
 
-Or manually:
-```bash
-cd data-processing
-uv venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -r requirements.txt
-```
+This will install dependencies for both the root workspace and the frontend.
 
-### 2. Process Instrumentation Data (optional)
+### 2. Process Instrumentation Data (Optional)
 
-To generate or update the enriched instrumentation list from existing YAML files:
+The repository includes pre-generated data, but you can regenerate it:
 
 ```bash
-# Process existing data
-npm run process-data
-```
-
-Or manually:
-```bash
-cd data-processing
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-python3 main.py
-```
-
-This will generate `frontend/public/instrumentation-list-enriched.json`.
-
-### Alternative: Use V2 Pipeline (Recommended for Multi-Version Support)
-
-The new V2 pipeline provides content-addressed storage with deduplication and multi-version support:
-
-```bash
-# Install V2 dependencies
+# Install data processing dependencies
 cd data-processing-v2
 npm install
 cd ..
 
-# Generate and deploy to frontend
-npm run process-data-v2:deploy
+# Generate and deploy data to frontend
+npm run process-data:deploy
 ```
 
-This generates data in `frontend/public/data/` with support for multiple versions (currently 2.19 and 2.20).
+This generates content-addressed data in `frontend/public/data/` with support for multiple versions.
 
-**V2 Commands:**
-- `npm run process-data-v2` - Generate data only
-- `npm run process-data-v2:deploy` - Generate and copy to frontend
-- See [`data-processing-v2/USAGE.md`](./data-processing-v2/USAGE.md) for detailed documentation
+**Data Processing Commands:**
+- `npm run process-data` - Generate data only (stays in `data-processing-v2/dist/output/`)
+- `npm run process-data:deploy` - Generate and copy to frontend
+- See [`data-processing-v2/README.md`](./data-processing-v2/README.md) for detailed documentation
+
+**V2 Pipeline Features:**
+- Content-addressed storage with automatic deduplication (~45% space savings)
+- Multi-version support (currently 2.20 and 2.21)
+- Lazy loading for fast initial page load
+- Automatic version detection from YAML files
 
 ### 3. Start the Frontend Application
 

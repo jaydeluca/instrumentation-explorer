@@ -1,6 +1,6 @@
 {
-  "generated_at": "2025-10-02T14:37:32.347Z",
-  "latest_version": "2.20",
+  "generated_at": "2025-10-22T15:11:31.108Z",
+  "latest_version": "2.21",
   "instrumentations": [
     {
       "id": "activej-http-6.0",
@@ -68,7 +68,8 @@
         "HTTP_SERVER_METRICS"
       ],
       "features": [
-        "HTTP_ROUTE"
+        "HTTP_ROUTE",
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": true
     },
@@ -107,18 +108,22 @@
       "id": "apache-dubbo-2.7",
       "display_name": "Apache Dubbo",
       "library_group": "apache",
-      "description": "The Apache Dubbo instrumentation provides RPC client spans and RPC server spans for Apache Dubbo RPC calls. Each call produces a span named after the Dubbo method, enriched with standard RPC attributes (system, service, method), network attributes, and error details if an exception occurs.",
+      "description": "The Apache Dubbo instrumentation provides RPC client spans and metrics, and RPC server spans and metrics for Apache Dubbo RPC calls.\n",
       "tags": [
         "apache",
         "client",
         "server",
         "rpc",
         "rpc_client_spans",
-        "rpc_server_spans"
+        "rpc_client_metrics",
+        "rpc_server_spans",
+        "rpc_server_metrics"
       ],
       "semantic_conventions": [
         "RPC_CLIENT_SPANS",
-        "RPC_SERVER_SPANS"
+        "RPC_CLIENT_METRICS",
+        "RPC_SERVER_SPANS",
+        "RPC_SERVER_METRICS"
       ],
       "has_telemetry": true
     },
@@ -239,6 +244,9 @@
         "http",
         "server"
       ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
       "has_telemetry": false
     },
     {
@@ -249,7 +257,20 @@
         "armeria",
         "http",
         "client",
-        "server"
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": true
     },
@@ -273,7 +294,13 @@
       "tags": [
         "async",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -284,7 +311,13 @@
       "tags": [
         "async",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -297,6 +330,9 @@
         "http",
         "server"
       ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
       "has_telemetry": false
     },
     {
@@ -306,25 +342,43 @@
       "tags": [
         "aws",
         "spring",
-        "server"
+        "server",
+        "faas_server_spans"
+      ],
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "aws-lambda-events-2.2",
       "library_group": "aws",
-      "description": "This version of the library instrumentation is deprecated, please use the `aws-lambda-events-3.11` library instrumentation instead. This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This version of the library instrumentation is deprecated, please use `aws-lambda-events-3.11` instead. This instrumentation enables FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "tags": [
-        "aws"
+        "aws",
+        "messaging",
+        "faas_server_spans",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "aws-lambda-events-3.11",
       "library_group": "aws",
-      "description": "This instrumentation builds on top of the `aws-lambda-core-1.0` instrumentation, expanding support to cover the Lambda library, including standard and custom event types.\n",
+      "description": "This library instrumentation provides FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
       "tags": [
-        "aws"
+        "aws",
+        "messaging",
+        "faas_server_spans",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "FAAS_SERVER_SPANS",
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
@@ -335,7 +389,21 @@
       "tags": [
         "aws",
         "client",
-        "messaging"
+        "messaging",
+        "http_client_spans",
+        "database_client_spans",
+        "database_client_metrics",
+        "messaging_spans",
+        "genai_client_spans",
+        "genai_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS",
+        "MESSAGING_SPANS",
+        "GENAI_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -346,7 +414,21 @@
       "tags": [
         "aws",
         "client",
-        "messaging"
+        "messaging",
+        "http_client_spans",
+        "database_client_spans",
+        "database_client_metrics",
+        "messaging_spans",
+        "genai_client_spans",
+        "genai_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS",
+        "MESSAGING_SPANS",
+        "GENAI_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -357,6 +439,10 @@
       "tags": [
         "azure"
       ],
+      "features": [
+        "CONTEXT_PROPAGATION",
+        "AUTO_INSTRUMENTATION_SHIM"
+      ],
       "has_telemetry": false
     },
     {
@@ -365,6 +451,10 @@
       "description": "This instrumentation enables context propagation for the Azure Core library, it does not emit any telemetry on its own.",
       "tags": [
         "azure"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION",
+        "AUTO_INSTRUMENTATION_SHIM"
       ],
       "has_telemetry": false
     },
@@ -375,6 +465,10 @@
       "tags": [
         "azure"
       ],
+      "features": [
+        "CONTEXT_PROPAGATION",
+        "AUTO_INSTRUMENTATION_SHIM"
+      ],
       "has_telemetry": false
     },
     {
@@ -382,7 +476,11 @@
       "library_group": "c3p0",
       "description": "The c3p0 instrumentation provides connection pool metrics for c3p0 data sources.",
       "tags": [
-        "c3p0"
+        "c3p0",
+        "database_pool_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
       ],
       "has_telemetry": true
     },
@@ -391,62 +489,105 @@
       "library_group": "camel",
       "description": "This instrumentation enables tracing for Apache Camel 2.x applications by generating spans for each route execution. For Camel versions 3.5 and newer, users should instead use the native 'camel-opentelemetry' component provided directly by the Camel project.\n",
       "tags": [
-        "camel"
+        "camel",
+        "http_client_spans",
+        "http_server_spans",
+        "database_client_spans",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_SERVER_SPANS",
+        "DATABASE_CLIENT_SPANS",
+        "MESSAGING_SPANS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": true
     },
     {
       "id": "cassandra-3.0",
       "library_group": "cassandra",
-      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
       "tags": [
         "cassandra",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "cassandra-4.0",
       "library_group": "cassandra",
-      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
       "tags": [
         "cassandra",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "cassandra-4.4",
       "library_group": "cassandra",
-      "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
       "tags": [
         "cassandra",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "clickhouse-client-v1-0.5",
       "library_group": "clickhouse",
-      "description": "This instrumentation enables database client spans and metrics for the V1 ClickHouse client.",
+      "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
       "tags": [
         "clickhouse",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "clickhouse-client-v2-0.8",
       "library_group": "clickhouse",
-      "description": "This instrumentation enables database client spans and metrics for the V2 ClickHouse client.",
+      "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
       "tags": [
         "clickhouse",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -660,7 +801,7 @@
     {
       "id": "grails-3.0",
       "library_group": "grails",
-      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller (INTERNAL) spans for Grails applications.\n",
+      "description": "This instrumentation enriches existing HTTP server spans with HTTP route information, and optionally enables experimental controller spans for Grails applications.\n",
       "tags": [
         "grails",
         "http",
@@ -729,9 +870,29 @@
       "has_telemetry": true
     },
     {
+      "id": "helidon-4.3",
+      "library_group": "helidon",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Helidon HTTP server.",
+      "tags": [
+        "helidon",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
+    },
+    {
       "id": "hibernate-3.3",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "tags": [
         "hibernate"
       ],
@@ -740,7 +901,7 @@
     {
       "id": "hibernate-4.0",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "tags": [
         "hibernate"
       ],
@@ -749,7 +910,7 @@
     {
       "id": "hibernate-6.0",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
       "tags": [
         "hibernate"
       ],
@@ -758,7 +919,7 @@
     {
       "id": "hibernate-procedure-call-4.3",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hibernate stored procedure calls.",
+      "description": "This instrumentation enables the generation of spans for Hibernate stored procedure calls.",
       "tags": [
         "hibernate"
       ],
@@ -797,7 +958,7 @@
     {
       "id": "hystrix-1.4",
       "library_group": "hystrix",
-      "description": "This instrumentation enables the generation of INTERNAL spans for Hystrix command executions and fallbacks.",
+      "description": "This instrumentation enables the generation of spans for Hystrix command executions and fallbacks.",
       "tags": [
         "hystrix"
       ],
@@ -957,35 +1118,61 @@
     },
     {
       "id": "jaxws-2.0",
+      "display_name": "JAX-WS",
       "library_group": "jaxws",
+      "description": "This instrumentation enables controller spans for JAX-WS Provider implementations (controller spans are disabled by default).\n",
       "tags": [
         "jaxws"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jaxws-2.0-axis2-1.6",
+      "display_name": "Apache Axis2 1.6 JAX-WS 2.x",
       "library_group": "jaxws",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Axis2 JAX-WS web services (controller spans are disabled by default).\n",
       "tags": [
-        "jaxws"
+        "jaxws",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jaxws-cxf-3.0",
+      "display_name": "Apache CXF 3.x JAX-WS",
       "library_group": "jaxws",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache CXF JAX-WS web services (controller spans are disabled by default).\n",
       "tags": [
-        "jaxws"
+        "jaxws",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jaxws-jws-api-1.1",
+      "display_name": "JWS API",
       "library_group": "jaxws",
+      "description": "This instrumentation enables controller spans for methods annotated with the @WebService annotation from the JWS API (controller spans are disabled by default).\n",
       "tags": [
         "jaxws"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jaxws-metro-2.2",
@@ -1177,6 +1364,20 @@
         "messaging"
       ],
       "has_telemetry": false
+    },
+    {
+      "id": "kafka-connect-2.6",
+      "library_group": "kafka",
+      "description": "This instrumentation enables messaging spans for Kafka Connect sink tasks.",
+      "tags": [
+        "kafka",
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "kafka-streams-0.11",
@@ -1380,6 +1581,16 @@
       "has_telemetry": false
     },
     {
+      "id": "nats-2.17",
+      "library_group": "nats",
+      "description": "This instrumentation provides messaging spans for NATS",
+      "tags": [
+        "nats",
+        "messaging"
+      ],
+      "has_telemetry": true
+    },
+    {
       "id": "netty-3.8",
       "library_group": "netty",
       "tags": [
@@ -1432,20 +1643,55 @@
       "has_telemetry": true
     },
     {
+      "id": "opensearch-java-3.0",
+      "library_group": "opensearch",
+      "description": "This instrumentation enables database client spans and database client metrics for the OpenSearch Java client.\n",
+      "tags": [
+        "opensearch",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
+    },
+    {
       "id": "opensearch-rest-1.0",
       "library_group": "opensearch",
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
       "tags": [
-        "opensearch"
+        "opensearch",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "opensearch-rest-3.0",
       "library_group": "opensearch",
+      "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
       "tags": [
-        "opensearch"
+        "opensearch",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "oracle-ucp-11.2",
@@ -1800,7 +2046,7 @@
     {
       "id": "spring-batch-3.0",
       "library_group": "spring",
-      "description": "This instrumentation enables INTERNAL spans for jobs run by the Spring Batch framework.",
+      "description": "This instrumentation enables spans for jobs run by the Spring Batch framework.",
       "tags": [
         "spring"
       ],
@@ -1957,30 +2203,29 @@
     {
       "id": "spring-web-3.1",
       "library_group": "spring",
-      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate. The agent integration enriches HTTP server spans and metrics with route information.\n",
+      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate.\n",
       "tags": [
         "spring",
         "http",
-        "client",
-        "server"
+        "client"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-web-6.0",
       "library_group": "spring",
-      "description": "This instrumentation enriches HTTP server spans and metrics with route information.",
+      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate.\n",
       "tags": [
         "spring",
         "http",
-        "server"
+        "client"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-webflux-5.0",
       "library_group": "spring",
-      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller (INTERNAL) spans.\n",
+      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller spans.\n",
       "tags": [
         "spring",
         "http",
@@ -2003,7 +2248,7 @@
     {
       "id": "spring-webmvc-3.1",
       "library_group": "spring",
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 3.1+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 3.1+.\n",
       "tags": [
         "spring"
       ],
@@ -2024,7 +2269,7 @@
     {
       "id": "spring-webmvc-6.0",
       "library_group": "spring",
-      "description": "This instrumentation enables optional Controller and View (INTERNAL) spans for Spring WebMVC 6.0+.\n",
+      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 6.0+.\n",
       "tags": [
         "spring"
       ],
