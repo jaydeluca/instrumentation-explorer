@@ -8,7 +8,7 @@ import LinksSection from "./components/LinksSection";
 import type { Library } from "./types";
 import { sortVersionsDescending } from "./utils/versionUtils";
 import { getEffectiveDisplayName } from "./utils/displayNameUtils";
-import { loadVersions, loadInstrumentationByIdAndVersion } from "./utils/dataLoader";
+import { loadVersions, loadInstrumentationByIdAndVersion, loadMarkdown } from "./utils/dataLoader";
 import { convertV2ToV1Library } from "./utils/dataAdapter";
 
 function LibraryDetail() {
@@ -20,6 +20,8 @@ function LibraryDetail() {
   );
   const [versions, setVersions] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<"details" | "standalone">("details");
+  const [markdownContent, setMarkdownContent] = useState<string | null>(null);
+  const [markdownLoading, setMarkdownLoading] = useState(false);
 
   const [selectedVersion, setSelectedVersion] = useState<string | undefined>(
     version
@@ -37,6 +39,9 @@ function LibraryDetail() {
           const instrumentationData = await loadInstrumentationByIdAndVersion(libraryName, selectedVersion);
           const v1Library = convertV2ToV1Library(instrumentationData);
           setLibrary(v1Library);
+          
+          // Reset markdown content when library changes
+          setMarkdownContent(null);
         }
       } catch (error) {
         console.error("Failed to load library:", error);
@@ -46,6 +51,26 @@ function LibraryDetail() {
     
     loadData();
   }, [libraryName, selectedVersion]);
+
+  // Load markdown content lazily when switching to standalone tab
+  useEffect(() => {
+    async function loadMarkdownContent() {
+      if (activeTab === "standalone" && library?.markdown_hash && !markdownContent && !markdownLoading) {
+        setMarkdownLoading(true);
+        try {
+          const content = await loadMarkdown(library.markdown_hash);
+          setMarkdownContent(content);
+        } catch (error) {
+          console.error("Failed to load markdown:", error);
+          setMarkdownContent(null);
+        } finally {
+          setMarkdownLoading(false);
+        }
+      }
+    }
+    
+    loadMarkdownContent();
+  }, [activeTab, library?.markdown_hash, markdownContent, markdownLoading]);
 
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
@@ -281,7 +306,7 @@ function LibraryDetail() {
         <LinksSection library={library} />
         
         {/* Tab Navigation - only show when there's markdown content */}
-        {library.markdown_content && (
+        {library.markdown_hash && (
           <div className="tab-navigation">
             <button 
               className={activeTab === "details" ? "tab-button active" : "tab-button"}
@@ -299,7 +324,7 @@ function LibraryDetail() {
         )}
 
         {/* Tab Content */}
-        {library.markdown_content ? (
+        {library.markdown_hash ? (
           <>
             {activeTab === "details" && (
               <div className="tab-content">{renderDetailsTab()}</div>
@@ -307,7 +332,13 @@ function LibraryDetail() {
             
             {activeTab === "standalone" && (
               <div className="tab-content">
-                <ReactMarkdown>{library.markdown_content}</ReactMarkdown>
+                {markdownLoading && <div>Loading...</div>}
+                {!markdownLoading && markdownContent && (
+                  <ReactMarkdown>{markdownContent}</ReactMarkdown>
+                )}
+                {!markdownLoading && !markdownContent && (
+                  <div>Failed to load content</div>
+                )}
               </div>
             )}
           </>

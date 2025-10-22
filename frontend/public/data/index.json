@@ -1,6 +1,6 @@
 {
-  "generated_at": "2025-10-22T15:39:41.079Z",
-  "latest_version": "2.21",
+  "generated_at": "2025-10-22T17:03:20.895Z",
+  "latest_version": "2.21.0",
   "instrumentations": [
     {
       "id": "activej-http-6.0",

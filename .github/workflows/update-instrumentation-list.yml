@@ -36,27 +36,16 @@ jobs:
       run: |
         pip install requests pyyaml
     
-    - name: Run update script
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-      run: |
-        python scripts/update-instrumentation-list.py
-    
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
     
-    - name: Install data-processing-v2 dependencies
+    - name: Run update script (downloads YAMLs and generates V2 data)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       run: |
-        cd data-processing-v2
-        npm install
-    
-    - name: Generate V2 data (with 3.0 hypothetical version)
-      run: |
-        cd data-processing-v2
-        npm run generate -- --include-3.0
-        npm run copy-to-frontend
+        python scripts/update-instrumentation-list.py
     
     - name: Update library READMEs (latest release)
       if: ${{ inputs.readme_version == '' }}

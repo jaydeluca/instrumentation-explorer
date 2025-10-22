@@ -163,34 +163,29 @@ def generate_3_0_version(latest_content):
         return latest_content
 
 
-def run_data_processing():
-    """Run the data processing script to generate the enriched JSON."""
+def run_data_processing_v2():
+    """Run the V2 data processing script to generate content-addressed JSON."""
     script_dir = Path(__file__).parent
     project_root = script_dir.parent
-    data_processing_dir = project_root / "data-processing"
     
-    if not data_processing_dir.exists():
-        print("Error: data-processing directory not found")
+    print("Running V2 data processing to generate content-addressed JSON...")
+    
+    # Run the V2 data processing bash script
+    import subprocess
+    result = subprocess.run(
+        ["/bin/bash", str(script_dir / "update-instrumentation-list-v2.sh")],
+        cwd=str(project_root),
+        capture_output=True,
+        text=True
+    )
+    
+    if result.returncode == 0:
+        print("V2 data processing completed successfully!")
+        print(result.stdout)
+    else:
+        print("Error during V2 data processing:")
+        print(result.stderr)
         sys.exit(1)
-    
-    print("Running data processing to generate enriched JSON...")
-    
-    # Change to data-processing directory and run the script
-    original_cwd = os.getcwd()
-    try:
-        os.chdir(data_processing_dir)
-        import subprocess
-        result = subprocess.run([sys.executable, "main.py"], capture_output=True, text=True)
-        
-        if result.returncode == 0:
-            print("Data processing completed successfully!")
-            print(result.stdout)
-        else:
-            print("Error during data processing:")
-            print(result.stderr)
-            sys.exit(1)
-    finally:
-        os.chdir(original_cwd)
 
 
 def main():
@@ -221,13 +216,13 @@ def main():
     version_3_0_content = generate_3_0_version(content)
     save_instrumentation_file(version_3_0_content, "3.0")
     
-    # Run data processing (this will process all YAML files including the new 3.0)
-    run_data_processing()
+    # Run V2 data processing (this will process all YAML files including the new 3.0)
+    run_data_processing_v2()
     
     print(f"Update complete!")
     print(f"- Latest version saved as: instrumentation-list-{version}.yaml")
     print(f"- Hypothetical 3.0 version saved as: instrumentation-list-3.0.yaml")
-    print("- The enriched JSON file has been updated in frontend/public/instrumentation-list-enriched.json")
+    print("- The V2 content-addressed data has been updated in frontend/public/data/")
 
 
 if __name__ == "__main__":

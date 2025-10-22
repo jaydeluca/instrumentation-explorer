@@ -1,0 +1,14 @@
+{
+  "id": "jaxrs-2.0-cxf-3.2",
+  "library_group": "jaxrs",
+  "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-cxf-3.2",
+  "scope": {
+    "name": "io.opentelemetry.jaxrs-2.0-cxf-3.2"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.tomee:openejb-cxf-rs:(8,)",
+      "org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)"
+    ]
+  }
+}

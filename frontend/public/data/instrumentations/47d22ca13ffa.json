@@ -1,0 +1,73 @@
+{
+  "id": "spring-pulsar-1.0",
+  "library_group": "spring",
+  "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
+  "library_link": "https://spring.io/projects/spring-pulsar",
+  "source_path": "instrumentation/spring/spring-pulsar-1.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.spring-pulsar-1.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.springframework.pulsar:spring-pulsar:[1.0.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "A comma-separated list of header names to capture as span attributes.",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.pulsar.experimental-span-attributes",
+      "description": "Enables capturing experimental span attribute `messaging.pulsar.message.type` on PRODUCER spans.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

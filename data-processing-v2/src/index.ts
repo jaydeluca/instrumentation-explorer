@@ -128,7 +128,7 @@ async function main() {
       case 'all': {
         detectedVersions = await detectVersions(repoRoot);
         if (!options.include3_0) {
-          detectedVersions = detectedVersions.filter(v => v.version !== '3.0');
+          detectedVersions = detectedVersions.filter(v => v.version !== '3.0.0');
         }
         if (detectedVersions.length === 0) {
           console.error('❌ No versions found in repository');

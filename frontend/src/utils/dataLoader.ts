@@ -199,6 +199,41 @@ export async function loadAllInstrumentationsForVersion(
 }
 
 /**
+ * Load markdown content by hash
+ */
+export async function loadMarkdown(hash: string): Promise<string> {
+  const cacheKey = `markdown-${hash}`;
+  
+  // Return cached data if available
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey) as string;
+  }
+
+  // Return in-flight request if exists
+  if (inflightRequests.has(cacheKey)) {
+    return inflightRequests.get(cacheKey) as Promise<string>;
+  }
+
+  // Create new request
+  const request = (async () => {
+    const response = await fetch(`${BASE_PATH}/markdown/${hash}.md`);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to load markdown ${hash}: ${response.statusText}`
+      );
+    }
+
+    const content = await response.text();
+    cache.set(cacheKey, content);
+    inflightRequests.delete(cacheKey);
+    return content;
+  })();
+
+  inflightRequests.set(cacheKey, request);
+  return request;
+}
+
+/**
  * Clear the cache (useful for testing or force refresh)
  */
 export function clearCache(): void {

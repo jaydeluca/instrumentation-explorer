@@ -141,6 +141,8 @@ export interface InstrumentationData {
   };
   configurations?: Configuration[];
   telemetry?: TelemetryConfig;
+  markdown_hash?: string;
+  markdown_url?: string;
 }
 
 export interface Configuration {
@@ -173,6 +175,7 @@ export interface Span {
 export interface Attribute {
   name: string;
   type: string;
+  semconv?: boolean;
 }
 
 // ============================================================================

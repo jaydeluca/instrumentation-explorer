@@ -1,0 +1,61 @@
+{
+  "id": "spring-rmi-4.0",
+  "library_group": "spring",
+  "description": "This instrumentation enables CLIENT and SERVER spans for Spring RMI applications.",
+  "source_path": "instrumentation/spring/spring-rmi-4.0",
+  "scope": {
+    "name": "io.opentelemetry.spring-rmi-4.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.springframework:spring-context:[4.0.0.RELEASE,6)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

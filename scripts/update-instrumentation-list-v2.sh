@@ -39,26 +39,34 @@ if [ ! -d "dist" ]; then
 fi
 
 # Generate data with auto-detected versions
-# Default: process 2 most recent versions (excluding 3.0 by default)
+# Default: process 2 most recent versions
 MODE="${V2_MODE:-recent}"
 COUNT="${V2_COUNT:-2}"
+INCLUDE_3_0="${V2_INCLUDE_3_0:-true}"
+
+# Build the base command
+if [ "$INCLUDE_3_0" = "true" ]; then
+  INCLUDE_FLAG="--include-3.0"
+else
+  INCLUDE_FLAG=""
+fi
 
 case "$MODE" in
   latest)
     echo "📊 Processing: Latest version only"
-    node dist/src/index.js --latest
+    node dist/src/index.js --latest $INCLUDE_FLAG
     ;;
   all)
     echo "📊 Processing: All versions"
-    node dist/src/index.js --all
+    node dist/src/index.js --all $INCLUDE_FLAG
     ;;
   recent)
-    echo "📊 Processing: $COUNT most recent versions"
-    node dist/src/index.js --recent "$COUNT"
+    echo "📊 Processing: $COUNT most recent versions (including 3.0: $INCLUDE_3_0)"
+    node dist/src/index.js --recent "$COUNT" $INCLUDE_FLAG
     ;;
   *)
-    echo "📊 Processing: 2 most recent versions (default)"
-    node dist/src/index.js --recent 2
+    echo "📊 Processing: 2 most recent versions (default, including 3.0: $INCLUDE_3_0)"
+    node dist/src/index.js --recent 2 $INCLUDE_FLAG
     ;;
 esac
 

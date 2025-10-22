@@ -15,6 +15,7 @@ function convertAttribute(attr: V2Attribute): V1Attribute {
   return {
     name: attr.name,
     type: attr.type,
+    semconv: attr.semconv,
   };
 }
 
@@ -71,6 +72,8 @@ export function convertV2ToV1Library(data: InstrumentationData): Library {
     telemetry,
     configurations: data.configurations,
     semconv: groupedSemconv,
+    // Store markdown hash for lazy loading
+    markdown_hash: data.markdown_hash,
     // V2 doesn't have these fields yet, but V1 components might expect them
     technology: undefined,
     type: undefined,

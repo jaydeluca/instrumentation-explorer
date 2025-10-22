@@ -10,6 +10,18 @@ export interface DetectedVersion {
 }
 
 /**
+ * Normalize version to x.x.x format
+ * Examples: 2.20 -> 2.20.0, 2.21 -> 2.21.0, 3.0 -> 3.0.0
+ */
+export function normalizeVersion(version: string): string {
+  const parts = version.split('.');
+  while (parts.length < 3) {
+    parts.push('0');
+  }
+  return parts.join('.');
+}
+
+/**
  * Scans the repository for instrumentation-list-*.yaml files and returns version information
  */
 export async function detectVersions(repoRoot: string): Promise<DetectedVersion[]> {
@@ -25,7 +37,8 @@ export async function detectVersions(repoRoot: string): Promise<DetectedVersion[
     const match = file.match(/instrumentation-list-(.+)\.yaml$/);
     if (!match) continue;
 
-    const version = match[1];
+    // Normalize to x.x.x format
+    const version = normalizeVersion(match[1]);
     const yamlPath = join(repoRoot, file);
 
     versions.push({
@@ -37,9 +50,9 @@ export async function detectVersions(repoRoot: string): Promise<DetectedVersion[
 
   // Sort versions (semantic version sort)
   versions.sort((a, b) => {
-    // Handle special versions like "3.0" specially
-    if (a.version === '3.0') return 1;
-    if (b.version === '3.0') return -1;
+    // Handle special versions like "3.0.0" specially
+    if (a.version === '3.0.0') return 1;
+    if (b.version === '3.0.0') return -1;
     
     // Parse semantic versions
     const aParts = a.version.split('.').map(Number);
@@ -57,8 +70,8 @@ export async function detectVersions(repoRoot: string): Promise<DetectedVersion[
     return 0;
   });
 
-  // Mark the latest stable version (excluding 3.0)
-  const stableVersions = versions.filter(v => v.version !== '3.0');
+  // Mark the latest stable version (excluding 3.0.0)
+  const stableVersions = versions.filter(v => v.version !== '3.0.0');
   if (stableVersions.length > 0) {
     stableVersions[stableVersions.length - 1].isLatest = true;
   }
@@ -83,7 +96,7 @@ export async function getVersion(repoRoot: string, versionStr: string): Promise<
 }
 
 /**
- * Get the N most recent versions (excluding 3.0 by default)
+ * Get the N most recent versions (excluding 3.0.0 by default)
  */
 export async function getRecentVersions(
   repoRoot: string, 
@@ -93,7 +106,7 @@ export async function getRecentVersions(
   let versions = await detectVersions(repoRoot);
   
   if (!include3_0) {
-    versions = versions.filter(v => v.version !== '3.0');
+    versions = versions.filter(v => v.version !== '3.0.0');
   }
   
   return versions.slice(-count);

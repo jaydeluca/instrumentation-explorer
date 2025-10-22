@@ -10,6 +10,8 @@ const PORT = 3000;
 const BASE_PATH = '/instrumentation-explorer/';
 const URL = `http://localhost:${PORT}${BASE_PATH}`;
 
+const AGENT_VERSION = "2.21"
+
 async function takeScreenshots() {
   const serve = serveStatic('frontend/dist', { 'index': ['index.html'] });
 
@@ -77,7 +79,7 @@ async function takeScreenshots() {
     console.log('Taking Couchbase library screenshots...');
     // Take a full-page screenshot of the Couchbase library page
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/2.19/couchbase-2.6`);
+    await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`);
     await page.waitForLoadState('networkidle', { timeout: 60000 });
     
     // Wait for page to load and check if comparison selects exist
@@ -85,7 +87,7 @@ async function takeScreenshots() {
       await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
       
       // Select options in dropdowns and click compare button
-      await page.selectOption('#base-version-select', '2.19');
+      await page.selectOption('#base-version-select', AGENT_VERSION);
       await page.selectOption('#compare-version-select', '3.0');
       await page.click('button:has-text("Compare")');
 
@@ -116,7 +118,7 @@ async function takeScreenshots() {
 
     console.log('Taking Alibaba Druid library screenshots...');
     // Take a full-page screenshot of the alibaba-druid-1.0 client library page
-    await page.goto(`${URL}library/2.19/alibaba-druid-1.0`);
+    await page.goto(`${URL}library/${AGENT_VERSION}/alibaba-druid-1.0`);
     
     // First try to expand mobile menu if needed
     try {
@@ -139,7 +141,7 @@ async function takeScreenshots() {
       await page.waitForSelector('#base-version-select', { state: 'visible', timeout: 10000 });
       
       // Select options in dropdowns and click compare button
-      await page.selectOption('#base-version-select', '2.19');
+      await page.selectOption('#base-version-select', `${AGENT_VERSION}`);
       await page.selectOption('#compare-version-select', '3.0');
       await page.click('button:has-text("Compare")');
 
