@@ -92,12 +92,12 @@ async function takeScreenshots() {
     await page.selectOption('#theme-select', 'default');
     await page.goto(`${URL}library/${AGENT_VERSION}/couchbase-2.6`, { waitUntil: 'domcontentloaded', timeout: 3000 });
     await page.waitForSelector('.library-detail', { state: 'visible', timeout: 2000 });
-    await page.screenshot({ path: `screenshots/couchbase-2.6.png` });
+    await page.screenshot({ path: `screenshots/couchbase-2.6.png`, fullPage: true });
     logTime('Couchbase default screenshot done');
 
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png` });
+    await page.screenshot({ path: `screenshots/couchbase-2.6-grafana.png`, fullPage: true });
     logTime('Couchbase grafana screenshot done');
 
     logTime('Taking Alibaba Druid library screenshots...');
@@ -105,12 +105,12 @@ async function takeScreenshots() {
     await page.selectOption('#theme-select', 'default');
     await page.goto(`${URL}library/${AGENT_VERSION}/alibaba-druid-1.0`, { waitUntil: 'domcontentloaded', timeout: 3000 });
     await page.waitForSelector('.library-detail', { state: 'visible', timeout: 2000 });
-    await page.screenshot({ path: `screenshots/alibaba-druid.png` });
+    await page.screenshot({ path: `screenshots/alibaba-druid.png`, fullPage: true });
     logTime('Alibaba Druid default screenshot done');
 
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png` });
+    await page.screenshot({ path: `screenshots/alibaba-druid-grafana.png`, fullPage: true });
     logTime('Alibaba Druid grafana screenshot done');
 
     logTime('Taking Apache DBCP library screenshots with Standalone Library tab...');
@@ -128,13 +128,13 @@ async function takeScreenshots() {
       console.log('Standalone Library tab not found, taking screenshot of Details tab');
     }
     
-    await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png` });
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone.png`, fullPage: true });
     logTime('Apache DBCP default screenshot done');
 
     // Switch to Grafana theme for the same library
     await page.selectOption('#theme-select', 'grafana');
     await new Promise(resolve => setTimeout(resolve, 200));
-    await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png` });
+    await page.screenshot({ path: `screenshots/apache-dbcp-standalone-grafana.png`, fullPage: true });
     logTime('Apache DBCP grafana screenshot done');
 
     logTime('Screenshots completed successfully!');
