@@ -1,0 +1,15 @@
+{
+  "id": "java-http-server",
+  "library_group": "java",
+  "source_path": "instrumentation/java-http-server",
+  "scope": {
+    "name": "io.opentelemetry.java-http-server"
+  },
+  "target_versions": {
+    "javaagent": [
+      "Java 8+"
+    ]
+  },
+  "markdown_hash": "5dd07fde4c51",
+  "markdown_url": "/data/markdown/5dd07fde4c51.md"
+}

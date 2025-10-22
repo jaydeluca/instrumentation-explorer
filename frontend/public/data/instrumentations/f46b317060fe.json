@@ -1,0 +1,15 @@
+{
+  "id": "jms-1.1",
+  "library_group": "jms",
+  "source_path": "instrumentation/jms/jms-1.1",
+  "scope": {
+    "name": "io.opentelemetry.jms-1.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "javax.jms:javax.jms-api:(,)",
+      "jakarta.jms:jakarta.jms-api:(,3)",
+      "javax.jms:jms-api:(,)"
+    ]
+  }
+}

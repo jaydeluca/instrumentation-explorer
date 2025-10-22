@@ -1,0 +1,144 @@
+{
+  "id": "cassandra-3.0",
+  "library_group": "cassandra",
+  "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+  "source_path": "instrumentation/cassandra/cassandra-3.0",
+  "scope": {
+    "name": "io.opentelemetry.cassandra-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.datastax.cassandra:cassandra-driver-core:[3.0,4.0)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.cassandra.table",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.statement",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.semconv-stability.opt-in=database": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.collection.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

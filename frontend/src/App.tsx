@@ -7,6 +7,8 @@ import {
   groupLibrariesByDisplayName, 
   groupMatchesSearch
 } from "./utils/displayNameUtils";
+import { loadVersions, loadAllInstrumentationsForVersion } from "./utils/dataLoader";
+import { convertV2ArrayToV1Libraries } from "./utils/dataAdapter";
 
 import Header from "./components/Header";
 import LibraryGroup from "./components/LibraryGroup";
@@ -27,30 +29,65 @@ function App() {
     string[]
   >([]);
   const [activeTargetFilters, setActiveTargetFilters] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/instrumentation-explorer/instrumentation-list-enriched.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const versions = Object.keys(data);
-        const sortedVersions = sortVersionsDescending(versions);
-        setAllLibraries(data);
+    async function loadData() {
+      try {
+        setLoading(true);
+        const versionsData = await loadVersions();
+        const versionList = versionsData.versions.map(v => v.version);
+        const sortedVersions = sortVersionsDescending(versionList);
         setVersions(sortedVersions);
-        const defaultVersion = getDefaultVersion(versions);
+        
+        const defaultVersion = getDefaultVersion(versionList);
         if (defaultVersion) {
           setSelectedVersion(defaultVersion);
-          setLibraries(data[defaultVersion]);
+          // Load initial version data
+          const instrumentations = await loadAllInstrumentationsForVersion(defaultVersion);
+          const v1Libraries = convertV2ArrayToV1Libraries(instrumentations);
+          setLibraries(v1Libraries);
+          setAllLibraries({ [defaultVersion]: v1Libraries });
         }
-      });
+      } catch (error) {
+        console.error("Failed to load data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    loadData();
   }, []);
 
   useEffect(() => {
-    if (selectedVersion && allLibraries[selectedVersion]) {
-      const versionLibraries = allLibraries[selectedVersion];
-      setLibraries(versionLibraries);
-      const groups = groupLibrariesByDisplayName(versionLibraries);
-      setLibraryGroups(groups);
+    async function loadVersionData() {
+      if (!selectedVersion) return;
+      
+      // Check if we already have this version loaded
+      if (allLibraries[selectedVersion]) {
+        const versionLibraries = allLibraries[selectedVersion];
+        setLibraries(versionLibraries);
+        const groups = groupLibrariesByDisplayName(versionLibraries);
+        setLibraryGroups(groups);
+      } else {
+        // Load this version's data
+        try {
+          setLoading(true);
+          const instrumentations = await loadAllInstrumentationsForVersion(selectedVersion);
+          const v1Libraries = convertV2ArrayToV1Libraries(instrumentations);
+          setLibraries(v1Libraries);
+          setAllLibraries(prev => ({ ...prev, [selectedVersion]: v1Libraries }));
+          const groups = groupLibrariesByDisplayName(v1Libraries);
+          setLibraryGroups(groups);
+        } catch (error) {
+          console.error(`Failed to load version ${selectedVersion}:`, error);
+        } finally {
+          setLoading(false);
+        }
+      }
     }
+    
+    loadVersionData();
   }, [selectedVersion, allLibraries]);
 
   const handleVersionChange = (version: string) => {
@@ -213,6 +250,21 @@ function App() {
 
     return matchingLibraries.length > 0;
   });
+
+  if (loading) {
+    return (
+      <div className="main-content-wrapper">
+        <Header
+          onVersionChange={handleVersionChange}
+          currentVersion={selectedVersion}
+          versions={versions}
+        />
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <p>Loading instrumentation data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="main-content-wrapper">

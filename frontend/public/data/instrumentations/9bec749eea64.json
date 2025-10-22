@@ -1,0 +1,13 @@
+{
+  "id": "jaxws-cxf-3.0",
+  "library_group": "jaxws",
+  "source_path": "instrumentation/jaxws/jaxws-cxf-3.0",
+  "scope": {
+    "name": "io.opentelemetry.jaxws-cxf-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)"
+    ]
+  }
+}

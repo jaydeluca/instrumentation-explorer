@@ -1,0 +1,25 @@
+{
+  "name": "data-processing-v2",
+  "version": "1.0.0",
+  "description": "Content-addressed storage pipeline for Ecosystem Explorer",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate": "npm run build && node dist/src/index.js",
+    "copy-to-frontend": "node scripts/copy-to-frontend.mjs",
+    "generate:deploy": "npm run generate && npm run copy-to-frontend",
+    "lint": "eslint src tests"
+  },
+  "dependencies": {
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
+}
+

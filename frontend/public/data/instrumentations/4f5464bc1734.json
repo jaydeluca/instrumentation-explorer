@@ -1,0 +1,107 @@
+{
+  "id": "aws-lambda-events-3.11",
+  "library_group": "aws",
+  "description": "This library instrumentation provides FaaS spans and messaging spans for AWS Lambda functions handling event types.\n",
+  "library_link": "https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html",
+  "source_path": "instrumentation/aws-lambda/aws-lambda-events-3.11",
+  "semantic_conventions": [
+    "FAAS_SERVER_SPANS",
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.aws-lambda-events-3.11"
+  },
+  "target_versions": {
+    "library": [
+      "com.amazonaws:aws-lambda-java-events:3.11.0",
+      "com.amazonaws:aws-lambda-java-core:1.0.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.aws-lambda.flush-timeout",
+      "description": "Flush timeout in milliseconds.",
+      "type": "int",
+      "default": 10000
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "cloud.account.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cloud.resource_id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "faas.invocation_id",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "faas.trigger",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "user_agent.original",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "6d2c8fd10301",
+  "markdown_url": "/data/markdown/6d2c8fd10301.md"
+}

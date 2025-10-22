@@ -1,0 +1,8 @@
+{
+  "id": "liberty-dispatcher-20.0",
+  "library_group": "liberty",
+  "source_path": "instrumentation/liberty/liberty-dispatcher-20.0",
+  "scope": {
+    "name": "io.opentelemetry.liberty-dispatcher-20.0"
+  }
+}

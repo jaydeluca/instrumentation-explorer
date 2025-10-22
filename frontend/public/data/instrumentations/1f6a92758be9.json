@@ -1,0 +1,14 @@
+{
+  "id": "gwt-2.0",
+  "library_group": "gwt",
+  "source_path": "instrumentation/gwt-2.0",
+  "scope": {
+    "name": "io.opentelemetry.gwt-2.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.google.gwt:gwt-servlet:[2.0.0,)",
+      "org.gwtproject:gwt-servlet:[2.10.0,)"
+    ]
+  }
+}

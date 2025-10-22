@@ -5,9 +5,9 @@
 Instrumentation Explorer is a web-based tool for exploring Java instrumentation libraries from OpenTelemetry. It helps developers understand library capabilities, telemetry data (metrics/spans), semantic convention adherence, and version differences.
 
 **Architecture:**
-- **Python Data Pipeline** (`data-processing/`) - Enriches YAML files with semantic conventions from GitHub API
+- **TypeScript Data Pipeline** (`data-processing-v2/`) - Content-addressed data generation with deduplication
 - **React Frontend** (`frontend/`) - TypeScript/Vite application with Material-UI components
-- **Data Flow:** YAML → Python enrichment → JSON → React consumption
+- **Data Flow:** YAML → TypeScript processing → Content-addressed JSON → React lazy loading
 
 **Key Features:**
 - Library browsing with search/filter capabilities
@@ -20,36 +20,29 @@ Instrumentation Explorer is a web-based tool for exploring Java instrumentation 
 ## Development Environment Setup
 
 ### Prerequisites
-- Python 3.x with pip
+- Python 3.x with pip (for YAML download scripts)
 - Node.js 20.x with npm
-- Internet access for GitHub API calls
+- Internet access for GitHub API calls (optional, for updates)
 
 ### Bootstrap Process
 **CRITICAL: Never cancel long-running commands. Use appropriate timeouts:**
 
-1. **Install Python dependencies:**
-   ```bash
-   cd data-processing
-   pip install requests pyyaml
-   ```
-   *Takes ~5 seconds*
-
-2. **Run data processing pipeline:**
-   ```bash
-   cd data-processing
-   python3 main.py
-   ```
-   *Takes ~10 seconds. GitHub API warnings are expected but non-blocking.*
-   *Creates `frontend/public/instrumentation-list-enriched.json` (~500KB)*
-
-3. **Install Node.js dependencies:**
+1. **Install Node.js dependencies:**
    ```bash
    # From repository root
    npm install
    ```
    *Takes ~45 seconds. Uses npm workspaces.*
 
-4. **Start development server:**
+2. **Generate V2 data (optional - data is pre-generated):**
+   ```bash
+   cd data-processing-v2
+   npm run generate
+   npm run copy-to-frontend
+   ```
+   *Takes ~5 seconds. Creates content-addressed JSON in `frontend/public/data/`*
+
+3. **Start development server:**
    ```bash
    cd frontend
    npm run dev
@@ -63,20 +56,22 @@ Instrumentation Explorer is a web-based tool for exploring Java instrumentation 
 # Development server (from frontend/)
 npm run dev
 
-# Data processing (from data-processing/)
-python3 main.py
+# Generate V2 data (from data-processing-v2/)
+npm run generate
+npm run copy-to-frontend
 
-# Update instrumentation data (from root)
-npm run update-instrumentation
+# Update instrumentation data from GitHub (from root)
+python scripts/update-instrumentation-list.py
 ```
 
 ### Build
 ```bash
 # Production build (from frontend/)
 npm run build
-# Runs prebuild script (YAML→JSON conversion) + TypeScript compilation
+# Builds React app with Vite
 
-# Build from root
+# Build data-processing-v2
+cd data-processing-v2
 npm run build
 ```
 
@@ -106,21 +101,26 @@ npm run test:all        # Lint + unit + build + E2E
 - Key interfaces defined in `types.ts`
 - Client-side routing with React Router
 
-### Python
-- Use requests and pyyaml for data processing
-- Implement caching for GitHub API calls (`.semconv_cache/`)
-- Handle rate limiting gracefully
-- Output to `frontend/public/instrumentation-list-enriched.json`
+### TypeScript (Data Processing)
+- Use content-addressed storage for deduplication
+- Implement efficient multi-version support
+- Output to `frontend/public/data/` directory structure
+- Follow patterns in `data-processing-v2/src/`
+
+### Python (Scripts)
+- Use requests and pyyaml for YAML downloads
+- Handle GitHub API rate limiting gracefully
+- Minimal processing - just download and 3.0 generation
 
 ### File Structure
 ```
-├── data-processing/          # Python pipeline
-├── frontend/                 # React application
-│   ├── src/                 # Source code
-│   ├── public/              # Static assets + generated JSON
-│   └── dist/                # Build output
-├── scripts/                 # Automation scripts
-└── instrumentation-list-*.yaml  # Source data
+├── data-processing-v2/      # TypeScript data pipeline with content-addressing
+├── frontend/                # React application
+│   ├── src/                # Source code
+│   ├── public/data/        # Content-addressed JSON files
+│   └── dist/               # Build output
+├── scripts/                # Python automation scripts (YAML downloads)
+└── instrumentation-list-*.yaml  # Source YAML data
 ```
 
 ## Testing Instructions
@@ -190,9 +190,9 @@ PRs automatically run:
 
 ### Data Pipeline
 - Source: OpenTelemetry `instrumentation-list-*.yaml` files
-- Processing: Python script enriches with semantic conventions
-- Output: Single enriched JSON file consumed by frontend
-- Versioning: Multiple YAML versions supported (2.17, 2.18, 2.19, 3.0)
+- Processing: TypeScript pipeline generates content-addressed JSON
+- Output: Multi-file structure with deduplication (~45% space savings)
+- Versioning: Auto-detection and multi-version lazy loading (2.18+)
 
 ### Key Components
 - `App.tsx`: Main router and application shell
@@ -228,8 +228,8 @@ PRs automatically run:
 ## Automation
 
 ### Data Updates
-- GitHub Actions run weekly to update instrumentation data
-- Manual updates via `npm run update-instrumentation`
+- GitHub Actions run daily to update instrumentation data
+- Manual updates via `python scripts/update-instrumentation-list.py`
 - Screenshot generation for PRs via Playwright automation
 
 ### Deployment

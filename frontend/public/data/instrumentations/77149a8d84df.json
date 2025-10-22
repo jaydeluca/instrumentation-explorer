@@ -1,0 +1,27 @@
+{
+  "id": "dropwizard-views-0.7",
+  "library_group": "dropwizard",
+  "source_path": "instrumentation/dropwizard/dropwizard-views-0.7",
+  "scope": {
+    "name": "io.opentelemetry.dropwizard-views-0.7"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.dropwizard:dropwizard-views:(,3.0.0)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+      "description": "Enables the creation of experimental view (INTERNAL) spans.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller (INTERNAL) spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}
