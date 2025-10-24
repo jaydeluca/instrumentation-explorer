@@ -117,15 +117,9 @@ jobs:
           
           ### Data Pipeline:
           1. Downloaded latest `instrumentation-list.yaml`
-          2. Generated V2 content-addressed data (recent 2 versions)
+          2. Generated V2 content-addressed data (all versions from 2.19+)
           3. Downloaded library README files for reference
-          
-          ### Data Format Features:
-          - Content-addressed storage with automatic deduplication (~45% space savings)
-          - Multi-version support with lazy loading
-          - In-flight request caching to prevent duplicate fetches
-          - Grouped semantic convention display names
-          
+        
           ### Source:
           - **Instrumentation List**: https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/instrumentation-list.yaml
           - **Library READMEs**: https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation

@@ -1,6 +1,6 @@
 {
   "version": "2.20.0",
-  "release_date": "2025-10-22",
+  "release_date": "2025-10-24",
   "agent_version": "2.20.0",
   "instrumentations": {
     "activej-http-6.0": {
@@ -20,12 +20,12 @@
       "url": "/data/instrumentations/2016db0d9cdf.json"
     },
     "alibaba-druid-1.0": {
-      "hash": "ab3aca9f9123",
-      "url": "/data/instrumentations/ab3aca9f9123.json"
+      "hash": "beaaab6101f2",
+      "url": "/data/instrumentations/beaaab6101f2.json"
     },
     "apache-dbcp-2.0": {
-      "hash": "9d25398efa88",
-      "url": "/data/instrumentations/9d25398efa88.json"
+      "hash": "b13a4a3c10bf",
+      "url": "/data/instrumentations/b13a4a3c10bf.json"
     },
     "apache-dubbo-2.7": {
       "hash": "2d03e6ac546c",
@@ -44,24 +44,24 @@
       "url": "/data/instrumentations/056acad084b0.json"
     },
     "apache-httpclient-4.3": {
-      "hash": "252ec31078e3",
-      "url": "/data/instrumentations/252ec31078e3.json"
+      "hash": "9dfaba75113b",
+      "url": "/data/instrumentations/9dfaba75113b.json"
     },
     "apache-httpclient-5.0": {
       "hash": "173006007139",
       "url": "/data/instrumentations/173006007139.json"
     },
     "apache-httpclient-5.2": {
-      "hash": "ea1d94c64f81",
-      "url": "/data/instrumentations/ea1d94c64f81.json"
+      "hash": "44e077227460",
+      "url": "/data/instrumentations/44e077227460.json"
     },
     "apache-shenyu-2.4": {
       "hash": "1a300b8ca5f8",
       "url": "/data/instrumentations/1a300b8ca5f8.json"
     },
     "armeria-1.3": {
-      "hash": "35637b5f91a6",
-      "url": "/data/instrumentations/35637b5f91a6.json"
+      "hash": "b8d5cf785eaf",
+      "url": "/data/instrumentations/b8d5cf785eaf.json"
     },
     "armeria-grpc-1.14": {
       "hash": "34155a4fe561",
@@ -80,24 +80,24 @@
       "url": "/data/instrumentations/e347c53c3d92.json"
     },
     "aws-lambda-core-1.0": {
-      "hash": "19d9f8e35571",
-      "url": "/data/instrumentations/19d9f8e35571.json"
+      "hash": "16a3909ee2f0",
+      "url": "/data/instrumentations/16a3909ee2f0.json"
     },
     "aws-lambda-events-2.2": {
-      "hash": "1ef16fac06f7",
-      "url": "/data/instrumentations/1ef16fac06f7.json"
+      "hash": "7e998afddfa5",
+      "url": "/data/instrumentations/7e998afddfa5.json"
     },
     "aws-lambda-events-3.11": {
-      "hash": "fa853c7df4b4",
-      "url": "/data/instrumentations/fa853c7df4b4.json"
+      "hash": "fc5cfac0103b",
+      "url": "/data/instrumentations/fc5cfac0103b.json"
     },
     "aws-sdk-1.11": {
       "hash": "0ba7e594995b",
       "url": "/data/instrumentations/0ba7e594995b.json"
     },
     "aws-sdk-2.2": {
-      "hash": "87d5da3e292c",
-      "url": "/data/instrumentations/87d5da3e292c.json"
+      "hash": "9f13352cc399",
+      "url": "/data/instrumentations/9f13352cc399.json"
     },
     "azure-core-1.14": {
       "hash": "f5962160e949",
@@ -112,8 +112,8 @@
       "url": "/data/instrumentations/4d8dbc817fe7.json"
     },
     "c3p0-0.9": {
-      "hash": "2b23ef8f98bc",
-      "url": "/data/instrumentations/2b23ef8f98bc.json"
+      "hash": "7586f426a1c8",
+      "url": "/data/instrumentations/7586f426a1c8.json"
     },
     "camel-2.20": {
       "hash": "68ee7624acc9",
@@ -128,8 +128,8 @@
       "url": "/data/instrumentations/58f7f444f2d6.json"
     },
     "cassandra-4.4": {
-      "hash": "773edda01133",
-      "url": "/data/instrumentations/773edda01133.json"
+      "hash": "422fd9fb1804",
+      "url": "/data/instrumentations/422fd9fb1804.json"
     },
     "clickhouse-client-v1-0.5": {
       "hash": "ffb7e82d7e46",
@@ -180,8 +180,8 @@
       "url": "/data/instrumentations/eb2773710f0d.json"
     },
     "elasticsearch-rest-7.0": {
-      "hash": "ac318e34fdc5",
-      "url": "/data/instrumentations/ac318e34fdc5.json"
+      "hash": "612afbf29d17",
+      "url": "/data/instrumentations/612afbf29d17.json"
     },
     "elasticsearch-transport-5.0": {
       "hash": "c8d7fbf9f285",
@@ -224,20 +224,20 @@
       "url": "/data/instrumentations/d9570c018aa8.json"
     },
     "graphql-java-12.0": {
-      "hash": "faf3e9bbf3a9",
-      "url": "/data/instrumentations/faf3e9bbf3a9.json"
+      "hash": "4927d2d57627",
+      "url": "/data/instrumentations/4927d2d57627.json"
     },
     "graphql-java-20.0": {
-      "hash": "16f07f364ae6",
-      "url": "/data/instrumentations/16f07f364ae6.json"
+      "hash": "3a421c215e2a",
+      "url": "/data/instrumentations/3a421c215e2a.json"
     },
     "grizzly-2.3": {
       "hash": "6228f53cbfd8",
       "url": "/data/instrumentations/6228f53cbfd8.json"
     },
     "grpc-1.6": {
-      "hash": "1d2d142aa42b",
-      "url": "/data/instrumentations/1d2d142aa42b.json"
+      "hash": "a9dbc2f4c990",
+      "url": "/data/instrumentations/a9dbc2f4c990.json"
     },
     "guava-10.0": {
       "hash": "b03437f7c1a5",
@@ -272,8 +272,8 @@
       "url": "/data/instrumentations/7b77c196cd37.json"
     },
     "hikaricp-3.0": {
-      "hash": "f533b722cfd0",
-      "url": "/data/instrumentations/f533b722cfd0.json"
+      "hash": "8922f8c3a921",
+      "url": "/data/instrumentations/8922f8c3a921.json"
     },
     "http-url-connection": {
       "hash": "655ce016509d",
@@ -288,12 +288,12 @@
       "url": "/data/instrumentations/ae1baa9a60ea.json"
     },
     "java-http-client": {
-      "hash": "983810375796",
-      "url": "/data/instrumentations/983810375796.json"
+      "hash": "65428c309d65",
+      "url": "/data/instrumentations/65428c309d65.json"
     },
     "java-http-server": {
-      "hash": "4528f603eb34",
-      "url": "/data/instrumentations/4528f603eb34.json"
+      "hash": "ba1b021c773b",
+      "url": "/data/instrumentations/ba1b021c773b.json"
     },
     "javalin-5.0": {
       "hash": "114c959df00c",
@@ -364,8 +364,8 @@
       "url": "/data/instrumentations/e4bc8d68cda2.json"
     },
     "jdbc": {
-      "hash": "68f7750b6395",
-      "url": "/data/instrumentations/68f7750b6395.json"
+      "hash": "2dc639be0819",
+      "url": "/data/instrumentations/2dc639be0819.json"
     },
     "jedis-1.4": {
       "hash": "78c1bdd1c6e9",
@@ -392,12 +392,12 @@
       "url": "/data/instrumentations/7fcc8d2bf3a9.json"
     },
     "jetty-httpclient-12.0": {
-      "hash": "2e3d0d0430ee",
-      "url": "/data/instrumentations/2e3d0d0430ee.json"
+      "hash": "4ef802706171",
+      "url": "/data/instrumentations/4ef802706171.json"
     },
     "jetty-httpclient-9.2": {
-      "hash": "255d6b684061",
-      "url": "/data/instrumentations/255d6b684061.json"
+      "hash": "9888a8378ba8",
+      "url": "/data/instrumentations/9888a8378ba8.json"
     },
     "jms-1.1": {
       "hash": "f46b317060fe",
@@ -436,8 +436,8 @@
       "url": "/data/instrumentations/3a006bbe6d7d.json"
     },
     "kafka-clients-2.6": {
-      "hash": "5738bcef2452",
-      "url": "/data/instrumentations/5738bcef2452.json"
+      "hash": "487d3f787075",
+      "url": "/data/instrumentations/487d3f787075.json"
     },
     "kafka-streams-0.11": {
       "hash": "09784e83360a",
@@ -452,16 +452,16 @@
       "url": "/data/instrumentations/025707e3509a.json"
     },
     "ktor-1.0": {
-      "hash": "c4d0caf9b2a8",
-      "url": "/data/instrumentations/c4d0caf9b2a8.json"
+      "hash": "82ef94823b33",
+      "url": "/data/instrumentations/82ef94823b33.json"
     },
     "ktor-2.0": {
-      "hash": "e730f3f2a87f",
-      "url": "/data/instrumentations/e730f3f2a87f.json"
+      "hash": "f6a798ba686d",
+      "url": "/data/instrumentations/f6a798ba686d.json"
     },
     "ktor-3.0": {
-      "hash": "865845043796",
-      "url": "/data/instrumentations/865845043796.json"
+      "hash": "31a35dc73027",
+      "url": "/data/instrumentations/31a35dc73027.json"
     },
     "kubernetes-client-7.0": {
       "hash": "d0e2f391df0b",
@@ -492,8 +492,8 @@
       "url": "/data/instrumentations/f2dc5e070b52.json"
     },
     "log4j-appender-2.17": {
-      "hash": "21acffc4fe47",
-      "url": "/data/instrumentations/21acffc4fe47.json"
+      "hash": "4d3c03e3ad12",
+      "url": "/data/instrumentations/4d3c03e3ad12.json"
     },
     "log4j-context-data-2.17": {
       "hash": "c82e30801ee6",
@@ -508,20 +508,20 @@
       "url": "/data/instrumentations/46a782ff7b84.json"
     },
     "logback-appender-1.0": {
-      "hash": "6f7418f1939e",
-      "url": "/data/instrumentations/6f7418f1939e.json"
+      "hash": "b804ba242a8c",
+      "url": "/data/instrumentations/b804ba242a8c.json"
     },
     "logback-mdc-1.0": {
-      "hash": "7b120f300870",
-      "url": "/data/instrumentations/7b120f300870.json"
+      "hash": "4dbb46797fcf",
+      "url": "/data/instrumentations/4dbb46797fcf.json"
     },
     "micrometer-1.5": {
-      "hash": "454171e8fcae",
-      "url": "/data/instrumentations/454171e8fcae.json"
+      "hash": "b138165291fc",
+      "url": "/data/instrumentations/b138165291fc.json"
     },
     "mongo-3.1": {
-      "hash": "a8e16ec2f478",
-      "url": "/data/instrumentations/a8e16ec2f478.json"
+      "hash": "4af298b69d8f",
+      "url": "/data/instrumentations/4af298b69d8f.json"
     },
     "mongo-3.7": {
       "hash": "d5a7c64dfe3c",
@@ -560,12 +560,12 @@
       "url": "/data/instrumentations/f710162241c4.json"
     },
     "okhttp-3.0": {
-      "hash": "d448f799ba04",
-      "url": "/data/instrumentations/d448f799ba04.json"
+      "hash": "ef3e52a28c9b",
+      "url": "/data/instrumentations/ef3e52a28c9b.json"
     },
     "openai-java-1.1": {
-      "hash": "e54423a2f66e",
-      "url": "/data/instrumentations/e54423a2f66e.json"
+      "hash": "861fd452ea28",
+      "url": "/data/instrumentations/861fd452ea28.json"
     },
     "opensearch-java-3.0": {
       "hash": "f8a0325cbf49",
@@ -580,8 +580,8 @@
       "url": "/data/instrumentations/ea04c5d0b8cb.json"
     },
     "oracle-ucp-11.2": {
-      "hash": "a65929c45f41",
-      "url": "/data/instrumentations/a65929c45f41.json"
+      "hash": "33339d6e10d3",
+      "url": "/data/instrumentations/33339d6e10d3.json"
     },
     "oshi": {
       "hash": "dbdef6a02cb9",
@@ -636,8 +636,8 @@
       "url": "/data/instrumentations/2668d1896f37.json"
     },
     "r2dbc-1.0": {
-      "hash": "fcd6567da24b",
-      "url": "/data/instrumentations/fcd6567da24b.json"
+      "hash": "7c5326bbf8ce",
+      "url": "/data/instrumentations/7c5326bbf8ce.json"
     },
     "rabbitmq-2.7": {
       "hash": "7f24915da2ba",
@@ -684,8 +684,8 @@
       "url": "/data/instrumentations/e1aa72a95342.json"
     },
     "resources": {
-      "hash": "7a3b67e5db4c",
-      "url": "/data/instrumentations/7a3b67e5db4c.json"
+      "hash": "7d316e71c5f5",
+      "url": "/data/instrumentations/7d316e71c5f5.json"
     },
     "restlet-1.1": {
       "hash": "a5703f8b00ee",
@@ -700,20 +700,20 @@
       "url": "/data/instrumentations/72fd494ab96f.json"
     },
     "rocketmq-client-4.8": {
-      "hash": "c2315f2f97f6",
-      "url": "/data/instrumentations/c2315f2f97f6.json"
+      "hash": "1dcb9536b0a5",
+      "url": "/data/instrumentations/1dcb9536b0a5.json"
     },
     "rocketmq-client-5.0": {
       "hash": "aef99c704cd9",
       "url": "/data/instrumentations/aef99c704cd9.json"
     },
     "runtime-telemetry-java17": {
-      "hash": "6d1f4d127da7",
-      "url": "/data/instrumentations/6d1f4d127da7.json"
+      "hash": "d9b8f5ec8465",
+      "url": "/data/instrumentations/d9b8f5ec8465.json"
     },
     "runtime-telemetry-java8": {
-      "hash": "ab07766530e2",
-      "url": "/data/instrumentations/ab07766530e2.json"
+      "hash": "2c80b27d965f",
+      "url": "/data/instrumentations/2c80b27d965f.json"
     },
     "rxjava-2.0": {
       "hash": "999cc11d2064",
@@ -808,12 +808,12 @@
       "url": "/data/instrumentations/a1bdd4e7b0b0.json"
     },
     "spring-security-config-6.0": {
-      "hash": "eefa5fb62c4f",
-      "url": "/data/instrumentations/eefa5fb62c4f.json"
+      "hash": "e8dd1a9a1da4",
+      "url": "/data/instrumentations/e8dd1a9a1da4.json"
     },
     "spring-web-3.1": {
-      "hash": "73e5239fc85d",
-      "url": "/data/instrumentations/73e5239fc85d.json"
+      "hash": "7ce7eff99d5c",
+      "url": "/data/instrumentations/7ce7eff99d5c.json"
     },
     "spring-web-6.0": {
       "hash": "e9d9909da043",
@@ -824,20 +824,20 @@
       "url": "/data/instrumentations/b91308639b7b.json"
     },
     "spring-webflux-5.3": {
-      "hash": "c497ed997f63",
-      "url": "/data/instrumentations/c497ed997f63.json"
+      "hash": "58d7bc7d8cc8",
+      "url": "/data/instrumentations/58d7bc7d8cc8.json"
     },
     "spring-webmvc-3.1": {
       "hash": "394e19858ac2",
       "url": "/data/instrumentations/394e19858ac2.json"
     },
     "spring-webmvc-5.3": {
-      "hash": "a26b9929bbdb",
-      "url": "/data/instrumentations/a26b9929bbdb.json"
+      "hash": "0a3e615dd0be",
+      "url": "/data/instrumentations/0a3e615dd0be.json"
     },
     "spring-webmvc-6.0": {
-      "hash": "464a3827b36b",
-      "url": "/data/instrumentations/464a3827b36b.json"
+      "hash": "21281bde3012",
+      "url": "/data/instrumentations/21281bde3012.json"
     },
     "spring-ws-2.0": {
       "hash": "65850e11c33a",
@@ -920,8 +920,8 @@
       "url": "/data/instrumentations/26b86366c8e9.json"
     },
     "vibur-dbcp-11.0": {
-      "hash": "a2389ebacca4",
-      "url": "/data/instrumentations/a2389ebacca4.json"
+      "hash": "d49af65fb80d",
+      "url": "/data/instrumentations/d49af65fb80d.json"
     },
     "wicket-8.0": {
       "hash": "0b56884bf556",
@@ -946,6 +946,6 @@
   },
   "metadata": {
     "total_count": 235,
-    "changed_from_previous": 79
+    "changed_from_previous": 48
   }
 }
