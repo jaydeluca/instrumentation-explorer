@@ -39,8 +39,8 @@ if [ ! -d "dist" ]; then
 fi
 
 # Generate data with auto-detected versions
-# Default: process 2 most recent versions
-MODE="${V2_MODE:-recent}"
+# Default: process all versions (to accumulate historical data)
+MODE="${V2_MODE:-all}"
 COUNT="${V2_COUNT:-2}"
 INCLUDE_3_0="${V2_INCLUDE_3_0:-true}"
 
@@ -65,8 +65,8 @@ case "$MODE" in
     node dist/src/index.js --recent "$COUNT" $INCLUDE_FLAG
     ;;
   *)
-    echo "📊 Processing: 2 most recent versions (default, including 3.0: $INCLUDE_3_0)"
-    node dist/src/index.js --recent 2 $INCLUDE_FLAG
+    echo "📊 Processing: All versions (default, including 3.0: $INCLUDE_3_0)"
+    node dist/src/index.js --all $INCLUDE_FLAG
     ;;
 esac
 
