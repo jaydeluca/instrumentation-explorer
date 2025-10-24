@@ -1,34 +1,28 @@
 {
   "versions": [
     {
-      "version": "2.17.0",
-      "release_date": "2025-10-22",
-      "manifest_url": "/data/versions/2.17.0.json",
-      "is_latest": false
-    },
-    {
-      "version": "2.18.0",
-      "release_date": "2025-10-22",
-      "manifest_url": "/data/versions/2.18.0.json",
-      "is_latest": false
-    },
-    {
       "version": "2.19.0",
-      "release_date": "2025-10-22",
+      "release_date": "2025-10-24",
       "manifest_url": "/data/versions/2.19.0.json",
       "is_latest": false
     },
     {
       "version": "2.20.0",
-      "release_date": "2025-10-22",
+      "release_date": "2025-10-24",
       "manifest_url": "/data/versions/2.20.0.json",
       "is_latest": false
     },
     {
       "version": "2.21.0",
-      "release_date": "2025-10-22",
+      "release_date": "2025-10-24",
       "manifest_url": "/data/versions/2.21.0.json",
       "is_latest": true
+    },
+    {
+      "version": "3.0.0",
+      "release_date": "2025-10-24",
+      "manifest_url": "/data/versions/3.0.0.json",
+      "is_latest": false
     }
   ]
 }
