@@ -19,7 +19,6 @@ import {
 export interface VersionConfig {
   version: string;
   yamlPath: string;
-  releaseDate: string;
   isLatest: boolean;
 }
 
@@ -133,7 +132,6 @@ export class DataGenerator {
     // Create version manifest
     const manifest: VersionManifest = {
       version: config.version,
-      release_date: config.releaseDate,
       agent_version: config.version,
       instrumentations: versionRefs,
       metadata: {
@@ -305,7 +303,6 @@ export class DataGenerator {
     }
 
     const indexData: IndexData = {
-      generated_at: new Date().toISOString(),
       latest_version: latestManifest.version,
       instrumentations: indexInstrumentations
     };
@@ -320,7 +317,6 @@ export class DataGenerator {
   private async generateVersionsList(): Promise<void> {
     const versions: VersionInfo[] = this.options.versions.map(config => ({
       version: config.version,
-      release_date: config.releaseDate,
       manifest_url: `${this.options.baseUrl}/versions/${config.version}.json`,
       is_latest: config.isLatest
     }));

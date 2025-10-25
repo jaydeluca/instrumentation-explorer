@@ -168,7 +168,6 @@ async function main() {
     const versions: VersionConfig[] = detectedVersions.map(v => ({
       version: v.version,
       yamlPath: v.yamlPath,
-      releaseDate: v.releaseDate || new Date().toISOString().split('T')[0],
       isLatest: v.isLatest
     }));
 

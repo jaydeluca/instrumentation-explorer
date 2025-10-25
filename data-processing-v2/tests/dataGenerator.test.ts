@@ -47,7 +47,6 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: true
       }
     ];
@@ -82,7 +81,6 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: true
       }
     ];
@@ -106,7 +104,6 @@ describe('DataGenerator', () => {
     const content = await readFile(indexPath, 'utf-8');
     const index: IndexData = JSON.parse(content);
 
-    expect(index.generated_at).toBeTruthy();
     expect(index.latest_version).toBe('test-1.0');
     expect(index.instrumentations).toHaveLength(1);
     expect(index.instrumentations[0].id).toBe('test-lib-1.0');
@@ -119,13 +116,11 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: false
       },
       {
         version: 'test-2.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-2.0.yaml'),
-        releaseDate: '2024-02-01',
         isLatest: true
       }
     ];
@@ -159,7 +154,6 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: true
       }
     ];
@@ -181,7 +175,6 @@ describe('DataGenerator', () => {
     const manifest: VersionManifest = JSON.parse(content);
 
     expect(manifest.version).toBe('test-1.0');
-    expect(manifest.release_date).toBe('2024-01-01');
     expect(manifest.metadata.total_count).toBe(2);
     expect(Object.keys(manifest.instrumentations)).toHaveLength(2);
     expect(manifest.instrumentations['test-lib-1.0']).toBeDefined();
@@ -194,13 +187,11 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: false
       },
       {
         version: 'test-2.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-2.0.yaml'),
-        releaseDate: '2024-02-01',
         isLatest: true
       }
     ];
@@ -240,13 +231,11 @@ describe('DataGenerator', () => {
       {
         version: 'test-1.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-1.0.yaml'),
-        releaseDate: '2024-01-01',
         isLatest: false
       },
       {
         version: 'test-2.0',
         yamlPath: join(TEST_OUTPUT_DIR, 'test-2.0.yaml'),
-        releaseDate: '2024-02-01',
         isLatest: true
       }
     ];
