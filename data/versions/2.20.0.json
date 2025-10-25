@@ -1,6 +1,5 @@
 {
   "version": "2.20.0",
-  "release_date": "2025-10-24",
   "agent_version": "2.20.0",
   "instrumentations": {
     "activej-http-6.0": {
@@ -945,7 +944,6 @@
     }
   },
   "metadata": {
-    "total_count": 235,
-    "changed_from_previous": 48
+    "total_count": 235
   }
 }
