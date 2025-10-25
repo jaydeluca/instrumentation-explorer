@@ -1,0 +1,18 @@
+{
+  "id": "restlet-2.0",
+  "library_group": "restlet",
+  "source_path": "instrumentation/restlet/restlet-2.0",
+  "scope": {
+    "name": "io.opentelemetry.restlet-2.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.restlet.jse:org.restlet:[2.0.0,)"
+    ],
+    "library": [
+      "org.restlet.jse:org.restlet:2.0.2"
+    ]
+  },
+  "markdown_hash": "0f6483225d79",
+  "markdown_url": "/data/markdown/0f6483225d79.md"
+}

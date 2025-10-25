@@ -1,0 +1,112 @@
+{
+  "id": "graphql-java-20.0",
+  "library_group": "graphql",
+  "description": "This instrumentation enables spans for GraphQL operations.",
+  "library_link": "https://www.graphql-java.com/",
+  "source_path": "instrumentation/graphql-java/graphql-java-20.0",
+  "minimum_java_version": 11,
+  "semantic_conventions": [
+    "GRAPHQL_SERVER_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.graphql-java-20.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.graphql-java:graphql-java:[20,)"
+    ],
+    "library": [
+      "com.graphql-java:graphql-java:20.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.graphql.query-sanitizer.enabled",
+      "description": "Enables sanitization of sensitive information from queries so they aren't added as span attributes.",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "otel.instrumentation.graphql.add-operation-name-to-span-name.enabled",
+      "description": "Whether GraphQL operation name is added to the span name. WARNING: The GraphQL operation name is provided by the client and can have high cardinality. Use only when the server is not exposed to malicious clients.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.graphql.data-fetcher.enabled",
+      "description": "Enables span generation for data fetchers.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.graphql.trivial-data-fetcher.enabled",
+      "description": "Whether to create spans for trivial data fetchers. A trivial data fetcher is one that simply maps data from an object to a field.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "graphql.document",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "graphql.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "graphql.operation.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.graphql.data-fetcher.enabled=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "graphql.document",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "graphql.field.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "graphql.field.path",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "graphql.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "graphql.operation.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "07eb588e290b",
+  "markdown_url": "/data/markdown/07eb588e290b.md"
+}

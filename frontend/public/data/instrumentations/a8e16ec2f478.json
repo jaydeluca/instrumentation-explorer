@@ -1,0 +1,18 @@
+{
+  "id": "mongo-3.1",
+  "library_group": "mongo",
+  "source_path": "instrumentation/mongo/mongo-3.1",
+  "scope": {
+    "name": "io.opentelemetry.mongo-3.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.mongodb:mongo-java-driver:[3.1,)"
+    ],
+    "library": [
+      "org.mongodb:mongo-java-driver:3.1.0"
+    ]
+  },
+  "markdown_hash": "1d5510f57fd2",
+  "markdown_url": "/data/markdown/1d5510f57fd2.md"
+}
