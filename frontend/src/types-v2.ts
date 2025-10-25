@@ -11,7 +11,6 @@
  * Lightweight index for browse/search - loaded on initial page load
  */
 export interface IndexData {
-  generated_at: string;
   latest_version: string;
   instrumentations: IndexInstrumentation[];
 }
@@ -36,7 +35,6 @@ export interface VersionsData {
 
 export interface VersionInfo {
   version: string;
-  release_date: string;
   manifest_url: string;
   is_latest: boolean;
 }
@@ -46,7 +44,6 @@ export interface VersionInfo {
  */
 export interface VersionManifest {
   version: string;
-  release_date: string;
   agent_version: string;
   instrumentations: Record<string, InstrumentationReference>;
   metadata: {

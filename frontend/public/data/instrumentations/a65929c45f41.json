@@ -1,26 +1,37 @@
 {
-  "id": "c3p0-0.9",
-  "library_group": "c3p0",
-  "description": "The c3p0 instrumentation provides connection pool metrics for c3p0 data sources.",
-  "library_link": "https://github.com/swaldman/c3p0",
-  "source_path": "instrumentation/c3p0-0.9",
-  "semantic_conventions": [
-    "DATABASE_POOL_METRICS"
-  ],
+  "id": "oracle-ucp-11.2",
+  "library_group": "oracle",
+  "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+  "library_link": "https://docs.oracle.com/database/121/JJUCP/",
+  "source_path": "instrumentation/oracle-ucp-11.2",
   "scope": {
-    "name": "io.opentelemetry.c3p0-0.9"
+    "name": "io.opentelemetry.oracle-ucp-11.2"
   },
   "target_versions": {
     "javaagent": [
-      "com.mchange:c3p0:(,)"
+      "com.oracle.database.jdbc:ucp:[,)"
     ],
     "library": [
-      "com.mchange:c3p0:0.9.2"
+      "com.oracle.database.jdbc:ucp:11.2.0.4",
+      "com.oracle.database.jdbc:ojdbc8:12.2.0.1"
     ]
   },
   "telemetry": {
     "default": {
       "metrics": [
+        {
+          "name": "db.client.connections.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
         {
           "name": "db.client.connections.pending_requests",
           "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
@@ -76,6 +87,19 @@
           ]
         },
         {
+          "name": "db.client.connection.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
           "name": "db.client.connection.pending_requests",
           "description": "The number of current pending requests for an open connection.",
           "type": "LONG_SUM",
@@ -91,5 +115,7 @@
       ],
       "spans": []
     }
-  }
+  },
+  "markdown_hash": "b697caa991ff",
+  "markdown_url": "/data/markdown/b697caa991ff.md"
 }

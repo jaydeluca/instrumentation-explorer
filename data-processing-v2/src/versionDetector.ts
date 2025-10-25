@@ -5,7 +5,6 @@ import { existsSync } from 'fs';
 export interface DetectedVersion {
   version: string;
   yamlPath: string;
-  releaseDate?: string;
   isLatest: boolean;
 }
 

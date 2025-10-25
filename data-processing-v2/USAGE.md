@@ -164,13 +164,11 @@ const versions: VersionConfig[] = [
   {
     version: '2.19.0',
     yamlPath: join(__dirname, '../../../instrumentation-list-2.19.yaml'),
-    releaseDate: '2024-09-15',
     isLatest: false
   },
   {
     version: '2.20.0',
     yamlPath: join(__dirname, '../../../instrumentation-list-2.20.yaml'),
-    releaseDate: '2024-10-01',
     isLatest: true
   }
 ];
