@@ -1,6 +1,6 @@
 {
   "version": "3.0.0",
-  "release_date": "2025-10-24",
+  "release_date": "2025-10-25",
   "agent_version": "3.0.0",
   "instrumentations": {
     "activej-http-6.0": {
@@ -958,6 +958,6 @@
   },
   "metadata": {
     "total_count": 238,
-    "changed_from_previous": 32
+    "changed_from_previous": 41
   }
 }
