@@ -239,20 +239,20 @@
       "url": "/data/instrumentations/a1a5a04a14b9.json"
     },
     "grizzly-2.3": {
-      "hash": "c46b51e8c82a",
-      "url": "/data/instrumentations/c46b51e8c82a.json"
+      "hash": "c6f21f2fb378",
+      "url": "/data/instrumentations/c6f21f2fb378.json"
     },
     "grpc-1.6": {
-      "hash": "51f07eac4d10",
-      "url": "/data/instrumentations/51f07eac4d10.json"
+      "hash": "6584d2417f47",
+      "url": "/data/instrumentations/6584d2417f47.json"
     },
     "guava-10.0": {
       "hash": "b03437f7c1a5",
       "url": "/data/instrumentations/b03437f7c1a5.json"
     },
     "gwt-2.0": {
-      "hash": "b5e75c4c4908",
-      "url": "/data/instrumentations/b5e75c4c4908.json"
+      "hash": "f9003f3a869d",
+      "url": "/data/instrumentations/f9003f3a869d.json"
     },
     "helidon-4.3": {
       "hash": "f9ed1ff1b56b",
@@ -279,20 +279,20 @@
       "url": "/data/instrumentations/7b77c196cd37.json"
     },
     "hikaricp-3.0": {
-      "hash": "f533b722cfd0",
-      "url": "/data/instrumentations/f533b722cfd0.json"
+      "hash": "ec53a3b3831b",
+      "url": "/data/instrumentations/ec53a3b3831b.json"
     },
     "http-url-connection": {
-      "hash": "655ce016509d",
-      "url": "/data/instrumentations/655ce016509d.json"
+      "hash": "5d4eeba30967",
+      "url": "/data/instrumentations/5d4eeba30967.json"
     },
     "hystrix-1.4": {
-      "hash": "4352d1226c13",
-      "url": "/data/instrumentations/4352d1226c13.json"
+      "hash": "05dfedcbc6a1",
+      "url": "/data/instrumentations/05dfedcbc6a1.json"
     },
     "influxdb-2.4": {
-      "hash": "ae1baa9a60ea",
-      "url": "/data/instrumentations/ae1baa9a60ea.json"
+      "hash": "59106cc30495",
+      "url": "/data/instrumentations/59106cc30495.json"
     },
     "java-http-client": {
       "hash": "983810375796",
@@ -957,6 +957,6 @@
   },
   "metadata": {
     "total_count": 238,
-    "changed_from_previous": 90
+    "changed_from_previous": 94
   }
 }
