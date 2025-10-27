@@ -1,9 +1,14 @@
 {
   "id": "influxdb-2.4",
+  "display_name": "InfluxDB Client",
   "library_group": "influxdb",
-  "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+  "description": "This instrumentation enables database client spans and metrics for the InfluxDB Java client.",
   "library_link": "https://github.com/influxdata/influxdb-java",
   "source_path": "instrumentation/influxdb-2.4",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
   "scope": {
     "name": "io.opentelemetry.influxdb-2.4"
   },

@@ -965,6 +965,7 @@
     },
     {
       "id": "grizzly-2.3",
+      "display_name": "Eclipse Grizzly",
       "library_group": "grizzly",
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Grizzly.",
       "tags": [
@@ -982,13 +983,24 @@
     },
     {
       "id": "grpc-1.6",
+      "display_name": "gRPC",
       "library_group": "grpc",
-      "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+      "description": "This instrumentation enables RPC client and RPC server spans and metrics for gRPC.",
       "tags": [
         "grpc",
         "client",
         "server",
-        "rpc"
+        "rpc",
+        "rpc_client_spans",
+        "rpc_client_metrics",
+        "rpc_server_spans",
+        "rpc_server_metrics"
+      ],
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_CLIENT_METRICS",
+        "RPC_SERVER_SPANS",
+        "RPC_SERVER_METRICS"
       ],
       "has_telemetry": true
     },
@@ -1002,12 +1014,17 @@
     },
     {
       "id": "gwt-2.0",
+      "display_name": "GWT",
       "library_group": "gwt",
       "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
       "tags": [
         "gwt",
         "server",
-        "rpc"
+        "rpc",
+        "rpc_server_spans"
+      ],
+      "semantic_conventions": [
+        "RPC_SERVER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1078,29 +1095,41 @@
     },
     {
       "id": "hikaricp-3.0",
+      "display_name": "HikariCP",
       "library_group": "hikaricp",
-      "description": "This instrumentation provides database client metrics for HikariCP 3.0+ connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+      "description": "This instrumentation generates database client metrics for HikariCP connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
       "tags": [
         "hikaricp",
         "client",
-        "database"
+        "database",
+        "database_pool_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "http-url-connection",
+      "display_name": "HttpURLConnection",
       "library_group": "http",
-      "description": "This instrumentation enables the generation of HTTP client spans and HTTP client metrics for requests made using `java.net.HttpURLConnection`.\n",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for requests made using java.net.HttpURLConnection.\n",
       "tags": [
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "hystrix-1.4",
       "library_group": "hystrix",
-      "description": "This instrumentation enables the generation of spans for Hystrix command executions and fallbacks.",
+      "description": "This instrumentation enables spans for Hystrix command executions and fallbacks.",
       "tags": [
         "hystrix"
       ],
@@ -1108,12 +1137,19 @@
     },
     {
       "id": "influxdb-2.4",
+      "display_name": "InfluxDB Client",
       "library_group": "influxdb",
-      "description": "This instrumentation enables the generation of database client spans and metrics for the InfluxDB Java client.",
+      "description": "This instrumentation enables database client spans and metrics for the InfluxDB Java client.",
       "tags": [
         "influxdb",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
