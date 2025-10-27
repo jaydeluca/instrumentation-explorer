@@ -1,9 +1,16 @@
 {
   "id": "grpc-1.6",
+  "display_name": "gRPC",
   "library_group": "grpc",
-  "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+  "description": "This instrumentation enables RPC client and RPC server spans and metrics for gRPC.",
   "library_link": "https://github.com/grpc/grpc-java",
   "source_path": "instrumentation/grpc-1.6",
+  "semantic_conventions": [
+    "RPC_CLIENT_SPANS",
+    "RPC_CLIENT_METRICS",
+    "RPC_SERVER_SPANS",
+    "RPC_SERVER_METRICS"
+  ],
   "scope": {
     "name": "io.opentelemetry.grpc-1.6"
   },
@@ -730,7 +737,5 @@
         }
       ]
     }
-  },
-  "markdown_hash": "4881626bb6b5",
-  "markdown_url": "/data/markdown/4881626bb6b5.md"
+  }
 }
