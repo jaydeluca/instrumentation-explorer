@@ -1007,8 +1007,12 @@
     {
       "id": "guava-10.0",
       "library_group": "guava",
+      "description": "This instrumentation enables context propagation for Guava ListenableFuture, it does not emit any telemetry on its own.\n",
       "tags": [
         "guava"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
@@ -1051,7 +1055,7 @@
     {
       "id": "hibernate-3.3",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables spans for Hibernate ORM operations.",
       "tags": [
         "hibernate"
       ],
@@ -1060,7 +1064,7 @@
     {
       "id": "hibernate-4.0",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables spans for Hibernate ORM operations.",
       "tags": [
         "hibernate"
       ],
@@ -1069,7 +1073,7 @@
     {
       "id": "hibernate-6.0",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of spans for Hibernate operations, including session methods (e.g., `save`, `update`, `delete`), transaction commits, and query executions.\n",
+      "description": "This instrumentation enables spans for Hibernate ORM operations.",
       "tags": [
         "hibernate"
       ],
@@ -1078,7 +1082,7 @@
     {
       "id": "hibernate-procedure-call-4.3",
       "library_group": "hibernate",
-      "description": "This instrumentation enables the generation of spans for Hibernate stored procedure calls.",
+      "description": "This instrumentation enables spans for Hibernate stored procedure calls.",
       "tags": [
         "hibernate"
       ],
@@ -1087,9 +1091,12 @@
     {
       "id": "hibernate-reactive-1.0",
       "library_group": "hibernate",
-      "description": "This instrumentation does not emit any telemetry on its own. Instead, it enables context propagation for Hibernate Reactive asynchronous operations.\n",
+      "description": "This instrumentation enables context propagation for Hibernate Reactive, it does not emit any telemetry on its own.\n",
       "tags": [
         "hibernate"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
@@ -1097,10 +1104,9 @@
       "id": "hikaricp-3.0",
       "display_name": "HikariCP",
       "library_group": "hikaricp",
-      "description": "This instrumentation generates database client metrics for HikariCP connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+      "description": "This instrumentation enables database connection pool metrics for HikariCP.",
       "tags": [
         "hikaricp",
-        "client",
         "database",
         "database_pool_metrics"
       ],
@@ -1160,7 +1166,13 @@
       "tags": [
         "java",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -1171,9 +1183,28 @@
       "tags": [
         "java",
         "http",
-        "server"
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
       ],
       "has_telemetry": true
+    },
+    {
+      "id": "java-util-logging",
+      "display_name": "Java Util Logging (JUL)",
+      "library_group": "java",
+      "description": "This instrumentation bridges Java Util Logging (JUL) log records to OpenTelemetry logs.",
+      "tags": [
+        "java"
+      ],
+      "features": [
+        "LOGGING_BRIDGE"
+      ],
+      "has_telemetry": false
     },
     {
       "id": "javalin-5.0",
@@ -1183,6 +1214,9 @@
         "javalin",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
