@@ -1224,11 +1224,15 @@
       "id": "jaxrs-1.0",
       "display_name": "JAX-RS 1.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information and enables controller spans for JAX-RS annotated methods (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1236,11 +1240,15 @@
       "id": "jaxrs-2.0-annotations",
       "display_name": "JAX-RS 2.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS annotated methods (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1248,11 +1256,15 @@
       "id": "jaxrs-2.0-cxf-3.2",
       "display_name": "Apache CXF JAX-RS 2.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using Apache CXF, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using Apache CXF (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1260,11 +1272,15 @@
       "id": "jaxrs-2.0-jersey-2.0",
       "display_name": "Eclipse Jersey JAX-RS 2.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using Jersey (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1272,11 +1288,15 @@
       "id": "jaxrs-2.0-resteasy-3.0",
       "display_name": "JBoss RESTEasy JAX-RS 2.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using RESTEasy (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1284,11 +1304,15 @@
       "id": "jaxrs-2.0-resteasy-3.1",
       "display_name": "JBoss RESTEasy JAX-RS 2.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using RESTEasy (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1296,11 +1320,15 @@
       "id": "jaxrs-3.0-annotations",
       "display_name": "JAX-RS 3.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS annotated methods, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS annotated methods (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1308,11 +1336,15 @@
       "id": "jaxrs-3.0-jersey-3.0",
       "display_name": "Eclipse Jersey JAX-RS 3.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using Jersey, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using Jersey (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
@@ -1320,11 +1352,15 @@
       "id": "jaxrs-3.0-resteasy-6.0",
       "display_name": "JBoss RESTEasy JAX-RS 3.x",
       "library_group": "jaxrs",
-      "description": "This instrumentation enables spans for JAX-RS methods when using RESTEasy, and enriches existing HTTP server spans with route information.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using RESTEasy (controller spans are disabled by default).\n",
       "tags": [
         "jaxrs",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
       ],
       "has_telemetry": true
     },
