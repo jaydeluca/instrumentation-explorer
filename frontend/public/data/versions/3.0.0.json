@@ -311,40 +311,40 @@
       "url": "/data/instrumentations/f6616d41a477.json"
     },
     "jaxrs-1.0": {
-      "hash": "ab8bbfd274d4",
-      "url": "/data/instrumentations/ab8bbfd274d4.json"
+      "hash": "c13ec0ab3dc9",
+      "url": "/data/instrumentations/c13ec0ab3dc9.json"
     },
     "jaxrs-2.0-annotations": {
-      "hash": "58e483a9c740",
-      "url": "/data/instrumentations/58e483a9c740.json"
+      "hash": "e4c4c16ab00c",
+      "url": "/data/instrumentations/e4c4c16ab00c.json"
     },
     "jaxrs-2.0-cxf-3.2": {
-      "hash": "bc9251869ab1",
-      "url": "/data/instrumentations/bc9251869ab1.json"
+      "hash": "7f499d1e345e",
+      "url": "/data/instrumentations/7f499d1e345e.json"
     },
     "jaxrs-2.0-jersey-2.0": {
-      "hash": "399de7a9cce1",
-      "url": "/data/instrumentations/399de7a9cce1.json"
+      "hash": "577cabb22398",
+      "url": "/data/instrumentations/577cabb22398.json"
     },
     "jaxrs-2.0-resteasy-3.0": {
-      "hash": "de47dfb8bb60",
-      "url": "/data/instrumentations/de47dfb8bb60.json"
+      "hash": "2f0abbe4ca6a",
+      "url": "/data/instrumentations/2f0abbe4ca6a.json"
     },
     "jaxrs-2.0-resteasy-3.1": {
-      "hash": "00b383ff23e2",
-      "url": "/data/instrumentations/00b383ff23e2.json"
+      "hash": "0592d15e73da",
+      "url": "/data/instrumentations/0592d15e73da.json"
     },
     "jaxrs-3.0-annotations": {
-      "hash": "2a62d232bc3f",
-      "url": "/data/instrumentations/2a62d232bc3f.json"
+      "hash": "15ca1ce647c3",
+      "url": "/data/instrumentations/15ca1ce647c3.json"
     },
     "jaxrs-3.0-jersey-3.0": {
-      "hash": "cf92ddecccb7",
-      "url": "/data/instrumentations/cf92ddecccb7.json"
+      "hash": "e4c385e20b44",
+      "url": "/data/instrumentations/e4c385e20b44.json"
     },
     "jaxrs-3.0-resteasy-6.0": {
-      "hash": "b57397828aae",
-      "url": "/data/instrumentations/b57397828aae.json"
+      "hash": "4d3c0678b60c",
+      "url": "/data/instrumentations/4d3c0678b60c.json"
     },
     "jaxws-2.0": {
       "hash": "1abec320c332",
