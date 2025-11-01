@@ -363,8 +363,8 @@
       "url": "/data/instrumentations/075d1ede5fbd.json"
     },
     "jaxws-metro-2.2": {
-      "hash": "2f51552573bd",
-      "url": "/data/instrumentations/2f51552573bd.json"
+      "hash": "9bc529941481",
+      "url": "/data/instrumentations/9bc529941481.json"
     },
     "jboss-logmanager-appender-1.1": {
       "hash": "11bf665955fe",
@@ -961,6 +961,6 @@
   },
   "metadata": {
     "total_count": 239,
-    "changed_from_previous": 135
+    "changed_from_previous": 136
   }
 }
