@@ -1424,11 +1424,19 @@
     },
     {
       "id": "jaxws-metro-2.2",
+      "display_name": "Metro JAX-WS",
       "library_group": "jaxws",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Metro JAX-WS web services (controller spans are disabled by default).\n",
       "tags": [
-        "jaxws"
+        "jaxws",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jboss-logmanager-appender-1.1",
