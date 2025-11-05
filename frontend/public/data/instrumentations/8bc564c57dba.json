@@ -1,0 +1,102 @@
+{
+  "id": "jms-1.1",
+  "display_name": "JMS (Java Message Service)",
+  "library_group": "jms",
+  "description": "This instrumentation enables messaging spans for JMS (Java Message Service) message producers and consumers.\n",
+  "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/jms/package-summary.html",
+  "source_path": "instrumentation/jms/jms-1.1",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jms-1.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "javax.jms:javax.jms-api:(,)",
+      "jakarta.jms:jakarta.jms-api:(,3)",
+      "javax.jms:jms-api:(,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "Enables capturing messaging headers as span attributes. Provide a comma-separated list of header names to capture.\n",
+      "type": "list",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.temporary",
+              "type": "BOOLEAN",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.temporary",
+              "type": "BOOLEAN",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
