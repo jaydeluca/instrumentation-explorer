@@ -1,0 +1,13 @@
+{
+  "id": "hystrix-1.4",
+  "library_group": "hystrix",
+  "source_path": "instrumentation/hystrix-1.4",
+  "scope": {
+    "name": "io.opentelemetry.hystrix-1.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.netflix.hystrix:hystrix-core:[1.4.0,)"
+    ]
+  }
+}

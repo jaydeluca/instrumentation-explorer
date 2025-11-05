@@ -159,8 +159,8 @@
       "url": "/data/instrumentations/566464ca57b7.json"
     },
     "dropwizard-metrics-4.0": {
-      "hash": "f410975b57f6",
-      "url": "/data/instrumentations/f410975b57f6.json"
+      "hash": "a4d34fee62ca",
+      "url": "/data/instrumentations/a4d34fee62ca.json"
     },
     "dropwizard-views-0.7": {
       "hash": "02c822e29514",
@@ -291,8 +291,8 @@
       "url": "/data/instrumentations/114c959df00c.json"
     },
     "jaxrs-1.0": {
-      "hash": "135acdb7e97e",
-      "url": "/data/instrumentations/135acdb7e97e.json"
+      "hash": "96f06150f29a",
+      "url": "/data/instrumentations/96f06150f29a.json"
     },
     "jaxrs-2.0-annotations": {
       "hash": "5f0fa2e4d88b",
@@ -339,8 +339,8 @@
       "url": "/data/instrumentations/9bec749eea64.json"
     },
     "jaxws-jws-api-1.1": {
-      "hash": "3b8aa394a74d",
-      "url": "/data/instrumentations/3b8aa394a74d.json"
+      "hash": "b5ff4ee5b085",
+      "url": "/data/instrumentations/b5ff4ee5b085.json"
     },
     "jaxws-metro-2.2": {
       "hash": "2f51552573bd",
@@ -507,8 +507,8 @@
       "url": "/data/instrumentations/4dbb46797fcf.json"
     },
     "micrometer-1.5": {
-      "hash": "b138165291fc",
-      "url": "/data/instrumentations/b138165291fc.json"
+      "hash": "6d1463b58b5d",
+      "url": "/data/instrumentations/6d1463b58b5d.json"
     },
     "mongo-3.1": {
       "hash": "4af298b69d8f",
@@ -527,8 +527,8 @@
       "url": "/data/instrumentations/f5bac5842eef.json"
     },
     "mybatis-3.2": {
-      "hash": "f78b245afdab",
-      "url": "/data/instrumentations/f78b245afdab.json"
+      "hash": "d86e10da9fdc",
+      "url": "/data/instrumentations/d86e10da9fdc.json"
     },
     "netty-3.8": {
       "hash": "97ac1c839628",
@@ -735,12 +735,12 @@
       "url": "/data/instrumentations/69ce199c4d76.json"
     },
     "spring-batch-3.0": {
-      "hash": "1d7143a569a7",
-      "url": "/data/instrumentations/1d7143a569a7.json"
+      "hash": "03c02ba2ecdc",
+      "url": "/data/instrumentations/03c02ba2ecdc.json"
     },
     "spring-boot-actuator-autoconfigure-2.0": {
-      "hash": "a15f37563378",
-      "url": "/data/instrumentations/a15f37563378.json"
+      "hash": "7321c4ac6cc2",
+      "url": "/data/instrumentations/7321c4ac6cc2.json"
     },
     "spring-boot-resources": {
       "hash": "5a0976a6a89b",
@@ -827,8 +827,8 @@
       "url": "/data/instrumentations/866f6e0afe5e.json"
     },
     "spring-ws-2.0": {
-      "hash": "65850e11c33a",
-      "url": "/data/instrumentations/65850e11c33a.json"
+      "hash": "947b574d60a7",
+      "url": "/data/instrumentations/947b574d60a7.json"
     },
     "spymemcached-2.12": {
       "hash": "5374bacead73",

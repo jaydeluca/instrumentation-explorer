@@ -20,6 +20,7 @@ export interface InstrumentationYAML {
   minimum_java_version?: number;
   semantic_conventions?: string[];
   features?: string[];
+  disabled_by_default?: boolean;
   scope?: {
     name: string;
   };
@@ -126,6 +127,7 @@ export interface InstrumentationData {
   minimum_java_version?: number;
   semantic_conventions?: string[];
   features?: string[];
+  disabled_by_default?: boolean;
   scope?: {
     name: string;
   };

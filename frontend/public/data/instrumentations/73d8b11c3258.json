@@ -1,0 +1,195 @@
+{
+  "id": "elasticsearch-transport-6.0",
+  "library_group": "elasticsearch",
+  "description": "This instrumentation enables client spans for Elasticsearch transport client requests. Each call produces a span named after the Elasticsearch action, enriched with transport-specific attributes.\n",
+  "source_path": "instrumentation/elasticsearch/elasticsearch-transport-6.0",
+  "scope": {
+    "name": "io.opentelemetry.elasticsearch-transport-6.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.elasticsearch:elasticsearch:[6.0.0,8.0.0)",
+      "org.elasticsearch.client:transport:[6.0.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.elasticsearch.experimental-span-attributes",
+      "description": "Enable the capture of experimental span attributes.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.elasticsearch.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.action",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.id",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.request",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.request.indices",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.request.write.type",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.request.write.version",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.response.status",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.shard.replication.failed",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.shard.replication.successful",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.shard.replication.total",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.type",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "elasticsearch.version",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.semconv-stability.opt-in=database": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
