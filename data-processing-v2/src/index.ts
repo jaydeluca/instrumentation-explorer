@@ -22,11 +22,11 @@ function parseArgs(): CliOptions {
     process.exit(0);
   }
   
-  // Default: process 2 most recent versions
+  // Default: process all versions (matches CI behavior)
   const options: CliOptions = {
-    mode: 'recent',
+    mode: 'all',
     count: 2,
-    include3_0: false
+    include3_0: true
   };
   
   if (args.includes('--latest')) {
@@ -69,16 +69,15 @@ Options:
   -h, --help            Show this help message
 
 Examples:
-  npm run generate                    # Process 2 most recent versions
+  npm run generate                    # Process all versions (including 3.0) - matches CI
   npm run generate -- --latest        # Process only latest
   npm run generate -- --recent 3      # Process 3 most recent versions
   npm run generate -- --all           # Process all versions
   npm run generate -- --versions 2.20.0   # Process only 2.20.0
-  npm run generate -- --include-3.0   # Include 3.0 in processing
 
 Notes:
   - YAML files are auto-detected from instrumentation-list-*.yaml in repo root
-  - Version 3.0 is excluded by default (use --include-3.0 to include it)
+  - Default behavior matches CI: process all versions including 3.0
   - The latest stable version is always marked as isLatest=true
   `);
 }
