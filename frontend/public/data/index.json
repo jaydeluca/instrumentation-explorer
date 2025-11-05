@@ -1424,11 +1424,19 @@
     },
     {
       "id": "jaxws-metro-2.2",
+      "display_name": "Metro JAX-WS",
       "library_group": "jaxws",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Metro JAX-WS web services (controller spans are disabled by default).\n",
       "tags": [
-        "jaxws"
+        "jaxws",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jboss-logmanager-appender-1.1",
@@ -1449,7 +1457,7 @@
     {
       "id": "jdbc",
       "library_group": "jdbc",
-      "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
+      "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThe instrumentation unwraps pooled connections (via java.sql.Wrapper) to cache database metadata against the underlying physical connection. Without proper unwrapping support, caching is limited to the wrapper instance, which typically changes each time a connection is retrieved from the pool. This can result in repeated metadata extraction, potentially causing performance degradation.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
       "tags": [
         "jdbc",
         "sql",
@@ -1461,127 +1469,244 @@
     {
       "id": "jedis-1.4",
       "library_group": "jedis",
+      "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
       "tags": [
-        "jedis"
+        "jedis",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jedis-3.0",
       "library_group": "jedis",
+      "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
       "tags": [
-        "jedis"
+        "jedis",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jedis-4.0",
       "library_group": "jedis",
+      "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
       "tags": [
-        "jedis"
+        "jedis",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jetty-11.0",
       "library_group": "jetty",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
       "tags": [
-        "jetty"
+        "jetty",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jetty-12.0",
       "library_group": "jetty",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
       "tags": [
-        "jetty"
+        "jetty",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jetty-8.0",
       "library_group": "jetty",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
       "tags": [
-        "jetty"
+        "jetty",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jetty-httpclient-12.0",
       "library_group": "jetty",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Jetty HTTP Client.",
       "tags": [
         "jetty",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "jetty-httpclient-9.2",
       "library_group": "jetty",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Jetty HTTP Client.",
       "tags": [
         "jetty",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "jms-1.1",
+      "display_name": "JMS (Java Message Service)",
       "library_group": "jms",
+      "description": "This instrumentation enables messaging spans for JMS (Java Message Service) message producers and consumers.\n",
       "tags": [
-        "jms"
+        "jms",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jms-3.0",
+      "display_name": "JMS (Java Message Service)",
       "library_group": "jms",
+      "description": "This instrumentation enables messaging spans for Jakarta JMS (Java Message Service) message producers and consumers.\n",
       "tags": [
-        "jms"
+        "jms",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jodd-http-4.2",
+      "display_name": "Jodd HTTP",
       "library_group": "jodd",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Jodd HTTP.",
       "tags": [
         "jodd",
-        "http"
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "jsf-mojarra-1.2",
+      "display_name": "JSF",
       "library_group": "jsf",
+      "description": "This instrumentation enables controller spans for Mojarra JSF action listeners (controller spans are disabled by default).\n",
       "tags": [
         "jsf"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jsf-mojarra-3.0",
+      "display_name": "JSF",
       "library_group": "jsf",
+      "description": "This instrumentation enables controller spans for Mojarra JSF action listeners (controller spans are disabled by default).\n",
       "tags": [
         "jsf"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jsf-myfaces-1.2",
+      "display_name": "JSF",
       "library_group": "jsf",
+      "description": "This instrumentation enables controller spans for Apache MyFaces action listeners (controller spans are disabled by default).\n",
       "tags": [
         "jsf"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jsf-myfaces-3.0",
+      "display_name": "JSF",
       "library_group": "jsf",
+      "description": "This instrumentation enables controller spans for Apache MyFaces action listeners (controller spans are disabled by default).\n",
       "tags": [
         "jsf"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jsp-2.3",
