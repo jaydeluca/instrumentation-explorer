@@ -1,5 +1,6 @@
 {
   "version": "2.19.0",
+  "release_date": "2025-10-24",
   "agent_version": "2.19.0",
   "instrumentations": {
     "activej-http-6.0": {

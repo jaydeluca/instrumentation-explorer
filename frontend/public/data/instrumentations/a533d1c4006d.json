@@ -1,0 +1,51 @@
+{
+  "id": "jaxrs-1.0",
+  "display_name": "JAX-RS 1.x",
+  "library_group": "jaxrs",
+  "description": "This instrumentation enriches HTTP server spans with route information and enables controller spans for JAX-RS annotated methods (controller spans are disabled by default).\n",
+  "library_link": "https://javaee.github.io/javaee-spec/javadocs/javax/ws/rs/package-summary.html",
+  "source_path": "instrumentation/jaxrs/jaxrs-1.0",
+  "features": [
+    "HTTP_ROUTE",
+    "CONTROLLER_SPANS"
+  ],
+  "disabled_by_default": true,
+  "scope": {
+    "name": "io.opentelemetry.jaxrs-1.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "javax.ws.rs:jsr311-api:[0.5,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

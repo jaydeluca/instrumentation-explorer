@@ -1,0 +1,18 @@
+{
+  "id": "graphql-java-12.0",
+  "library_group": "graphql",
+  "source_path": "instrumentation/graphql-java/graphql-java-12.0",
+  "scope": {
+    "name": "io.opentelemetry.graphql-java-12.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.graphql-java:graphql-java:[12,20)"
+    ],
+    "library": [
+      "com.graphql-java:graphql-java:[12.0,19.+)"
+    ]
+  },
+  "markdown_hash": "8dae1e42d79b",
+  "markdown_url": "/data/markdown/8dae1e42d79b.md"
+}

@@ -74,12 +74,12 @@ export function convertV2ToV1Library(data: InstrumentationData): Library {
     semconv: groupedSemconv,
     // Store markdown hash for lazy loading
     markdown_hash: data.markdown_hash,
+    disabled_by_default: data.disabled_by_default,
     // V2 doesn't have these fields yet, but V1 components might expect them
     technology: undefined,
     type: undefined,
     links: undefined,
     notes: undefined,
-    disabled_by_default: undefined,
     markdown_content: undefined,
   };
 }

@@ -1,0 +1,18 @@
+{
+  "id": "grpc-1.6",
+  "library_group": "grpc",
+  "source_path": "instrumentation/grpc-1.6",
+  "scope": {
+    "name": "io.opentelemetry.grpc-1.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.grpc:grpc-core:[1.6.0,)"
+    ],
+    "library": [
+      "io.grpc:grpc-core:1.6.0"
+    ]
+  },
+  "markdown_hash": "d4ed46c969d4",
+  "markdown_url": "/data/markdown/d4ed46c969d4.md"
+}

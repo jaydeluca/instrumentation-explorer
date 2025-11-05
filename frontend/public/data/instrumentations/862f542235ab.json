@@ -1,0 +1,84 @@
+{
+  "id": "google-http-client-1.19",
+  "library_group": "google",
+  "source_path": "instrumentation/google-http-client-1.19",
+  "scope": {
+    "name": "io.opentelemetry.google-http-client-1.19"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.google.http-client:google-http-client:[1.19.0,)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
