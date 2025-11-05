@@ -1,0 +1,96 @@
+{
+  "id": "netty-4.0",
+  "library_group": "netty",
+  "source_path": "instrumentation/netty/netty-4.0",
+  "scope": {
+    "name": "io.opentelemetry.netty-4.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.netty:netty-all:[4.0.0.Final,4.1.0.Final)",
+      "io.netty:netty-codec-http:[4.0.0.Final,4.1.0.Final)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.netty.connection-telemetry.enabled",
+      "description": "Enable the creation of Connect and DNS spans",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.netty.ssl-telemetry.enabled",
+      "description": "Enable SSL telemetry",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "http.server.request.duration",
+          "description": "Duration of HTTP server requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  }
+}

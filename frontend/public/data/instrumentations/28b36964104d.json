@@ -9,6 +9,7 @@
     "HTTP_ROUTE",
     "CONTROLLER_SPANS"
   ],
+  "disabled_by_default": true,
   "scope": {
     "name": "io.opentelemetry.jaxrs-3.0-annotations"
   },

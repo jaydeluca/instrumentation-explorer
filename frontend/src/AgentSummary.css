@@ -1,0 +1,318 @@
+.agent-summary-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.agent-summary-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.agent-summary-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: #212529;
+}
+
+.agent-summary-description {
+  margin: 0;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.summary-section-header {
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.summary-section-header:hover {
+  background-color: #e9ecef;
+}
+
+.summary-section-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expand-icon {
+  flex-shrink: 0;
+  color: #6c757d;
+}
+
+.summary-section-content {
+  padding: 1.5rem;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instrumentations-table,
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.instrumentations-table thead,
+.metrics-table thead {
+  background-color: #808080;
+}
+
+.instrumentations-table th,
+.metrics-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 2px solid #444444;
+}
+
+.instrumentations-table td,
+.metrics-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+.instrumentations-table tbody tr,
+.metrics-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.instrumentations-table tbody tr:nth-child(even),
+.metrics-table tbody tr:nth-child(even) {
+  background-color: #c0c0c0;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #a0a0a0 !important;
+}
+
+.display-name {
+  font-weight: 500;
+  color: #212529;
+}
+
+.instrumentation-name {
+  font-family: 'Monaco', 'Courier New', monospace;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.metric-name {
+  font-family: 'Monaco', 'Courier New', monospace;
+  color: #212529;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.metric-type {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.metric-unit {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.metric-description {
+  color: #333333;
+}
+
+.metrics-note {
+  margin: 0 0 1rem 0;
+  padding: 0.75rem;
+  background-color: #e7f3fe;
+  border-left: 3px solid #007bff;
+  color: #004085;
+  border-radius: 4px;
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .agent-summary-container {
+    padding: 1rem;
+  }
+
+  .agent-summary-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .summary-section-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .instrumentations-table,
+  .metrics-table {
+    font-size: 0.85rem;
+  }
+
+  .instrumentations-table th,
+  .instrumentations-table td,
+  .metrics-table th,
+  .metrics-table td {
+    padding: 0.5rem;
+  }
+
+  /* Stack table cells on very small screens */
+  @media (max-width: 600px) {
+    .instrumentations-table thead,
+    .metrics-table thead {
+      display: none;
+    }
+
+    .instrumentations-table tr,
+    .metrics-table tr {
+      display: block;
+      margin-bottom: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+    }
+
+    .instrumentations-table td,
+    .metrics-table td {
+      display: block;
+      text-align: left;
+      border-bottom: none;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .instrumentations-table td:before,
+    .metrics-table td:before {
+      content: attr(data-label);
+      font-weight: 600;
+      display: inline-block;
+      width: 120px;
+    }
+  }
+}
+
+/* Theme-specific overrides for Grafana theme */
+.theme-grafana .agent-summary-header {
+  border-bottom-color: #3d3d3d;
+}
+
+.theme-grafana .agent-summary-header h1 {
+  color: #d8d9da;
+}
+
+.theme-grafana .agent-summary-description {
+  color: #c7d0d9;
+}
+
+.theme-grafana .summary-section {
+  border-color: #3d3d3d;
+  background-color: #1f1f1f;
+}
+
+.theme-grafana .summary-section-header {
+  background-color: #2a2a2a;
+}
+
+.theme-grafana .summary-section-header:hover {
+  background-color: #333333;
+}
+
+.theme-grafana .summary-section-header h2 {
+  color: #d8d9da;
+}
+
+.theme-grafana .expand-icon {
+  color: #c7d0d9;
+}
+
+.theme-grafana .instrumentations-table thead,
+.theme-grafana .metrics-table thead {
+  background-color: #2a2a2a;
+}
+
+.theme-grafana .instrumentations-table th,
+.theme-grafana .metrics-table th {
+  color: #d8d9da;
+  border-bottom-color: #3d3d3d;
+}
+
+.theme-grafana .instrumentations-table td,
+.theme-grafana .metrics-table td {
+  border-bottom-color: #3d3d3d;
+  color: #d8d9da;
+}
+
+.theme-grafana .instrumentations-table tbody tr:nth-child(even),
+.theme-grafana .metrics-table tbody tr:nth-child(even) {
+  background-color: #252525;
+}
+
+.theme-grafana .clickable-row:hover {
+  background-color: #333333 !important;
+}
+
+.theme-grafana .display-name {
+  color: #d8d9da;
+}
+
+.theme-grafana .instrumentation-name {
+  color: #c7d0d9;
+}
+
+.theme-grafana .metric-name {
+  color: #d8d9da;
+}
+
+.theme-grafana .metric-type,
+.theme-grafana .metric-unit {
+  color: #c7d0d9;
+}
+
+.theme-grafana .metric-description {
+  color: #d8d9da;
+}
+
+.theme-grafana .metrics-note {
+  background-color: #2a2a2a;
+  border-left-color: #6e9ecf;
+  color: #d8d9da;
+}
+
+.theme-grafana .empty-state {
+  color: #c7d0d9;
+}
+

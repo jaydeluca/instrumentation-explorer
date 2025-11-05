@@ -53,6 +53,10 @@ export function transformInstrumentation(
     data.features = yamlData.features;
   }
 
+  if (yamlData.disabled_by_default !== undefined) {
+    data.disabled_by_default = yamlData.disabled_by_default;
+  }
+
   if (yamlData.scope) {
     data.scope = yamlData.scope;
   }
