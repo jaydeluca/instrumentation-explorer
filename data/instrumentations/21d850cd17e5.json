@@ -1,0 +1,48 @@
+{
+  "id": "vertx-http-client-3.0",
+  "library_group": "vertx",
+  "source_path": "instrumentation/vertx/vertx-http-client/vertx-http-client-3.0",
+  "scope": {
+    "name": "io.opentelemetry.vertx-http-client-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.vertx:vertx-core:[3.0.0,4.0.0)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  }
+}

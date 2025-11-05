@@ -1,0 +1,13 @@
+{
+  "id": "spring-ws-2.0",
+  "library_group": "spring",
+  "source_path": "instrumentation/spring/spring-ws-2.0",
+  "scope": {
+    "name": "io.opentelemetry.spring-ws-2.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.springframework.ws:spring-ws-core:[2.0.0.RELEASE,]"
+    ]
+  }
+}

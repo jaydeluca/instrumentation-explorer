@@ -1,0 +1,107 @@
+{
+  "id": "apache-httpclient-5.2",
+  "library_group": "apache",
+  "description": "This instrumentation provides a library integration that enables CLIENT spans and metrics for the Apache HttpClient.",
+  "source_path": "instrumentation/apache-httpclient/apache-httpclient-5.2",
+  "scope": {
+    "name": "io.opentelemetry.apache-httpclient-5.2"
+  },
+  "target_versions": {
+    "library": [
+      "org.apache.httpcomponents.client5:httpclient5:5.2.1"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method_original",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.resend_count",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "0e32d17a7a13",
+  "markdown_url": "/data/markdown/0e32d17a7a13.md"
+}

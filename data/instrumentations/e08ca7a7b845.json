@@ -1,0 +1,13 @@
+{
+  "id": "hibernate-4.0",
+  "library_group": "hibernate",
+  "source_path": "instrumentation/hibernate/hibernate-4.0",
+  "scope": {
+    "name": "io.opentelemetry.hibernate-4.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.hibernate:hibernate-core:[4.0.0.Final,6)"
+    ]
+  }
+}

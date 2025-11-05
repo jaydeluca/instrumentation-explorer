@@ -1,0 +1,25 @@
+{
+  "id": "cassandra-4.4",
+  "library_group": "cassandra",
+  "description": "Instruments the Cassandra database client, providing database client spans and metrics for Cassandra queries.\n",
+  "source_path": "instrumentation/cassandra/cassandra-4.4",
+  "scope": {
+    "name": "io.opentelemetry.cassandra-4.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.datastax.oss:java-driver-core:[4.4,]"
+    ],
+    "library": [
+      "com.datastax.oss:java-driver-core:4.4.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}
