@@ -66,13 +66,17 @@
       "hash": "34155a4fe561",
       "url": "/data/instrumentations/34155a4fe561.json"
     },
+    "async-http-client-1.8": {
+      "hash": "31e63b54135f",
+      "url": "/data/instrumentations/31e63b54135f.json"
+    },
     "async-http-client-1.9": {
-      "hash": "c44708197330",
-      "url": "/data/instrumentations/c44708197330.json"
+      "hash": "6d96c242adab",
+      "url": "/data/instrumentations/6d96c242adab.json"
     },
     "async-http-client-2.0": {
-      "hash": "2ca27943a994",
-      "url": "/data/instrumentations/2ca27943a994.json"
+      "hash": "6d31c0d855ee",
+      "url": "/data/instrumentations/6d31c0d855ee.json"
     },
     "avaje-jex-3.0": {
       "hash": "e347c53c3d92",
@@ -960,7 +964,7 @@
     }
   },
   "metadata": {
-    "total_count": 239,
+    "total_count": 240,
     "changed_from_previous": 56
   }
 }

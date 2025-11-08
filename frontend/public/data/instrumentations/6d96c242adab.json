@@ -1,20 +1,21 @@
 {
-  "id": "async-http-client-2.0",
+  "id": "async-http-client-1.9",
+  "display_name": "AsyncHttpClient",
   "library_group": "async",
-  "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 2 of the AsyncHttpClient (AHC) HTTP client.",
+  "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the AsyncHttpClient HTTP client.\n",
   "library_link": "https://github.com/AsyncHttpClient/async-http-client",
-  "source_path": "instrumentation/async-http-client/async-http-client-2.0",
+  "source_path": "instrumentation/async-http-client/async-http-client-1.9",
   "semantic_conventions": [
     "HTTP_CLIENT_SPANS",
     "HTTP_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.async-http-client-2.0",
+    "name": "io.opentelemetry.async-http-client-1.9",
     "schema_url": "https://opentelemetry.io/schemas/1.37.0"
   },
   "target_versions": {
     "javaagent": [
-      "org.asynchttpclient:async-http-client:[2.0.0,)"
+      "com.ning:async-http-client:[1.9.0,)"
     ]
   },
   "configurations": [
@@ -75,11 +76,6 @@
               "semconv": true
             },
             {
-              "name": "network.protocol.version",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
               "name": "server.address",
               "type": "STRING",
               "semconv": true
@@ -114,21 +110,6 @@
             {
               "name": "http.response.status_code",
               "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.protocol.version",
-              "type": "STRING",
               "semconv": true
             },
             {
