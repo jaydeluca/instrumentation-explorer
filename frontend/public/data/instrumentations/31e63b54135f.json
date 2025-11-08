@@ -1,20 +1,21 @@
 {
-  "id": "async-http-client-1.9",
+  "id": "async-http-client-1.8",
+  "display_name": "AsyncHttpClient",
   "library_group": "async",
-  "description": "This instrumentation enables HTTP client spans and HTTP client metrics for version 1 of the AsyncHttpClient (AHC) HTTP client.",
+  "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the AsyncHttpClient HTTP client.\n",
   "library_link": "https://github.com/AsyncHttpClient/async-http-client",
-  "source_path": "instrumentation/async-http-client/async-http-client-1.9",
+  "source_path": "instrumentation/async-http-client/async-http-client-1.8",
   "semantic_conventions": [
     "HTTP_CLIENT_SPANS",
     "HTTP_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.async-http-client-1.9",
+    "name": "io.opentelemetry.async-http-client-1.8",
     "schema_url": "https://opentelemetry.io/schemas/1.37.0"
   },
   "target_versions": {
     "javaagent": [
-      "com.ning:async-http-client:[1.9.0,)"
+      "com.ning:async-http-client:[1.8.0,1.9.0)"
     ]
   },
   "configurations": [
