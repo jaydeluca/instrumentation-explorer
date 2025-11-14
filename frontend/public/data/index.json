@@ -1738,28 +1738,39 @@
     },
     {
       "id": "kafka-clients-0.11",
+      "display_name": "Apache Kafka Client",
       "library_group": "kafka",
-      "description": "This instrumentation enables messaging spans and metrics for Apache Kafka 0.11 clients. It automatically traces message production and consumption, propagates context, and emits metrics for production and consumption.\n",
+      "description": "This instrumentation enables messaging spans for Kafka producers and consumers, and collects internal Kafka client metrics.",
       "tags": [
         "kafka",
         "client",
-        "messaging"
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "kafka-clients-2.6",
+      "display_name": "Apache Kafka Client",
       "library_group": "kafka",
-      "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
+      "description": "This standalone instrumentation enables messaging spans for Kafka producers and consumers, and collects internal Kafka client metrics.",
       "tags": [
         "kafka",
         "client",
-        "messaging"
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "kafka-connect-2.6",
+      "display_name": "Apache Kafka Connect",
       "library_group": "kafka",
       "description": "This instrumentation enables messaging spans for Kafka Connect sink tasks.",
       "tags": [
@@ -1774,11 +1785,18 @@
     },
     {
       "id": "kafka-streams-0.11",
+      "display_name": "Apache Kafka Streams",
       "library_group": "kafka",
+      "description": "This instrumentation enables messaging spans for Kafka Streams processing.",
       "tags": [
-        "kafka"
+        "kafka",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "kotlinx-coroutines-1.0",

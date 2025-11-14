@@ -447,20 +447,20 @@
       "url": "/data/instrumentations/65f80b1e25f8.json"
     },
     "kafka-clients-0.11": {
-      "hash": "3a006bbe6d7d",
-      "url": "/data/instrumentations/3a006bbe6d7d.json"
+      "hash": "9d1306184ed2",
+      "url": "/data/instrumentations/9d1306184ed2.json"
     },
     "kafka-clients-2.6": {
-      "hash": "487d3f787075",
-      "url": "/data/instrumentations/487d3f787075.json"
+      "hash": "c8493bf5204f",
+      "url": "/data/instrumentations/c8493bf5204f.json"
     },
     "kafka-connect-2.6": {
-      "hash": "29d6e8534bda",
-      "url": "/data/instrumentations/29d6e8534bda.json"
+      "hash": "bc27e7f37390",
+      "url": "/data/instrumentations/bc27e7f37390.json"
     },
     "kafka-streams-0.11": {
-      "hash": "09784e83360a",
-      "url": "/data/instrumentations/09784e83360a.json"
+      "hash": "5e59c8bc9bd4",
+      "url": "/data/instrumentations/5e59c8bc9bd4.json"
     },
     "kotlinx-coroutines-1.0": {
       "hash": "c931f13dce0b",
@@ -965,6 +965,6 @@
   },
   "metadata": {
     "total_count": 240,
-    "changed_from_previous": 56
+    "changed_from_previous": 57
   }
 }
