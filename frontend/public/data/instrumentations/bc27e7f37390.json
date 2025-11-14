@@ -1,5 +1,6 @@
 {
   "id": "kafka-connect-2.6",
+  "display_name": "Apache Kafka Connect",
   "library_group": "kafka",
   "description": "This instrumentation enables messaging spans for Kafka Connect sink tasks.",
   "library_link": "https://kafka.apache.org/documentation/#connect",
