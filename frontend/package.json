@@ -17,9 +17,9 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@grafana/faro-react": "^2.0.0-beta",
-    "@grafana/faro-web-sdk": "^2.0.0-beta",
-    "@grafana/faro-web-tracing": "^2.0.0-beta",
+    "@grafana/faro-react": "^2.0.2",
+    "@grafana/faro-web-sdk": "^2.0.2",
+    "@grafana/faro-web-tracing": "^2.0.2",
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
     "react": "^19.1.0",
