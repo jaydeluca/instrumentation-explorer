@@ -1730,11 +1730,16 @@
     },
     {
       "id": "jsp-2.3",
+      "display_name": "JSP (JavaServer Pages)",
       "library_group": "jsp",
+      "description": "This instrumentation enables view spans for JSP page rendering and compilation (view spans are disabled by default).\n",
       "tags": [
         "jsp"
       ],
-      "has_telemetry": false
+      "features": [
+        "VIEW_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "kafka-clients-0.11",

@@ -443,12 +443,12 @@
       "url": "/data/instrumentations/c99f904a410d.json"
     },
     "jsp-2.3": {
-      "hash": "65f80b1e25f8",
-      "url": "/data/instrumentations/65f80b1e25f8.json"
+      "hash": "cb65816f2028",
+      "url": "/data/instrumentations/cb65816f2028.json"
     },
     "kafka-clients-0.11": {
-      "hash": "9d1306184ed2",
-      "url": "/data/instrumentations/9d1306184ed2.json"
+      "hash": "6638121a5a0f",
+      "url": "/data/instrumentations/6638121a5a0f.json"
     },
     "kafka-clients-2.6": {
       "hash": "c8493bf5204f",
