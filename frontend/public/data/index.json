@@ -1,5 +1,5 @@
 {
-  "latest_version": "2.21.0",
+  "latest_version": "2.22.0",
   "instrumentations": [
     {
       "id": "activej-http-6.0",
@@ -1629,6 +1629,14 @@
       "has_telemetry": true
     },
     {
+      "id": "jfinal-3.2",
+      "library_group": "jfinal",
+      "tags": [
+        "jfinal"
+      ],
+      "has_telemetry": false
+    },
+    {
       "id": "jms-1.1",
       "display_name": "JMS (Java Message Service)",
       "library_group": "jms",
@@ -1845,12 +1853,21 @@
     },
     {
       "id": "kubernetes-client-7.0",
+      "display_name": "Kubernetes Client",
       "library_group": "kubernetes",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Kubernetes Client for Java.",
       "tags": [
         "kubernetes",
-        "client"
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "lettuce-4.0",
