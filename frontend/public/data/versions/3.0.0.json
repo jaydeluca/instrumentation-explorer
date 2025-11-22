@@ -30,6 +30,10 @@
       "hash": "99500f7f90fd",
       "url": "/data/instrumentations/99500f7f90fd.json"
     },
+    "apache-elasticjob-3.0": {
+      "hash": "cdb8cb396328",
+      "url": "/data/instrumentations/cdb8cb396328.json"
+    },
     "apache-httpasyncclient-4.1": {
       "hash": "939ca85819c1",
       "url": "/data/instrumentations/939ca85819c1.json"
@@ -415,8 +419,8 @@
       "url": "/data/instrumentations/ee22bc82a7e3.json"
     },
     "jfinal-3.2": {
-      "hash": "d6aa9578cd4d",
-      "url": "/data/instrumentations/d6aa9578cd4d.json"
+      "hash": "af7e601aef16",
+      "url": "/data/instrumentations/af7e601aef16.json"
     },
     "jms-1.1": {
       "hash": "8bc564c57dba",
@@ -467,24 +471,24 @@
       "url": "/data/instrumentations/b5575bbd4455.json"
     },
     "kotlinx-coroutines-1.0": {
-      "hash": "c931f13dce0b",
-      "url": "/data/instrumentations/c931f13dce0b.json"
+      "hash": "0cd7e23eed22",
+      "url": "/data/instrumentations/0cd7e23eed22.json"
     },
     "kotlinx-coroutines-flow-1.3": {
-      "hash": "025707e3509a",
-      "url": "/data/instrumentations/025707e3509a.json"
+      "hash": "00da9570baed",
+      "url": "/data/instrumentations/00da9570baed.json"
     },
     "ktor-1.0": {
-      "hash": "82ef94823b33",
-      "url": "/data/instrumentations/82ef94823b33.json"
+      "hash": "8570060ef3bd",
+      "url": "/data/instrumentations/8570060ef3bd.json"
     },
     "ktor-2.0": {
-      "hash": "f6a798ba686d",
-      "url": "/data/instrumentations/f6a798ba686d.json"
+      "hash": "1461bd0102d7",
+      "url": "/data/instrumentations/1461bd0102d7.json"
     },
     "ktor-3.0": {
-      "hash": "31a35dc73027",
-      "url": "/data/instrumentations/31a35dc73027.json"
+      "hash": "c80e4c431371",
+      "url": "/data/instrumentations/c80e4c431371.json"
     },
     "kubernetes-client-7.0": {
       "hash": "faaa1c9afd94",
@@ -968,7 +972,7 @@
     }
   },
   "metadata": {
-    "total_count": 241,
-    "changed_from_previous": 35
+    "total_count": 242,
+    "changed_from_previous": 60
   }
 }
