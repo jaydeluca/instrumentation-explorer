@@ -1,0 +1,66 @@
+{
+  "id": "opensearch-rest-3.0",
+  "library_group": "opensearch",
+  "description": "This instrumentation enables database client spans and database client metrics for OpenSearch REST clients.\n",
+  "library_link": "https://docs.opensearch.org/latest/clients/",
+  "source_path": "instrumentation/opensearch/opensearch-rest-3.0",
+  "minimum_java_version": 11,
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.opensearch-rest-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.opensearch.client:opensearch-rest-client:[3.0,)"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
