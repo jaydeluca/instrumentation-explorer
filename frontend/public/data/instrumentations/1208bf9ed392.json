@@ -1,0 +1,118 @@
+{
+  "id": "kafka-clients-2.6",
+  "display_name": "Apache Kafka Client",
+  "library_group": "kafka",
+  "description": "This standalone instrumentation enables messaging spans for Kafka producers and consumers, and collects internal Kafka client metrics.",
+  "library_link": "https://kafka.apache.org/",
+  "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-2.6",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.kafka-clients-2.6"
+  },
+  "target_versions": {
+    "library": [
+      "org.apache.kafka:kafka-clients:2.6.0"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "kafka.record.queue_time_ms",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "messaging.batch.message_count",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.client_id",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.partition.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.kafka.consumer.group",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.kafka.message.offset",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.client_id",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.partition.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.kafka.message.offset",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "cc1ea581ddca",
+  "markdown_url": "/data/markdown/cc1ea581ddca.md"
+}
