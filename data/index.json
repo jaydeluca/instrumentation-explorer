@@ -1943,26 +1943,56 @@
     {
       "id": "lettuce-4.0",
       "library_group": "lettuce",
+      "description": "This instrumentation enables database client spans and database client metrics for the Lettuce Redis client.\n",
       "tags": [
-        "lettuce"
+        "lettuce",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "lettuce-5.0",
       "library_group": "lettuce",
+      "description": "This instrumentation enables database client spans and database client metrics for the Lettuce Redis client.\n",
       "tags": [
-        "lettuce"
+        "lettuce",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "lettuce-5.1",
       "library_group": "lettuce",
+      "description": "This instrumentation enables database client spans and database client metrics for the Lettuce Redis client.\n",
       "tags": [
-        "lettuce"
+        "lettuce",
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "liberty-20.0",
