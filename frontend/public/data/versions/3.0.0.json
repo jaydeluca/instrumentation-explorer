@@ -495,16 +495,16 @@
       "url": "/data/instrumentations/faaa1c9afd94.json"
     },
     "lettuce-4.0": {
-      "hash": "37079485e2f1",
-      "url": "/data/instrumentations/37079485e2f1.json"
+      "hash": "b2ce626c06aa",
+      "url": "/data/instrumentations/b2ce626c06aa.json"
     },
     "lettuce-5.0": {
-      "hash": "088d267c4f71",
-      "url": "/data/instrumentations/088d267c4f71.json"
+      "hash": "170b97fb012b",
+      "url": "/data/instrumentations/170b97fb012b.json"
     },
     "lettuce-5.1": {
-      "hash": "91740e4e304f",
-      "url": "/data/instrumentations/91740e4e304f.json"
+      "hash": "e2f83a4fff10",
+      "url": "/data/instrumentations/e2f83a4fff10.json"
     },
     "liberty-20.0": {
       "hash": "48f118fb9ae1",
@@ -973,6 +973,6 @@
   },
   "metadata": {
     "total_count": 242,
-    "changed_from_previous": 60
+    "changed_from_previous": 63
   }
 }
