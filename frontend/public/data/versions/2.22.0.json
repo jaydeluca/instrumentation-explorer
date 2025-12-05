@@ -487,8 +487,8 @@
       "url": "/data/instrumentations/35e865a9f39f.json"
     },
     "ktor-3.0": {
-      "hash": "99a0711988ed",
-      "url": "/data/instrumentations/99a0711988ed.json"
+      "hash": "cfba1b56b160",
+      "url": "/data/instrumentations/cfba1b56b160.json"
     },
     "kubernetes-client-7.0": {
       "hash": "faaa1c9afd94",
