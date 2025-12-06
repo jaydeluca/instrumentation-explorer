@@ -63,8 +63,8 @@
       "url": "/data/instrumentations/b7aaa1bf4e26.json"
     },
     "armeria-grpc-1.14": {
-      "hash": "34155a4fe561",
-      "url": "/data/instrumentations/34155a4fe561.json"
+      "hash": "48c40b06705a",
+      "url": "/data/instrumentations/48c40b06705a.json"
     },
     "async-http-client-1.8": {
       "hash": "31e63b54135f",
@@ -247,8 +247,8 @@
       "url": "/data/instrumentations/784e63a71123.json"
     },
     "grpc-1.6": {
-      "hash": "6584d2417f47",
-      "url": "/data/instrumentations/6584d2417f47.json"
+      "hash": "5bb32ceb811c",
+      "url": "/data/instrumentations/5bb32ceb811c.json"
     },
     "guava-10.0": {
       "hash": "1beba1e79bbd",
