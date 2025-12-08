@@ -1,0 +1,94 @@
+{
+  "id": "failsafe-3.0",
+  "library_group": "failsafe",
+  "description": "This standalone instrumentation enables metrics for Failsafe circuit breakers.",
+  "library_link": "https://failsafe.dev",
+  "source_path": "instrumentation/failsafe-3.0",
+  "scope": {
+    "name": "io.opentelemetry.failsafe-3.0"
+  },
+  "target_versions": {
+    "library": [
+      "dev.failsafe:failsafe:3.0.1"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "failsafe.circuit_breaker.execution.count",
+          "description": "Count of circuit breaker executions.",
+          "type": "LONG_SUM",
+          "unit": "execution",
+          "attributes": [
+            {
+              "name": "failsafe.circuit_breaker.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "failsafe.circuit_breaker.outcome",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "failsafe.circuit_breaker.state_change.count",
+          "description": "Count of circuit breaker state changes.",
+          "type": "LONG_SUM",
+          "unit": "execution",
+          "attributes": [
+            {
+              "name": "failsafe.circuit_breaker.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "failsafe.circuit_breaker.state",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "failsafe.retry_policy.attempts",
+          "description": "Number of attempts for each execution.",
+          "type": "HISTOGRAM",
+          "unit": "attempt",
+          "attributes": [
+            {
+              "name": "failsafe.retry_policy.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "failsafe.retry_policy.outcome",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "failsafe.retry_policy.execution.count",
+          "description": "Count of execution attempts processed by the retry policy, where one execution represents the total number of attempts.",
+          "type": "LONG_SUM",
+          "unit": "execution",
+          "attributes": [
+            {
+              "name": "failsafe.retry_policy.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "failsafe.retry_policy.outcome",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  }
+}

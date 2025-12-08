@@ -2076,75 +2076,171 @@
     },
     {
       "id": "mongo-3.1",
+      "display_name": "MongoDB Driver",
       "library_group": "mongo",
+      "description": "This instrumentation enables database client spans and database client metrics for the MongoDB Java driver.\n",
       "tags": [
-        "mongo"
+        "mongo",
+        "mongodb",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "mongo-3.7",
+      "display_name": "MongoDB Driver",
       "library_group": "mongo",
+      "description": "This instrumentation enables database client spans and database client metrics for the MongoDB Java driver.\n",
       "tags": [
-        "mongo"
+        "mongo",
+        "mongodb",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "mongo-4.0",
+      "display_name": "MongoDB Driver",
       "library_group": "mongo",
+      "description": "This instrumentation enables database client spans and database client metrics for the MongoDB Java driver.\n",
       "tags": [
-        "mongo"
+        "mongo",
+        "mongodb",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "mongo-async-3.3",
+      "display_name": "MongoDB Driver (Async)",
       "library_group": "mongo",
+      "description": "This instrumentation enables database client spans and database client metrics for the MongoDB async Java driver.\n",
       "tags": [
-        "mongo"
+        "mongo",
+        "mongodb",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "mybatis-3.2",
+      "display_name": "MyBatis",
       "library_group": "mybatis",
+      "description": "This instrumentation enables spans for MyBatis mapper method executions.",
       "tags": [
         "mybatis"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "nats-2.17",
+      "display_name": "NATS Client",
       "library_group": "nats",
-      "description": "This instrumentation provides messaging spans for NATS",
+      "description": "This instrumentation enables messaging spans for NATS message producers and consumers.",
       "tags": [
         "nats",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "netty-3.8",
+      "display_name": "Netty HTTP codec",
       "library_group": "netty",
+      "description": "This instrumentation enables HTTP client spans, HTTP client metrics, HTTP server spans, and HTTP server metrics for the Netty framework.\n",
       "tags": [
-        "netty"
+        "netty",
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "netty-4.0",
+      "display_name": "Netty HTTP codec",
       "library_group": "netty",
+      "description": "This instrumentation enables HTTP client spans, HTTP client metrics, HTTP server spans, and HTTP server metrics for the Netty framework.\n",
       "tags": [
-        "netty"
+        "netty",
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "netty-4.1",
+      "display_name": "Netty HTTP codec",
       "library_group": "netty",
+      "description": "This instrumentation enables HTTP client spans, HTTP client metrics, HTTP server spans, and HTTP server metrics for the Netty framework. Does not currently support capturing HTTP/2 traffic.\n",
       "tags": [
-        "netty"
+        "netty",
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
       ],
       "has_telemetry": true
     },
