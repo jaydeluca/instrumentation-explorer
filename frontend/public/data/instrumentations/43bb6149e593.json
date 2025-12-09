@@ -1,9 +1,16 @@
 {
   "id": "grpc-1.6",
+  "display_name": "gRPC",
   "library_group": "grpc",
-  "description": "This instrumentation enables RPC client spans and metrics, and RPC server spans and metrics for gRPC version 1.6 and above.",
+  "description": "This instrumentation enables RPC client and RPC server spans and metrics for gRPC.",
   "library_link": "https://github.com/grpc/grpc-java",
   "source_path": "instrumentation/grpc-1.6",
+  "semantic_conventions": [
+    "RPC_CLIENT_SPANS",
+    "RPC_CLIENT_METRICS",
+    "RPC_SERVER_SPANS",
+    "RPC_SERVER_METRICS"
+  ],
   "scope": {
     "name": "io.opentelemetry.grpc-1.6"
   },
@@ -53,7 +60,83 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
               "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.client.request.size",
+          "description": "Measures the size of RPC request messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.client.response.size",
+          "description": "Measures the size of RPC response messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -96,7 +179,93 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
               "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.server.request.size",
+          "description": "Measures the size of RPC request messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.server.response.size",
+          "description": "Measures the size of RPC response messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -133,7 +302,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -183,7 +352,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -225,7 +394,83 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
               "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.client.request.size",
+          "description": "Measures the size of RPC request messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.client.response.size",
+          "description": "Measures the size of RPC response messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -268,7 +513,93 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
               "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.server.request.size",
+          "description": "Measures the size of RPC request messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.server.response.size",
+          "description": "Measures the size of RPC response messages (uncompressed).",
+          "type": "HISTOGRAM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -315,7 +646,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -375,7 +706,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
