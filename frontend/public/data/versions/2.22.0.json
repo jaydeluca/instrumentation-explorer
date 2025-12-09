@@ -67,8 +67,8 @@
       "url": "/data/instrumentations/b7aaa1bf4e26.json"
     },
     "armeria-grpc-1.14": {
-      "hash": "34155a4fe561",
-      "url": "/data/instrumentations/34155a4fe561.json"
+      "hash": "48c40b06705a",
+      "url": "/data/instrumentations/48c40b06705a.json"
     },
     "async-http-client-1.8": {
       "hash": "31e63b54135f",
@@ -215,8 +215,8 @@
       "url": "/data/instrumentations/14d791435765.json"
     },
     "failsafe-3.0": {
-      "hash": "838c0e225043",
-      "url": "/data/instrumentations/838c0e225043.json"
+      "hash": "afb39569b161",
+      "url": "/data/instrumentations/afb39569b161.json"
     },
     "finagle-http-23.11": {
       "hash": "5616fe9831da",
@@ -251,8 +251,8 @@
       "url": "/data/instrumentations/784e63a71123.json"
     },
     "grpc-1.6": {
-      "hash": "6584d2417f47",
-      "url": "/data/instrumentations/6584d2417f47.json"
+      "hash": "5bb32ceb811c",
+      "url": "/data/instrumentations/5bb32ceb811c.json"
     },
     "guava-10.0": {
       "hash": "1beba1e79bbd",
@@ -547,40 +547,40 @@
       "url": "/data/instrumentations/1b3f68eac64e.json"
     },
     "mongo-3.1": {
-      "hash": "a8e16ec2f478",
-      "url": "/data/instrumentations/a8e16ec2f478.json"
+      "hash": "5e1b58df7dbb",
+      "url": "/data/instrumentations/5e1b58df7dbb.json"
     },
     "mongo-3.7": {
-      "hash": "d5a7c64dfe3c",
-      "url": "/data/instrumentations/d5a7c64dfe3c.json"
+      "hash": "feb866f1bb67",
+      "url": "/data/instrumentations/feb866f1bb67.json"
     },
     "mongo-4.0": {
-      "hash": "39ed1cd26af4",
-      "url": "/data/instrumentations/39ed1cd26af4.json"
+      "hash": "fe3cfa3e8cd0",
+      "url": "/data/instrumentations/fe3cfa3e8cd0.json"
     },
     "mongo-async-3.3": {
-      "hash": "f5bac5842eef",
-      "url": "/data/instrumentations/f5bac5842eef.json"
+      "hash": "89d0a735f293",
+      "url": "/data/instrumentations/89d0a735f293.json"
     },
     "mybatis-3.2": {
-      "hash": "d86e10da9fdc",
-      "url": "/data/instrumentations/d86e10da9fdc.json"
+      "hash": "9a158c33fa27",
+      "url": "/data/instrumentations/9a158c33fa27.json"
     },
     "nats-2.17": {
-      "hash": "fe4b051b901e",
-      "url": "/data/instrumentations/fe4b051b901e.json"
+      "hash": "f5b559d3ee45",
+      "url": "/data/instrumentations/f5b559d3ee45.json"
     },
     "netty-3.8": {
-      "hash": "5e7f8991c601",
-      "url": "/data/instrumentations/5e7f8991c601.json"
+      "hash": "0db2323c5644",
+      "url": "/data/instrumentations/0db2323c5644.json"
     },
     "netty-4.0": {
-      "hash": "5d80658f22b4",
-      "url": "/data/instrumentations/5d80658f22b4.json"
+      "hash": "1828b32aaeb8",
+      "url": "/data/instrumentations/1828b32aaeb8.json"
     },
     "netty-4.1": {
-      "hash": "efde6212f301",
-      "url": "/data/instrumentations/efde6212f301.json"
+      "hash": "f22f36554bdc",
+      "url": "/data/instrumentations/f22f36554bdc.json"
     },
     "okhttp-2.2": {
       "hash": "e0e02917ac17",
@@ -973,6 +973,6 @@
   },
   "metadata": {
     "total_count": 242,
-    "changed_from_previous": 14
+    "changed_from_previous": 24
   }
 }

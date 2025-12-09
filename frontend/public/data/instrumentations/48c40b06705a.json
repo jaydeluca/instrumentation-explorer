@@ -22,7 +22,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
@@ -57,7 +57,7 @@
             {
               "name": "rpc.grpc.status_code",
               "type": "LONG",
-              "semconv": true
+              "semconv": false
             },
             {
               "name": "rpc.method",
