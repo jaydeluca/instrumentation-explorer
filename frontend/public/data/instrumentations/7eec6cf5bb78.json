@@ -1,9 +1,13 @@
 {
   "id": "oracle-ucp-11.2",
+  "display_name": "Oracle UCP",
   "library_group": "oracle",
-  "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+  "description": "The Oracle Universal Connection Pool (UCP) instrumentation enables database connection pool metrics for Oracle UCP data sources.\n",
   "library_link": "https://docs.oracle.com/database/121/JJUCP/",
   "source_path": "instrumentation/oracle-ucp-11.2",
+  "semantic_conventions": [
+    "DATABASE_POOL_METRICS"
+  ],
   "scope": {
     "name": "io.opentelemetry.oracle-ucp-11.2"
   },
@@ -18,6 +22,55 @@
   },
   "telemetry": {
     "default": {
+      "metrics": [
+        {
+          "name": "db.client.connections.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.pending_requests",
+          "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+          "type": "LONG_SUM",
+          "unit": "requests",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.usage",
+          "description": "The number of connections that are currently in state described by the state attribute.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "state",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    },
+    "otel.semconv-stability.opt-in=database": {
       "metrics": [
         {
           "name": "db.client.connection.count",
