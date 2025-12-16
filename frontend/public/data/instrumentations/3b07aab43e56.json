@@ -1,0 +1,41 @@
+{
+  "id": "play-mvc-2.6",
+  "display_name": "Play MVC",
+  "library_group": "play",
+  "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Play Framework actions (controller spans are disabled by default).\n",
+  "library_link": "https://www.playframework.com/",
+  "source_path": "instrumentation/play/play-mvc/play-mvc-2.6",
+  "features": [
+    "HTTP_ROUTE",
+    "CONTROLLER_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.play-mvc-2.6"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.typesafe.play:play_$scalaVersion:[2.6.0,)",
+      "com.typesafe.play:play_2.12:[2.6.0,)",
+      "com.typesafe.play:play_2.13:[2.6.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": []
+        }
+      ]
+    }
+  }
+}
