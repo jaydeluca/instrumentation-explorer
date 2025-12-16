@@ -1,5 +1,5 @@
 {
-  "latest_version": "2.22.0",
+  "latest_version": "2.23.0",
   "instrumentations": [
     {
       "id": "activej-http-6.0",
@@ -1172,6 +1172,16 @@
       "has_telemetry": true
     },
     {
+      "id": "iceberg-1.8",
+      "display_name": "Apache Iceberg",
+      "library_group": "iceberg",
+      "description": "This instrumentation provides a standalone library integration that enables metrics for Apache Iceberg table scans.\n",
+      "tags": [
+        "iceberg"
+      ],
+      "has_telemetry": true
+    },
+    {
       "id": "influxdb-2.4",
       "display_name": "InfluxDB Client",
       "library_group": "influxdb",
@@ -1551,6 +1561,26 @@
       "has_telemetry": true
     },
     {
+      "id": "jetty-8.0",
+      "library_group": "jetty",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
+      "tags": [
+        "jetty",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
+      ],
+      "has_telemetry": true
+    },
+    {
       "id": "jetty-11.0",
       "library_group": "jetty",
       "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
@@ -1585,27 +1615,7 @@
       "has_telemetry": true
     },
     {
-      "id": "jetty-8.0",
-      "library_group": "jetty",
-      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Jetty.",
-      "tags": [
-        "jetty",
-        "http",
-        "server",
-        "http_server_spans",
-        "http_server_metrics"
-      ],
-      "semantic_conventions": [
-        "HTTP_SERVER_SPANS",
-        "HTTP_SERVER_METRICS"
-      ],
-      "features": [
-        "CONTEXT_PROPAGATION"
-      ],
-      "has_telemetry": true
-    },
-    {
-      "id": "jetty-httpclient-12.0",
+      "id": "jetty-httpclient-9.2",
       "library_group": "jetty",
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Jetty HTTP Client.",
       "tags": [
@@ -1622,7 +1632,7 @@
       "has_telemetry": true
     },
     {
-      "id": "jetty-httpclient-9.2",
+      "id": "jetty-httpclient-12.0",
       "library_group": "jetty",
       "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Jetty HTTP Client.",
       "tags": [
@@ -2027,7 +2037,7 @@
       "has_telemetry": false
     },
     {
-      "id": "log4j-context-data-2.17",
+      "id": "log4j-context-data-2.7",
       "library_group": "log4j",
       "tags": [
         "log4j"
@@ -2035,7 +2045,7 @@
       "has_telemetry": false
     },
     {
-      "id": "log4j-context-data-2.7",
+      "id": "log4j-context-data-2.17",
       "library_group": "log4j",
       "tags": [
         "log4j"
@@ -2246,29 +2256,54 @@
     },
     {
       "id": "okhttp-2.2",
+      "display_name": "OkHttp",
       "library_group": "okhttp",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for OkHttp.",
       "tags": [
         "okhttp",
-        "http"
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "okhttp-3.0",
+      "display_name": "OkHttp",
       "library_group": "okhttp",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for OkHttp.",
       "tags": [
         "okhttp",
-        "http"
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "openai-java-1.1",
+      "display_name": "OpenAI Java SDK",
       "library_group": "openai",
-      "description": "This instrumentation enables Gen AI client spans and metrics for OpenAI Java SDK 1.1+.",
+      "description": "This instrumentation enables Gen AI client spans and metrics for the OpenAI Java SDK.",
       "tags": [
         "openai",
-        "client"
+        "client",
+        "genai_client_spans",
+        "genai_client_metrics"
+      ],
+      "semantic_conventions": [
+        "GENAI_CLIENT_SPANS",
+        "GENAI_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -2325,19 +2360,30 @@
     },
     {
       "id": "oracle-ucp-11.2",
+      "display_name": "Oracle UCP",
       "library_group": "oracle",
-      "description": "The Oracle Universal Connection Pool (UCP) instrumentation generates connection pool metrics.",
+      "description": "The Oracle Universal Connection Pool (UCP) instrumentation enables database connection pool metrics for Oracle UCP data sources.\n",
       "tags": [
-        "oracle"
+        "oracle",
+        "database",
+        "database_pool_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_POOL_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "oshi",
+      "display_name": "OSHI",
       "library_group": "oshi",
-      "description": "When the OSHI library is detected on the classpath, this instrumentation will use the system class loader to load classes from the oshi-core jar that are then used to generate system metrics.",
+      "description": "When the OSHI library is detected on the classpath, this instrumentation enables system metrics for memory, disk, and network operations.\n",
       "tags": [
-        "oshi"
+        "oshi",
+        "system_metrics"
+      ],
+      "semantic_conventions": [
+        "SYSTEM_METRICS"
       ],
       "has_telemetry": true
     },
@@ -2368,51 +2414,99 @@
     },
     {
       "id": "play-mvc-2.4",
+      "display_name": "Play MVC",
       "library_group": "play",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Play Framework (controller spans are disabled by default).\n",
       "tags": [
-        "play"
+        "play",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "play-mvc-2.6",
+      "display_name": "Play MVC",
       "library_group": "play",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Play Framework actions (controller spans are disabled by default).\n",
       "tags": [
-        "play"
+        "play",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "play-ws-1.0",
+      "display_name": "Play WS",
       "library_group": "play",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Play WS.",
       "tags": [
-        "play"
+        "play",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "play-ws-2.0",
+      "display_name": "Play WS",
       "library_group": "play",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Play WS.",
       "tags": [
-        "play"
+        "play",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "play-ws-2.1",
+      "display_name": "Play WS",
       "library_group": "play",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for Play WS.",
       "tags": [
-        "play"
+        "play",
+        "http",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "powerjob-4.0",
+      "display_name": "PowerJob",
       "library_group": "powerjob",
+      "description": "This instrumentation enables spans for PowerJob job processor executions.",
       "tags": [
         "powerjob"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "pulsar-2.8",
@@ -2720,6 +2814,14 @@
       "has_telemetry": false
     },
     {
+      "id": "spring-cloud-gateway-webmvc-4.3",
+      "library_group": "spring",
+      "tags": [
+        "spring"
+      ],
+      "has_telemetry": false
+    },
+    {
       "id": "spring-core-2.0",
       "library_group": "spring",
       "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
@@ -2946,7 +3048,7 @@
       "has_telemetry": false
     },
     {
-      "id": "tomcat-10.0",
+      "id": "tomcat-7.0",
       "library_group": "tomcat",
       "tags": [
         "tomcat"
@@ -2954,7 +3056,7 @@
       "has_telemetry": false
     },
     {
-      "id": "tomcat-7.0",
+      "id": "tomcat-10.0",
       "library_group": "tomcat",
       "tags": [
         "tomcat"
