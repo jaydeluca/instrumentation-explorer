@@ -2510,11 +2510,18 @@
     },
     {
       "id": "pulsar-2.8",
+      "display_name": "Apache Pulsar Client",
       "library_group": "pulsar",
+      "description": "This instrumentation enables messaging spans for Apache Pulsar message producers and consumers.\n",
       "tags": [
-        "pulsar"
+        "pulsar",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "quarkus-resteasy-reactive",
