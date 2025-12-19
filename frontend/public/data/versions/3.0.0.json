@@ -655,8 +655,8 @@
       "url": "/data/instrumentations/04315f655340.json"
     },
     "pulsar-2.8": {
-      "hash": "40116e05e23c",
-      "url": "/data/instrumentations/40116e05e23c.json"
+      "hash": "ccfb9a469241",
+      "url": "/data/instrumentations/ccfb9a469241.json"
     },
     "quarkus-resteasy-reactive": {
       "hash": "67d20903a6f5",
@@ -855,8 +855,8 @@
       "url": "/data/instrumentations/aef2ca79c468.json"
     },
     "spring-webflux-5.0": {
-      "hash": "853397226132",
-      "url": "/data/instrumentations/853397226132.json"
+      "hash": "2ddc53f6ce57",
+      "url": "/data/instrumentations/2ddc53f6ce57.json"
     },
     "spring-webflux-5.3": {
       "hash": "e765c5750b54",
@@ -915,8 +915,8 @@
       "url": "/data/instrumentations/672f162e2b5c.json"
     },
     "vaadin-14.2": {
-      "hash": "b8c8a44a873a",
-      "url": "/data/instrumentations/b8c8a44a873a.json"
+      "hash": "d47ef37ce163",
+      "url": "/data/instrumentations/d47ef37ce163.json"
     },
     "vertx-http-client-3.0": {
       "hash": "1452a654e77d",
@@ -981,6 +981,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 42
+    "changed_from_previous": 70
   }
 }
