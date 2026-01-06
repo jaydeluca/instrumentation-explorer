@@ -2525,9 +2525,16 @@
     },
     {
       "id": "quarkus-resteasy-reactive",
+      "display_name": "Quarkus RESTEasy Reactive",
       "library_group": "quarkus",
+      "description": "This instrumentation enriches HTTP server spans with route information for Quarkus RESTEasy Reactive, it does not emit any telemetry on its own.\n",
       "tags": [
-        "quarkus"
+        "quarkus",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
@@ -2541,35 +2548,77 @@
     },
     {
       "id": "r2dbc-1.0",
+      "display_name": "R2DBC",
       "library_group": "r2dbc",
+      "description": "This instrumentation enables database client spans and database client metrics for R2DBC (Reactive Relational Database Connectivity).\n",
       "tags": [
-        "r2dbc"
+        "r2dbc",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "rabbitmq-2.7",
+      "display_name": "RabbitMQ",
       "library_group": "rabbitmq",
+      "description": "This instrumentation enables messaging spans for RabbitMQ message producers and consumers.",
       "tags": [
-        "rabbitmq"
+        "rabbitmq",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "ratpack-1.4",
       "library_group": "ratpack",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Ratpack handlers (controller spans are disabled by default).\n",
       "tags": [
-        "ratpack"
+        "ratpack",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "ratpack-1.7",
       "library_group": "ratpack",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Ratpack servers, HTTP client spans and HTTP client metrics for Ratpack HTTP clients, and enables controller spans for Ratpack handlers (controller spans are disabled by default).\n",
       "tags": [
-        "ratpack"
+        "ratpack",
+        "http",
+        "client",
+        "server",
+        "http_server_spans",
+        "http_server_metrics",
+        "http_client_spans",
+        "http_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS",
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "reactor-3.1",
@@ -2616,30 +2665,58 @@
     },
     {
       "id": "rediscala-1.8",
+      "display_name": "Rediscala",
       "library_group": "rediscala",
+      "description": "This instrumentation enables database client spans and database client metrics for Rediscala.\n",
       "tags": [
         "rediscala",
-        "redis"
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "redisson-3.0",
       "library_group": "redisson",
+      "description": "This instrumentation enables database client spans and database client metrics for Redisson Redis client operations.",
       "tags": [
         "redisson",
-        "redis"
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
+      ],
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
       ],
       "has_telemetry": false
     },
     {
       "id": "redisson-3.17",
       "library_group": "redisson",
+      "description": "This instrumentation enables database client spans and database client metrics for Redisson Redis client operations.",
       "tags": [
         "redisson",
-        "redis"
+        "redis",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "resources",
@@ -2652,18 +2729,42 @@
     {
       "id": "restlet-1.1",
       "library_group": "restlet",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Restlet servers.",
       "tags": [
-        "restlet"
+        "restlet",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "restlet-2.0",
       "library_group": "restlet",
+      "description": "This instrumentation enables HTTP server spans and HTTP server metrics for Restlet servers.",
       "tags": [
-        "restlet"
+        "restlet",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "rmi",
