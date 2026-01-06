@@ -659,28 +659,28 @@
       "url": "/data/instrumentations/ccfb9a469241.json"
     },
     "quarkus-resteasy-reactive": {
-      "hash": "67d20903a6f5",
-      "url": "/data/instrumentations/67d20903a6f5.json"
+      "hash": "a2e54053fde5",
+      "url": "/data/instrumentations/a2e54053fde5.json"
     },
     "quartz-2.0": {
       "hash": "2668d1896f37",
       "url": "/data/instrumentations/2668d1896f37.json"
     },
     "r2dbc-1.0": {
-      "hash": "7c5326bbf8ce",
-      "url": "/data/instrumentations/7c5326bbf8ce.json"
+      "hash": "21828f46a592",
+      "url": "/data/instrumentations/21828f46a592.json"
     },
     "rabbitmq-2.7": {
-      "hash": "7f24915da2ba",
-      "url": "/data/instrumentations/7f24915da2ba.json"
+      "hash": "7ab50c21df06",
+      "url": "/data/instrumentations/7ab50c21df06.json"
     },
     "ratpack-1.4": {
-      "hash": "cc9416f1f390",
-      "url": "/data/instrumentations/cc9416f1f390.json"
+      "hash": "b41979a0d1e8",
+      "url": "/data/instrumentations/b41979a0d1e8.json"
     },
     "ratpack-1.7": {
-      "hash": "acbd16ea7403",
-      "url": "/data/instrumentations/acbd16ea7403.json"
+      "hash": "78ea4dea6dc9",
+      "url": "/data/instrumentations/78ea4dea6dc9.json"
     },
     "reactor-3.1": {
       "hash": "8ec56fb329e6",
@@ -703,28 +703,28 @@
       "url": "/data/instrumentations/36e0ce783e8b.json"
     },
     "rediscala-1.8": {
-      "hash": "fd9d354b6ca1",
-      "url": "/data/instrumentations/fd9d354b6ca1.json"
+      "hash": "ae4f2e80c526",
+      "url": "/data/instrumentations/ae4f2e80c526.json"
     },
     "redisson-3.0": {
-      "hash": "415578f5035c",
-      "url": "/data/instrumentations/415578f5035c.json"
+      "hash": "ca23d54dc4f3",
+      "url": "/data/instrumentations/ca23d54dc4f3.json"
     },
     "redisson-3.17": {
-      "hash": "e1aa72a95342",
-      "url": "/data/instrumentations/e1aa72a95342.json"
+      "hash": "7bd81fed0be3",
+      "url": "/data/instrumentations/7bd81fed0be3.json"
     },
     "resources": {
       "hash": "7d316e71c5f5",
       "url": "/data/instrumentations/7d316e71c5f5.json"
     },
     "restlet-1.1": {
-      "hash": "a5703f8b00ee",
-      "url": "/data/instrumentations/a5703f8b00ee.json"
+      "hash": "2488d4a384c7",
+      "url": "/data/instrumentations/2488d4a384c7.json"
     },
     "restlet-2.0": {
-      "hash": "38c399724a44",
-      "url": "/data/instrumentations/38c399724a44.json"
+      "hash": "00f9e01c90a0",
+      "url": "/data/instrumentations/00f9e01c90a0.json"
     },
     "rmi": {
       "hash": "72fd494ab96f",
@@ -981,6 +981,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 70
+    "changed_from_previous": 76
   }
 }
