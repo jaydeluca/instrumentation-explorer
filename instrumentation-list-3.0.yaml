@@ -10476,6 +10476,8 @@ libraries:
           type: LONG
         - name: http.route
           type: STRING
+        - name: peer.service
+          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
@@ -10654,6 +10656,23 @@ libraries:
     target_versions:
       javaagent:
       - org.redisson:redisson:[3.0.0,3.17.0)
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation
+          type: STRING
+        - name: db.statement
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
   - name: redisson-3.17
     description: This instrumentation enables database client spans and database client
       metrics for Redisson Redis client operations.
@@ -10667,7 +10686,37 @@ libraries:
     target_versions:
       javaagent:
       - org.redisson:redisson:[3.17.0,)
-    telemetry: []
+    telemetry:
+    - when: default
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.query.text
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: network.peer.address
+          type: STRING
+        - name: network.peer.port
+          type: LONG
+        - name: network.type
+          type: STRING
   resources:
   - name: resources
     source_path: instrumentation/resources
