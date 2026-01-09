@@ -183,6 +183,11 @@
               "semconv": true
             },
             {
+              "name": "peer.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
               "name": "server.address",
               "type": "STRING",
               "semconv": true
@@ -271,7 +276,5 @@
         }
       ]
     }
-  },
-  "markdown_hash": "844428a9adca",
-  "markdown_url": "/data/markdown/844428a9adca.md"
+  }
 }
