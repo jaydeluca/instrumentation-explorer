@@ -679,8 +679,8 @@
       "url": "/data/instrumentations/b41979a0d1e8.json"
     },
     "ratpack-1.7": {
-      "hash": "362b76c9d433",
-      "url": "/data/instrumentations/362b76c9d433.json"
+      "hash": "968456fca298",
+      "url": "/data/instrumentations/968456fca298.json"
     },
     "reactor-3.1": {
       "hash": "7a7ff2c9e9ab",
@@ -707,12 +707,12 @@
       "url": "/data/instrumentations/e5d837643e9b.json"
     },
     "redisson-3.0": {
-      "hash": "ca23d54dc4f3",
-      "url": "/data/instrumentations/ca23d54dc4f3.json"
+      "hash": "f439f9398aae",
+      "url": "/data/instrumentations/f439f9398aae.json"
     },
     "redisson-3.17": {
-      "hash": "40973c92970f",
-      "url": "/data/instrumentations/40973c92970f.json"
+      "hash": "d725b08c6ccd",
+      "url": "/data/instrumentations/d725b08c6ccd.json"
     },
     "resources": {
       "hash": "1c47ef436f03",
