@@ -1,69 +1,40 @@
 {
-  "id": "redisson-3.17",
+  "id": "redisson-3.0",
   "library_group": "redisson",
   "description": "This instrumentation enables database client spans and database client metrics for Redisson Redis client operations.",
   "library_link": "https://github.com/redisson/redisson",
-  "source_path": "instrumentation/redisson/redisson-3.17",
+  "source_path": "instrumentation/redisson/redisson-3.0",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.redisson-3.17"
+    "name": "io.opentelemetry.redisson-3.0"
   },
   "target_versions": {
     "javaagent": [
-      "org.redisson:redisson:[3.17.0,)"
+      "org.redisson:redisson:[3.0.0,3.17.0)"
     ]
   },
   "telemetry": {
-    "otel.semconv-stability.opt-in=database": {
-      "metrics": [
-        {
-          "name": "db.client.operation.duration",
-          "description": "Duration of database client operations.",
-          "type": "HISTOGRAM",
-          "unit": "s",
-          "attributes": [
-            {
-              "name": "db.operation.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "db.system.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            }
-          ]
-        }
-      ],
+    "default": {
+      "metrics": [],
       "spans": [
         {
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.operation",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.query.text",
+              "name": "db.statement",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.system.name",
+              "name": "db.system",
               "type": "STRING",
               "semconv": false
             },

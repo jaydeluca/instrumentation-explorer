@@ -2698,7 +2698,7 @@
         "DATABASE_CLIENT_SPANS",
         "DATABASE_CLIENT_METRICS"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "redisson-3.17",
