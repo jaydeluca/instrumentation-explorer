@@ -1,0 +1,193 @@
+{
+  "id": "rocketmq-client-4.8",
+  "display_name": "Apache RocketMQ Client - Remoting Protocol",
+  "library_group": "rocketmq",
+  "description": "This instrumentation enables messaging spans for Apache RocketMQ message producers and consumers using the Remoting Protocol.\n",
+  "library_link": "https://rocketmq.apache.org/",
+  "source_path": "instrumentation/rocketmq/rocketmq-client-4.8",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.rocketmq-client-4.8"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.rocketmq:rocketmq-client:[4.0.0,)"
+    ],
+    "library": [
+      "org.apache.rocketmq:rocketmq-client:4.8.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "Enables capturing messaging headers as span attributes. Provide a comma-separated list of header names to capture.\n",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.rocketmq-client.experimental-span-attributes",
+      "description": "Enables capturing experimental span attributes `messaging.rocketmq.message.tag`, `messaging.rocketmq.broker_address`, `messaging.rocketmq.send_result`, `messaging.rocketmq.queue_id`, and `messaging.rocketmq.queue_offset`.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.rocketmq-client.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.broker_address",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.message.tag",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.queue_id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.queue_offset",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.broker_address",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.message.tag",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.send_result",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
