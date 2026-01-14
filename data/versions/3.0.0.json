@@ -731,12 +731,12 @@
       "url": "/data/instrumentations/72fd494ab96f.json"
     },
     "rocketmq-client-4.8": {
-      "hash": "1dcb9536b0a5",
-      "url": "/data/instrumentations/1dcb9536b0a5.json"
+      "hash": "f3e414d51765",
+      "url": "/data/instrumentations/f3e414d51765.json"
     },
     "rocketmq-client-5.0": {
-      "hash": "aef99c704cd9",
-      "url": "/data/instrumentations/aef99c704cd9.json"
+      "hash": "97c0cb0ccd63",
+      "url": "/data/instrumentations/97c0cb0ccd63.json"
     },
     "runtime-telemetry-java17": {
       "hash": "d9b8f5ec8465",
@@ -981,6 +981,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 76
+    "changed_from_previous": 77
   }
 }
