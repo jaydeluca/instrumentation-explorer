@@ -1,0 +1,155 @@
+{
+  "id": "rocketmq-client-5.0",
+  "display_name": "Apache RocketMQ Client - gRPC Protocol",
+  "library_group": "rocketmq",
+  "description": "This instrumentation enables messaging spans for Apache RocketMQ message producers and consumers using the gRPC/Protobuf Protocol.\n",
+  "library_link": "https://rocketmq.apache.org/",
+  "source_path": "instrumentation/rocketmq/rocketmq-client-5.0",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.rocketmq-client-5.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.rocketmq:rocketmq-client-java:[5.0.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "Enables capturing messaging headers as span attributes. Provide a comma-separated list of header names to capture.\n",
+      "type": "list",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.batch.message_count",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.client_group",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.message.delivery_timestamp",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.group",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.keys",
+              "type": "STRING_ARRAY",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.tag",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rocketmq.message.delivery_timestamp",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.group",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.keys",
+              "type": "STRING_ARRAY",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.tag",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.rocketmq.message.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

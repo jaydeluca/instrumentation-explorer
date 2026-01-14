@@ -2776,21 +2776,37 @@
     },
     {
       "id": "rocketmq-client-4.8",
+      "display_name": "Apache RocketMQ Client - Remoting Protocol",
       "library_group": "rocketmq",
+      "description": "This instrumentation enables messaging spans for Apache RocketMQ message producers and consumers using the Remoting Protocol.\n",
       "tags": [
         "rocketmq",
-        "client"
+        "client",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "rocketmq-client-5.0",
+      "display_name": "Apache RocketMQ Client - gRPC Protocol",
       "library_group": "rocketmq",
+      "description": "This instrumentation enables messaging spans for Apache RocketMQ message producers and consumers using the gRPC/Protobuf Protocol.\n",
       "tags": [
         "rocketmq",
-        "client"
+        "grpc",
+        "client",
+        "messaging",
+        "rpc",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "runtime-telemetry-java17",
