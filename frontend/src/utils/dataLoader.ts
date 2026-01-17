@@ -124,11 +124,11 @@ export async function loadVersionManifest(
 /**
  * Load a single instrumentation by content hash
  * @param hash The content hash
- * @param filename Optional filename (for ID-prefixed format). If not provided, uses hash-only format for backward compatibility.
+ * @param filename The ID-prefixed filename (e.g., 'aws-sdk-1.11-48c8b39bee75.json')
  */
 export async function loadInstrumentation(
   hash: string,
-  filename?: string
+  filename: string
 ): Promise<InstrumentationData> {
   const cacheKey = `instrumentation-${hash}`;
 
@@ -144,9 +144,7 @@ export async function loadInstrumentation(
 
   // Create new request
   const request = (async () => {
-    // Use provided filename or fall back to hash-only format
-    const file = filename || `${hash}.json`;
-    const response = await fetch(`${BASE_PATH}/instrumentations/${file}`);
+    const response = await fetch(`${BASE_PATH}/instrumentations/${filename}`);
     if (!response.ok) {
       throw new Error(
         `Failed to load instrumentation ${hash}: ${response.statusText}`
@@ -206,9 +204,9 @@ export async function loadAllInstrumentationsForVersion(
 /**
  * Load markdown content by hash
  * @param hash The content hash
- * @param id Optional instrumentation ID for ID-prefixed filename format
+ * @param id Instrumentation ID for ID-prefixed filename (e.g., 'aws-sdk-1.11')
  */
-export async function loadMarkdown(hash: string, id?: string): Promise<string> {
+export async function loadMarkdown(hash: string, id: string): Promise<string> {
   const cacheKey = `markdown-${hash}`;
 
   // Return cached data if available
@@ -223,8 +221,7 @@ export async function loadMarkdown(hash: string, id?: string): Promise<string> {
 
   // Create new request
   const request = (async () => {
-    // Use ID-prefixed filename if ID provided, otherwise fall back to hash-only
-    const filename = id ? `${id}-${hash}.md` : `${hash}.md`;
+    const filename = `${id}-${hash}.md`;
     const response = await fetch(`${BASE_PATH}/markdown/${filename}`);
     if (!response.ok) {
       throw new Error(

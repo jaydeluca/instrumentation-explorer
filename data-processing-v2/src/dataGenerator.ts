@@ -1,4 +1,4 @@
-import { mkdir, writeFile, readFile, access, readdir } from 'fs/promises';
+import { mkdir, writeFile, readFile, readdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { createHash } from 'crypto';
 import { contentHash, createFilename, contentHashString } from './contentHash.js';
@@ -182,8 +182,6 @@ export class DataGenerator {
    */
   private async addMarkdownReference(data: InstrumentationData, version: string): Promise<InstrumentationData> {
     const projectRoot = dirname(dirname(dirname(this.options.outputDir)));
-
-    // Try new ID-prefixed location in shared directory
     const sharedReadmeDir = join(projectRoot, 'data', 'library_readme');
 
     try {
@@ -210,21 +208,11 @@ export class DataGenerator {
         }
       }
     } catch (error) {
-      // Shared directory doesn't exist or other error - try fallback
+      // Shared directory doesn't exist or no matching file - that's ok
     }
 
-    // Fallback to old version-specific location for backward compatibility
-    const legacyPath = join(projectRoot, 'data', version, 'library_readme', `${data.id}.md`);
-    try {
-      await access(legacyPath);
-      const markdownContent = await readFile(legacyPath, 'utf-8');
-      const hash = contentHashString(markdownContent);
-      const { url } = this.writeMarkdown(markdownContent, data.id, hash);
-      return { ...data, markdown_hash: hash, markdown_url: url };
-    } catch {
-      // No README found - that's ok
-      return data;
-    }
+    // No README found for this instrumentation
+    return data;
   }
 
   /**
