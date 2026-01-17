@@ -1,0 +1,18 @@
+{
+  "id": "lettuce-5.1",
+  "library_group": "lettuce",
+  "source_path": "instrumentation/lettuce/lettuce-5.1",
+  "scope": {
+    "name": "io.opentelemetry.lettuce-5.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "io.lettuce:lettuce-core:[5.1.0.RELEASE,)"
+    ],
+    "library": [
+      "io.lettuce:lettuce-core:5.1.0.RELEASE"
+    ]
+  },
+  "markdown_hash": "0ec91bca1453",
+  "markdown_url": "/data/markdown/lettuce-5.1-0ec91bca1453.md"
+}

@@ -1,0 +1,217 @@
+{
+  "id": "openai-java-1.1",
+  "display_name": "OpenAI Java SDK",
+  "library_group": "openai",
+  "description": "This instrumentation enables Gen AI client spans and metrics for the OpenAI Java SDK.",
+  "library_link": "https://github.com/openai/openai-java",
+  "source_path": "instrumentation/openai/openai-java-1.1",
+  "semantic_conventions": [
+    "GENAI_CLIENT_SPANS",
+    "GENAI_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.openai-java-1.1"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.openai:openai-java:[1.1.0,3)"
+    ],
+    "library": [
+      "com.openai:openai-java:1.1.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.genai.capture-message-content",
+      "description": "Enables including the full content of user and assistant messages in emitted log events. Note that full content can have data privacy and size concerns, and care should be taken when enabling this.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "gen_ai.client.operation.duration",
+          "description": "GenAI operation duration.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "gen_ai.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.provider.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.model",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "gen_ai.client.token.usage",
+          "description": "Measures number of input and output tokens used.",
+          "type": "HISTOGRAM",
+          "unit": "token",
+          "attributes": [
+            {
+              "name": "gen_ai.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.provider.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.token.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "gen_ai.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.provider.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.encoding_formats",
+              "type": "STRING_ARRAY",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.usage.input_tokens",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "gen_ai.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.provider.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.frequency_penalty",
+              "type": "DOUBLE",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.max_tokens",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.presence_penalty",
+              "type": "DOUBLE",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.seed",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.stop_sequences",
+              "type": "STRING_ARRAY",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.temperature",
+              "type": "DOUBLE",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.request.top_p",
+              "type": "DOUBLE",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.finish_reasons",
+              "type": "STRING_ARRAY",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.response.model",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.usage.input_tokens",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "gen_ai.usage.output_tokens",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "866aa0171449",
+  "markdown_url": "/data/markdown/openai-java-1.1-866aa0171449.md"
+}

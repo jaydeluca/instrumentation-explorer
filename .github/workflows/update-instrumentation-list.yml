@@ -71,8 +71,8 @@ jobs:
       run: |
         echo "Checking for changes..."
         git status
-        
-        # Add data directory to catch new README files
+
+        # Add data directories (includes library_readme/ with ID-prefixed READMEs and version-specific data)
         git add data/ frontend/public/data/ instrumentation-list-*.yaml 2>/dev/null || true
         
         # Check if there are any changes (staged or unstaged)

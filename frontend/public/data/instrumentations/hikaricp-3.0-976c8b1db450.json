@@ -1,0 +1,250 @@
+{
+  "id": "hikaricp-3.0",
+  "library_group": "hikaricp",
+  "description": "This instrumentation provides database client metrics for HikariCP 3.0+ connection pools. It reports metrics like connection timeouts, creation time, wait time, and usage time, along with connection pool statistics such as the number of active, idle, and pending connections.\n",
+  "library_link": "https://github.com/brettwooldridge/HikariCP",
+  "source_path": "instrumentation/hikaricp-3.0",
+  "scope": {
+    "name": "io.opentelemetry.hikaricp-3.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.zaxxer:HikariCP:[3.0.0,)"
+    ],
+    "library": [
+      "com.zaxxer:HikariCP:3.0.0"
+    ]
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.connections.create_time",
+          "description": "The time it took to create a new connection.",
+          "type": "HISTOGRAM",
+          "unit": "ms",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.idle.min",
+          "description": "The minimum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.pending_requests",
+          "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+          "type": "LONG_SUM",
+          "unit": "requests",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.timeouts",
+          "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+          "type": "LONG_SUM",
+          "unit": "timeouts",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.usage",
+          "description": "The number of connections that are currently in state described by the state attribute.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "state",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.use_time",
+          "description": "The time between borrowing a connection and returning it to the pool.",
+          "type": "HISTOGRAM",
+          "unit": "ms",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.wait_time",
+          "description": "The time it took to obtain an open connection from the pool.",
+          "type": "HISTOGRAM",
+          "unit": "ms",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    },
+    "otel.semconv-stability.opt-in=database": {
+      "metrics": [
+        {
+          "name": "db.client.connection.count",
+          "description": "The number of connections that are currently in state described by the state attribute.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.client.connection.state",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.create_time",
+          "description": "The time it took to create a new connection.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.idle.min",
+          "description": "The minimum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.pending_requests",
+          "description": "The number of current pending requests for an open connection.",
+          "type": "LONG_SUM",
+          "unit": "request",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.timeouts",
+          "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+          "type": "LONG_SUM",
+          "unit": "timeout",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.use_time",
+          "description": "The time between borrowing a connection and returning it to the pool.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.wait_time",
+          "description": "The time it took to obtain an open connection from the pool.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  },
+  "markdown_hash": "34a91077c477",
+  "markdown_url": "/data/markdown/hikaricp-3.0-34a91077c477.md"
+}

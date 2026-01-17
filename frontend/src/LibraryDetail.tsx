@@ -55,10 +55,10 @@ function LibraryDetail() {
   // Load markdown content lazily when switching to standalone tab
   useEffect(() => {
     async function loadMarkdownContent() {
-      if (activeTab === "standalone" && library?.markdown_hash && !markdownContent && !markdownLoading) {
+      if (activeTab === "standalone" && library?.markdown_hash && libraryName && !markdownContent && !markdownLoading) {
         setMarkdownLoading(true);
         try {
-          const content = await loadMarkdown(library.markdown_hash);
+          const content = await loadMarkdown(library.markdown_hash, libraryName);
           setMarkdownContent(content);
         } catch (error) {
           console.error("Failed to load markdown:", error);
@@ -68,9 +68,9 @@ function LibraryDetail() {
         }
       }
     }
-    
+
     loadMarkdownContent();
-  }, [activeTab, library?.markdown_hash, markdownContent, markdownLoading]);
+  }, [activeTab, library?.markdown_hash, markdownContent, markdownLoading, libraryName]);
 
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
