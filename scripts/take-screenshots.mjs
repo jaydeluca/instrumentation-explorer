@@ -10,7 +10,7 @@ const PORT = 3000;
 const BASE_PATH = '/instrumentation-explorer/';
 const URL = `http://localhost:${PORT}${BASE_PATH}`;
 
-const AGENT_VERSION = "2.21.0"
+const AGENT_VERSION = "2.24.0"
 
 async function takeScreenshots() {
   const serve = serveStatic('frontend/dist', { 'index': ['index.html'] });
@@ -116,7 +116,7 @@ async function takeScreenshots() {
     logTime('Taking Apache DBCP library screenshots with Standalone Library tab...');
     // Take a full-page screenshot of the apache-dbcp-2.0 library page showing the standalone library tab
     await page.selectOption('#theme-select', 'default');
-    await page.goto(`${URL}library/2.19.0/apache-dbcp-2.0`, { waitUntil: 'domcontentloaded', timeout: 3000 });
+    await page.goto(`${URL}library/${AGENT_VERSION}/apache-dbcp-2.0`, { waitUntil: 'domcontentloaded', timeout: 3000 });
     
     // Wait for the tabs to load and click on the "Standalone Library" tab
     try {
