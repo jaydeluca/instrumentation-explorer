@@ -1,0 +1,19 @@
+{
+  "id": "logback-mdc-1.0",
+  "library_group": "logback",
+  "source_path": "instrumentation/logback/logback-mdc-1.0",
+  "scope": {
+    "name": "io.opentelemetry.logback-mdc-1.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "ch.qos.logback:logback-classic:[1.0.0,1.2.3]"
+    ],
+    "library": [
+      "ch.qos.logback:logback-classic:1.0.0",
+      "org.slf4j:slf4j-api:1.6.4"
+    ]
+  },
+  "markdown_hash": "05abcc1b7639",
+  "markdown_url": "/data/markdown/logback-mdc-1.0-05abcc1b7639.md"
+}
