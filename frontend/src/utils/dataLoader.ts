@@ -123,12 +123,15 @@ export async function loadVersionManifest(
 
 /**
  * Load a single instrumentation by content hash
+ * @param hash The content hash
+ * @param filename Optional filename (for ID-prefixed format). If not provided, uses hash-only format for backward compatibility.
  */
 export async function loadInstrumentation(
-  hash: string
+  hash: string,
+  filename?: string
 ): Promise<InstrumentationData> {
   const cacheKey = `instrumentation-${hash}`;
-  
+
   // Return cached data if available
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey) as InstrumentationData;
@@ -141,7 +144,9 @@ export async function loadInstrumentation(
 
   // Create new request
   const request = (async () => {
-    const response = await fetch(`${BASE_PATH}/instrumentations/${hash}.json`);
+    // Use provided filename or fall back to hash-only format
+    const file = filename || `${hash}.json`;
+    const response = await fetch(`${BASE_PATH}/instrumentations/${file}`);
     if (!response.ok) {
       throw new Error(
         `Failed to load instrumentation ${hash}: ${response.statusText}`
@@ -174,7 +179,7 @@ export async function loadInstrumentationByIdAndVersion(
     );
   }
 
-  return loadInstrumentation(reference.hash);
+  return loadInstrumentation(reference.hash, reference.filename);
 }
 
 /**
@@ -191,7 +196,7 @@ export async function loadAllInstrumentationsForVersion(
   const instrumentations = await Promise.all(
     instrumentationIds.map(async (id) => {
       const reference = manifest.instrumentations[id];
-      return loadInstrumentation(reference.hash);
+      return loadInstrumentation(reference.hash, reference.filename);
     })
   );
 
@@ -200,10 +205,12 @@ export async function loadAllInstrumentationsForVersion(
 
 /**
  * Load markdown content by hash
+ * @param hash The content hash
+ * @param id Optional instrumentation ID for ID-prefixed filename format
  */
-export async function loadMarkdown(hash: string): Promise<string> {
+export async function loadMarkdown(hash: string, id?: string): Promise<string> {
   const cacheKey = `markdown-${hash}`;
-  
+
   // Return cached data if available
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey) as string;
@@ -216,7 +223,9 @@ export async function loadMarkdown(hash: string): Promise<string> {
 
   // Create new request
   const request = (async () => {
-    const response = await fetch(`${BASE_PATH}/markdown/${hash}.md`);
+    // Use ID-prefixed filename if ID provided, otherwise fall back to hash-only
+    const filename = id ? `${id}-${hash}.md` : `${hash}.md`;
+    const response = await fetch(`${BASE_PATH}/markdown/${filename}`);
     if (!response.ok) {
       throw new Error(
         `Failed to load markdown ${hash}: ${response.statusText}`

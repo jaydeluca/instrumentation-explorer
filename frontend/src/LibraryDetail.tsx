@@ -58,7 +58,7 @@ function LibraryDetail() {
       if (activeTab === "standalone" && library?.markdown_hash && !markdownContent && !markdownLoading) {
         setMarkdownLoading(true);
         try {
-          const content = await loadMarkdown(library.markdown_hash);
+          const content = await loadMarkdown(library.markdown_hash, libraryName);
           setMarkdownContent(content);
         } catch (error) {
           console.error("Failed to load markdown:", error);
@@ -68,9 +68,9 @@ function LibraryDetail() {
         }
       }
     }
-    
+
     loadMarkdownContent();
-  }, [activeTab, library?.markdown_hash, markdownContent, markdownLoading]);
+  }, [activeTab, library?.markdown_hash, markdownContent, markdownLoading, libraryName]);
 
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);

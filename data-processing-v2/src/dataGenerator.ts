@@ -1,7 +1,7 @@
-import { mkdir, writeFile, readFile, access } from 'fs/promises';
+import { mkdir, writeFile, readFile, access, readdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { createHash } from 'crypto';
-import { contentHash } from './contentHash.js';
+import { contentHash, createFilename, contentHashString } from './contentHash.js';
 import { parseYAML, extractInstrumentations, extractTags, hasTelemetry } from './yamlParser.js';
 import { fetchConventionMappings } from './semconvFetcher.js';
 import { setSemanticConventionMappings, analyzeMetric, analyzeSpan } from './semconvAnalyzer.js';
@@ -118,9 +118,9 @@ export class DataGenerator {
       
       // Add markdown content reference if it exists
       analyzedInstr = await this.addMarkdownReference(analyzedInstr, config.version);
-      
-      const { hash, url, isNew } = this.writeInstrumentation(analyzedInstr);
-      versionRefs[instr.id] = { hash, url };
+
+      const { hash, url, filename, isNew } = this.writeInstrumentation(analyzedInstr);
+      versionRefs[instr.id] = { hash, url, filename };
       
       if (isNew) {
         newCount++;
@@ -181,80 +181,107 @@ export class DataGenerator {
    * Add markdown content reference to instrumentation data
    */
   private async addMarkdownReference(data: InstrumentationData, version: string): Promise<InstrumentationData> {
-    // Try to find markdown file in data/{version}/library_readme/
     const projectRoot = dirname(dirname(dirname(this.options.outputDir)));
-    const markdownPath = join(projectRoot, 'data', version, 'library_readme', `${data.id}.md`);
-    
+
+    // Try new ID-prefixed location in shared directory
+    const sharedReadmeDir = join(projectRoot, 'data', 'library_readme');
+
     try {
-      await access(markdownPath);
-      const markdownContent = await readFile(markdownPath, 'utf-8');
-      const { hash, url } = this.writeMarkdown(markdownContent);
-      
-      return {
-        ...data,
-        markdown_hash: hash,
-        markdown_url: url
-      };
+      // Look for files matching pattern: {id}-{hash}.md
+      const files = await readdir(sharedReadmeDir);
+      const pattern = new RegExp(`^${data.id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-([0-9a-f]{12})\\.md$`);
+
+      for (const file of files) {
+        const match = file.match(pattern);
+        if (match) {
+          // Found matching README
+          const readmePath = join(sharedReadmeDir, file);
+          const markdownContent = await readFile(readmePath, 'utf-8');
+          const hash = match[1]; // Extract hash from filename
+
+          // Write to frontend markdown directory (with ID prefix)
+          const { url } = this.writeMarkdown(markdownContent, data.id, hash);
+
+          return {
+            ...data,
+            markdown_hash: hash,
+            markdown_url: url
+          };
+        }
+      }
     } catch (error) {
-      // Markdown file doesn't exist - that's ok
+      // Shared directory doesn't exist or other error - try fallback
+    }
+
+    // Fallback to old version-specific location for backward compatibility
+    const legacyPath = join(projectRoot, 'data', version, 'library_readme', `${data.id}.md`);
+    try {
+      await access(legacyPath);
+      const markdownContent = await readFile(legacyPath, 'utf-8');
+      const hash = contentHashString(markdownContent);
+      const { url } = this.writeMarkdown(markdownContent, data.id, hash);
+      return { ...data, markdown_hash: hash, markdown_url: url };
+    } catch {
+      // No README found - that's ok
       return data;
     }
   }
 
   /**
    * Write a markdown file (with deduplication)
+   * @param content Markdown content
+   * @param id Instrumentation ID for filename prefix
+   * @param hash Content hash (if already computed)
    */
-  private writeMarkdown(content: string): { hash: string; url: string } {
-    const hash = createHash('sha256')
-      .update(content)
-      .digest('hex')
-      .slice(0, 12);
-    
+  private writeMarkdown(content: string, id: string, hash?: string): { hash: string; url: string } {
+    // Use provided hash or compute it
+    const contentHash = hash || contentHashString(content);
+
     // Check if we already have this content
-    if (this.markdownHashToFile.has(hash)) {
+    if (this.markdownHashToFile.has(contentHash)) {
       return {
-        hash,
-        url: this.markdownHashToFile.get(hash)!
+        hash: contentHash,
+        url: this.markdownHashToFile.get(contentHash)!
       };
     }
 
-    // New content - write file
-    const filename = `${hash}.md`;
+    // New content - write file with ID prefix
+    const filename = createFilename(id, contentHash, 'md');
     const filepath = join('markdown', filename);
     const url = `${this.options.baseUrl}/${filepath}`;
-    
-    this.markdownHashToFile.set(hash, url);
-    this.markdownHashToContent.set(hash, content);
+
+    this.markdownHashToFile.set(contentHash, url);
+    this.markdownHashToContent.set(contentHash, content);
 
     const fullPath = join(this.options.outputDir, filepath);
     writeFile(fullPath, content, 'utf-8').catch(err => {
       console.error(`Failed to write ${fullPath}:`, err);
     });
 
-    return { hash, url };
+    return { hash: contentHash, url };
   }
 
   /**
    * Write an instrumentation file (with deduplication)
    */
-  private writeInstrumentation(data: InstrumentationData): HashMapping & { isNew: boolean } {
+  private writeInstrumentation(data: InstrumentationData): HashMapping & { isNew: boolean; filename: string } {
     const hash = contentHash(data);
-    
-    // Check if we already have this content
+    const filename = createFilename(data.id, hash, 'json');
+    const filepath = join('instrumentations', filename);
+    const url = `${this.options.baseUrl}/${filepath}`;
+
+    // Check if we already have this exact file
     if (this.hashToFile.has(hash)) {
       return {
         hash,
         url: this.hashToFile.get(hash)!,
         data,
+        filename,
         isNew: false
       };
     }
 
     // New content - write file
-    const filename = `${hash}.json`;
-    const filepath = join('instrumentations', filename);
-    const url = `${this.options.baseUrl}/${filepath}`;
-    
     this.hashToFile.set(hash, url);
     this.hashToData.set(hash, data);
 
@@ -263,7 +290,7 @@ export class DataGenerator {
       console.error(`Failed to write ${fullPath}:`, err);
     });
 
-    return { hash, url, data, isNew: true };
+    return { hash, url, data, filename, isNew: true };
   }
 
   /**

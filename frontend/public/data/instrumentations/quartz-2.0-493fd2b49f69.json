@@ -1,0 +1,18 @@
+{
+  "id": "quartz-2.0",
+  "library_group": "quartz",
+  "source_path": "instrumentation/quartz-2.0",
+  "scope": {
+    "name": "io.opentelemetry.quartz-2.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.quartz-scheduler:quartz:[2.0.0,)"
+    ],
+    "library": [
+      "org.quartz-scheduler:quartz:2.0.0"
+    ]
+  },
+  "markdown_hash": "4b4e201cb808",
+  "markdown_url": "/data/markdown/quartz-2.0-4b4e201cb808.md"
+}
