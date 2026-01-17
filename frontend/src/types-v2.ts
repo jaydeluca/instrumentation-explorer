@@ -55,6 +55,8 @@ export interface VersionManifest {
 export interface InstrumentationReference {
   hash: string;
   url: string;
+  filename: string;  // Full filename with ID prefix (e.g., 'aws-sdk-1.11-48c8b39bee75.json')
+  readme_hash?: string;  // Optional README content hash
 }
 
 /**

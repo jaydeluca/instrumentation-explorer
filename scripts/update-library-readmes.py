@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 Script to download README files from OpenTelemetry Java Instrumentation libraries.
-This script fetches README files for each instrumentation library and saves them 
-in a versioned directory structure.
+This script fetches README files for each instrumentation library and saves them
+with ID-prefixed content-hashed filenames in a shared directory.
 """
 
 import argparse
 import base64
+import hashlib
 import os
 import requests
 import sys
@@ -192,63 +193,82 @@ def download_readme_content(github_client: GitHubClient, readme_path: str, commi
     
     return content
 
-def save_readme(content: str, library_name: str, version: str) -> str:
-    """Save README content to the versioned directory."""
+def compute_content_hash(content: str) -> str:
+    """Compute SHA-256 hash (first 12 chars) - matches TypeScript."""
+    return hashlib.sha256(content.encode('utf-8')).hexdigest()[:12]
+
+
+def save_readme(content: str, library_name: str) -> Tuple[str, str, bool]:
+    """
+    Save README with ID-prefixed content hash.
+    Returns (hash, filename, is_new).
+    """
     script_dir = Path(__file__).parent
     project_root = script_dir.parent
-    
-    # Create directory structure
-    readme_dir = project_root / "data" / version / "library_readme"
+
+    # Create shared library_readme directory (no version subdirs)
+    readme_dir = project_root / "data" / "library_readme"
     readme_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Use library name directly (already just the final segment)
-    # Save README file
-    filename = f"{library_name}.md"
+
+    # Compute hash and create filename with ID prefix
+    content_hash = compute_content_hash(content)
+    filename = f"{library_name}-{content_hash}.md"
     filepath = readme_dir / filename
-    
+
+    # Check if file already exists (same content)
+    if filepath.exists():
+        print(f"  ✓ README unchanged: {filename}")
+        return content_hash, filename, False
+
+    # Write new file
     try:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f"  Saved README to {filepath}")
-        return str(filepath)
+        print(f"  ✓ Saved: {filename}")
+        return content_hash, filename, True
     except IOError as e:
-        print(f"  Error saving README for {library_name}: {e}")
-        return ""
+        print(f"  ✗ Error saving README for {library_name}: {e}")
+        return "", "", False
 
-def process_readmes(github_client: GitHubClient, commit_sha: str, version: str, libraries: List[Tuple[str, str]], delay: float = 0.5):
+def process_readmes(github_client: GitHubClient, commit_sha: str, libraries: List[Tuple[str, str]], delay: float = 0.5):
     """
     Process README files for all libraries using GitHub API.
-    Downloads and saves all README files to the versioned directory.
+    Downloads and saves all README files with ID-prefixed content hashing.
     """
-    print(f"\nProcessing {len(libraries)} libraries for version {version}...")
+    print(f"\nProcessing {len(libraries)} libraries...")
     print(f"Using {delay}s delay between requests to respect API limits...")
-    
+
     successful_downloads = 0
+    new_files = 0
+    unchanged_files = 0
     failed_downloads = 0
-    
+
     for i, (library_name, readme_path) in enumerate(libraries):
         print(f"[{i+1}/{len(libraries)}] Processing {library_name}")
-        
+
         # Download README content
         content = download_readme_content(github_client, readme_path, commit_sha, library_name)
-        
+
         if content is not None:
-            # Save README file
-            filepath = save_readme(content, library_name, version)
-            if filepath:
+            # Save README file with ID-prefixed content hash
+            content_hash, filename, is_new = save_readme(content, library_name)
+            if filename:
                 successful_downloads += 1
-                print(f"  Saved README ({len(content):,} bytes)")
+                if is_new:
+                    new_files += 1
+                else:
+                    unchanged_files += 1
             else:
                 failed_downloads += 1
         else:
-            print(f"  Skipping {library_name} (README not found)")
+            print(f"  ✗ Skipping {library_name} (README not found)")
             failed_downloads += 1
-        
+
         # Rate limiting - sleep between requests except for the last one
         if i < len(libraries) - 1:
             time.sleep(delay)
-    
-    return successful_downloads, failed_downloads
+
+    return successful_downloads, new_files, unchanged_files, failed_downloads
 
 
 
@@ -313,18 +333,20 @@ def process_single_version(github_client: GitHubClient, version_or_tag: str, com
         return False
     
     print(f"Found {len(libraries)} library README files to process")
-    
+
     # Process README files
-    successful_downloads, failed_downloads = process_readmes(github_client, commit_sha, clean_version, libraries)
-    
+    successful_downloads, new_files, unchanged_files, failed_downloads = process_readmes(github_client, commit_sha, libraries)
+
     print(f"\nREADME download process complete for version {clean_version}!")
     print(f"- Source: {version_or_tag}")
     print(f"- Commit SHA: {commit_sha[:8]}...")
     print(f"- Libraries processed: {len(libraries)}")
     print(f"- Successful downloads: {successful_downloads}")
+    print(f"  - New/changed files: {new_files}")
+    print(f"  - Unchanged files: {unchanged_files}")
     print(f"- Failed downloads: {failed_downloads}")
-    print(f"- Files saved to: data/{clean_version}/library_readme/")
-    
+    print(f"- Files saved to: data/library_readme/")
+
     return True
 
 

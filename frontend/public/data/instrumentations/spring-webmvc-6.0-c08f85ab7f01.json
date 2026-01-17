@@ -1,0 +1,85 @@
+{
+  "id": "spring-webmvc-6.0",
+  "library_group": "spring",
+  "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 6.0+.\n",
+  "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/package-summary.html",
+  "source_path": "instrumentation/spring/spring-webmvc/spring-webmvc-6.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.spring-webmvc-6.0"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.springframework:spring-webmvc:[6.0.0,)"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.spring-webmvc.experimental-span-attributes",
+      "description": "Enables the capture of experimental span attributes `spring-webmvc-view-name` and `spring-webmvc.view.type`.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+      "description": "Enables the creation of experimental view spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.spring-webmvc.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "spring-webmvc.view.type",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "0e0850ffa500",
+  "markdown_url": "/data/markdown/spring-webmvc-6.0-0e0850ffa500.md"
+}

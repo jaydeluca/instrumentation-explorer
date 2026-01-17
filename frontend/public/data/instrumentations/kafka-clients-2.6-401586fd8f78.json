@@ -1,0 +1,31 @@
+{
+  "id": "kafka-clients-2.6",
+  "library_group": "kafka",
+  "description": "This instrumentation provides a library integration that enables messaging spans and metrics for Apache Kafka 2.6+ clients.\n",
+  "library_link": "https://kafka.apache.org/",
+  "source_path": "instrumentation/kafka/kafka-clients/kafka-clients-2.6",
+  "scope": {
+    "name": "io.opentelemetry.kafka-clients-2.6"
+  },
+  "target_versions": {
+    "library": [
+      "org.apache.kafka:kafka-clients:2.6.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.messaging.experimental.capture-headers",
+      "description": "A comma-separated list of header names to capture as span attributes.",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables experimental receive telemetry, which will cause consumers to start a new trace, with only a span link connecting it to the producer trace.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "markdown_hash": "0562af8b8d75",
+  "markdown_url": "/data/markdown/kafka-clients-2.6-0562af8b8d75.md"
+}
