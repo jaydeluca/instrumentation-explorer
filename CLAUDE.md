@@ -21,14 +21,13 @@ The `AGENTS.md` file contains comprehensive instructions following the industry 
 ### Essential Commands
 ```bash
 # Bootstrap (run in order)
-cd data-processing && pip install requests pyyaml
-python3 main.py  # Creates enriched JSON (~10 sec)
-npm install      # Install all workspace dependencies (~45 sec)
-npm run build    # Build frontend
+npm install                    # Install all workspace dependencies (~45 sec)
+npm run process-data           # Generate content-addressed data (~5 sec)
+npm run build                  # Build frontend
 
 # Development Commands (from root)
 npm run dev                    # Start dev server at localhost:5173/instrumentation-explorer/
-npm run process-data           # Re-run Python data processing pipeline
+npm run process-data           # Re-run TypeScript data processing pipeline
 npm run update-instrumentation # Download latest instrumentation data from OTel repo
 
 # Testing Commands (from root)
@@ -44,10 +43,11 @@ npm run install-browsers      # Install Playwright browsers
 ```
 
 ### Architecture Overview
-- **Python Pipeline:** `data-processing/main.py` enriches YAML with semantic conventions
-- **React Frontend:** TypeScript + Vite + Material-UI consuming enriched JSON
-- **Key Output:** `frontend/public/instrumentation-list-enriched.json` (generated file)
-- **Data Flow:** OpenTelemetry YAML → Python enrichment → JSON → React consumption
+- **TypeScript Pipeline:** `data-processing-v2/` generates content-addressed data with ID-prefixed filenames
+- **React Frontend:** TypeScript + Vite + Material-UI with lazy-loaded data
+- **Storage Format:** ID-prefixed content-hashed files (e.g., `aws-sdk-1.11-48c8b39bee75.json`)
+- **Data Flow:** OpenTelemetry YAML → TypeScript processing → Content-addressed JSON → React lazy loading
+- **README Storage:** Shared directory with ID-prefixed READMEs (`data/library_readme/{id}-{hash}.md`)
 - **Workspace Structure:** Uses npm workspaces with frontend as a workspace
 
 ### Key Technologies
@@ -59,8 +59,9 @@ npm run install-browsers      # Install Playwright browsers
 ### Critical Notes
 - Never cancel long-running commands (data processing, npm install)
 - GitHub API warnings during data processing are expected and non-blocking
-- Always run data processing before frontend build to generate enriched JSON
+- Data processing generates ID-prefixed files: `{id}-{hash}.json` for instrumentations, `{id}-{hash}.md` for READMEs
+- READMEs stored in shared `data/library_readme/` directory (no version-specific duplication)
+- Generated files in `frontend/public/data/` should never be manually edited
 - Use GitHub Pages routing system with 404.html redirect for direct URLs
-- Generated file `frontend/public/instrumentation-list-enriched.json` should never be manually edited
 
 **⚠️ Always reference `AGENTS.md` for complete guidance - this file is a minimal bridge until agents.md is natively supported.**

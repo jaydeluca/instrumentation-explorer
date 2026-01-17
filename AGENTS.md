@@ -5,9 +5,10 @@
 Instrumentation Explorer is a web-based tool for exploring Java instrumentation libraries from OpenTelemetry. It helps developers understand library capabilities, telemetry data (metrics/spans), semantic convention adherence, and version differences.
 
 **Architecture:**
-- **TypeScript Data Pipeline** (`data-processing-v2/`) - Content-addressed data generation with deduplication
+- **TypeScript Data Pipeline** (`data-processing-v2/`) - Content-addressed data generation with ID-prefixed filenames
 - **React Frontend** (`frontend/`) - TypeScript/Vite application with Material-UI components
-- **Data Flow:** YAML → TypeScript processing → Content-addressed JSON → React lazy loading
+- **Data Flow:** YAML → TypeScript processing → ID-prefixed JSON/MD → React lazy loading
+- **Storage:** ID-prefixed content-hashed files for human-readable debugging and efficient deduplication
 
 **Key Features:**
 - Library browsing with search/filter capabilities
@@ -114,12 +115,17 @@ npm run test:all        # Lint + unit + build + E2E
 
 ### File Structure
 ```
-├── data-processing-v2/      # TypeScript data pipeline with content-addressing
+├── data-processing-v2/      # TypeScript data pipeline with ID-prefixed content-addressing
+├── data/
+│   └── library_readme/      # Shared ID-prefixed READMEs ({id}-{hash}.md)
 ├── frontend/                # React application
 │   ├── src/                # Source code
-│   ├── public/data/        # Content-addressed JSON files
+│   ├── public/data/        # ID-prefixed JSON/MD files
+│   │   ├── instrumentations/  # {id}-{hash}.json
+│   │   ├── markdown/          # {id}-{hash}.md
+│   │   └── versions/          # Version manifests
 │   └── dist/               # Build output
-├── scripts/                # Python automation scripts (YAML downloads)
+├── scripts/                # Python automation scripts (README/YAML downloads)
 └── instrumentation-list-*.yaml  # Source YAML data
 ```
 
@@ -190,9 +196,11 @@ PRs automatically run:
 
 ### Data Pipeline
 - Source: OpenTelemetry `instrumentation-list-*.yaml` files
-- Processing: TypeScript pipeline generates content-addressed JSON
-- Output: Multi-file structure with deduplication (~45% space savings)
-- Versioning: Auto-detection and multi-version lazy loading (2.18+)
+- Processing: TypeScript pipeline generates ID-prefixed content-addressed JSON/MD files
+- Output: Multi-file structure with deduplication (~70% space savings)
+- Filename Format: `{id}-{hash}.{ext}` (e.g., `aws-sdk-1.11-48c8b39bee75.json`)
+- README Storage: Shared directory eliminates version-specific duplication (~64% savings)
+- Versioning: Auto-detection and multi-version lazy loading (2.19+)
 
 ### Key Components
 - `App.tsx`: Main router and application shell

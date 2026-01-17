@@ -25,11 +25,12 @@ The instrumentation data is automatically kept up to date with the latest releas
 
 ## Project Structure
 
-*   **`data-processing-v2/`**: TypeScript pipeline with content-addressed storage for multi-version support (current).
+*   **`data-processing-v2/`**: TypeScript pipeline with ID-prefixed content-addressed storage for multi-version support (current).
+*   **`data/library_readme/`**: Shared directory with ID-prefixed README files (eliminates version duplication).
 *   **`data-processing/`**: Legacy Python script (V1, deprecated).
 *   **`frontend/`**: React frontend application.
-   *   **`frontend/public/data/`**: V2 content-addressed data (multi-version, deduplicated).
-*   **`scripts/`**: Automation scripts for updating instrumentation data.
+   *   **`frontend/public/data/`**: ID-prefixed content-addressed data (multi-version, deduplicated).
+*   **`scripts/`**: Automation scripts for updating instrumentation and README data.
 *   **`.github/workflows/`**: GitHub Actions workflows for automated updates.
 *   **`instrumentation-list-*.yaml`**: Versioned instrumentation data files from OpenTelemetry.
 
@@ -90,14 +91,14 @@ This generates content-addressed data in `frontend/public/data/` with support fo
 **Data Processing Commands:**
 - `npm run process-data` - Generate data only (stays in `data-processing-v2/dist/output/`)
 - `npm run process-data:deploy` - Generate and copy to frontend
-- See [`data-processing-v2/README.md`](./data-processing-v2/README.md) for detailed documentation
 
 **V2 Pipeline Features:**
-- Content-addressed storage with automatic deduplication (~45% space savings)
-- Multi-version support (currently 2.20, 2.21, and 3.0-projected)
+- ID-prefixed content-addressed storage with automatic deduplication (~70% space savings)
+- Human-readable filenames: `{id}-{hash}.json` (e.g., `aws-sdk-1.11-48c8b39bee75.json`)
+- Shared README directory eliminates version-specific duplication (~64% savings)
+- Multi-version support (2.19+, including 3.0)
 - Lazy loading for fast initial page load
 - Automatic version detection from YAML files
-- Includes projected 3.0 version to demonstrate future breaking changes
 
 ### 3. Start the Frontend Application
 
