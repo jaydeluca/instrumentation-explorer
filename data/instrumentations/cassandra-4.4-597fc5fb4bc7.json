@@ -1,0 +1,165 @@
+{
+  "id": "cassandra-4.4",
+  "library_group": "cassandra",
+  "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
+  "library_link": "https://github.com/apache/cassandra-java-driver",
+  "source_path": "instrumentation/cassandra/cassandra-4.4",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.cassandra-4.4"
+  },
+  "target_versions": {
+    "javaagent": [
+      "org.apache.cassandra:java-driver-core:(,)",
+      "com.datastax.oss:java-driver-core:[4.4,]"
+    ],
+    "library": [
+      "com.datastax.oss:java-driver-core:4.4.0",
+      "org.apache.cassandra:java-driver-core:4.18.0"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "cassandra.consistency.level",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.coordinator.dc",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.coordinator.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.page.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.query.idempotent",
+              "type": "BOOLEAN",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.speculative_execution.count",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "db.collection.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "9c8181910d68",
+  "markdown_url": "/data/markdown/cassandra-4.4-9c8181910d68.md"
+}

@@ -1,8 +1,0 @@
-{
-  "id": "resources",
-  "library_group": "resources",
-  "source_path": "instrumentation/resources",
-  "scope": {
-    "name": "io.opentelemetry.resources"
-  }
-}
