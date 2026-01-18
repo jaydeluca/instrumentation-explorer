@@ -1,8 +1,0 @@
-{
-  "id": "runtime-telemetry-java8",
-  "library_group": "runtime",
-  "source_path": "instrumentation/runtime-telemetry/runtime-telemetry-java8",
-  "scope": {
-    "name": "io.opentelemetry.runtime-telemetry-java8"
-  }
-}
