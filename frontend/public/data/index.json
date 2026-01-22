@@ -1480,15 +1480,22 @@
     },
     {
       "id": "jboss-logmanager-appender-1.1",
+      "display_name": "JBoss Log Manager",
       "library_group": "jboss",
+      "description": "This instrumentation bridges JBoss LogManager log events to OpenTelemetry logs.\n",
       "tags": [
         "jboss"
+      ],
+      "features": [
+        "LOGGING_BRIDGE"
       ],
       "has_telemetry": false
     },
     {
       "id": "jboss-logmanager-mdc-1.1",
+      "display_name": "JBoss Log Manager",
       "library_group": "jboss",
+      "description": "This instrumentation adds trace context (trace ID, span ID, and trace flags) to the JBoss LogManager MDC, it does not emit any telemetry on its own.\n",
       "tags": [
         "jboss"
       ],
@@ -2022,23 +2029,35 @@
     },
     {
       "id": "log4j-appender-1.2",
+      "display_name": "Log4j",
       "library_group": "log4j",
+      "description": "This instrumentation bridges Log4j log events to OpenTelemetry logs.\n",
       "tags": [
         "log4j"
+      ],
+      "features": [
+        "LOGGING_BRIDGE"
       ],
       "has_telemetry": false
     },
     {
       "id": "log4j-appender-2.17",
+      "display_name": "Log4j",
       "library_group": "log4j",
+      "description": "This instrumentation bridges Log4j log events to OpenTelemetry logs.\n",
       "tags": [
         "log4j"
+      ],
+      "features": [
+        "LOGGING_BRIDGE"
       ],
       "has_telemetry": false
     },
     {
       "id": "log4j-context-data-2.7",
+      "display_name": "Log4j",
       "library_group": "log4j",
+      "description": "This instrumentation adds trace context (trace ID, span ID, and trace flags) to Log4j's ThreadContext, it does not emit any telemetry on its own.\n",
       "tags": [
         "log4j"
       ],
@@ -2046,7 +2065,9 @@
     },
     {
       "id": "log4j-context-data-2.17",
+      "display_name": "Log4j",
       "library_group": "log4j",
+      "description": "This instrumentation adds trace context (trace ID, span ID, and trace flags) to Log4j's ThreadContext, it does not emit any telemetry on its own.\n",
       "tags": [
         "log4j"
       ],
@@ -2054,7 +2075,9 @@
     },
     {
       "id": "log4j-mdc-1.2",
+      "display_name": "Log4j",
       "library_group": "log4j",
+      "description": "This instrumentation adds trace context (trace ID, span ID, and trace flags) to the Log4j MDC, it does not emit any telemetry on its own.\n",
       "tags": [
         "log4j"
       ],
@@ -2062,15 +2085,22 @@
     },
     {
       "id": "logback-appender-1.0",
+      "display_name": "Logback",
       "library_group": "logback",
+      "description": "This instrumentation bridges Logback log events to OpenTelemetry logs.\n",
       "tags": [
         "logback"
+      ],
+      "features": [
+        "LOGGING_BRIDGE"
       ],
       "has_telemetry": false
     },
     {
       "id": "logback-mdc-1.0",
+      "display_name": "Logback",
       "library_group": "logback",
+      "description": "This instrumentation adds trace context (trace ID, span ID, and trace flags) to the Logback MDC, it does not emit any telemetry on its own.\n",
       "tags": [
         "logback"
       ],
@@ -2850,7 +2880,9 @@
     },
     {
       "id": "scala-fork-join-2.8",
+      "display_name": "Scala ForkJoinPool",
       "library_group": "scala",
+      "description": "This instrumentation enables context propagation for Scala fork-join tasks, it does not emit any telemetry on its own.\n",
       "tags": [
         "scala"
       ],

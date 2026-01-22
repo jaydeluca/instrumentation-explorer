@@ -473,14 +473,14 @@
       "filename": "jaxws-metro-2.2-9bc529941481.json"
     },
     "jboss-logmanager-appender-1.1": {
-      "hash": "11bf665955fe",
-      "url": "/data/instrumentations/jboss-logmanager-appender-1.1-11bf665955fe.json",
-      "filename": "jboss-logmanager-appender-1.1-11bf665955fe.json"
+      "hash": "5fc7e49b1d43",
+      "url": "/data/instrumentations/jboss-logmanager-appender-1.1-5fc7e49b1d43.json",
+      "filename": "jboss-logmanager-appender-1.1-5fc7e49b1d43.json"
     },
     "jboss-logmanager-mdc-1.1": {
-      "hash": "e4bc8d68cda2",
-      "url": "/data/instrumentations/jboss-logmanager-mdc-1.1-e4bc8d68cda2.json",
-      "filename": "jboss-logmanager-mdc-1.1-e4bc8d68cda2.json"
+      "hash": "4d076df7985a",
+      "url": "/data/instrumentations/jboss-logmanager-mdc-1.1-4d076df7985a.json",
+      "filename": "jboss-logmanager-mdc-1.1-4d076df7985a.json"
     },
     "jdbc": {
       "hash": "a0fef9b75b6d",
@@ -648,39 +648,39 @@
       "filename": "liberty-dispatcher-20.0-c0be8c000e74.json"
     },
     "log4j-appender-1.2": {
-      "hash": "f2dc5e070b52",
-      "url": "/data/instrumentations/log4j-appender-1.2-f2dc5e070b52.json",
-      "filename": "log4j-appender-1.2-f2dc5e070b52.json"
+      "hash": "810e868d92b3",
+      "url": "/data/instrumentations/log4j-appender-1.2-810e868d92b3.json",
+      "filename": "log4j-appender-1.2-810e868d92b3.json"
     },
     "log4j-appender-2.17": {
-      "hash": "a90feb4b0ac2",
-      "url": "/data/instrumentations/log4j-appender-2.17-a90feb4b0ac2.json",
-      "filename": "log4j-appender-2.17-a90feb4b0ac2.json"
+      "hash": "66f53258008c",
+      "url": "/data/instrumentations/log4j-appender-2.17-66f53258008c.json",
+      "filename": "log4j-appender-2.17-66f53258008c.json"
     },
     "log4j-context-data-2.7": {
-      "hash": "05fe353f352b",
-      "url": "/data/instrumentations/log4j-context-data-2.7-05fe353f352b.json",
-      "filename": "log4j-context-data-2.7-05fe353f352b.json"
+      "hash": "a4370d8d0b4d",
+      "url": "/data/instrumentations/log4j-context-data-2.7-a4370d8d0b4d.json",
+      "filename": "log4j-context-data-2.7-a4370d8d0b4d.json"
     },
     "log4j-context-data-2.17": {
-      "hash": "c82e30801ee6",
-      "url": "/data/instrumentations/log4j-context-data-2.17-c82e30801ee6.json",
-      "filename": "log4j-context-data-2.17-c82e30801ee6.json"
+      "hash": "4616fa3d83bd",
+      "url": "/data/instrumentations/log4j-context-data-2.17-4616fa3d83bd.json",
+      "filename": "log4j-context-data-2.17-4616fa3d83bd.json"
     },
     "log4j-mdc-1.2": {
-      "hash": "46a782ff7b84",
-      "url": "/data/instrumentations/log4j-mdc-1.2-46a782ff7b84.json",
-      "filename": "log4j-mdc-1.2-46a782ff7b84.json"
+      "hash": "e91992fb9b1c",
+      "url": "/data/instrumentations/log4j-mdc-1.2-e91992fb9b1c.json",
+      "filename": "log4j-mdc-1.2-e91992fb9b1c.json"
     },
     "logback-appender-1.0": {
-      "hash": "35003e894202",
-      "url": "/data/instrumentations/logback-appender-1.0-35003e894202.json",
-      "filename": "logback-appender-1.0-35003e894202.json"
+      "hash": "e1c7a5166da0",
+      "url": "/data/instrumentations/logback-appender-1.0-e1c7a5166da0.json",
+      "filename": "logback-appender-1.0-e1c7a5166da0.json"
     },
     "logback-mdc-1.0": {
-      "hash": "73b575adbdc4",
-      "url": "/data/instrumentations/logback-mdc-1.0-73b575adbdc4.json",
-      "filename": "logback-mdc-1.0-73b575adbdc4.json"
+      "hash": "349a7e0e1631",
+      "url": "/data/instrumentations/logback-mdc-1.0-349a7e0e1631.json",
+      "filename": "logback-mdc-1.0-349a7e0e1631.json"
     },
     "micrometer-1.5": {
       "hash": "07486344c5b3",
@@ -948,9 +948,9 @@
       "filename": "rxjava-3.1.1-662c46f6219c.json"
     },
     "scala-fork-join-2.8": {
-      "hash": "fc43d7d31c76",
-      "url": "/data/instrumentations/scala-fork-join-2.8-fc43d7d31c76.json",
-      "filename": "scala-fork-join-2.8-fc43d7d31c76.json"
+      "hash": "227716a915ad",
+      "url": "/data/instrumentations/scala-fork-join-2.8-227716a915ad.json",
+      "filename": "scala-fork-join-2.8-227716a915ad.json"
     },
     "servlet-2.2": {
       "hash": "a84f43f840f1",
@@ -1225,6 +1225,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 0
+    "changed_from_previous": 10
   }
 }
