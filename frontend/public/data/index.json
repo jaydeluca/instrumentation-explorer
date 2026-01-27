@@ -2570,11 +2570,13 @@
     },
     {
       "id": "quartz-2.0",
+      "display_name": "Quartz",
       "library_group": "quartz",
+      "description": "This instrumentation enables spans for Quartz job execution.",
       "tags": [
         "quartz"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "r2dbc-1.0",
