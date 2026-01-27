@@ -828,9 +828,9 @@
       "filename": "quarkus-resteasy-reactive-a2e54053fde5.json"
     },
     "quartz-2.0": {
-      "hash": "493fd2b49f69",
-      "url": "/data/instrumentations/quartz-2.0-493fd2b49f69.json",
-      "filename": "quartz-2.0-493fd2b49f69.json"
+      "hash": "a0b6f11c44a6",
+      "url": "/data/instrumentations/quartz-2.0-a0b6f11c44a6.json",
+      "filename": "quartz-2.0-a0b6f11c44a6.json"
     },
     "r2dbc-1.0": {
       "hash": "e1bd757e78f3",
@@ -1225,6 +1225,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 10
+    "changed_from_previous": 11
   }
 }
