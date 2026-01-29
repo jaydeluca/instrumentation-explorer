@@ -1,16 +1,29 @@
 {
-  "id": "vertx-sql-client-5.0",
-  "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-5.0",
-  "minimum_java_version": 11,
+  "id": "cassandra-3.0",
+  "library_group": "cassandra",
+  "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
+  "library_link": "https://github.com/apache/cassandra-java-driver",
+  "source_path": "instrumentation/cassandra/cassandra-3.0",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
   "scope": {
-    "name": "io.opentelemetry.vertx-sql-client-5.0"
+    "name": "io.opentelemetry.cassandra-3.0"
   },
   "target_versions": {
     "javaagent": [
-      "io.vertx:vertx-sql-client:[5.0.0,)"
+      "com.datastax.cassandra:cassandra-driver-core:[3.0,4.0)"
     ]
   },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
   "telemetry": {
     "default": {
       "metrics": [
@@ -21,19 +34,24 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.collection.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.namespace",
+              "name": "db.system.name",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "network.peer.address",
               "type": "STRING",
-              "semconv": false
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
             },
             {
               "name": "server.address",
@@ -53,17 +71,12 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.collection.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
               "name": "db.namespace",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -73,17 +86,22 @@
               "semconv": false
             },
             {
-              "name": "db.response.status_code",
+              "name": "db.system.name",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "error.type",
+              "name": "network.peer.address",
               "type": "STRING",
               "semconv": true
             },
             {
-              "name": "peer.service",
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
               "type": "STRING",
               "semconv": true
             },

@@ -163,39 +163,39 @@
       "filename": "camel-2.20-a73143d8a0cb.json"
     },
     "cassandra-3.0": {
-      "hash": "2108e8fa134f",
-      "url": "/data/instrumentations/cassandra-3.0-2108e8fa134f.json",
-      "filename": "cassandra-3.0-2108e8fa134f.json"
+      "hash": "0e1c2f455654",
+      "url": "/data/instrumentations/cassandra-3.0-0e1c2f455654.json",
+      "filename": "cassandra-3.0-0e1c2f455654.json"
     },
     "cassandra-4.0": {
-      "hash": "a919658bfc7f",
-      "url": "/data/instrumentations/cassandra-4.0-a919658bfc7f.json",
-      "filename": "cassandra-4.0-a919658bfc7f.json"
+      "hash": "01915c1736e5",
+      "url": "/data/instrumentations/cassandra-4.0-01915c1736e5.json",
+      "filename": "cassandra-4.0-01915c1736e5.json"
     },
     "cassandra-4.4": {
-      "hash": "597fc5fb4bc7",
-      "url": "/data/instrumentations/cassandra-4.4-597fc5fb4bc7.json",
-      "filename": "cassandra-4.4-597fc5fb4bc7.json"
+      "hash": "b91d9d7a3e61",
+      "url": "/data/instrumentations/cassandra-4.4-b91d9d7a3e61.json",
+      "filename": "cassandra-4.4-b91d9d7a3e61.json"
     },
     "clickhouse-client-v1-0.5": {
-      "hash": "8e5d8777f488",
-      "url": "/data/instrumentations/clickhouse-client-v1-0.5-8e5d8777f488.json",
-      "filename": "clickhouse-client-v1-0.5-8e5d8777f488.json"
+      "hash": "dc1317158340",
+      "url": "/data/instrumentations/clickhouse-client-v1-0.5-dc1317158340.json",
+      "filename": "clickhouse-client-v1-0.5-dc1317158340.json"
     },
     "clickhouse-client-v2-0.8": {
-      "hash": "25e0c707bfd0",
-      "url": "/data/instrumentations/clickhouse-client-v2-0.8-25e0c707bfd0.json",
-      "filename": "clickhouse-client-v2-0.8-25e0c707bfd0.json"
+      "hash": "a338009d6c4c",
+      "url": "/data/instrumentations/clickhouse-client-v2-0.8-a338009d6c4c.json",
+      "filename": "clickhouse-client-v2-0.8-a338009d6c4c.json"
     },
     "couchbase-2.0": {
-      "hash": "c909dd7ec70a",
-      "url": "/data/instrumentations/couchbase-2.0-c909dd7ec70a.json",
-      "filename": "couchbase-2.0-c909dd7ec70a.json"
+      "hash": "22114b79849f",
+      "url": "/data/instrumentations/couchbase-2.0-22114b79849f.json",
+      "filename": "couchbase-2.0-22114b79849f.json"
     },
     "couchbase-2.6": {
-      "hash": "0d46f69cb2d3",
-      "url": "/data/instrumentations/couchbase-2.6-0d46f69cb2d3.json",
-      "filename": "couchbase-2.6-0d46f69cb2d3.json"
+      "hash": "849c710611da",
+      "url": "/data/instrumentations/couchbase-2.6-849c710611da.json",
+      "filename": "couchbase-2.6-849c710611da.json"
     },
     "couchbase-3.1": {
       "hash": "574b8fddd566",
@@ -483,9 +483,9 @@
       "filename": "jboss-logmanager-mdc-1.1-4d076df7985a.json"
     },
     "jdbc": {
-      "hash": "a0fef9b75b6d",
-      "url": "/data/instrumentations/jdbc-a0fef9b75b6d.json",
-      "filename": "jdbc-a0fef9b75b6d.json"
+      "hash": "61f87c45a884",
+      "url": "/data/instrumentations/jdbc-61f87c45a884.json",
+      "filename": "jdbc-61f87c45a884.json"
     },
     "jedis-1.4": {
       "hash": "9132238225ce",
@@ -738,9 +738,9 @@
       "filename": "okhttp-2.2-39d713fac357.json"
     },
     "okhttp-3.0": {
-      "hash": "ce300f294daf",
-      "url": "/data/instrumentations/okhttp-3.0-ce300f294daf.json",
-      "filename": "okhttp-3.0-ce300f294daf.json"
+      "hash": "f36de159b0d9",
+      "url": "/data/instrumentations/okhttp-3.0-f36de159b0d9.json",
+      "filename": "okhttp-3.0-f36de159b0d9.json"
     },
     "openai-java-1.1": {
       "hash": "2c670e8cd74c",
@@ -778,14 +778,14 @@
       "filename": "payara-7d348720cffb.json"
     },
     "pekko-actor-1.0": {
-      "hash": "ce3c4c39cc24",
-      "url": "/data/instrumentations/pekko-actor-1.0-ce3c4c39cc24.json",
-      "filename": "pekko-actor-1.0-ce3c4c39cc24.json"
+      "hash": "dce9abb632ac",
+      "url": "/data/instrumentations/pekko-actor-1.0-dce9abb632ac.json",
+      "filename": "pekko-actor-1.0-dce9abb632ac.json"
     },
     "pekko-http-1.0": {
-      "hash": "407c293da018",
-      "url": "/data/instrumentations/pekko-http-1.0-407c293da018.json",
-      "filename": "pekko-http-1.0-407c293da018.json"
+      "hash": "51ebb5ba2b54",
+      "url": "/data/instrumentations/pekko-http-1.0-51ebb5ba2b54.json",
+      "filename": "pekko-http-1.0-51ebb5ba2b54.json"
     },
     "play-mvc-2.4": {
       "hash": "2240557ba585",
@@ -833,9 +833,9 @@
       "filename": "quartz-2.0-a0b6f11c44a6.json"
     },
     "r2dbc-1.0": {
-      "hash": "161756ea1571",
-      "url": "/data/instrumentations/r2dbc-1.0-161756ea1571.json",
-      "filename": "r2dbc-1.0-161756ea1571.json"
+      "hash": "760de26d7fd3",
+      "url": "/data/instrumentations/r2dbc-1.0-760de26d7fd3.json",
+      "filename": "r2dbc-1.0-760de26d7fd3.json"
     },
     "rabbitmq-2.7": {
       "hash": "7ab50c21df06",
@@ -908,9 +908,9 @@
       "filename": "restlet-2.0-452d5de681f0.json"
     },
     "rmi": {
-      "hash": "72fd494ab96f",
-      "url": "/data/instrumentations/rmi-72fd494ab96f.json",
-      "filename": "rmi-72fd494ab96f.json"
+      "hash": "244d49389ef7",
+      "url": "/data/instrumentations/rmi-244d49389ef7.json",
+      "filename": "rmi-244d49389ef7.json"
     },
     "rocketmq-client-4.8": {
       "hash": "c40c15e5a0a8",
@@ -953,24 +953,24 @@
       "filename": "scala-fork-join-2.8-227716a915ad.json"
     },
     "servlet-2.2": {
-      "hash": "a84f43f840f1",
-      "url": "/data/instrumentations/servlet-2.2-a84f43f840f1.json",
-      "filename": "servlet-2.2-a84f43f840f1.json"
+      "hash": "e0dc3da4886c",
+      "url": "/data/instrumentations/servlet-2.2-e0dc3da4886c.json",
+      "filename": "servlet-2.2-e0dc3da4886c.json"
     },
     "servlet-3.0": {
-      "hash": "18079dcf8e56",
-      "url": "/data/instrumentations/servlet-3.0-18079dcf8e56.json",
-      "filename": "servlet-3.0-18079dcf8e56.json"
+      "hash": "8eff9b325504",
+      "url": "/data/instrumentations/servlet-3.0-8eff9b325504.json",
+      "filename": "servlet-3.0-8eff9b325504.json"
     },
     "servlet-5.0": {
-      "hash": "1c17d969be92",
-      "url": "/data/instrumentations/servlet-5.0-1c17d969be92.json",
-      "filename": "servlet-5.0-1c17d969be92.json"
+      "hash": "c7e5383bf22a",
+      "url": "/data/instrumentations/servlet-5.0-c7e5383bf22a.json",
+      "filename": "servlet-5.0-c7e5383bf22a.json"
     },
     "spark-2.3": {
-      "hash": "69ce199c4d76",
-      "url": "/data/instrumentations/spark-2.3-69ce199c4d76.json",
-      "filename": "spark-2.3-69ce199c4d76.json"
+      "hash": "666139b6b2f7",
+      "url": "/data/instrumentations/spark-2.3-666139b6b2f7.json",
+      "filename": "spark-2.3-666139b6b2f7.json"
     },
     "spring-batch-3.0": {
       "hash": "c3100dcc0fe6",
@@ -1103,19 +1103,19 @@
       "filename": "spymemcached-2.12-5374bacead73.json"
     },
     "struts-2.3": {
-      "hash": "84486d15a0bb",
-      "url": "/data/instrumentations/struts-2.3-84486d15a0bb.json",
-      "filename": "struts-2.3-84486d15a0bb.json"
+      "hash": "855b6376a1e2",
+      "url": "/data/instrumentations/struts-2.3-855b6376a1e2.json",
+      "filename": "struts-2.3-855b6376a1e2.json"
     },
     "struts-7.0": {
-      "hash": "abe04fb23de0",
-      "url": "/data/instrumentations/struts-7.0-abe04fb23de0.json",
-      "filename": "struts-7.0-abe04fb23de0.json"
+      "hash": "4ac87567369c",
+      "url": "/data/instrumentations/struts-7.0-4ac87567369c.json",
+      "filename": "struts-7.0-4ac87567369c.json"
     },
     "tapestry-5.4": {
-      "hash": "30c40f46572d",
-      "url": "/data/instrumentations/tapestry-5.4-30c40f46572d.json",
-      "filename": "tapestry-5.4-30c40f46572d.json"
+      "hash": "acba86f51a8a",
+      "url": "/data/instrumentations/tapestry-5.4-acba86f51a8a.json",
+      "filename": "tapestry-5.4-acba86f51a8a.json"
     },
     "tomcat-7.0": {
       "hash": "45d156a8ba9d",
@@ -1178,14 +1178,14 @@
       "filename": "vertx-rx-java-3.5-97de70aa4b25.json"
     },
     "vertx-sql-client-4.0": {
-      "hash": "8cd24666ccec",
-      "url": "/data/instrumentations/vertx-sql-client-4.0-8cd24666ccec.json",
-      "filename": "vertx-sql-client-4.0-8cd24666ccec.json"
+      "hash": "24dd10747f61",
+      "url": "/data/instrumentations/vertx-sql-client-4.0-24dd10747f61.json",
+      "filename": "vertx-sql-client-4.0-24dd10747f61.json"
     },
     "vertx-sql-client-5.0": {
-      "hash": "4cd6141247d6",
-      "url": "/data/instrumentations/vertx-sql-client-5.0-4cd6141247d6.json",
-      "filename": "vertx-sql-client-5.0-4cd6141247d6.json"
+      "hash": "0be0999cce4f",
+      "url": "/data/instrumentations/vertx-sql-client-5.0-0be0999cce4f.json",
+      "filename": "vertx-sql-client-5.0-0be0999cce4f.json"
     },
     "vertx-web-3.0": {
       "hash": "26b86366c8e9",
@@ -1198,9 +1198,9 @@
       "filename": "vibur-dbcp-11.0-22159118d3bc.json"
     },
     "wicket-8.0": {
-      "hash": "0b56884bf556",
-      "url": "/data/instrumentations/wicket-8.0-0b56884bf556.json",
-      "filename": "wicket-8.0-0b56884bf556.json"
+      "hash": "288c80f5ff5c",
+      "url": "/data/instrumentations/wicket-8.0-288c80f5ff5c.json",
+      "filename": "wicket-8.0-288c80f5ff5c.json"
     },
     "xxl-job-1.9.2": {
       "hash": "40b60c1e2576",
@@ -1225,6 +1225,6 @@
   },
   "metadata": {
     "total_count": 244,
-    "changed_from_previous": 45
+    "changed_from_previous": 46
   }
 }

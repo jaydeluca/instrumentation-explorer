@@ -1503,15 +1503,21 @@
     },
     {
       "id": "jdbc",
+      "display_name": "JDBC",
       "library_group": "jdbc",
-      "description": "The JDBC instrumentation provides database client spans and metrics. Each call produces a span named after the SQL verb, enriched with standard DB client attributes (system, database, operation, sanitized statement, peer address) and error details if an exception occurs.\nThe instrumentation unwraps pooled connections (via java.sql.Wrapper) to cache database metadata against the underlying physical connection. Without proper unwrapping support, caching is limited to the wrapper instance, which typically changes each time a connection is retrieved from the pool. This can result in repeated metadata extraction, potentially causing performance degradation.\nThere is also a \"jdbc-datasource\" instrumentation that creates spans for datasource connections, but is disabled by default due to the volume of telemetry produced.\n",
+      "description": "This instrumentation enables database client spans and database client metrics for JDBC operations. There is also a datasource instrumentation that creates spans for datasource connections (disabled by default). Note: The instrumentation unwraps pooled connections to cache metadata against the underlying physical connection; without proper unwrapping, repeated metadata extraction can cause performance degradation.\n",
       "tags": [
         "jdbc",
-        "sql",
         "client",
-        "database"
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "jedis-1.4",
@@ -2427,18 +2433,40 @@
     },
     {
       "id": "pekko-actor-1.0",
+      "display_name": "Pekko Actors",
       "library_group": "pekko",
+      "description": "This instrumentation provides context propagation for Pekko actors, it does not emit any telemetry on its own.",
       "tags": [
         "pekko"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "pekko-http-1.0",
+      "display_name": "Pekko HTTP",
       "library_group": "pekko",
+      "description": "This instrumentation enables HTTP client spans and metrics for the Pekko HTTP client, and HTTP server spans and metrics for the Pekko HTTP server.\n",
       "tags": [
         "pekko",
-        "http"
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": true
     },
@@ -2800,11 +2828,22 @@
     },
     {
       "id": "rmi",
+      "display_name": "RMI (Remote Method Invocation)",
       "library_group": "rmi",
+      "description": "This instrumentation enables RPC client spans and RPC server spans for Java RMI (Remote Method Invocation).\n",
       "tags": [
-        "rmi"
+        "rmi",
+        "client",
+        "server",
+        "rpc",
+        "rpc_client_spans",
+        "rpc_server_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_SERVER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "rocketmq-client-4.8",
@@ -2892,36 +2931,79 @@
     },
     {
       "id": "servlet-2.2",
+      "display_name": "Servlet",
       "library_group": "servlet",
+      "description": "This instrumentation enables HTTP server spans and metrics for Java Servlet API.",
       "tags": [
-        "servlet"
+        "servlet",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "servlet-3.0",
+      "display_name": "Servlet",
       "library_group": "servlet",
+      "description": "This instrumentation enables HTTP server spans and metrics for Java Servlet API.",
       "tags": [
-        "servlet"
+        "servlet",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "servlet-5.0",
+      "display_name": "Servlet",
       "library_group": "servlet",
+      "description": "This instrumentation enables HTTP server spans and metrics for Jakarta Servlet API.",
       "tags": [
-        "servlet"
+        "servlet",
+        "http",
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "spark-2.3",
+      "display_name": "Spark Web Framework",
       "library_group": "spark",
       "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
       "tags": [
         "spark",
         "http",
         "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
@@ -3183,27 +3265,51 @@
     },
     {
       "id": "struts-2.3",
+      "display_name": "Apache Struts",
       "library_group": "struts",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Struts 2 actions (controller spans are disabled by default).\n",
       "tags": [
-        "struts"
+        "struts",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "struts-7.0",
+      "display_name": "Apache Struts 2",
       "library_group": "struts",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Struts 2 actions (controller spans are disabled by default).\n",
       "tags": [
-        "struts"
+        "struts",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "tapestry-5.4",
+      "display_name": "Apache Tapestry",
       "library_group": "tapestry",
+      "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache Tapestry component events (controller spans are disabled by default).\n",
       "tags": [
-        "tapestry"
+        "tapestry",
+        "http",
+        "server"
       ],
-      "has_telemetry": false
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "tomcat-7.0",
@@ -3351,9 +3457,16 @@
     },
     {
       "id": "wicket-8.0",
+      "display_name": "Apache Wicket",
       "library_group": "wicket",
+      "description": "This instrumentation enriches HTTP server spans with route information for Apache Wicket applications, it does not emit any telemetry on its own.\n",
       "tags": [
-        "wicket"
+        "wicket",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
