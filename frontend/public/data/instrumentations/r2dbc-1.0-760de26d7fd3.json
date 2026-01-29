@@ -61,7 +61,7 @@
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -88,17 +88,12 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.collection.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
               "name": "db.namespace",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
