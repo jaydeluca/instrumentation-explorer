@@ -1,19 +1,19 @@
 {
-  "id": "cassandra-3.0",
+  "id": "cassandra-4.0",
   "library_group": "cassandra",
   "description": "This instrumentation enables database client spans and database client metrics for the DataStax Cassandra Driver.\n",
   "library_link": "https://github.com/apache/cassandra-java-driver",
-  "source_path": "instrumentation/cassandra/cassandra-3.0",
+  "source_path": "instrumentation/cassandra/cassandra-4.0",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.cassandra-3.0"
+    "name": "io.opentelemetry.cassandra-4.0"
   },
   "target_versions": {
     "javaagent": [
-      "com.datastax.cassandra:cassandra-driver-core:[3.0,4.0)"
+      "com.datastax.oss:java-driver-core:[4.0,4.4)"
     ]
   },
   "configurations": [
@@ -34,7 +34,7 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -71,9 +71,34 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.collection.name",
+              "name": "cassandra.consistency.level",
               "type": "STRING",
-              "semconv": false
+              "semconv": true
+            },
+            {
+              "name": "cassandra.coordinator.dc",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.coordinator.id",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.page.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.query.idempotent",
+              "type": "BOOLEAN",
+              "semconv": true
+            },
+            {
+              "name": "cassandra.speculative_execution.count",
+              "type": "LONG",
+              "semconv": true
             },
             {
               "name": "db.namespace",
@@ -81,7 +106,7 @@
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
