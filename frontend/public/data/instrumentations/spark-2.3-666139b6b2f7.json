@@ -1,0 +1,19 @@
+{
+  "id": "spark-2.3",
+  "display_name": "Spark Web Framework",
+  "library_group": "spark",
+  "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+  "library_link": "https://sparkjava.com/",
+  "source_path": "instrumentation/spark-2.3",
+  "features": [
+    "HTTP_ROUTE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.spark-2.3"
+  },
+  "target_versions": {
+    "javaagent": [
+      "com.sparkjava:spark-core:[2.3,)"
+    ]
+  }
+}
