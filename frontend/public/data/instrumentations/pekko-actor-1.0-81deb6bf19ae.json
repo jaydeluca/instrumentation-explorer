@@ -1,0 +1,14 @@
+{
+  "id": "pekko-actor-1.0",
+  "display_name": "Pekko Actors",
+  "library_group": "pekko",
+  "description": "This instrumentation provides context propagation for Pekko actors, it does not emit any telemetry on its own.",
+  "library_link": "https://pekko.apache.org/docs/pekko/current/typed/index.html",
+  "source_path": "instrumentation/pekko/pekko-actor-1.0",
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.pekko-actor-1.0"
+  }
+}

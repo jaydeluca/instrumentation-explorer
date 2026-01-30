@@ -1,0 +1,8 @@
+{
+  "id": "vaadin-14.2",
+  "library_group": "vaadin",
+  "source_path": "instrumentation/vaadin-14.2",
+  "scope": {
+    "name": "io.opentelemetry.vaadin-14.2"
+  }
+}

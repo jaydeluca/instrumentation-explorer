@@ -1,0 +1,99 @@
+{
+  "id": "spymemcached-2.12",
+  "display_name": "Spymemcached",
+  "library_group": "spymemcached",
+  "description": "This instrumentation enables database client spans and database client metrics for Memcached operations using the Spymemcached client.\n",
+  "library_link": "https://github.com/couchbase/spymemcached",
+  "source_path": "instrumentation/spymemcached-2.12",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.spymemcached-2.12"
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.spymemcached.experimental-span-attributes",
+      "description": "Enables experimental span attributes `spymemcached.result` and `spymemcached.command.cancelled`.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.spymemcached.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "spymemcached.command.cancelled",
+              "type": "BOOLEAN",
+              "semconv": false
+            },
+            {
+              "name": "spymemcached.result",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

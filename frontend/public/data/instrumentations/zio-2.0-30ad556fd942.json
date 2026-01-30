@@ -1,0 +1,8 @@
+{
+  "id": "zio-2.0",
+  "library_group": "zio",
+  "source_path": "instrumentation/zio/zio-2.0",
+  "scope": {
+    "name": "io.opentelemetry.zio-2.0"
+  }
+}

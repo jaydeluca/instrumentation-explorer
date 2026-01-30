@@ -1,0 +1,14 @@
+{
+  "id": "wicket-8.0",
+  "display_name": "Apache Wicket",
+  "library_group": "wicket",
+  "description": "This instrumentation enriches HTTP server spans with route information for Apache Wicket applications, it does not emit any telemetry on its own.\n",
+  "library_link": "https://wicket.apache.org/",
+  "source_path": "instrumentation/wicket-8.0",
+  "features": [
+    "HTTP_ROUTE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.wicket-8.0"
+  }
+}

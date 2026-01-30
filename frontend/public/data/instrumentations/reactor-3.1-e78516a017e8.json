@@ -1,0 +1,10 @@
+{
+  "id": "reactor-3.1",
+  "library_group": "reactor",
+  "source_path": "instrumentation/reactor/reactor-3.1",
+  "scope": {
+    "name": "io.opentelemetry.reactor-3.1"
+  },
+  "markdown_hash": "1517dbdc2da4",
+  "markdown_url": "/data/markdown/reactor-3.1-1517dbdc2da4.md"
+}

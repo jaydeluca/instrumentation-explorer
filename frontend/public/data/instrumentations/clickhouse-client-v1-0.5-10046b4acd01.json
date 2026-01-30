@@ -1,0 +1,108 @@
+{
+  "id": "clickhouse-client-v1-0.5",
+  "library_group": "clickhouse",
+  "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
+  "library_link": "https://github.com/ClickHouse/clickhouse-java",
+  "source_path": "instrumentation/clickhouse/clickhouse-client-v1-0.5",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.clickhouse-client-v1-0.5"
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.response.status_code",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

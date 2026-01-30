@@ -1,0 +1,56 @@
+{
+  "id": "rediscala-1.8",
+  "display_name": "Rediscala",
+  "library_group": "rediscala",
+  "description": "This instrumentation enables database client spans and database client metrics for Rediscala.\n",
+  "library_link": "https://github.com/rediscala/rediscala",
+  "source_path": "instrumentation/rediscala-1.8",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.rediscala-1.8"
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "tomcat-7.0",
+  "library_group": "tomcat",
+  "source_path": "instrumentation/tomcat/tomcat-7.0",
+  "scope": {
+    "name": "io.opentelemetry.tomcat-7.0"
+  }
+}

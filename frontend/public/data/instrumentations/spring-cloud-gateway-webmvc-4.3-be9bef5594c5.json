@@ -1,0 +1,9 @@
+{
+  "id": "spring-cloud-gateway-webmvc-4.3",
+  "library_group": "spring",
+  "source_path": "instrumentation/spring/spring-cloud-gateway/spring-cloud-gateway-webmvc-4.3",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.spring-cloud-gateway-webmvc-4.3"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "mybatis-3.2",
+  "display_name": "MyBatis",
+  "library_group": "mybatis",
+  "description": "This instrumentation enables spans for MyBatis mapper method executions.",
+  "library_link": "https://mybatis.org/mybatis-3/",
+  "source_path": "instrumentation/mybatis-3.2",
+  "disabled_by_default": true,
+  "scope": {
+    "name": "io.opentelemetry.mybatis-3.2"
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

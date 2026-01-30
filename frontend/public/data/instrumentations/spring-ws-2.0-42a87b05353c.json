@@ -1,0 +1,10 @@
+{
+  "id": "spring-ws-2.0",
+  "library_group": "spring",
+  "library_link": "https://spring.io/projects/spring-ws",
+  "source_path": "instrumentation/spring/spring-ws-2.0",
+  "disabled_by_default": true,
+  "scope": {
+    "name": "io.opentelemetry.spring-ws-2.0"
+  }
+}

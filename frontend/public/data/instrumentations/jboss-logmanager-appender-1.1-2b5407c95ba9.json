@@ -1,0 +1,34 @@
+{
+  "id": "jboss-logmanager-appender-1.1",
+  "display_name": "JBoss Log Manager",
+  "library_group": "jboss",
+  "description": "This instrumentation bridges JBoss LogManager log events to OpenTelemetry logs.\n",
+  "library_link": "https://github.com/jboss-logging/jboss-logmanager",
+  "source_path": "instrumentation/jboss-logmanager/jboss-logmanager-appender-1.1",
+  "features": [
+    "LOGGING_BRIDGE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jboss-logmanager-appender-1.1"
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.jboss-logmanager.experimental-log-attributes",
+      "description": "Enables the capture of experimental log attributes, including thread name and thread ID.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.jboss-logmanager.experimental.capture-mdc-attributes",
+      "description": "Controls which MDC attributes to capture. Use \"*\" to capture all MDC attributes or provide a comma-separated list of specific keys.\n",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.jboss-logmanager.experimental.capture-event-name",
+      "description": "Enables the capture of the event name from the MDC attribute \"event.name\" and sets it as the log record's event name.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}
