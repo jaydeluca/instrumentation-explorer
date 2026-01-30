@@ -1,0 +1,11 @@
+{
+  "id": "tomcat-7.0",
+  "library_group": "tomcat",
+  "source_path": "instrumentation/tomcat/tomcat-7.0",
+  "scope": {
+    "name": "io.opentelemetry.tomcat-7.0"
+  },
+  "javaagent_target_versions": [
+    "org.apache.tomcat.embed:tomcat-embed-core:[7.0.4, 10)"
+  ]
+}

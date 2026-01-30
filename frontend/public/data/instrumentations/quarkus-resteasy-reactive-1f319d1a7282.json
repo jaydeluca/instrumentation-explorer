@@ -1,0 +1,11 @@
+{
+  "id": "quarkus-resteasy-reactive",
+  "library_group": "quarkus",
+  "source_path": "instrumentation/quarkus-resteasy-reactive",
+  "scope": {
+    "name": "io.opentelemetry.quarkus-resteasy-reactive"
+  },
+  "javaagent_target_versions": [
+    "io.quarkus:quarkus-resteasy-reactive:(,3.9.0)"
+  ]
+}

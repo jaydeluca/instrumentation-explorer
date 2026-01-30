@@ -24,10 +24,14 @@ export interface InstrumentationYAML {
   scope?: {
     name: string;
   };
+  // Format 0.1 fields (deprecated)
   target_versions?: {
     javaagent?: string[];
     library?: string[];
   };
+  // Format 0.2 fields
+  javaagent_target_versions?: string[];
+  has_standalone_library?: boolean;
   configurations?: ConfigurationYAML[];
   telemetry?: TelemetryConfigYAML[];
 }
@@ -118,6 +122,7 @@ export interface InstrumentationReference {
 
 /**
  * Full instrumentation data - content-addressed by hash
+ * Normalized to format 0.2 structure
  */
 export interface InstrumentationData {
   id: string;
@@ -133,10 +138,9 @@ export interface InstrumentationData {
   scope?: {
     name: string;
   };
-  target_versions?: {
-    javaagent?: string[];
-    library?: string[];
-  };
+  // Normalized to format 0.2
+  javaagent_target_versions?: string[];
+  has_standalone_library?: boolean;
   configurations?: Configuration[];
   telemetry?: TelemetryConfig;
   markdown_hash?: string;

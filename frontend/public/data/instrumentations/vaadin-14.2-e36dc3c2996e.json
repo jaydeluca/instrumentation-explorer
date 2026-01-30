@@ -1,0 +1,12 @@
+{
+  "id": "vaadin-14.2",
+  "library_group": "vaadin",
+  "source_path": "instrumentation/vaadin-14.2",
+  "scope": {
+    "name": "io.opentelemetry.vaadin-14.2"
+  },
+  "javaagent_target_versions": [
+    "com.vaadin:flow-server:[2.2.0,3)",
+    "com.vaadin:flow-server:[3.1.0,25.0.0)"
+  ]
+}

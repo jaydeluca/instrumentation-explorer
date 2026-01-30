@@ -1,0 +1,11 @@
+{
+  "id": "mongo-4.0",
+  "library_group": "mongo",
+  "source_path": "instrumentation/mongo/mongo-4.0",
+  "scope": {
+    "name": "io.opentelemetry.mongo-4.0"
+  },
+  "javaagent_target_versions": [
+    "org.mongodb:mongodb-driver-core:[4.0,)"
+  ]
+}

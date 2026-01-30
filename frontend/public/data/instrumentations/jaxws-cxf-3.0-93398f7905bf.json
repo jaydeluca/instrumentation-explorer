@@ -1,0 +1,37 @@
+{
+  "id": "jaxws-cxf-3.0",
+  "display_name": "Apache CXF 3.x JAX-WS",
+  "library_group": "jaxws",
+  "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for Apache CXF JAX-WS web services (controller spans are disabled by default).\n",
+  "library_link": "https://cxf.apache.org/",
+  "source_path": "instrumentation/jaxws/jaxws-cxf-3.0",
+  "features": [
+    "HTTP_ROUTE",
+    "CONTROLLER_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jaxws-cxf-3.0"
+  },
+  "javaagent_target_versions": [
+    "org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "otel.instrumentation.common.experimental.controller-telemetry.enabled=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": []
+        }
+      ]
+    }
+  }
+}

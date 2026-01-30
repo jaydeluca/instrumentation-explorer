@@ -1,0 +1,11 @@
+{
+  "id": "vertx-web-3.0",
+  "library_group": "vertx",
+  "source_path": "instrumentation/vertx/vertx-web-3.0",
+  "scope": {
+    "name": "io.opentelemetry.vertx-web-3.0"
+  },
+  "javaagent_target_versions": [
+    "io.vertx:vertx-web:[3.0.0,)"
+  ]
+}

@@ -76,18 +76,16 @@ describe('contentHash', () => {
       scope: {
         name: 'io.opentelemetry.test'
       },
-      target_versions: {
-        javaagent: ['com.example:lib:[1.0,)']
-      }
+      javaagent_target_versions: ['com.example:lib:[1.0,)'],
+      has_standalone_library: true
     };
 
     const data2: InstrumentationData = {
       id: 'test',
       display_name: 'Test',
       library_group: 'test',
-      target_versions: {
-        javaagent: ['com.example:lib:[1.0,)']
-      },
+      javaagent_target_versions: ['com.example:lib:[1.0,)'],
+      has_standalone_library: true,
       scope: {
         name: 'io.opentelemetry.test'
       }
