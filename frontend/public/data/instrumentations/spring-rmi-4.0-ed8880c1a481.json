@@ -1,0 +1,60 @@
+{
+  "id": "spring-rmi-4.0",
+  "library_group": "spring",
+  "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
+  "library_link": "https://docs.spring.io/spring-framework/docs/4.0.x/javadoc-api/org/springframework/remoting/rmi/package-summary.html",
+  "source_path": "instrumentation/spring/spring-rmi-4.0",
+  "scope": {
+    "name": "io.opentelemetry.spring-rmi-4.0"
+  },
+  "javaagent_target_versions": [
+    "org.springframework:spring-context:[4.0.0.RELEASE,6)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

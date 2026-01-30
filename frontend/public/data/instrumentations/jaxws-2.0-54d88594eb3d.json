@@ -1,0 +1,11 @@
+{
+  "id": "jaxws-2.0",
+  "library_group": "jaxws",
+  "source_path": "instrumentation/jaxws/jaxws-2.0",
+  "scope": {
+    "name": "io.opentelemetry.jaxws-2.0"
+  },
+  "javaagent_target_versions": [
+    "javax.xml.ws:jaxws-api:[2.0,]"
+  ]
+}

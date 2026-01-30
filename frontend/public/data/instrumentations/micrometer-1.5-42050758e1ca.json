@@ -1,0 +1,15 @@
+{
+  "id": "micrometer-1.5",
+  "library_group": "micrometer",
+  "source_path": "instrumentation/micrometer/micrometer-1.5",
+  "disabled_by_default": true,
+  "scope": {
+    "name": "io.opentelemetry.micrometer-1.5"
+  },
+  "javaagent_target_versions": [
+    "io.micrometer:micrometer-core:[1.5.0,)"
+  ],
+  "has_standalone_library": true,
+  "markdown_hash": "5e13dd45f19d",
+  "markdown_url": "/data/markdown/micrometer-1.5-5e13dd45f19d.md"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "jaxrs-2.0-jersey-2.0",
+  "library_group": "jaxrs",
+  "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-jersey-2.0",
+  "scope": {
+    "name": "io.opentelemetry.jaxrs-2.0-jersey-2.0"
+  },
+  "javaagent_target_versions": [
+    "org.glassfish.jersey.core:jersey-server:[2.0,3.0.0)",
+    "org.glassfish.jersey.containers:jersey-container-servlet:[2.0,3.0.0)"
+  ]
+}

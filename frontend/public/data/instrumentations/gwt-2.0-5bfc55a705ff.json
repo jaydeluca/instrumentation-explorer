@@ -1,0 +1,41 @@
+{
+  "id": "gwt-2.0",
+  "library_group": "gwt",
+  "description": "This instrumentation enables RPC server spans for GWT RPC requests.",
+  "library_link": "https://www.gwtproject.org/",
+  "source_path": "instrumentation/gwt-2.0",
+  "scope": {
+    "name": "io.opentelemetry.gwt-2.0"
+  },
+  "javaagent_target_versions": [
+    "com.google.gwt:gwt-servlet:[2.0.0,)",
+    "org.gwtproject:gwt-servlet:[2.10.0,)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

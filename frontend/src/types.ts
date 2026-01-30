@@ -34,10 +34,8 @@ export interface Library {
   scope: {
     name: string;
   };
-  target_versions?: {
-    javaagent?: string[];
-    library?: string[];
-  };
+  javaagent_target_versions?: string[];
+  has_standalone_library?: boolean;
   telemetry?: Telemetry[];
   technology?: string;
   type?: string;

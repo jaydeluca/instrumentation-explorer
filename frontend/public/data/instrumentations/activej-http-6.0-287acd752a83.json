@@ -1,0 +1,116 @@
+{
+  "id": "activej-http-6.0",
+  "display_name": "ActiveJ",
+  "library_group": "activej",
+  "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the ActiveJ HTTP server.",
+  "library_link": "https://activej.io/",
+  "source_path": "instrumentation/activej-http-6.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.activej-http-6.0"
+  },
+  "javaagent_target_versions": [
+    "io.activej:activej-http:[6.0,)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.server.request.duration",
+          "description": "Duration of HTTP server requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "client.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.path",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.query",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "user_agent.original",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

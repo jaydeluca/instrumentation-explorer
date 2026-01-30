@@ -1,0 +1,58 @@
+{
+  "id": "log4j-appender-2.17",
+  "display_name": "Log4j",
+  "library_group": "log4j",
+  "description": "This instrumentation bridges Log4j log events to OpenTelemetry logs.\n",
+  "library_link": "https://logging.apache.org/log4j/2.x/",
+  "source_path": "instrumentation/log4j/log4j-appender-2.17",
+  "features": [
+    "LOGGING_BRIDGE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.log4j-appender-2.17"
+  },
+  "javaagent_target_versions": [
+    "org.apache.logging.log4j:log4j-core:[2.0,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental-log-attributes",
+      "description": "Enables the capture of experimental log attributes, including thread name and thread ID.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental.capture-code-attributes",
+      "description": "Enables the capture of code location attributes, including file path, class name, method name, and line number.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental.capture-map-message-attributes",
+      "description": "Enables the capture of attributes from Log4j MapMessage instances.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental.capture-marker-attribute",
+      "description": "Enables the capture of the Log4j marker attribute.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental.capture-mdc-attributes",
+      "description": "Controls which MDC attributes to capture. Use \"*\" to capture all MDC attributes or provide a comma-separated list of specific keys.\n",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.log4j-appender.experimental.capture-event-name",
+      "description": "Enables the capture of the event name from the MDC attribute \"event.name\" and sets it as the log record's event name.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "markdown_hash": "4b6effe0f712",
+  "markdown_url": "/data/markdown/log4j-appender-2.17-4b6effe0f712.md"
+}

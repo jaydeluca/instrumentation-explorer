@@ -1,0 +1,157 @@
+{
+  "id": "apache-dubbo-2.7",
+  "display_name": "Apache Dubbo",
+  "library_group": "apache",
+  "description": "The Apache Dubbo instrumentation provides RPC client spans and metrics, and RPC server spans and metrics for Apache Dubbo RPC calls.\n",
+  "library_link": "https://github.com/apache/dubbo/",
+  "source_path": "instrumentation/apache-dubbo-2.7",
+  "semantic_conventions": [
+    "RPC_CLIENT_SPANS",
+    "RPC_CLIENT_METRICS",
+    "RPC_SERVER_SPANS",
+    "RPC_SERVER_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.apache-dubbo-2.7"
+  },
+  "javaagent_target_versions": [
+    "org.apache.dubbo:dubbo:[2.7,)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.peer-service-mapping",
+      "description": "Used to specify a mapping from host names or IP addresses to peer services.",
+      "type": "map",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "rpc.client.duration",
+          "description": "The duration of an outbound RPC invocation.",
+          "type": "HISTOGRAM",
+          "unit": "ms",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "rpc.server.duration",
+          "description": "The duration of an inbound RPC invocation.",
+          "type": "HISTOGRAM",
+          "unit": "ms",
+          "attributes": [
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "peer.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

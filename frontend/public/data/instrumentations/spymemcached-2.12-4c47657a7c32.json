@@ -1,0 +1,11 @@
+{
+  "id": "spymemcached-2.12",
+  "library_group": "spymemcached",
+  "source_path": "instrumentation/spymemcached-2.12",
+  "scope": {
+    "name": "io.opentelemetry.spymemcached-2.12"
+  },
+  "javaagent_target_versions": [
+    "net.spy:spymemcached:[2.12.0,)"
+  ]
+}

@@ -25,8 +25,8 @@ const LibraryGroup: React.FC<LibraryGroupProps> = ({
   // Aggregate telemetry and target information across all libraries in the group
   const hasSpans = libraries.some(lib => lib.telemetry?.some(t => t.spans?.length));
   const hasMetrics = libraries.some(lib => lib.telemetry?.some(t => t.metrics?.length));
-  const hasJavaagent = libraries.some(lib => lib.target_versions?.javaagent);
-  const hasLibrary = libraries.some(lib => lib.target_versions?.library);
+  const hasJavaagent = libraries.some(lib => lib.javaagent_target_versions?.length);
+  const hasLibrary = libraries.some(lib => lib.has_standalone_library);
   
   // Aggregate semantic conventions
   const allSemconv = Array.from(
@@ -51,12 +51,12 @@ const LibraryGroup: React.FC<LibraryGroupProps> = ({
       </Link>
       
       <div className="target-tags">
-        {(isGrouped ? library.target_versions?.javaagent : hasJavaagent) && (
+        {(isGrouped ? library.javaagent_target_versions?.length : hasJavaagent) && (
           <span className="target-tag javaagent">
             <SmartToyIcon />
           </span>
         )}
-        {(isGrouped ? library.target_versions?.library : hasLibrary) && (
+        {(isGrouped ? library.has_standalone_library : hasLibrary) && (
           <span className="target-tag library">
             <LocalLibraryIcon />
           </span>

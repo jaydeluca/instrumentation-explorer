@@ -1,0 +1,11 @@
+{
+  "id": "reactor-netty-0.9",
+  "library_group": "reactor",
+  "source_path": "instrumentation/reactor/reactor-netty/reactor-netty-0.9",
+  "scope": {
+    "name": "io.opentelemetry.reactor-netty-0.9"
+  },
+  "javaagent_target_versions": [
+    "io.projectreactor.netty:reactor-netty:[0.8.2.RELEASE,1.0.0)"
+  ]
+}

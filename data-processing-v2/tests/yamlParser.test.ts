@@ -27,7 +27,7 @@ describe('transformInstrumentation', () => {
     });
   });
 
-  it('should transform complete instrumentation', () => {
+  it('should transform complete instrumentation with format 0.2', () => {
     const yaml: InstrumentationYAML = {
       name: 'akka-http-10.0',
       display_name: 'Akka HTTP',
@@ -40,12 +40,11 @@ describe('transformInstrumentation', () => {
       scope: {
         name: 'io.opentelemetry.akka-http-10.0'
       },
-      target_versions: {
-        javaagent: [
-          'com.typesafe.akka:akka-http_2.12:[10,)',
-          'com.typesafe.akka:akka-http_2.13:[10,)'
-        ]
-      }
+      javaagent_target_versions: [
+        'com.typesafe.akka:akka-http_2.12:[10,)',
+        'com.typesafe.akka:akka-http_2.13:[10,)'
+      ],
+      has_standalone_library: true
     };
 
     const result = transformInstrumentation(yaml, 'akka');
@@ -57,6 +56,11 @@ describe('transformInstrumentation', () => {
     expect(result.semantic_conventions).toEqual(['HTTP_CLIENT_SPANS', 'HTTP_SERVER_SPANS']);
     expect(result.features).toEqual(['HTTP_ROUTE']);
     expect(result.scope?.name).toBe('io.opentelemetry.akka-http-10.0');
+    expect(result.javaagent_target_versions).toEqual([
+      'com.typesafe.akka:akka-http_2.12:[10,)',
+      'com.typesafe.akka:akka-http_2.13:[10,)'
+    ]);
+    expect(result.has_standalone_library).toBe(true);
   });
 
   it('should transform telemetry data', () => {
@@ -117,6 +121,56 @@ describe('transformInstrumentation', () => {
 
     expect(result.configurations).toHaveLength(1);
     expect(result.configurations?.[0].name).toBe('otel.instrumentation.test.enabled');
+  });
+
+  it('should convert format 0.1 target_versions to format 0.2', () => {
+    const yaml: InstrumentationYAML = {
+      name: 'test-1.0',
+      display_name: 'Test',
+      target_versions: {
+        javaagent: ['com.test:test:[1.0,)'],
+        library: ['com.test:test:1.0.0', 'com.test:test:1.1.0']
+      }
+    };
+
+    const result = transformInstrumentation(yaml, 'test');
+
+    expect(result.javaagent_target_versions).toEqual(['com.test:test:[1.0,)']);
+    expect(result.has_standalone_library).toBe(true);
+  });
+
+  it('should convert format 0.1 with no library versions to has_standalone_library false', () => {
+    const yaml: InstrumentationYAML = {
+      name: 'test-1.0',
+      display_name: 'Test',
+      target_versions: {
+        javaagent: ['com.test:test:[1.0,)']
+      }
+    };
+
+    const result = transformInstrumentation(yaml, 'test');
+
+    expect(result.javaagent_target_versions).toEqual(['com.test:test:[1.0,)']);
+    expect(result.has_standalone_library).toBeUndefined();
+  });
+
+  it('should prefer format 0.2 fields over format 0.1', () => {
+    const yaml: InstrumentationYAML = {
+      name: 'test-1.0',
+      display_name: 'Test',
+      javaagent_target_versions: ['com.test:test:[2.0,)'],
+      has_standalone_library: true,
+      target_versions: {
+        javaagent: ['com.test:test:[1.0,)'],
+        library: ['com.test:test:1.0.0']
+      }
+    };
+
+    const result = transformInstrumentation(yaml, 'test');
+
+    // Should use format 0.2 fields
+    expect(result.javaagent_target_versions).toEqual(['com.test:test:[2.0,)']);
+    expect(result.has_standalone_library).toBe(true);
   });
 });
 
