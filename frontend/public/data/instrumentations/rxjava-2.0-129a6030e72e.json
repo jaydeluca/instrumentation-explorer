@@ -1,0 +1,10 @@
+{
+  "id": "rxjava-2.0",
+  "library_group": "rxjava",
+  "source_path": "instrumentation/rxjava/rxjava-2.0",
+  "scope": {
+    "name": "io.opentelemetry.rxjava-2.0"
+  },
+  "markdown_hash": "74c683fe6342",
+  "markdown_url": "/data/markdown/rxjava-2.0-74c683fe6342.md"
+}

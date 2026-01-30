@@ -1,0 +1,81 @@
+{
+  "id": "powerjob-4.0",
+  "display_name": "PowerJob",
+  "library_group": "powerjob",
+  "description": "This instrumentation enables spans for PowerJob job processor executions.",
+  "library_link": "https://github.com/PowerJob/PowerJob",
+  "source_path": "instrumentation/powerjob-4.0",
+  "scope": {
+    "name": "io.opentelemetry.powerjob-4.0"
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.powerjob.experimental-span-attributes",
+      "description": "Enables experimental span attributes `job.system`, `scheduling.powerjob.job.id`, `scheduling.powerjob.job.param`, `scheduling.powerjob.job.instance.param`, and `scheduling.powerjob.job.type`.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.powerjob.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "job.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "scheduling.powerjob.job.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "scheduling.powerjob.job.param",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "scheduling.powerjob.job.type",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "jsp-2.3",
+  "display_name": "JSP (JavaServer Pages)",
+  "library_group": "jsp",
+  "description": "This instrumentation enables view spans for JSP page rendering and compilation (view spans are disabled by default).\n",
+  "library_link": "https://jakarta.ee/specifications/pages/",
+  "source_path": "instrumentation/jsp-2.3",
+  "features": [
+    "VIEW_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jsp-2.3"
+  },
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.view-telemetry.enabled",
+      "description": "Enables the creation of experimental view spans.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.jsp.experimental-span-attributes",
+      "description": "Enables experimental span attributes `jsp.forwardOrigin`, `jsp.requestURL`, `jsp.compiler`, and `jsp.classFQCN`.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "otel.instrumentation.common.experimental.view-telemetry.enabled=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": []
+        }
+      ]
+    },
+    "otel.instrumentation.common.experimental.view-telemetry.enabled=true,otel.instrumentation.jsp.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "jsp.classFQCN",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "jsp.compiler",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "jsp.forwardOrigin",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "jsp.requestURL",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "undertow-1.4",
+  "library_group": "undertow",
+  "source_path": "instrumentation/undertow-1.4",
+  "scope": {
+    "name": "io.opentelemetry.undertow-1.4"
+  }
+}

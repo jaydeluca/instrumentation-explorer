@@ -1,0 +1,11 @@
+{
+  "id": "spring-web-6.0",
+  "library_group": "spring",
+  "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate.\n",
+  "library_link": "https://github.com/spring-projects/spring-framework",
+  "source_path": "instrumentation/spring/spring-web/spring-web-6.0",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.spring-web-6.0"
+  }
+}

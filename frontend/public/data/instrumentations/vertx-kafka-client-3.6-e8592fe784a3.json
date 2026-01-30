@@ -1,0 +1,8 @@
+{
+  "id": "vertx-kafka-client-3.6",
+  "library_group": "vertx",
+  "source_path": "instrumentation/vertx/vertx-kafka-client-3.6",
+  "scope": {
+    "name": "io.opentelemetry.vertx-kafka-client-3.6"
+  }
+}

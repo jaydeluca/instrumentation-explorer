@@ -1,0 +1,182 @@
+{
+  "id": "spring-webflux-5.3",
+  "library_group": "spring",
+  "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+  "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/package-summary.html",
+  "source_path": "instrumentation/spring/spring-webflux/spring-webflux-5.3",
+  "scope": {
+    "name": "io.opentelemetry.spring-webflux-5.3",
+    "schema_url": "https://opentelemetry.io/schemas/1.37.0"
+  },
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "name": "http.server.request.duration",
+          "description": "Duration of HTTP server requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "http.route",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "client.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "http.route",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.path",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.query",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "user_agent.original",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "2c795bbfeac7",
+  "markdown_url": "/data/markdown/spring-webflux-5.3-2c795bbfeac7.md"
+}
