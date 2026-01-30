@@ -1,0 +1,72 @@
+{
+  "id": "quartz-2.0",
+  "display_name": "Quartz",
+  "library_group": "quartz",
+  "description": "This instrumentation enables spans for Quartz job execution.",
+  "library_link": "https://www.quartz-scheduler.org/",
+  "source_path": "instrumentation/quartz-2.0",
+  "scope": {
+    "name": "io.opentelemetry.quartz-2.0"
+  },
+  "javaagent_target_versions": [
+    "org.quartz-scheduler:quartz:[2.0.0,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.quartz.experimental-span-attributes",
+      "description": "Enables the experimental `job.system` span attribute.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.quartz.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "job.system",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "4b4e201cb808",
+  "markdown_url": "/data/markdown/quartz-2.0-4b4e201cb808.md"
+}

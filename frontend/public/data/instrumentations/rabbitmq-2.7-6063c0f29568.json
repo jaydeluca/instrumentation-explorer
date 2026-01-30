@@ -1,0 +1,11 @@
+{
+  "id": "rabbitmq-2.7",
+  "library_group": "rabbitmq",
+  "source_path": "instrumentation/rabbitmq-2.7",
+  "scope": {
+    "name": "io.opentelemetry.rabbitmq-2.7"
+  },
+  "javaagent_target_versions": [
+    "com.rabbitmq:amqp-client:[2.7.0,)"
+  ]
+}

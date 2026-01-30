@@ -1,0 +1,12 @@
+{
+  "id": "kafka-streams-0.11",
+  "library_group": "kafka",
+  "library_link": "https://kafka.apache.org/documentation/streams/",
+  "source_path": "instrumentation/kafka/kafka-streams-0.11",
+  "scope": {
+    "name": "io.opentelemetry.kafka-streams-0.11"
+  },
+  "javaagent_target_versions": [
+    "org.apache.kafka:kafka-streams:[0.11.0.0,)"
+  ]
+}

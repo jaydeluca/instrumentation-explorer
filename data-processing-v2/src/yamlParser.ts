@@ -61,8 +61,22 @@ export function transformInstrumentation(
     data.scope = yamlData.scope;
   }
 
-  if (yamlData.target_versions) {
-    data.target_versions = yamlData.target_versions;
+  // Normalize target versions to format 0.2
+  // Priority: use format 0.2 fields if present, otherwise convert from format 0.1
+  if (yamlData.javaagent_target_versions) {
+    // Format 0.2: use directly
+    data.javaagent_target_versions = yamlData.javaagent_target_versions;
+  } else if (yamlData.target_versions?.javaagent) {
+    // Format 0.1: convert to new format
+    data.javaagent_target_versions = yamlData.target_versions.javaagent;
+  }
+
+  if (yamlData.has_standalone_library !== undefined) {
+    // Format 0.2: use directly
+    data.has_standalone_library = yamlData.has_standalone_library;
+  } else if (yamlData.target_versions?.library) {
+    // Format 0.1: convert to boolean (if library versions exist, has_standalone_library = true)
+    data.has_standalone_library = yamlData.target_versions.library.length > 0;
   }
 
   if (yamlData.configurations && yamlData.configurations.length > 0) {

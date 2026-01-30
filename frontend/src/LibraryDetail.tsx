@@ -123,18 +123,18 @@ function LibraryDetail() {
           </table>
         </div>
       )}
-      {library.target_versions && (
+      {(library.javaagent_target_versions || library.has_standalone_library !== undefined) && (
         <div className="target-versions-main-section">
           <h3>Target Versions:</h3>
           <div className="target-versions-container">
-            {library.target_versions.javaagent &&
-              library.target_versions.javaagent.length > 0 && (
+            {library.javaagent_target_versions &&
+              library.javaagent_target_versions.length > 0 && (
                 <div className="target-version-section">
                   <h4 style={{ padding: "10px 0", margin: "10px 0" }}>
                     Javaagent:
                   </h4>
                   <ul>
-                    {library.target_versions.javaagent.map(
+                    {library.javaagent_target_versions.map(
                       (version, index) => (
                         <li key={index}>{version}</li>
                       )
@@ -142,17 +142,16 @@ function LibraryDetail() {
                   </ul>
                 </div>
               )}
-            {library.target_versions.library &&
-              library.target_versions.library.length > 0 && (
-                <div className="target-version-section">
-                  <h4>Standalone Library:</h4>
-                  <ul>
-                    {library.target_versions.library.map((version, index) => (
-                      <li key={index}>{version}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            {library.has_standalone_library !== undefined && (
+              <div className="target-version-section">
+                <h4>Standalone Library:</h4>
+                <p style={{ padding: "10px 0", margin: "10px 0" }}>
+                  {library.has_standalone_library
+                    ? "Standalone Library Available"
+                    : "Standalone Library Not Available"}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}

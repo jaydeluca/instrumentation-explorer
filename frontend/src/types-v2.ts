@@ -61,6 +61,7 @@ export interface InstrumentationReference {
 
 /**
  * Full instrumentation data - content-addressed by hash
+ * Normalized to format 0.2 structure
  */
 export interface InstrumentationData {
   id: string;
@@ -76,10 +77,8 @@ export interface InstrumentationData {
   scope?: {
     name: string;
   };
-  target_versions?: {
-    javaagent?: string[];
-    library?: string[];
-  };
+  javaagent_target_versions?: string[];
+  has_standalone_library?: boolean;
   configurations?: Configuration[];
   telemetry?: TelemetryConfig;
   markdown_hash?: string;

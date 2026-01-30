@@ -131,7 +131,7 @@ export function generateRepositoryLink(library: Library): string {
  */
 export function generateJavaDocLink(library: Library): string | null {
   // Only generate JavaDoc links for standalone libraries
-  if (library.type !== 'standalone' && !library.target_versions?.library) {
+  if (library.type !== 'standalone' && !library.has_standalone_library) {
     return null;
   }
   

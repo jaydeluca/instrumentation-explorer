@@ -1,0 +1,309 @@
+{
+  "id": "rabbitmq-2.7",
+  "display_name": "RabbitMQ",
+  "library_group": "rabbitmq",
+  "description": "This instrumentation enables messaging spans for RabbitMQ message producers and consumers.",
+  "library_link": "https://www.rabbitmq.com/client-libraries/java-api-guide",
+  "source_path": "instrumentation/rabbitmq-2.7",
+  "semantic_conventions": [
+    "MESSAGING_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.rabbitmq-2.7"
+  },
+  "javaagent_target_versions": [
+    "com.rabbitmq:amqp-client:[2.7.0,)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.rabbitmq.experimental-span-attributes",
+      "description": "Enables experimental span attributes `rabbitmq.command`, `rabbitmq.delivery_mode`, `rabbitmq.queue`, and `rabbitmq.record.queue_time_ms`.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.common.messaging.experimental.receive-telemetry.enabled",
+      "description": "Enables the creation of consumer spans on messaging receive operations. These spans will measure the time between receiving a message and the consumer processing that message.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.common.messaging.capture-headers",
+      "description": "List of messaging headers to capture.",
+      "type": "list",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rabbitmq.destination.routing_key",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rabbitmq.destination.routing_key",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.rabbitmq.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rabbitmq.command",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "span_kind": "CONSUMER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rabbitmq.destination.routing_key",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rabbitmq.command",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "rabbitmq.queue",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "rabbitmq.record.queue_time_ms",
+              "type": "LONG",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "span_kind": "PRODUCER",
+          "attributes": [
+            {
+              "name": "messaging.destination.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.message.body.size",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "messaging.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "messaging.rabbitmq.destination.routing_key",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "messaging.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rabbitmq.command",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "rabbitmq.delivery_mode",
+              "type": "LONG",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

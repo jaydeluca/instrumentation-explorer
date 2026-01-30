@@ -112,7 +112,12 @@ function App() {
     )
   );
   const allTargetTags = Array.from(
-    new Set(libraries.flatMap((lib) => Object.keys(lib.target_versions || {})))
+    new Set(libraries.flatMap((lib) => {
+      const tags: string[] = [];
+      if (lib.javaagent_target_versions?.length) tags.push('javaagent');
+      if (lib.has_standalone_library) tags.push('library');
+      return tags;
+    }))
   );
 
   const toggleFilter = (
@@ -233,13 +238,15 @@ function App() {
           : true;
       const matchesTargetFilters =
         activeTargetFilters.length > 0
-          ? activeTargetFilters.every(
-              (filter) =>
-                library.target_versions &&
-                (library.target_versions[
-                  filter as keyof typeof library.target_versions
-                ]?.length || 0) > 0
-            )
+          ? activeTargetFilters.every((filter) => {
+              if (filter === 'javaagent') {
+                return library.javaagent_target_versions && library.javaagent_target_versions.length > 0;
+              }
+              if (filter === 'library') {
+                return library.has_standalone_library === true;
+              }
+              return false;
+            })
           : true;
       return (
         matchesSemconvFilters &&
