@@ -1,0 +1,80 @@
+{
+  "id": "jaxrs-2.0-cxf-3.2",
+  "display_name": "Apache CXF JAX-RS 2.x",
+  "library_group": "jaxrs",
+  "description": "This instrumentation enriches HTTP server spans with route information, and enables controller spans for JAX-RS methods when using Apache CXF (controller spans are disabled by default).\n",
+  "library_link": "https://cxf.apache.org/",
+  "source_path": "instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-cxf-3.2",
+  "features": [
+    "HTTP_ROUTE",
+    "CONTROLLER_SPANS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.jaxrs-2.0-cxf-3.2"
+  },
+  "javaagent_target_versions": [
+    "org.apache.tomee:openejb-cxf-rs:(8,)",
+    "org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.jaxrs.experimental-span-attributes",
+      "description": "Enables the experimental `jaxrs.canceled` span attribute.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.instrumentation.jaxrs.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "jaxrs.canceled",
+              "type": "BOOLEAN",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

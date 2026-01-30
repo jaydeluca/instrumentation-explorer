@@ -1,0 +1,13 @@
+{
+  "id": "servlet-3.0",
+  "library_group": "servlet",
+  "source_path": "instrumentation/servlet/servlet-3.0",
+  "scope": {
+    "name": "io.opentelemetry.servlet-3.0"
+  },
+  "javaagent_target_versions": [
+    "javax.servlet:javax.servlet-api:[3.0,)"
+  ],
+  "markdown_hash": "2e49a51722a0",
+  "markdown_url": "/data/markdown/servlet-3.0-2e49a51722a0.md"
+}

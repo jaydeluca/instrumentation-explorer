@@ -1,0 +1,11 @@
+{
+  "id": "wicket-8.0",
+  "library_group": "wicket",
+  "source_path": "instrumentation/wicket-8.0",
+  "scope": {
+    "name": "io.opentelemetry.wicket-8.0"
+  },
+  "javaagent_target_versions": [
+    "org.apache.wicket:wicket:[8.0.0,]"
+  ]
+}

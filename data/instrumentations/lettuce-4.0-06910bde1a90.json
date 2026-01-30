@@ -1,0 +1,11 @@
+{
+  "id": "lettuce-4.0",
+  "library_group": "lettuce",
+  "source_path": "instrumentation/lettuce/lettuce-4.0",
+  "scope": {
+    "name": "io.opentelemetry.lettuce-4.0"
+  },
+  "javaagent_target_versions": [
+    "biz.paluch.redis:lettuce:[4.0.Final,)"
+  ]
+}

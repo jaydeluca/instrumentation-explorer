@@ -1,0 +1,98 @@
+{
+  "id": "play-ws-2.1",
+  "library_group": "play",
+  "source_path": "instrumentation/play/play-ws/play-ws-2.1",
+  "scope": {
+    "name": "io.opentelemetry.play-ws-2.1"
+  },
+  "javaagent_target_versions": [
+    "com.typesafe.play:play-ahc-ws-standalone_2.13:[2.1.0,]",
+    "com.typesafe.play:play-ahc-ws-standalone_2.12:[2.1.0,]"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method_original",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

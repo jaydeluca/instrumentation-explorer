@@ -1,0 +1,12 @@
+{
+  "id": "guava-10.0",
+  "library_group": "guava",
+  "source_path": "instrumentation/guava-10.0",
+  "scope": {
+    "name": "io.opentelemetry.guava-10.0"
+  },
+  "javaagent_target_versions": [
+    "com.google.guava:guava:[10.0,]"
+  ],
+  "has_standalone_library": true
+}

@@ -1,0 +1,11 @@
+{
+  "id": "ktor-1.0",
+  "library_group": "ktor",
+  "source_path": "instrumentation/ktor/ktor-1.0",
+  "scope": {
+    "name": "io.opentelemetry.ktor-1.0"
+  },
+  "has_standalone_library": true,
+  "markdown_hash": "95edd47db391",
+  "markdown_url": "/data/markdown/ktor-1.0-95edd47db391.md"
+}

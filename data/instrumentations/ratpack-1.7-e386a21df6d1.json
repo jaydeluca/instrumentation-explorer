@@ -1,0 +1,14 @@
+{
+  "id": "ratpack-1.7",
+  "library_group": "ratpack",
+  "source_path": "instrumentation/ratpack/ratpack-1.7",
+  "scope": {
+    "name": "io.opentelemetry.ratpack-1.7"
+  },
+  "javaagent_target_versions": [
+    "io.ratpack:ratpack-core:[1.7.0,)"
+  ],
+  "has_standalone_library": true,
+  "markdown_hash": "844428a9adca",
+  "markdown_url": "/data/markdown/ratpack-1.7-844428a9adca.md"
+}

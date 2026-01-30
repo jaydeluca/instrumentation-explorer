@@ -1,0 +1,88 @@
+{
+  "id": "logback-appender-1.0",
+  "display_name": "Logback",
+  "library_group": "logback",
+  "description": "This instrumentation bridges Logback log events to OpenTelemetry logs.\n",
+  "library_link": "https://logback.qos.ch/",
+  "source_path": "instrumentation/logback/logback-appender-1.0",
+  "features": [
+    "LOGGING_BRIDGE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.logback-appender-1.0"
+  },
+  "javaagent_target_versions": [
+    "ch.qos.logback:logback-classic:[0.9.16,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.logback-appender.experimental-log-attributes",
+      "description": "Enables the capture of experimental log attributes, including thread name and thread ID.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-code-attributes",
+      "description": "Enables the capture of code location attributes, including file path, class name, method name, and line number.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-marker-attribute",
+      "description": "Enables the capture of the Logback marker attribute.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-key-value-pair-attributes",
+      "description": "Enables the capture of attributes from Logback key-value pairs.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-logger-context-attributes",
+      "description": "Enables the capture of attributes from the Logback logger context.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-template",
+      "description": "Enables the capture of the log message template before parameter substitution.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-arguments",
+      "description": "Enables the capture of log message arguments as separate attributes.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-logstash-marker-attributes",
+      "description": "Enables the capture of attributes from Logstash markers.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-logstash-structured-arguments",
+      "description": "Enables the capture of attributes from Logstash structured arguments.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-mdc-attributes",
+      "description": "Controls which MDC attributes to capture. Use \"*\" to capture all MDC attributes or provide a comma-separated list of specific keys.\n",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.logback-appender.experimental.capture-event-name",
+      "description": "Enables the capture of the event name from the MDC attribute \"event.name\" and sets it as the log record's event name.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "markdown_hash": "4cd6c0a989c7",
+  "markdown_url": "/data/markdown/logback-appender-1.0-4cd6c0a989c7.md"
+}

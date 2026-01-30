@@ -1,0 +1,94 @@
+{
+  "id": "apache-httpclient-2.0",
+  "library_group": "apache",
+  "description": "This instrumentation enables HTTP client spans and HTTP client metrics for versions 2 and 3 of the Apache HttpClient.",
+  "library_link": "https://hc.apache.org/index.html",
+  "source_path": "instrumentation/apache-httpclient/apache-httpclient-2.0",
+  "scope": {
+    "name": "io.opentelemetry.apache-httpclient-2.0"
+  },
+  "javaagent_target_versions": [
+    "commons-httpclient:commons-httpclient:[2.0,4.0)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.client.request.duration",
+          "description": "Duration of HTTP client requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
