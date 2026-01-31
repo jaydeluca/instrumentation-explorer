@@ -3257,11 +3257,21 @@
     },
     {
       "id": "spymemcached-2.12",
+      "display_name": "Spymemcached",
       "library_group": "spymemcached",
+      "description": "This instrumentation enables database client spans and database client metrics for Memcached operations using the Spymemcached client.\n",
       "tags": [
-        "spymemcached"
+        "spymemcached",
+        "client",
+        "database",
+        "database_client_spans",
+        "database_client_metrics"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "DATABASE_CLIENT_SPANS",
+        "DATABASE_CLIENT_METRICS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "struts-2.3",

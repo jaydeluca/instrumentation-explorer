@@ -1,4 +1,4 @@
-file_format: 0.1
+file_format: 0.2
 libraries:
   activej:
   - name: activej-http-6.0
@@ -14,9 +14,8 @@ libraries:
     scope:
       name: io.opentelemetry.activej-http-6.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.activej:activej-http:[6.0,)
+    javaagent_target_versions:
+    - io.activej:activej-http:[6.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -95,11 +94,10 @@ libraries:
     source_path: instrumentation/akka/akka-actor-2.3
     scope:
       name: io.opentelemetry.akka-actor-2.3
-    target_versions:
-      javaagent:
-      - com.typesafe.akka:akka-actor_2.11:[2.3,)
-      - com.typesafe.akka:akka-actor_2.12:[2.3,)
-      - com.typesafe.akka:akka-actor_2.13:[2.3,)
+    javaagent_target_versions:
+    - com.typesafe.akka:akka-actor_2.11:[2.3,)
+    - com.typesafe.akka:akka-actor_2.12:[2.3,)
+    - com.typesafe.akka:akka-actor_2.13:[2.3,)
   - name: akka-actor-fork-join-2.5
     display_name: Akka Actors
     description: This instrumentation provides context propagation for the Akka Fork-Join
@@ -110,11 +108,10 @@ libraries:
     source_path: instrumentation/akka/akka-actor-fork-join-2.5
     scope:
       name: io.opentelemetry.akka-actor-fork-join-2.5
-    target_versions:
-      javaagent:
-      - com.typesafe.akka:akka-actor_2.12:[2.5,2.6)
-      - com.typesafe.akka:akka-actor_2.13:[2.5.23,2.6)
-      - com.typesafe.akka:akka-actor_2.11:[2.5,)
+    javaagent_target_versions:
+    - com.typesafe.akka:akka-actor_2.12:[2.5,2.6)
+    - com.typesafe.akka:akka-actor_2.13:[2.5.23,2.6)
+    - com.typesafe.akka:akka-actor_2.11:[2.5,)
   - name: akka-http-10.0
     display_name: Akka HTTP
     description: 'This instrumentation enables HTTP client spans and metrics for the
@@ -134,11 +131,10 @@ libraries:
     scope:
       name: io.opentelemetry.akka-http-10.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.typesafe.akka:akka-http_2.12:[10,)
-      - com.typesafe.akka:akka-http_2.13:[10,)
-      - com.typesafe.akka:akka-http_2.11:[10,)
+    javaagent_target_versions:
+    - com.typesafe.akka:akka-http_2.12:[10,)
+    - com.typesafe.akka:akka-http_2.13:[10,)
+    - com.typesafe.akka:akka-http_2.11:[10,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -278,11 +274,9 @@ libraries:
     source_path: instrumentation/alibaba-druid-1.0
     scope:
       name: io.opentelemetry.alibaba-druid-1.0
-    target_versions:
-      javaagent:
-      - com.alibaba:druid:(,)
-      library:
-      - com.alibaba:druid:1.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.alibaba:druid:(,)
     configurations:
     - name: otel.semconv-stability.opt-in
       description: 'Opt-in to emit stable semantic conventions instead of the old
@@ -353,11 +347,9 @@ libraries:
     source_path: instrumentation/apache-dbcp-2.0
     scope:
       name: io.opentelemetry.apache-dbcp-2.0
-    target_versions:
-      javaagent:
-      - org.apache.commons:commons-dbcp2:[2,)
-      library:
-      - org.apache.commons:commons-dbcp2:2.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.apache.commons:commons-dbcp2:[2,)
     configurations:
     - name: otel.semconv-stability.opt-in
       description: 'Opt-in to emit stable semantic conventions instead of the old
@@ -418,9 +410,8 @@ libraries:
     source_path: instrumentation/apache-dubbo-2.7
     scope:
       name: io.opentelemetry.apache-dubbo-2.7
-    target_versions:
-      javaagent:
-      - org.apache.dubbo:dubbo:[2.7,)
+    javaagent_target_versions:
+    - org.apache.dubbo:dubbo:[2.7,)
     configurations:
     - name: otel.instrumentation.common.peer-service-mapping
       description: Used to specify a mapping from host names or IP addresses to peer
@@ -490,9 +481,8 @@ libraries:
     source_path: instrumentation/apache-elasticjob-3.0
     scope:
       name: io.opentelemetry.apache-elasticjob-3.0
-    target_versions:
-      javaagent:
-      - org.apache.shardingsphere.elasticjob:elasticjob-lite-core:[3.0.0,)
+    javaagent_target_versions:
+    - org.apache.shardingsphere.elasticjob:elasticjob-lite-core:[3.0.0,)
     configurations:
     - name: otel.instrumentation.apache-elasticjob.experimental-span-attributes
       description: 'Enables experimental span attributes `job.system`, `scheduling.apache-elasticjob.job.name`,
@@ -546,9 +536,8 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpasyncclient-4.1
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.apache.httpcomponents:httpasyncclient:[4.1,)
+    javaagent_target_versions:
+    - org.apache.httpcomponents:httpasyncclient:[4.1,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -633,9 +622,8 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpclient-2.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - commons-httpclient:commons-httpclient:[2.0,4.0)
+    javaagent_target_versions:
+    - commons-httpclient:commons-httpclient:[2.0,4.0)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -718,10 +706,9 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpclient-4.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.dropwizard:dropwizard-client:(,3.0.0)
-      - org.apache.httpcomponents:httpclient:[4.0,)
+    javaagent_target_versions:
+    - io.dropwizard:dropwizard-client:(,3.0.0)
+    - org.apache.httpcomponents:httpclient:[4.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -806,9 +793,7 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpclient-4.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      library:
-      - org.apache.httpcomponents:httpclient:[4.3,4.+)
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -860,9 +845,8 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpclient-5.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.apache.httpcomponents.client5:httpclient5:[5.0,)
+    javaagent_target_versions:
+    - org.apache.httpcomponents.client5:httpclient5:[5.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -947,9 +931,7 @@ libraries:
     scope:
       name: io.opentelemetry.apache-httpclient-5.2
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      library:
-      - org.apache.httpcomponents.client5:httpclient5:5.2.1
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -1001,9 +983,8 @@ libraries:
     source_path: instrumentation/apache-shenyu-2.4
     scope:
       name: io.opentelemetry.apache-shenyu-2.4
-    target_versions:
-      javaagent:
-      - org.apache.shenyu:shenyu-web:[2.4.0,)
+    javaagent_target_versions:
+    - org.apache.shenyu:shenyu-web:[2.4.0,)
     configurations:
     - name: otel.instrumentation.apache-shenyu.experimental-span-attributes
       description: 'Enables experimental `apache-shenyu.meta.` prefixed span attributes
@@ -1032,11 +1013,9 @@ libraries:
     scope:
       name: io.opentelemetry.armeria-1.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.linecorp.armeria:armeria:[1.3.0,)
-      library:
-      - com.linecorp.armeria:armeria:1.3.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.linecorp.armeria:armeria:[1.3.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -1181,9 +1160,8 @@ libraries:
     source_path: instrumentation/armeria/armeria-grpc-1.14
     scope:
       name: io.opentelemetry.armeria-grpc-1.14
-    target_versions:
-      javaagent:
-      - com.linecorp.armeria:armeria-grpc:[1.14.0,)
+    javaagent_target_versions:
+    - com.linecorp.armeria:armeria-grpc:[1.14.0,)
     telemetry:
     - when: default
       spans:
@@ -1230,9 +1208,8 @@ libraries:
     scope:
       name: io.opentelemetry.async-http-client-1.8
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.ning:async-http-client:[1.8.0,1.9.0)
+    javaagent_target_versions:
+    - com.ning:async-http-client:[1.8.0,1.9.0)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -1315,9 +1292,8 @@ libraries:
     scope:
       name: io.opentelemetry.async-http-client-1.9
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.ning:async-http-client:[1.9.0,)
+    javaagent_target_versions:
+    - com.ning:async-http-client:[1.9.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -1400,9 +1376,8 @@ libraries:
     scope:
       name: io.opentelemetry.async-http-client-2.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.asynchttpclient:async-http-client:[2.0.0,)
+    javaagent_target_versions:
+    - org.asynchttpclient:async-http-client:[2.0.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -1493,9 +1468,8 @@ libraries:
     minimum_java_version: 21
     scope:
       name: io.opentelemetry.avaje-jex-3.0
-    target_versions:
-      javaagent:
-      - io.avaje:avaje-jex:[3.0,)
+    javaagent_target_versions:
+    - io.avaje:avaje-jex:[3.0,)
   aws:
   - name: aws-lambda-core-1.0
     description: 'Provides lightweight instrumentation of the Lambda core library,
@@ -1517,11 +1491,9 @@ libraries:
     source_path: instrumentation/aws-lambda/aws-lambda-core-1.0
     scope:
       name: io.opentelemetry.aws-lambda-core-1.0
-    target_versions:
-      javaagent:
-      - com.amazonaws:aws-lambda-java-core:[1.0.0,)
-      library:
-      - com.amazonaws:aws-lambda-java-core:1.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.amazonaws:aws-lambda-java-core:[1.0.0,)
     configurations:
     - name: otel.instrumentation.aws-lambda.flush-timeout
       description: Flush timeout in milliseconds.
@@ -1547,12 +1519,9 @@ libraries:
     source_path: instrumentation/aws-lambda/aws-lambda-events-2.2
     scope:
       name: io.opentelemetry.aws-lambda-events-2.2
-    target_versions:
-      javaagent:
-      - com.amazonaws:aws-lambda-java-core:[1.0.0,)
-      library:
-      - com.amazonaws:aws-lambda-java-events:2.2.1
-      - com.amazonaws:aws-lambda-java-core:1.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.amazonaws:aws-lambda-java-core:[1.0.0,)
     configurations:
     - name: otel.instrumentation.aws-lambda.flush-timeout
       description: Flush timeout in milliseconds.
@@ -1600,10 +1569,7 @@ libraries:
     source_path: instrumentation/aws-lambda/aws-lambda-events-3.11
     scope:
       name: io.opentelemetry.aws-lambda-events-3.11
-    target_versions:
-      library:
-      - com.amazonaws:aws-lambda-java-events:3.11.0
-      - com.amazonaws:aws-lambda-java-core:1.0.0
+    has_standalone_library: true
     configurations:
     - name: otel.instrumentation.aws-lambda.flush-timeout
       description: Flush timeout in milliseconds.
@@ -1657,13 +1623,10 @@ libraries:
     source_path: instrumentation/aws-sdk/aws-sdk-1.11
     scope:
       name: io.opentelemetry.aws-sdk-1.11
-    target_versions:
-      javaagent:
-      - com.amazonaws:aws-java-sdk-sqs:[1.10.33,)
-      - com.amazonaws:aws-java-sdk-core:[1.10.33,)
-      library:
-      - com.amazonaws:aws-java-sdk-sqs:[1.11.106,1.12.583)
-      - com.amazonaws:aws-java-sdk-core:1.11.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.amazonaws:aws-java-sdk-sqs:[1.10.33,)
+    - com.amazonaws:aws-java-sdk-core:[1.10.33,)
     configurations:
     - name: otel.instrumentation.aws-sdk.experimental-span-attributes
       description: 'Enables the experimental span attributes `aws.agent`, `aws.queue.name`,
@@ -1806,19 +1769,13 @@ libraries:
     source_path: instrumentation/aws-sdk/aws-sdk-2.2
     scope:
       name: io.opentelemetry.aws-sdk-2.2
-    target_versions:
-      javaagent:
-      - software.amazon.awssdk:sns:[2.2.0,)
-      - software.amazon.awssdk:lambda:[2.17.0,)
-      - software.amazon.awssdk:bedrock-runtime:[2.25.63,)
-      - software.amazon.awssdk:aws-core:[2.2.0,)
-      - software.amazon.awssdk:sqs:[2.2.0,)
-      library:
-      - software.amazon.awssdk:aws-core:2.2.0
-      - software.amazon.awssdk:aws-json-protocol:2.2.0
-      - software.amazon.awssdk:sqs:2.2.0
-      - software.amazon.awssdk:sns:2.2.0
-      - software.amazon.awssdk:lambda:2.2.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - software.amazon.awssdk:sns:[2.2.0,)
+    - software.amazon.awssdk:lambda:[2.17.0,)
+    - software.amazon.awssdk:bedrock-runtime:[2.25.63,)
+    - software.amazon.awssdk:aws-core:[2.2.0,)
+    - software.amazon.awssdk:sqs:[2.2.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -2015,9 +1972,8 @@ libraries:
     source_path: instrumentation/azure-core/azure-core-1.14
     scope:
       name: io.opentelemetry.azure-core-1.14
-    target_versions:
-      javaagent:
-      - com.azure:azure-core:[1.14.0,1.19.0)
+    javaagent_target_versions:
+    - com.azure:azure-core:[1.14.0,1.19.0)
   - name: azure-core-1.19
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
@@ -2028,9 +1984,8 @@ libraries:
     source_path: instrumentation/azure-core/azure-core-1.19
     scope:
       name: io.opentelemetry.azure-core-1.19
-    target_versions:
-      javaagent:
-      - com.azure:azure-core:[1.19.0,1.36.0)
+    javaagent_target_versions:
+    - com.azure:azure-core:[1.19.0,1.36.0)
   - name: azure-core-1.36
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
@@ -2041,9 +1996,8 @@ libraries:
     source_path: instrumentation/azure-core/azure-core-1.36
     scope:
       name: io.opentelemetry.azure-core-1.36
-    target_versions:
-      javaagent:
-      - com.azure:azure-core:[1.36.0,1.53.0)
+    javaagent_target_versions:
+    - com.azure:azure-core:[1.36.0,1.53.0)
   - name: azure-core-1.53
     description: This instrumentation enables context propagation for the Azure Core
       library, it does not emit any telemetry on its own.
@@ -2054,9 +2008,8 @@ libraries:
     source_path: instrumentation/azure-core/azure-core-1.53
     scope:
       name: io.opentelemetry.azure-core-1.53
-    target_versions:
-      javaagent:
-      - com.azure:azure-core:[1.53.0,)
+    javaagent_target_versions:
+    - com.azure:azure-core:[1.53.0,)
   c3p0:
   - name: c3p0-0.9
     description: The c3p0 instrumentation provides connection pool metrics for c3p0
@@ -2067,11 +2020,9 @@ libraries:
     source_path: instrumentation/c3p0-0.9
     scope:
       name: io.opentelemetry.c3p0-0.9
-    target_versions:
-      javaagent:
-      - com.mchange:c3p0:(,)
-      library:
-      - com.mchange:c3p0:0.9.2
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.mchange:c3p0:(,)
     telemetry:
     - when: default
       metrics:
@@ -2111,9 +2062,8 @@ libraries:
     source_path: instrumentation/camel-2.20
     scope:
       name: io.opentelemetry.camel-2.20
-    target_versions:
-      javaagent:
-      - org.apache.camel:camel-core:[2.19,3)
+    javaagent_target_versions:
+    - org.apache.camel:camel-core:[2.19,3)
     configurations:
     - name: otel.instrumentation.camel.experimental-span-attributes
       description: 'Enable the capture of experimental `camel.uri`, `camel.kafka.partitionKey`,
@@ -2234,9 +2184,8 @@ libraries:
     source_path: instrumentation/cassandra/cassandra-3.0
     scope:
       name: io.opentelemetry.cassandra-3.0
-    target_versions:
-      javaagent:
-      - com.datastax.cassandra:cassandra-driver-core:[3.0,4.0)
+    javaagent_target_versions:
+    - com.datastax.cassandra:cassandra-driver-core:[3.0,4.0)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2295,9 +2244,8 @@ libraries:
     source_path: instrumentation/cassandra/cassandra-4.0
     scope:
       name: io.opentelemetry.cassandra-4.0
-    target_versions:
-      javaagent:
-      - com.datastax.oss:java-driver-core:[4.0,4.4)
+    javaagent_target_versions:
+    - com.datastax.oss:java-driver-core:[4.0,4.4)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2368,13 +2316,10 @@ libraries:
     source_path: instrumentation/cassandra/cassandra-4.4
     scope:
       name: io.opentelemetry.cassandra-4.4
-    target_versions:
-      javaagent:
-      - org.apache.cassandra:java-driver-core:(,)
-      - com.datastax.oss:java-driver-core:[4.4,]
-      library:
-      - com.datastax.oss:java-driver-core:4.4.0
-      - org.apache.cassandra:java-driver-core:4.18.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.apache.cassandra:java-driver-core:(,)
+    - com.datastax.oss:java-driver-core:[4.4,]
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2446,9 +2391,8 @@ libraries:
     source_path: instrumentation/clickhouse/clickhouse-client-v1-0.5
     scope:
       name: io.opentelemetry.clickhouse-client-v1-0.5
-    target_versions:
-      javaagent:
-      - com.clickhouse.client:clickhouse-client:[0.5.0,)
+    javaagent_target_versions:
+    - com.clickhouse.client:clickhouse-client:[0.5.0,)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2503,9 +2447,8 @@ libraries:
     source_path: instrumentation/clickhouse/clickhouse-client-v2-0.8
     scope:
       name: io.opentelemetry.clickhouse-client-v2-0.8
-    target_versions:
-      javaagent:
-      - com.clickhouse:client-v2:[0.6.4,)
+    javaagent_target_versions:
+    - com.clickhouse:client-v2:[0.6.4,)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2563,9 +2506,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-2.0
     scope:
       name: io.opentelemetry.couchbase-2.0
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[2,3)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[2,3)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -2610,9 +2552,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-2.6
     scope:
       name: io.opentelemetry.couchbase-2.6
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[2.6.0,3)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[2.6.0,3)
     configurations:
     - name: otel.instrumentation.couchbase.experimental-span-attributes
       description: 'Enables experimental span attributes `couchbase.operation_id`
@@ -2697,9 +2638,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-3.1
     scope:
       name: io.opentelemetry.couchbase-3.1
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[3.1,3.1.6)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[3.1,3.1.6)
     telemetry:
     - when: default
       spans:
@@ -2747,9 +2687,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-3.1.6
     scope:
       name: io.opentelemetry.couchbase-3.1.6
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[3.1.6,3.2.0)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[3.1.6,3.2.0)
     telemetry:
     - when: default
       spans:
@@ -2799,9 +2738,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-3.2
     scope:
       name: io.opentelemetry.couchbase-3.2
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[3.2.0,3.4.0)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[3.2.0,3.4.0)
     telemetry:
     - when: default
       spans:
@@ -2853,9 +2791,8 @@ libraries:
     source_path: instrumentation/couchbase/couchbase-3.4
     scope:
       name: io.opentelemetry.couchbase-3.4
-    target_versions:
-      javaagent:
-      - com.couchbase.client:java-client:[3.4.0,)
+    javaagent_target_versions:
+    - com.couchbase.client:java-client:[3.4.0,)
     telemetry:
     - when: default
       spans:
@@ -2909,9 +2846,8 @@ libraries:
     source_path: instrumentation/dropwizard/dropwizard-metrics-4.0
     scope:
       name: io.opentelemetry.dropwizard-metrics-4.0
-    target_versions:
-      javaagent:
-      - io.dropwizard.metrics:metrics-core:[4.0.0,)
+    javaagent_target_versions:
+    - io.dropwizard.metrics:metrics-core:[4.0.0,)
     configurations:
     - name: otel.instrumentation.dropwizard-metrics.enabled
       description: Enables the dropwizard metrics instrumentation.
@@ -2928,9 +2864,8 @@ libraries:
     source_path: instrumentation/dropwizard/dropwizard-views-0.7
     scope:
       name: io.opentelemetry.dropwizard-views-0.7
-    target_versions:
-      javaagent:
-      - io.dropwizard:dropwizard-views:(,3.0.0)
+    javaagent_target_versions:
+    - io.dropwizard:dropwizard-views:(,3.0.0)
     configurations:
     - name: otel.instrumentation.common.experimental.view-telemetry.enabled
       description: Enables the creation of experimental view spans.
@@ -2954,10 +2889,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-api-client-7.16
     scope:
       name: io.opentelemetry.elasticsearch-api-client-7.16
-    target_versions:
-      javaagent:
-      - co.elastic.clients:elasticsearch-java:[7.16,7.17.20)
-      - co.elastic.clients:elasticsearch-java:[8.0.0,8.10)
+    javaagent_target_versions:
+    - co.elastic.clients:elasticsearch-java:[7.16,7.17.20)
+    - co.elastic.clients:elasticsearch-java:[8.0.0,8.10)
     telemetry:
     - when: default
       metrics:
@@ -3003,10 +2937,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-rest-5.0
     scope:
       name: io.opentelemetry.elasticsearch-rest-5.0
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:rest:[5.0,6.4)
-      - org.elasticsearch.client:elasticsearch-rest-client:[5.0,6.4)
+    javaagent_target_versions:
+    - org.elasticsearch.client:rest:[5.0,6.4)
+    - org.elasticsearch.client:elasticsearch-rest-client:[5.0,6.4)
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
       description: 'Enable the capture of search query bodies. It is important to
@@ -3059,9 +2992,8 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-rest-6.4
     scope:
       name: io.opentelemetry.elasticsearch-rest-6.4
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:elasticsearch-rest-client:[6.4,7.0)
+    javaagent_target_versions:
+    - org.elasticsearch.client:elasticsearch-rest-client:[6.4,7.0)
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
       description: 'Enable the capture of search query bodies. It is important to
@@ -3114,11 +3046,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-rest-7.0
     scope:
       name: io.opentelemetry.elasticsearch-rest-7.0
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:elasticsearch-rest-client:[7.0,)
-      library:
-      - org.elasticsearch.client:elasticsearch-rest-client:7.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.elasticsearch.client:elasticsearch-rest-client:[7.0,)
     configurations:
     - name: otel.instrumentation.elasticsearch.capture-search-query
       description: 'Enable the capture of search query bodies. It is important to
@@ -3175,10 +3105,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-transport-5.0
     scope:
       name: io.opentelemetry.elasticsearch-transport-5.0
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:transport:[5.0.0,5.3.0)
-      - org.elasticsearch:elasticsearch:[5.0.0,5.3.0)
+    javaagent_target_versions:
+    - org.elasticsearch.client:transport:[5.0.0,5.3.0)
+    - org.elasticsearch:elasticsearch:[5.0.0,5.3.0)
     configurations:
     - name: otel.instrumentation.elasticsearch.experimental-span-attributes
       description: 'Enable the capture of the experimental span attributes `elasticsearch.action`,
@@ -3271,10 +3200,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-transport-5.3
     scope:
       name: io.opentelemetry.elasticsearch-transport-5.3
-    target_versions:
-      javaagent:
-      - org.elasticsearch.client:transport:[5.3.0,6.0.0)
-      - org.elasticsearch:elasticsearch:[5.3.0,6.0.0)
+    javaagent_target_versions:
+    - org.elasticsearch.client:transport:[5.3.0,6.0.0)
+    - org.elasticsearch:elasticsearch:[5.3.0,6.0.0)
     configurations:
     - name: otel.instrumentation.elasticsearch.experimental-span-attributes
       description: 'Enable the capture of `elasticsearch.action`, `elasticsearch.id`,
@@ -3371,10 +3299,9 @@ libraries:
     source_path: instrumentation/elasticsearch/elasticsearch-transport-6.0
     scope:
       name: io.opentelemetry.elasticsearch-transport-6.0
-    target_versions:
-      javaagent:
-      - org.elasticsearch:elasticsearch:[6.0.0,8.0.0)
-      - org.elasticsearch.client:transport:[6.0.0,)
+    javaagent_target_versions:
+    - org.elasticsearch:elasticsearch:[6.0.0,8.0.0)
+    - org.elasticsearch.client:transport:[6.0.0,)
     configurations:
     - name: otel.instrumentation.elasticsearch.experimental-span-attributes
       description: 'Enable the capture of `elasticsearch.action`, `elasticsearch.id`,
@@ -3468,9 +3395,8 @@ libraries:
     source_path: instrumentation/executors
     scope:
       name: io.opentelemetry.executors
-    target_versions:
-      javaagent:
-      - Java 8+
+    javaagent_target_versions:
+    - Java 8+
     configurations:
     - name: otel.instrumentation.executors.include
       description: List of Executor subclasses to be instrumented.
@@ -3488,9 +3414,7 @@ libraries:
     source_path: instrumentation/failsafe-3.0
     scope:
       name: io.opentelemetry.failsafe-3.0
-    target_versions:
-      library:
-      - dev.failsafe:failsafe:3.0.1
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -3545,10 +3469,9 @@ libraries:
     source_path: instrumentation/finagle-http-23.11
     scope:
       name: io.opentelemetry.finagle-http-23.11
-    target_versions:
-      javaagent:
-      - com.twitter:finagle-http_2.13:[23.11.0,]
-      - com.twitter:finagle-http_2.12:[23.11.0,]
+    javaagent_target_versions:
+    - com.twitter:finagle-http_2.13:[23.11.0,]
+    - com.twitter:finagle-http_2.12:[23.11.0,]
   finatra:
   - name: finatra-2.9
     description: 'This instrumentation enriches HTTP server spans with route information,
@@ -3563,10 +3486,9 @@ libraries:
     source_path: instrumentation/finatra-2.9
     scope:
       name: io.opentelemetry.finatra-2.9
-    target_versions:
-      javaagent:
-      - com.twitter:finatra-http_2.11:[2.9.0,]
-      - com.twitter:finatra-http_2.12:[2.9.0,]
+    javaagent_target_versions:
+    - com.twitter:finatra-http_2.11:[2.9.0,]
+    - com.twitter:finatra-http_2.12:[2.9.0,]
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -3592,9 +3514,8 @@ libraries:
     source_path: instrumentation/geode-1.4
     scope:
       name: io.opentelemetry.geode-1.4
-    target_versions:
-      javaagent:
-      - org.apache.geode:geode-core:[1.4.0,)
+    javaagent_target_versions:
+    - org.apache.geode:geode-core:[1.4.0,)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -3637,9 +3558,8 @@ libraries:
     scope:
       name: io.opentelemetry.google-http-client-1.19
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.google.http-client:google-http-client:[1.19.0,)
+    javaagent_target_versions:
+    - com.google.http-client:google-http-client:[1.19.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -3720,9 +3640,8 @@ libraries:
     source_path: instrumentation/grails-3.0
     scope:
       name: io.opentelemetry.grails-3.0
-    target_versions:
-      javaagent:
-      - org.grails:grails-web-url-mappings:[3.0,)
+    javaagent_target_versions:
+    - org.grails:grails-web-url-mappings:[3.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -3746,11 +3665,9 @@ libraries:
     source_path: instrumentation/graphql-java/graphql-java-12.0
     scope:
       name: io.opentelemetry.graphql-java-12.0
-    target_versions:
-      javaagent:
-      - com.graphql-java:graphql-java:[12,20)
-      library:
-      - com.graphql-java:graphql-java:[12.0,19.+)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.graphql-java:graphql-java:[12,20)
     configurations:
     - name: otel.instrumentation.graphql.query-sanitizer.enabled
       description: Enables sanitization of sensitive information from queries so they
@@ -3785,11 +3702,9 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.graphql-java-20.0
-    target_versions:
-      javaagent:
-      - com.graphql-java:graphql-java:[20,)
-      library:
-      - com.graphql-java:graphql-java:20.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.graphql-java:graphql-java:[20,)
     configurations:
     - name: otel.instrumentation.graphql.query-sanitizer.enabled
       description: Enables sanitization of sensitive information from queries so they
@@ -3851,9 +3766,8 @@ libraries:
     scope:
       name: io.opentelemetry.grizzly-2.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.glassfish.grizzly:grizzly-http:[2.3,)
+    javaagent_target_versions:
+    - org.glassfish.grizzly:grizzly-http:[2.3,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -3940,11 +3854,9 @@ libraries:
     source_path: instrumentation/grpc-1.6
     scope:
       name: io.opentelemetry.grpc-1.6
-    target_versions:
-      javaagent:
-      - io.grpc:grpc-core:[1.6.0,)
-      library:
-      - io.grpc:grpc-core:1.6.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.grpc:grpc-core:[1.6.0,)
     configurations:
     - name: otel.instrumentation.grpc.emit-message-events
       description: Determines whether to emit a span event for each individual message
@@ -4283,11 +4195,9 @@ libraries:
     source_path: instrumentation/guava-10.0
     scope:
       name: io.opentelemetry.guava-10.0
-    target_versions:
-      javaagent:
-      - com.google.guava:guava:[10.0,]
-      library:
-      - com.google.guava:guava:10.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.google.guava:guava:[10.0,]
     configurations:
     - name: otel.instrumentation.guava.experimental-span-attributes
       description: Enables experimental span attribute `guava.canceled` for cancelled
@@ -4304,10 +4214,9 @@ libraries:
     source_path: instrumentation/gwt-2.0
     scope:
       name: io.opentelemetry.gwt-2.0
-    target_versions:
-      javaagent:
-      - com.google.gwt:gwt-servlet:[2.0.0,)
-      - org.gwtproject:gwt-servlet:[2.10.0,)
+    javaagent_target_versions:
+    - com.google.gwt:gwt-servlet:[2.0.0,)
+    - org.gwtproject:gwt-servlet:[2.10.0,)
     telemetry:
     - when: default
       spans:
@@ -4334,11 +4243,9 @@ libraries:
     scope:
       name: io.opentelemetry.helidon-4.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.helidon.webserver:helidon-webserver:[4.3.0,)
-      library:
-      - io.helidon.webserver:helidon-webserver:4.3.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.helidon.webserver:helidon-webserver:[4.3.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -4419,9 +4326,8 @@ libraries:
     source_path: instrumentation/hibernate/hibernate-3.3
     scope:
       name: io.opentelemetry.hibernate-3.3
-    target_versions:
-      javaagent:
-      - org.hibernate:hibernate-core:[3.3.0.GA,4.0.0.Final)
+    javaagent_target_versions:
+    - org.hibernate:hibernate-core:[3.3.0.GA,4.0.0.Final)
     configurations:
     - name: otel.instrumentation.hibernate.experimental-span-attributes
       description: Enables the experimental `hibernate.session_id` span attribute.
@@ -4444,9 +4350,8 @@ libraries:
     source_path: instrumentation/hibernate/hibernate-4.0
     scope:
       name: io.opentelemetry.hibernate-4.0
-    target_versions:
-      javaagent:
-      - org.hibernate:hibernate-core:[4.0.0.Final,6)
+    javaagent_target_versions:
+    - org.hibernate:hibernate-core:[4.0.0.Final,6)
     configurations:
     - name: otel.instrumentation.hibernate.experimental-span-attributes
       description: Enables the experimental `hibernate.session_id` span attribute.
@@ -4470,9 +4375,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.hibernate-6.0
-    target_versions:
-      javaagent:
-      - org.hibernate:hibernate-core:[6.0.0.Final,)
+    javaagent_target_versions:
+    - org.hibernate:hibernate-core:[6.0.0.Final,)
     configurations:
     - name: otel.instrumentation.hibernate.experimental-span-attributes
       description: Enables the experimental `hibernate.session_id` span attribute.
@@ -4496,9 +4400,8 @@ libraries:
     source_path: instrumentation/hibernate/hibernate-procedure-call-4.3
     scope:
       name: io.opentelemetry.hibernate-procedure-call-4.3
-    target_versions:
-      javaagent:
-      - org.hibernate:hibernate-core:[4.3.0.Final,)
+    javaagent_target_versions:
+    - org.hibernate:hibernate-core:[4.3.0.Final,)
     configurations:
     - name: otel.instrumentation.hibernate.experimental-span-attributes
       description: Enables the experimental `hibernate.session_id` span attribute.
@@ -4526,9 +4429,8 @@ libraries:
     source_path: instrumentation/hibernate/hibernate-reactive-1.0
     scope:
       name: io.opentelemetry.hibernate-reactive-1.0
-    target_versions:
-      javaagent:
-      - org.hibernate.reactive:hibernate-reactive-core:(,)
+    javaagent_target_versions:
+    - org.hibernate.reactive:hibernate-reactive-core:(,)
   hikaricp:
   - name: hikaricp-3.0
     display_name: HikariCP
@@ -4540,11 +4442,9 @@ libraries:
     source_path: instrumentation/hikaricp-3.0
     scope:
       name: io.opentelemetry.hikaricp-3.0
-    target_versions:
-      javaagent:
-      - com.zaxxer:HikariCP:[3.0.0,)
-      library:
-      - com.zaxxer:HikariCP:3.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.zaxxer:HikariCP:[3.0.0,)
     telemetry:
     - when: default
       metrics:
@@ -4624,9 +4524,8 @@ libraries:
     scope:
       name: io.opentelemetry.http-url-connection
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - Java 8+
+    javaagent_target_versions:
+    - Java 8+
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -4705,9 +4604,8 @@ libraries:
     source_path: instrumentation/hystrix-1.4
     scope:
       name: io.opentelemetry.hystrix-1.4
-    target_versions:
-      javaagent:
-      - com.netflix.hystrix:hystrix-core:[1.4.0,)
+    javaagent_target_versions:
+    - com.netflix.hystrix:hystrix-core:[1.4.0,)
     configurations:
     - name: otel.instrumentation.hystrix.experimental-span-attributes
       description: Enables capturing the experimental `hystrix.command`, `hystrix.circuit_open`
@@ -4738,12 +4636,9 @@ libraries:
       '
     library_link: https://iceberg.apache.org/
     source_path: instrumentation/iceberg-1.8
-    minimum_java_version: 11
     scope:
       name: io.opentelemetry.iceberg-1.8
-    target_versions:
-      library:
-      - org.apache.iceberg:iceberg-core:1.8.1
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -4832,9 +4727,8 @@ libraries:
     source_path: instrumentation/influxdb-2.4
     scope:
       name: io.opentelemetry.influxdb-2.4
-    target_versions:
-      javaagent:
-      - org.influxdb:influxdb-java:[2.4,)
+    javaagent_target_versions:
+    - org.influxdb:influxdb-java:[2.4,)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables or disables statement sanitization for database queries.
@@ -4886,9 +4780,9 @@ libraries:
     scope:
       name: io.opentelemetry.java-http-client
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - Java 11+
+    has_standalone_library: true
+    javaagent_target_versions:
+    - Java 11+
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -4972,9 +4866,9 @@ libraries:
     scope:
       name: io.opentelemetry.java-http-server
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - Java 8+
+    has_standalone_library: true
+    javaagent_target_versions:
+    - Java 8+
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -5081,9 +4975,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.javalin-5.0
-    target_versions:
-      javaagent:
-      - io.javalin:javalin:[5.0.0,)
+    javaagent_target_versions:
+    - io.javalin:javalin:[5.0.0,)
   jaxrs:
   - name: jaxrs-1.0
     display_name: JAX-RS 1.x
@@ -5100,9 +4993,8 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-1.0
     scope:
       name: io.opentelemetry.jaxrs-1.0
-    target_versions:
-      javaagent:
-      - javax.ws.rs:jsr311-api:[0.5,)
+    javaagent_target_versions:
+    - javax.ws.rs:jsr311-api:[0.5,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5132,9 +5024,8 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-annotations
     scope:
       name: io.opentelemetry.jaxrs-2.0-annotations
-    target_versions:
-      javaagent:
-      - javax.ws.rs:javax.ws.rs-api:[,]
+    javaagent_target_versions:
+    - javax.ws.rs:javax.ws.rs-api:[,]
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5167,10 +5058,9 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-cxf-3.2
     scope:
       name: io.opentelemetry.jaxrs-2.0-cxf-3.2
-    target_versions:
-      javaagent:
-      - org.apache.tomee:openejb-cxf-rs:(8,)
-      - org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)
+    javaagent_target_versions:
+    - org.apache.tomee:openejb-cxf-rs:(8,)
+    - org.apache.cxf:cxf-rt-frontend-jaxrs:[3.2,4)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5213,10 +5103,9 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-jersey-2.0
     scope:
       name: io.opentelemetry.jaxrs-2.0-jersey-2.0
-    target_versions:
-      javaagent:
-      - org.glassfish.jersey.core:jersey-server:[2.0,3.0.0)
-      - org.glassfish.jersey.containers:jersey-container-servlet:[2.0,3.0.0)
+    javaagent_target_versions:
+    - org.glassfish.jersey.core:jersey-server:[2.0,3.0.0)
+    - org.glassfish.jersey.containers:jersey-container-servlet:[2.0,3.0.0)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5259,10 +5148,9 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.0
     scope:
       name: io.opentelemetry.jaxrs-2.0-resteasy-3.0
-    target_versions:
-      javaagent:
-      - org.jboss.resteasy:resteasy-jaxrs:[3.0.0.Final,3.1.0.Final)
-      - org.jboss.resteasy:resteasy-jaxrs:[3.5.0.Final,4)
+    javaagent_target_versions:
+    - org.jboss.resteasy:resteasy-jaxrs:[3.0.0.Final,3.1.0.Final)
+    - org.jboss.resteasy:resteasy-jaxrs:[3.5.0.Final,4)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5305,10 +5193,9 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-2.0/jaxrs-2.0-resteasy-3.1
     scope:
       name: io.opentelemetry.jaxrs-2.0-resteasy-3.1
-    target_versions:
-      javaagent:
-      - org.jboss.resteasy:resteasy-jaxrs:[3.1.0.Final,3.5.0.Final)
-      - org.jboss.resteasy:resteasy-core:[4.0.0.Final,6)
+    javaagent_target_versions:
+    - org.jboss.resteasy:resteasy-jaxrs:[3.1.0.Final,3.5.0.Final)
+    - org.jboss.resteasy:resteasy-core:[4.0.0.Final,6)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5352,9 +5239,8 @@ libraries:
     source_path: instrumentation/jaxrs/jaxrs-3.0/jaxrs-3.0-annotations
     scope:
       name: io.opentelemetry.jaxrs-3.0-annotations
-    target_versions:
-      javaagent:
-      - jakarta.ws.rs:jakarta.ws.rs-api:[3.0.0,)
+    javaagent_target_versions:
+    - jakarta.ws.rs:jakarta.ws.rs-api:[3.0.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5388,9 +5274,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.jaxrs-3.0-jersey-3.0
-    target_versions:
-      javaagent:
-      - org.glassfish.jersey.core:jersey-server:[3.0.0,)
+    javaagent_target_versions:
+    - org.glassfish.jersey.core:jersey-server:[3.0.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5434,9 +5319,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.jaxrs-3.0-resteasy-6.0
-    target_versions:
-      javaagent:
-      - org.jboss.resteasy:resteasy-core:[6.0.0.Final,)
+    javaagent_target_versions:
+    - org.jboss.resteasy:resteasy-core:[6.0.0.Final,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5478,9 +5362,8 @@ libraries:
     source_path: instrumentation/jaxws/jaxws-2.0
     scope:
       name: io.opentelemetry.jaxws-2.0
-    target_versions:
-      javaagent:
-      - javax.xml.ws:jaxws-api:[2.0,]
+    javaagent_target_versions:
+    - javax.xml.ws:jaxws-api:[2.0,]
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5509,9 +5392,8 @@ libraries:
     source_path: instrumentation/jaxws/jaxws-2.0-axis2-1.6
     scope:
       name: io.opentelemetry.jaxws-2.0-axis2-1.6
-    target_versions:
-      javaagent:
-      - org.apache.axis2:axis2-jaxws:[1.6.0,)
+    javaagent_target_versions:
+    - org.apache.axis2:axis2-jaxws:[1.6.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5536,9 +5418,8 @@ libraries:
     source_path: instrumentation/jaxws/jaxws-cxf-3.0
     scope:
       name: io.opentelemetry.jaxws-cxf-3.0
-    target_versions:
-      javaagent:
-      - org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)
+    javaagent_target_versions:
+    - org.apache.cxf:cxf-rt-frontend-jaxws:[3.0.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5563,9 +5444,8 @@ libraries:
     source_path: instrumentation/jaxws/jaxws-jws-api-1.1
     scope:
       name: io.opentelemetry.jaxws-jws-api-1.1
-    target_versions:
-      javaagent:
-      - javax.jws:javax.jws-api:[1.1,]
+    javaagent_target_versions:
+    - javax.jws:javax.jws-api:[1.1,]
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5594,9 +5474,8 @@ libraries:
     source_path: instrumentation/jaxws/jaxws-metro-2.2
     scope:
       name: io.opentelemetry.jaxws-metro-2.2
-    target_versions:
-      javaagent:
-      - com.sun.xml.ws:jaxws-rt:[2.2.0.1,)
+    javaagent_target_versions:
+    - com.sun.xml.ws:jaxws-rt:[2.2.0.1,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -5620,9 +5499,8 @@ libraries:
     source_path: instrumentation/jboss-logmanager/jboss-logmanager-appender-1.1
     scope:
       name: io.opentelemetry.jboss-logmanager-appender-1.1
-    target_versions:
-      javaagent:
-      - org.jboss.logmanager:jboss-logmanager:[1.1.0.GA,)
+    javaagent_target_versions:
+    - org.jboss.logmanager:jboss-logmanager:[1.1.0.GA,)
     configurations:
     - name: otel.instrumentation.jboss-logmanager.experimental-log-attributes
       description: 'Enables the capture of experimental log attributes, including
@@ -5656,9 +5534,8 @@ libraries:
     source_path: instrumentation/jboss-logmanager/jboss-logmanager-mdc-1.1
     scope:
       name: io.opentelemetry.jboss-logmanager-mdc-1.1
-    target_versions:
-      javaagent:
-      - org.jboss.logmanager:jboss-logmanager:[1.1.0.GA,)
+    javaagent_target_versions:
+    - org.jboss.logmanager:jboss-logmanager:[1.1.0.GA,)
   jdbc:
   - name: jdbc
     display_name: JDBC
@@ -5677,9 +5554,9 @@ libraries:
     source_path: instrumentation/jdbc
     scope:
       name: io.opentelemetry.jdbc
-    target_versions:
-      javaagent:
-      - Java 8+
+    has_standalone_library: true
+    javaagent_target_versions:
+    - Java 8+
     configurations:
     - name: otel.instrumentation.jdbc.statement-sanitizer.enabled
       description: Enables statement sanitization for database queries. Takes precedent
@@ -5780,9 +5657,8 @@ libraries:
     source_path: instrumentation/jedis/jedis-1.4
     scope:
       name: io.opentelemetry.jedis-1.4
-    target_versions:
-      javaagent:
-      - redis.clients:jedis:[1.4.0,3.0.0)
+    javaagent_target_versions:
+    - redis.clients:jedis:[1.4.0,3.0.0)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -5834,9 +5710,8 @@ libraries:
     source_path: instrumentation/jedis/jedis-3.0
     scope:
       name: io.opentelemetry.jedis-3.0
-    target_versions:
-      javaagent:
-      - redis.clients:jedis:[3.0.0,4)
+    javaagent_target_versions:
+    - redis.clients:jedis:[3.0.0,4)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -5898,9 +5773,8 @@ libraries:
     source_path: instrumentation/jedis/jedis-4.0
     scope:
       name: io.opentelemetry.jedis-4.0
-    target_versions:
-      javaagent:
-      - redis.clients:jedis:[4.0.0-beta1,)
+    javaagent_target_versions:
+    - redis.clients:jedis:[4.0.0-beta1,)
     configurations:
     - name: otel.instrumentation.common.db-statement-sanitizer.enabled
       description: Enables statement sanitization for database queries.
@@ -5951,9 +5825,8 @@ libraries:
     scope:
       name: io.opentelemetry.jetty-8.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.eclipse.jetty:jetty-server:[8.0.0.v20110901,11)
+    javaagent_target_versions:
+    - org.eclipse.jetty:jetty-server:[8.0.0.v20110901,11)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6037,9 +5910,8 @@ libraries:
     scope:
       name: io.opentelemetry.jetty-11.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.eclipse.jetty:jetty-server:[11, 12)
+    javaagent_target_versions:
+    - org.eclipse.jetty:jetty-server:[11, 12)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6123,9 +5995,8 @@ libraries:
     scope:
       name: io.opentelemetry.jetty-12.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.eclipse.jetty:jetty-server:[12,)
+    javaagent_target_versions:
+    - org.eclipse.jetty:jetty-server:[12,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6208,11 +6079,9 @@ libraries:
     scope:
       name: io.opentelemetry.jetty-httpclient-9.2
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.eclipse.jetty:jetty-client:[9.2,10)
-      library:
-      - org.eclipse.jetty:jetty-client:[9.2.0.v20140526,9.+)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.eclipse.jetty:jetty-client:[9.2,10)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6297,11 +6166,9 @@ libraries:
     scope:
       name: io.opentelemetry.jetty-httpclient-12.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.eclipse.jetty:jetty-client:[12,)
-      library:
-      - org.eclipse.jetty:jetty-client:12.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.eclipse.jetty:jetty-client:[12,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6389,9 +6256,8 @@ libraries:
     source_path: instrumentation/jfinal-3.2
     scope:
       name: io.opentelemetry.jfinal-3.2
-    target_versions:
-      javaagent:
-      - com.jfinal:jfinal:[3.2,)
+    javaagent_target_versions:
+    - com.jfinal:jfinal:[3.2,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -6419,11 +6285,10 @@ libraries:
     source_path: instrumentation/jms/jms-1.1
     scope:
       name: io.opentelemetry.jms-1.1
-    target_versions:
-      javaagent:
-      - javax.jms:javax.jms-api:(,)
-      - jakarta.jms:jakarta.jms-api:(,3)
-      - javax.jms:jms-api:(,)
+    javaagent_target_versions:
+    - javax.jms:javax.jms-api:(,)
+    - jakarta.jms:jakarta.jms-api:(,3)
+    - javax.jms:jms-api:(,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -6480,9 +6345,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.jms-3.0
-    target_versions:
-      javaagent:
-      - jakarta.jms:jakarta.jms-api:[3.0.0,)
+    javaagent_target_versions:
+    - jakarta.jms:jakarta.jms-api:[3.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -6537,9 +6401,8 @@ libraries:
     scope:
       name: io.opentelemetry.jodd-http-4.2
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.jodd:jodd-http:[4.2.0,)
+    javaagent_target_versions:
+    - org.jodd:jodd-http:[4.2.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -6625,13 +6488,12 @@ libraries:
     source_path: instrumentation/jsf/jsf-mojarra-1.2
     scope:
       name: io.opentelemetry.jsf-mojarra-1.2
-    target_versions:
-      javaagent:
-      - com.sun.faces:jsf-impl:[2.1,2.2)
-      - org.glassfish:jakarta.faces:[2.3.9,3)
-      - com.sun.faces:jsf-impl:[2.0,2.1)
-      - org.glassfish:javax.faces:[2.0.7,3)
-      - javax.faces:jsf-impl:[1.2,2)
+    javaagent_target_versions:
+    - com.sun.faces:jsf-impl:[2.1,2.2)
+    - org.glassfish:jakarta.faces:[2.3.9,3)
+    - com.sun.faces:jsf-impl:[2.0,2.1)
+    - org.glassfish:javax.faces:[2.0.7,3)
+    - javax.faces:jsf-impl:[1.2,2)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -6655,9 +6517,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.jsf-mojarra-3.0
-    target_versions:
-      javaagent:
-      - org.glassfish:jakarta.faces:[3,)
+    javaagent_target_versions:
+    - org.glassfish:jakarta.faces:[3,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -6680,9 +6541,8 @@ libraries:
     source_path: instrumentation/jsf/jsf-myfaces-1.2
     scope:
       name: io.opentelemetry.jsf-myfaces-1.2
-    target_versions:
-      javaagent:
-      - org.apache.myfaces.core:myfaces-impl:[1.2,3)
+    javaagent_target_versions:
+    - org.apache.myfaces.core:myfaces-impl:[1.2,3)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -6706,9 +6566,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.jsf-myfaces-3.0
-    target_versions:
-      javaagent:
-      - org.apache.myfaces.core:myfaces-impl:[3,)
+    javaagent_target_versions:
+    - org.apache.myfaces.core:myfaces-impl:[3,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -6732,9 +6591,8 @@ libraries:
     source_path: instrumentation/jsp-2.3
     scope:
       name: io.opentelemetry.jsp-2.3
-    target_versions:
-      javaagent:
-      - org.apache.tomcat:tomcat-jasper:[7.0.19,10)
+    javaagent_target_versions:
+    - org.apache.tomcat:tomcat-jasper:[7.0.19,10)
     configurations:
     - name: otel.instrumentation.common.experimental.view-telemetry.enabled
       description: Enables the creation of experimental view spans.
@@ -6775,9 +6633,8 @@ libraries:
     source_path: instrumentation/kafka/kafka-clients/kafka-clients-0.11
     scope:
       name: io.opentelemetry.kafka-clients-0.11
-    target_versions:
-      javaagent:
-      - org.apache.kafka:kafka-clients:[0.11.0.0,)
+    javaagent_target_versions:
+    - org.apache.kafka:kafka-clients:[0.11.0.0,)
     configurations:
     - name: otel.instrumentation.kafka.producer-propagation.enabled
       description: Enable context propagation for Kafka message producers.
@@ -6900,9 +6757,7 @@ libraries:
     source_path: instrumentation/kafka/kafka-clients/kafka-clients-2.6
     scope:
       name: io.opentelemetry.kafka-clients-2.6
-    target_versions:
-      library:
-      - org.apache.kafka:kafka-clients:2.6.0
+    has_standalone_library: true
     telemetry:
     - when: default
       spans:
@@ -6952,9 +6807,8 @@ libraries:
     source_path: instrumentation/kafka/kafka-connect-2.6
     scope:
       name: io.opentelemetry.kafka-connect-2.6
-    target_versions:
-      javaagent:
-      - org.apache.kafka:connect-api:[2.6.0,)
+    javaagent_target_versions:
+    - org.apache.kafka:connect-api:[2.6.0,)
     telemetry:
     - when: default
       spans:
@@ -6981,9 +6835,8 @@ libraries:
     source_path: instrumentation/kafka/kafka-streams-0.11
     scope:
       name: io.opentelemetry.kafka-streams-0.11
-    target_versions:
-      javaagent:
-      - org.apache.kafka:kafka-streams:[0.11.0.0,)
+    javaagent_target_versions:
+    - org.apache.kafka:kafka-streams:[0.11.0.0,)
     configurations:
     - name: otel.instrumentation.kafka.experimental-span-attributes
       description: Enables the capture of the experimental consumer attribute `kafka.record.queue_time_ms`.
@@ -7061,10 +6914,9 @@ libraries:
     source_path: instrumentation/kotlinx-coroutines/kotlinx-coroutines-1.0
     scope:
       name: io.opentelemetry.kotlinx-coroutines-1.0
-    target_versions:
-      javaagent:
-      - org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:[1.3.9,)
-      - org.jetbrains.kotlinx:kotlinx-coroutines-core:[1.0.0,1.3.8)
+    javaagent_target_versions:
+    - org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:[1.3.9,)
+    - org.jetbrains.kotlinx:kotlinx-coroutines-core:[1.0.0,1.3.8)
   - name: kotlinx-coroutines-flow-1.3
     display_name: Kotlin Coroutines Flow
     description: This instrumentation adds support for @WithSpan annotations on methods
@@ -7073,10 +6925,9 @@ libraries:
     source_path: instrumentation/kotlinx-coroutines/kotlinx-coroutines-flow-1.3
     scope:
       name: io.opentelemetry.kotlinx-coroutines-flow-1.3
-    target_versions:
-      javaagent:
-      - org.jetbrains.kotlinx:kotlinx-coroutines-core:[1.3.0,1.3.8)
-      - org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:[1.3.9,)
+    javaagent_target_versions:
+    - org.jetbrains.kotlinx:kotlinx-coroutines-core:[1.3.0,1.3.8)
+    - org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:[1.3.9,)
   ktor:
   - name: ktor-1.0
     description: This standalone instrumentation enables HTTP server spans and HTTP
@@ -7091,9 +6942,7 @@ libraries:
     scope:
       name: io.opentelemetry.ktor-1.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      library:
-      - io.ktor:ktor-server-core:[1.0.0,1.+)
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -7185,13 +7034,10 @@ libraries:
     scope:
       name: io.opentelemetry.ktor-2.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.ktor:ktor-client-core:[2.0.0,3.0.0)
-      - io.ktor:ktor-server-core:[2.0.0,3.0.0)
-      library:
-      - io.ktor:ktor-client-core:[2.0.0,2.+)
-      - io.ktor:ktor-server-core:[2.0.0,2.+)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.ktor:ktor-client-core:[2.0.0,3.0.0)
+    - io.ktor:ktor-server-core:[2.0.0,3.0.0)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -7363,13 +7209,10 @@ libraries:
     scope:
       name: io.opentelemetry.ktor-3.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.ktor:ktor-server-core:[3.0.0,)
-      - io.ktor:ktor-client-core:[3.0.0,)
-      library:
-      - io.ktor:ktor-server-core:3.0.0
-      - io.ktor:ktor-client-core:3.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.ktor:ktor-server-core:[3.0.0,)
+    - io.ktor:ktor-client-core:[3.0.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -7619,9 +7462,8 @@ libraries:
     scope:
       name: io.opentelemetry.kubernetes-client-7.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.kubernetes:client-java-api:[7.0.0,)
+    javaagent_target_versions:
+    - io.kubernetes:client-java-api:[7.0.0,)
     configurations:
     - name: otel.instrumentation.kubernetes-client.experimental-span-attributes
       description: 'Enables experimental span attributes `kubernetes-client.namespace`
@@ -7744,9 +7586,8 @@ libraries:
     source_path: instrumentation/lettuce/lettuce-4.0
     scope:
       name: io.opentelemetry.lettuce-4.0
-    target_versions:
-      javaagent:
-      - biz.paluch.redis:lettuce:[4.0.Final,)
+    javaagent_target_versions:
+    - biz.paluch.redis:lettuce:[4.0.Final,)
     configurations:
     - name: otel.instrumentation.lettuce.connection-telemetry.enabled
       description: Enables connection telemetry spans for Redis connections.
@@ -7816,9 +7657,8 @@ libraries:
     source_path: instrumentation/lettuce/lettuce-5.0
     scope:
       name: io.opentelemetry.lettuce-5.0
-    target_versions:
-      javaagent:
-      - io.lettuce:lettuce-core:[5.0.0.RELEASE,5.1.0.RELEASE)
+    javaagent_target_versions:
+    - io.lettuce:lettuce-core:[5.0.0.RELEASE,5.1.0.RELEASE)
     configurations:
     - name: otel.instrumentation.lettuce.connection-telemetry.enabled
       description: Enables connection telemetry spans for Redis connections.
@@ -7901,11 +7741,9 @@ libraries:
     source_path: instrumentation/lettuce/lettuce-5.1
     scope:
       name: io.opentelemetry.lettuce-5.1
-    target_versions:
-      javaagent:
-      - io.lettuce:lettuce-core:[5.1.0.RELEASE,)
-      library:
-      - io.lettuce:lettuce-core:5.1.0.RELEASE
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.lettuce:lettuce-core:[5.1.0.RELEASE,)
     configurations:
     - name: otel.instrumentation.lettuce.experimental.command-encoding-events.enabled
       description: Enables capturing `redis.encode.start` and `redis.encode.end` span
@@ -7974,9 +7812,8 @@ libraries:
     source_path: instrumentation/log4j/log4j-appender-1.2
     scope:
       name: io.opentelemetry.log4j-appender-1.2
-    target_versions:
-      javaagent:
-      - log4j:log4j:[1.2,)
+    javaagent_target_versions:
+    - log4j:log4j:[1.2,)
     configurations:
     - name: otel.instrumentation.log4j-appender.experimental-log-attributes
       description: 'Enables the capture of experimental log attributes, including
@@ -8017,11 +7854,9 @@ libraries:
     source_path: instrumentation/log4j/log4j-appender-2.17
     scope:
       name: io.opentelemetry.log4j-appender-2.17
-    target_versions:
-      javaagent:
-      - org.apache.logging.log4j:log4j-core:[2.0,)
-      library:
-      - org.apache.logging.log4j:log4j-core:2.17.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.apache.logging.log4j:log4j-core:[2.0,)
     configurations:
     - name: otel.instrumentation.log4j-appender.experimental-log-attributes
       description: 'Enables the capture of experimental log attributes, including
@@ -8074,9 +7909,8 @@ libraries:
     source_path: instrumentation/log4j/log4j-context-data/log4j-context-data-2.7
     scope:
       name: io.opentelemetry.log4j-context-data-2.7
-    target_versions:
-      javaagent:
-      - org.apache.logging.log4j:log4j-core:[2.7,2.17.0)
+    javaagent_target_versions:
+    - org.apache.logging.log4j:log4j-core:[2.7,2.17.0)
     configurations:
     - name: otel.instrumentation.log4j-context-data.add-baggage
       description: 'Enables adding baggage entries to the Log4j ThreadContext, prefixed
@@ -8124,9 +7958,8 @@ libraries:
     source_path: instrumentation/log4j/log4j-context-data/log4j-context-data-2.17
     scope:
       name: io.opentelemetry.log4j-context-data-2.17
-    target_versions:
-      javaagent:
-      - org.apache.logging.log4j:log4j-core:[2.17.0,)
+    javaagent_target_versions:
+    - org.apache.logging.log4j:log4j-core:[2.17.0,)
     configurations:
     - name: otel.instrumentation.log4j-context-data.add-baggage
       description: 'Enables adding baggage entries to the Log4j ThreadContext, prefixed
@@ -8173,9 +8006,8 @@ libraries:
     source_path: instrumentation/log4j/log4j-mdc-1.2
     scope:
       name: io.opentelemetry.log4j-mdc-1.2
-    target_versions:
-      javaagent:
-      - log4j:log4j:[1.2,)
+    javaagent_target_versions:
+    - log4j:log4j:[1.2,)
     configurations:
     - name: otel.instrumentation.common.logging.trace-id
       description: 'Specifies the key name used to store the trace ID in the logging
@@ -8218,13 +8050,9 @@ libraries:
     source_path: instrumentation/logback/logback-appender-1.0
     scope:
       name: io.opentelemetry.logback-appender-1.0
-    target_versions:
-      javaagent:
-      - ch.qos.logback:logback-classic:[0.9.16,)
-      library:
-      - net.logstash.logback:logstash-logback-encoder:3.0
-      - org.slf4j:slf4j-api:2.0.0
-      - ch.qos.logback:logback-classic:1.3.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - ch.qos.logback:logback-classic:[0.9.16,)
     configurations:
     - name: otel.instrumentation.logback-appender.experimental-log-attributes
       description: 'Enables the capture of experimental log attributes, including
@@ -8307,12 +8135,9 @@ libraries:
     source_path: instrumentation/logback/logback-mdc-1.0
     scope:
       name: io.opentelemetry.logback-mdc-1.0
-    target_versions:
-      javaagent:
-      - ch.qos.logback:logback-classic:[1.0.0,1.2.3]
-      library:
-      - ch.qos.logback:logback-classic:1.0.0
-      - org.slf4j:slf4j-api:1.6.4
+    has_standalone_library: true
+    javaagent_target_versions:
+    - ch.qos.logback:logback-classic:[1.0.0,1.2.3]
     configurations:
     - name: otel.instrumentation.logback-mdc.add-baggage
       description: 'Enables adding baggage entries to the Logback MDC, prefixed with
@@ -8355,11 +8180,9 @@ libraries:
     source_path: instrumentation/micrometer/micrometer-1.5
     scope:
       name: io.opentelemetry.micrometer-1.5
-    target_versions:
-      javaagent:
-      - io.micrometer:micrometer-core:[1.5.0,)
-      library:
-      - io.micrometer:micrometer-core:1.5.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.micrometer:micrometer-core:[1.5.0,)
   mongo:
   - name: mongo-3.1
     display_name: MongoDB Driver
@@ -8374,11 +8197,9 @@ libraries:
     source_path: instrumentation/mongo/mongo-3.1
     scope:
       name: io.opentelemetry.mongo-3.1
-    target_versions:
-      javaagent:
-      - org.mongodb:mongo-java-driver:[3.1,)
-      library:
-      - org.mongodb:mongo-java-driver:3.1.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.mongodb:mongo-java-driver:[3.1,)
     configurations:
     - name: otel.instrumentation.mongo.statement-sanitizer.enabled
       description: 'Enables statement sanitization for MongoDB queries. Takes precedence
@@ -8441,10 +8262,9 @@ libraries:
     source_path: instrumentation/mongo/mongo-3.7
     scope:
       name: io.opentelemetry.mongo-3.7
-    target_versions:
-      javaagent:
-      - org.mongodb:mongodb-driver-core:[3.7, 4.0)
-      - org.mongodb:mongo-java-driver:[3.7, 4.0)
+    javaagent_target_versions:
+    - org.mongodb:mongodb-driver-core:[3.7, 4.0)
+    - org.mongodb:mongo-java-driver:[3.7, 4.0)
     configurations:
     - name: otel.instrumentation.mongo.statement-sanitizer.enabled
       description: 'Enables statement sanitization for MongoDB queries. Takes precedence
@@ -8507,9 +8327,8 @@ libraries:
     source_path: instrumentation/mongo/mongo-4.0
     scope:
       name: io.opentelemetry.mongo-4.0
-    target_versions:
-      javaagent:
-      - org.mongodb:mongodb-driver-core:[4.0,)
+    javaagent_target_versions:
+    - org.mongodb:mongodb-driver-core:[4.0,)
     configurations:
     - name: otel.instrumentation.mongo.statement-sanitizer.enabled
       description: 'Enables statement sanitization for MongoDB queries. Takes precedence
@@ -8572,9 +8391,8 @@ libraries:
     source_path: instrumentation/mongo/mongo-async-3.3
     scope:
       name: io.opentelemetry.mongo-async-3.3
-    target_versions:
-      javaagent:
-      - org.mongodb:mongodb-driver-async:[3.3,)
+    javaagent_target_versions:
+    - org.mongodb:mongodb-driver-async:[3.3,)
     configurations:
     - name: otel.instrumentation.mongo.statement-sanitizer.enabled
       description: 'Enables statement sanitization for MongoDB queries. Takes precedence
@@ -8633,9 +8451,8 @@ libraries:
     source_path: instrumentation/mybatis-3.2
     scope:
       name: io.opentelemetry.mybatis-3.2
-    target_versions:
-      javaagent:
-      - org.mybatis:mybatis:[3.2.0,)
+    javaagent_target_versions:
+    - org.mybatis:mybatis:[3.2.0,)
     telemetry:
     - when: default
       spans:
@@ -8656,11 +8473,9 @@ libraries:
     source_path: instrumentation/nats/nats-2.17
     scope:
       name: io.opentelemetry.nats-2.17
-    target_versions:
-      javaagent:
-      - io.nats:jnats:[2.17.2,)
-      library:
-      - io.nats:jnats:2.17.2
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.nats:jnats:[2.17.2,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.capture-headers
       description: 'Enables capturing messaging headers as span attributes. Provide
@@ -8721,9 +8536,8 @@ libraries:
     scope:
       name: io.opentelemetry.netty-3.8
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.netty:netty:[3.8.0.Final,4)
+    javaagent_target_versions:
+    - io.netty:netty:[3.8.0.Final,4)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -8875,10 +8689,9 @@ libraries:
     scope:
       name: io.opentelemetry.netty-4.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.netty:netty-all:[4.0.0.Final,4.1.0.Final)
-      - io.netty:netty-codec-http:[4.0.0.Final,4.1.0.Final)
+    javaagent_target_versions:
+    - io.netty:netty-all:[4.0.0.Final,4.1.0.Final)
+    - io.netty:netty-codec-http:[4.0.0.Final,4.1.0.Final)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -9039,12 +8852,10 @@ libraries:
     scope:
       name: io.opentelemetry.netty-4.1
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.netty:netty-codec-http:[4.1.0.Final,5.0.0)
-      - io.netty:netty-all:[4.1.0.Final,5.0.0)
-      library:
-      - io.netty:netty-codec-http:4.1.0.Final
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.netty:netty-codec-http:[4.1.0.Final,5.0.0)
+    - io.netty:netty-all:[4.1.0.Final,5.0.0)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -9200,9 +9011,8 @@ libraries:
     scope:
       name: io.opentelemetry.okhttp-2.2
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.squareup.okhttp:okhttp:[2.2,3)
+    javaagent_target_versions:
+    - com.squareup.okhttp:okhttp:[2.2,3)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -9287,9 +9097,9 @@ libraries:
     scope:
       name: io.opentelemetry.okhttp-3.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.squareup.okhttp3:okhttp:[3.0,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.squareup.okhttp3:okhttp:[3.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -9380,11 +9190,9 @@ libraries:
     source_path: instrumentation/openai/openai-java-1.1
     scope:
       name: io.opentelemetry.openai-java-1.1
-    target_versions:
-      javaagent:
-      - com.openai:openai-java:[1.1.0,3)
-      library:
-      - com.openai:openai-java:1.1.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.openai:openai-java:[1.1.0,3)
     configurations:
     - name: otel.instrumentation.genai.capture-message-content
       description: 'Enables including the full content of user and assistant messages
@@ -9486,9 +9294,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.opensearch-java-3.0
-    target_versions:
-      javaagent:
-      - org.opensearch.client:opensearch-java:[3.0,)
+    javaagent_target_versions:
+    - org.opensearch.client:opensearch-java:[3.0,)
     telemetry:
     - when: default
       metrics:
@@ -9523,9 +9330,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.opensearch-rest-1.0
-    target_versions:
-      javaagent:
-      - org.opensearch.client:opensearch-rest-client:[1.0,3.0)
+    javaagent_target_versions:
+    - org.opensearch.client:opensearch-rest-client:[1.0,3.0)
     telemetry:
     - when: default
       metrics:
@@ -9560,9 +9366,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.opensearch-rest-3.0
-    target_versions:
-      javaagent:
-      - org.opensearch.client:opensearch-rest-client:[3.0,)
+    javaagent_target_versions:
+    - org.opensearch.client:opensearch-rest-client:[3.0,)
     telemetry:
     - when: default
       metrics:
@@ -9597,12 +9402,9 @@ libraries:
     source_path: instrumentation/oracle-ucp-11.2
     scope:
       name: io.opentelemetry.oracle-ucp-11.2
-    target_versions:
-      javaagent:
-      - com.oracle.database.jdbc:ucp:[,)
-      library:
-      - com.oracle.database.jdbc:ucp:11.2.0.4
-      - com.oracle.database.jdbc:ojdbc8:12.2.0.1
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.oracle.database.jdbc:ucp:[,)
     telemetry:
     - when: default
       metrics:
@@ -9643,11 +9445,9 @@ libraries:
     source_path: instrumentation/oshi
     scope:
       name: io.opentelemetry.oshi
-    target_versions:
-      javaagent:
-      - com.github.oshi:oshi-core:[5.3.1,)
-      library:
-      - com.github.oshi:oshi-core:5.3.1
+    has_standalone_library: true
+    javaagent_target_versions:
+    - com.github.oshi:oshi-core:[5.3.1,)
     configurations:
     - name: otel.instrumentation.oshi.experimental-metrics.enabled
       description: Enable the experimental `runtime.java.memory` and `runtime.java.cpu_time`
@@ -9807,11 +9607,10 @@ libraries:
     source_path: instrumentation/pekko/pekko-actor-1.0
     scope:
       name: io.opentelemetry.pekko-actor-1.0
-    target_versions:
-      javaagent:
-      - org.apache.pekko:pekko-actor_3:[1.0,)
-      - org.apache.pekko:pekko-actor_2.12:[1.0,)
-      - org.apache.pekko:pekko-actor_2.13:[1.0,)
+    javaagent_target_versions:
+    - org.apache.pekko:pekko-actor_3:[1.0,)
+    - org.apache.pekko:pekko-actor_2.12:[1.0,)
+    - org.apache.pekko:pekko-actor_2.13:[1.0,)
   - name: pekko-http-1.0
     display_name: Pekko HTTP
     description: 'This instrumentation enables HTTP client spans and metrics for the
@@ -9830,14 +9629,13 @@ libraries:
     scope:
       name: io.opentelemetry.pekko-http-1.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.softwaremill.sttp.tapir:tapir-pekko-http-server_3:[1.7,)
-      - com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.12:[1.7,)
-      - org.apache.pekko:pekko-http_2.12:[1.0,)
-      - org.apache.pekko:pekko-http_3:[1.0,)
-      - com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.13:[1.7,)
-      - org.apache.pekko:pekko-http_2.13:[1.0,)
+    javaagent_target_versions:
+    - com.softwaremill.sttp.tapir:tapir-pekko-http-server_3:[1.7,)
+    - com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.12:[1.7,)
+    - org.apache.pekko:pekko-http_2.12:[1.0,)
+    - org.apache.pekko:pekko-http_3:[1.0,)
+    - com.softwaremill.sttp.tapir:tapir-pekko-http-server_2.13:[1.7,)
+    - org.apache.pekko:pekko-http_2.13:[1.0,)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -9980,9 +9778,8 @@ libraries:
     source_path: instrumentation/play/play-mvc/play-mvc-2.4
     scope:
       name: io.opentelemetry.play-mvc-2.4
-    target_versions:
-      javaagent:
-      - com.typesafe.play:play_2.11:[2.4.0,2.6)
+    javaagent_target_versions:
+    - com.typesafe.play:play_2.11:[2.4.0,2.6)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -10007,11 +9804,10 @@ libraries:
     source_path: instrumentation/play/play-mvc/play-mvc-2.6
     scope:
       name: io.opentelemetry.play-mvc-2.6
-    target_versions:
-      javaagent:
-      - com.typesafe.play:play_$scalaVersion:[2.6.0,)
-      - com.typesafe.play:play_2.12:[2.6.0,)
-      - com.typesafe.play:play_2.13:[2.6.0,)
+    javaagent_target_versions:
+    - com.typesafe.play:play_$scalaVersion:[2.6.0,)
+    - com.typesafe.play:play_2.12:[2.6.0,)
+    - com.typesafe.play:play_2.13:[2.6.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -10034,10 +9830,9 @@ libraries:
     scope:
       name: io.opentelemetry.play-ws-1.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.typesafe.play:play-ahc-ws-standalone_2.12:[1.0.0,2.0.0)
-      - com.typesafe.play:play-ahc-ws-standalone_2.11:[1.0.0,2.0.0)
+    javaagent_target_versions:
+    - com.typesafe.play:play-ahc-ws-standalone_2.12:[1.0.0,2.0.0)
+    - com.typesafe.play:play-ahc-ws-standalone_2.11:[1.0.0,2.0.0)
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -10122,11 +9917,10 @@ libraries:
     scope:
       name: io.opentelemetry.play-ws-2.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.typesafe.play:play-ahc-ws-standalone_2.12:[2.0.0,2.1.0)
-      - com.typesafe.play:play-ahc-ws-standalone_2.13:[2.0.6,2.1.0)
-      - com.typesafe.play:play-ahc-ws-standalone_2.11:[2.0.0,]
+    javaagent_target_versions:
+    - com.typesafe.play:play-ahc-ws-standalone_2.12:[2.0.0,2.1.0)
+    - com.typesafe.play:play-ahc-ws-standalone_2.13:[2.0.6,2.1.0)
+    - com.typesafe.play:play-ahc-ws-standalone_2.11:[2.0.0,]
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -10211,10 +10005,9 @@ libraries:
     scope:
       name: io.opentelemetry.play-ws-2.1
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - com.typesafe.play:play-ahc-ws-standalone_2.13:[2.1.0,]
-      - com.typesafe.play:play-ahc-ws-standalone_2.12:[2.1.0,]
+    javaagent_target_versions:
+    - com.typesafe.play:play-ahc-ws-standalone_2.13:[2.1.0,]
+    - com.typesafe.play:play-ahc-ws-standalone_2.12:[2.1.0,]
     configurations:
     - name: otel.instrumentation.http.known-methods
       description: 'Configures the instrumentation to recognize an alternative set
@@ -10295,9 +10088,8 @@ libraries:
     source_path: instrumentation/powerjob-4.0
     scope:
       name: io.opentelemetry.powerjob-4.0
-    target_versions:
-      javaagent:
-      - tech.powerjob:powerjob-worker:[4.0.0,)
+    javaagent_target_versions:
+    - tech.powerjob:powerjob-worker:[4.0.0,)
     configurations:
     - name: otel.instrumentation.powerjob.experimental-span-attributes
       description: 'Enables experimental span attributes `job.system`, `scheduling.powerjob.job.id`,
@@ -10345,9 +10137,8 @@ libraries:
     source_path: instrumentation/pulsar/pulsar-2.8
     scope:
       name: io.opentelemetry.pulsar-2.8
-    target_versions:
-      javaagent:
-      - org.apache.pulsar:pulsar-client:[2.8.0,)
+    javaagent_target_versions:
+    - org.apache.pulsar:pulsar-client:[2.8.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -10559,9 +10350,8 @@ libraries:
     source_path: instrumentation/quarkus-resteasy-reactive
     scope:
       name: io.opentelemetry.quarkus-resteasy-reactive
-    target_versions:
-      javaagent:
-      - io.quarkus:quarkus-resteasy-reactive:(,3.9.0)
+    javaagent_target_versions:
+    - io.quarkus:quarkus-resteasy-reactive:(,3.9.0)
   quartz:
   - name: quartz-2.0
     display_name: Quartz
@@ -10570,11 +10360,9 @@ libraries:
     source_path: instrumentation/quartz-2.0
     scope:
       name: io.opentelemetry.quartz-2.0
-    target_versions:
-      javaagent:
-      - org.quartz-scheduler:quartz:[2.0.0,)
-      library:
-      - org.quartz-scheduler:quartz:2.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.quartz-scheduler:quartz:[2.0.0,)
     configurations:
     - name: otel.instrumentation.quartz.experimental-span-attributes
       description: Enables the experimental `job.system` span attribute.
@@ -10613,11 +10401,9 @@ libraries:
     source_path: instrumentation/r2dbc-1.0
     scope:
       name: io.opentelemetry.r2dbc-1.0
-    target_versions:
-      javaagent:
-      - io.r2dbc:r2dbc-spi:[1.0.0.RELEASE,)
-      library:
-      - io.r2dbc:r2dbc-spi:1.0.0.RELEASE
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.r2dbc:r2dbc-spi:[1.0.0.RELEASE,)
     configurations:
     - name: otel.instrumentation.r2dbc.statement-sanitizer.enabled
       description: 'Enables statement sanitization for database queries. Takes precedence
@@ -10690,9 +10476,8 @@ libraries:
     source_path: instrumentation/rabbitmq-2.7
     scope:
       name: io.opentelemetry.rabbitmq-2.7
-    target_versions:
-      javaagent:
-      - com.rabbitmq:amqp-client:[2.7.0,)
+    javaagent_target_versions:
+    - com.rabbitmq:amqp-client:[2.7.0,)
     configurations:
     - name: otel.instrumentation.rabbitmq.experimental-span-attributes
       description: 'Enables experimental span attributes `rabbitmq.command`, `rabbitmq.delivery_mode`,
@@ -10836,9 +10621,8 @@ libraries:
     source_path: instrumentation/ratpack/ratpack-1.4
     scope:
       name: io.opentelemetry.ratpack-1.4
-    target_versions:
-      javaagent:
-      - io.ratpack:ratpack-core:[1.4.0,)
+    javaagent_target_versions:
+    - io.ratpack:ratpack-core:[1.4.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -10869,11 +10653,9 @@ libraries:
     scope:
       name: io.opentelemetry.ratpack-1.7
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.ratpack:ratpack-core:[1.7.0,)
-      library:
-      - io.ratpack:ratpack-core:1.7.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.ratpack:ratpack-core:[1.7.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -11012,39 +10794,35 @@ libraries:
     source_path: instrumentation/reactor/reactor-3.1
     scope:
       name: io.opentelemetry.reactor-3.1
-    target_versions:
-      javaagent:
-      - io.projectreactor:reactor-core:[3.1.0.RELEASE,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.projectreactor:reactor-core:[3.1.0.RELEASE,)
   - name: reactor-3.4
     source_path: instrumentation/reactor/reactor-3.4
     scope:
       name: io.opentelemetry.reactor-3.4
-    target_versions:
-      javaagent:
-      - io.projectreactor:reactor-core:[3.4.0,)
+    javaagent_target_versions:
+    - io.projectreactor:reactor-core:[3.4.0,)
   - name: reactor-kafka-1.0
     source_path: instrumentation/reactor/reactor-kafka-1.0
     scope:
       name: io.opentelemetry.reactor-kafka-1.0
-    target_versions:
-      javaagent:
-      - io.projectreactor.kafka:reactor-kafka:[1.0.0,)
+    javaagent_target_versions:
+    - io.projectreactor.kafka:reactor-kafka:[1.0.0,)
   - name: reactor-netty-0.9
     source_path: instrumentation/reactor/reactor-netty/reactor-netty-0.9
     scope:
       name: io.opentelemetry.reactor-netty-0.9
-    target_versions:
-      javaagent:
-      - io.projectreactor.netty:reactor-netty:[0.8.2.RELEASE,1.0.0)
+    javaagent_target_versions:
+    - io.projectreactor.netty:reactor-netty:[0.8.2.RELEASE,1.0.0)
   - name: reactor-netty-1.0
     source_path: instrumentation/reactor/reactor-netty/reactor-netty-1.0
     scope:
       name: io.opentelemetry.reactor-netty-1.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.projectreactor.netty:reactor-netty-http:[1.0.0,)
-      - io.projectreactor.netty:reactor-netty:[1.0.0,)
+    javaagent_target_versions:
+    - io.projectreactor.netty:reactor-netty-http:[1.0.0,)
+    - io.projectreactor.netty:reactor-netty:[1.0.0,)
     configurations:
     - name: otel.instrumentation.reactor-netty.connection-telemetry.enabled
       description: Enable the creation of Connect and DNS spans.
@@ -11109,15 +10887,14 @@ libraries:
     source_path: instrumentation/rediscala-1.8
     scope:
       name: io.opentelemetry.rediscala-1.8
-    target_versions:
-      javaagent:
-      - com.github.Ma27:rediscala_2.11:[1.8.1,)
-      - com.github.etaty:rediscala_2.11:[1.5.0,)
-      - com.github.etaty:rediscala_2.12:[1.8.0,)
-      - com.github.Ma27:rediscala_2.13:[1.9.0,)
-      - io.github.rediscala:rediscala_2.13:[1.10.0,)
-      - com.github.etaty:rediscala_2.13:[1.9.0,)
-      - com.github.Ma27:rediscala_2.12:[1.8.1,)
+    javaagent_target_versions:
+    - com.github.Ma27:rediscala_2.11:[1.8.1,)
+    - com.github.etaty:rediscala_2.11:[1.5.0,)
+    - com.github.etaty:rediscala_2.12:[1.8.0,)
+    - com.github.Ma27:rediscala_2.13:[1.9.0,)
+    - io.github.rediscala:rediscala_2.13:[1.10.0,)
+    - com.github.etaty:rediscala_2.13:[1.9.0,)
+    - com.github.Ma27:rediscala_2.12:[1.8.1,)
     telemetry:
     - when: default
       metrics:
@@ -11148,9 +10925,8 @@ libraries:
     source_path: instrumentation/redisson/redisson-3.0
     scope:
       name: io.opentelemetry.redisson-3.0
-    target_versions:
-      javaagent:
-      - org.redisson:redisson:[3.0.0,3.17.0)
+    javaagent_target_versions:
+    - org.redisson:redisson:[3.0.0,3.17.0)
     telemetry:
     - when: default
       spans:
@@ -11178,9 +10954,8 @@ libraries:
     source_path: instrumentation/redisson/redisson-3.17
     scope:
       name: io.opentelemetry.redisson-3.17
-    target_versions:
-      javaagent:
-      - org.redisson:redisson:[3.17.0,)
+    javaagent_target_versions:
+    - org.redisson:redisson:[3.17.0,)
     telemetry:
     - when: default
       metrics:
@@ -11217,6 +10992,7 @@ libraries:
     source_path: instrumentation/resources
     scope:
       name: io.opentelemetry.resources
+    has_standalone_library: true
   restlet:
   - name: restlet-1.1
     description: This instrumentation enables HTTP server spans and HTTP server metrics
@@ -11231,12 +11007,9 @@ libraries:
     scope:
       name: io.opentelemetry.restlet-1.1
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.restlet:org.restlet:[1.1.0, 1.2-M1)
-      library:
-      - org.restlet:org.restlet:[1.1.5,1.+)
-      - com.noelios.restlet:com.noelios.restlet:1.1.5
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.restlet:org.restlet:[1.1.0, 1.2-M1)
     configurations:
     - name: otel.instrumentation.http.server.capture-request-headers
       description: List of HTTP request headers to capture in HTTP server telemetry.
@@ -11325,11 +11098,9 @@ libraries:
     scope:
       name: io.opentelemetry.restlet-2.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.restlet.jse:org.restlet:[2.0.0,)
-      library:
-      - org.restlet.jse:org.restlet:2.0.2
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.restlet.jse:org.restlet:[2.0.0,)
     configurations:
     - name: otel.instrumentation.http.server.capture-request-headers
       description: List of HTTP request headers to capture in HTTP server telemetry.
@@ -11419,9 +11190,8 @@ libraries:
     source_path: instrumentation/rmi
     scope:
       name: io.opentelemetry.rmi
-    target_versions:
-      javaagent:
-      - Java 8+
+    javaagent_target_versions:
+    - Java 8+
     telemetry:
     - when: default
       spans:
@@ -11454,11 +11224,9 @@ libraries:
     source_path: instrumentation/rocketmq/rocketmq-client-4.8
     scope:
       name: io.opentelemetry.rocketmq-client-4.8
-    target_versions:
-      javaagent:
-      - org.apache.rocketmq:rocketmq-client:[4.0.0,)
-      library:
-      - org.apache.rocketmq:rocketmq-client:4.8.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.apache.rocketmq:rocketmq-client:[4.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.capture-headers
       description: 'Enables capturing messaging headers as span attributes. Provide
@@ -11550,9 +11318,8 @@ libraries:
     source_path: instrumentation/rocketmq/rocketmq-client-5.0
     scope:
       name: io.opentelemetry.rocketmq-client-5.0
-    target_versions:
-      javaagent:
-      - org.apache.rocketmq:rocketmq-client-java:[5.0.0,)
+    javaagent_target_versions:
+    - org.apache.rocketmq:rocketmq-client-java:[5.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -11624,38 +11391,34 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.runtime-telemetry-java17
+    has_standalone_library: true
   - name: runtime-telemetry-java8
     source_path: instrumentation/runtime-telemetry/runtime-telemetry-java8
     scope:
       name: io.opentelemetry.runtime-telemetry-java8
+    has_standalone_library: true
   rxjava:
   - name: rxjava-2.0
     source_path: instrumentation/rxjava/rxjava-2.0
     scope:
       name: io.opentelemetry.rxjava-2.0
-    target_versions:
-      javaagent:
-      - io.reactivex.rxjava2:rxjava:[2.0.6,)
-      library:
-      - io.reactivex.rxjava2:rxjava:2.1.3
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.reactivex.rxjava2:rxjava:[2.0.6,)
   - name: rxjava-3.0
     source_path: instrumentation/rxjava/rxjava-3.0
     scope:
       name: io.opentelemetry.rxjava-3.0
-    target_versions:
-      javaagent:
-      - io.reactivex.rxjava3:rxjava:[3.0.0,3.1.0]
-      library:
-      - io.reactivex.rxjava3:rxjava:[3.0.12,3.1.0)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.reactivex.rxjava3:rxjava:[3.0.0,3.1.0]
   - name: rxjava-3.1.1
     source_path: instrumentation/rxjava/rxjava-3.1.1
     scope:
       name: io.opentelemetry.rxjava-3.1.1
-    target_versions:
-      javaagent:
-      - io.reactivex.rxjava3:rxjava:[3.1.1,)
-      library:
-      - io.reactivex.rxjava3:rxjava:3.1.1
+    has_standalone_library: true
+    javaagent_target_versions:
+    - io.reactivex.rxjava3:rxjava:[3.1.1,)
   scala:
   - name: scala-fork-join-2.8
     display_name: Scala ForkJoinPool
@@ -11667,9 +11430,8 @@ libraries:
     source_path: instrumentation/scala-fork-join-2.8
     scope:
       name: io.opentelemetry.scala-fork-join-2.8
-    target_versions:
-      javaagent:
-      - org.scala-lang:scala-library:[2.8.0,2.12.0)
+    javaagent_target_versions:
+    - org.scala-lang:scala-library:[2.8.0,2.12.0)
   servlet:
   - name: servlet-2.2
     display_name: Servlet
@@ -11684,9 +11446,8 @@ libraries:
     source_path: instrumentation/servlet/servlet-2.2
     scope:
       name: io.opentelemetry.servlet-2.2
-    target_versions:
-      javaagent:
-      - javax.servlet:servlet-api:[2.2, 3.0)
+    javaagent_target_versions:
+    - javax.servlet:servlet-api:[2.2, 3.0)
     configurations:
     - name: otel.instrumentation.servlet.experimental-span-attributes
       description: Enables capturing the experimental `servlet.timeout` span attribute.
@@ -11765,9 +11526,9 @@ libraries:
     source_path: instrumentation/servlet/servlet-3.0
     scope:
       name: io.opentelemetry.servlet-3.0
-    target_versions:
-      javaagent:
-      - javax.servlet:javax.servlet-api:[3.0,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - javax.servlet:javax.servlet-api:[3.0,)
     configurations:
     - name: otel.instrumentation.servlet.experimental-span-attributes
       description: Enables capturing the experimental `servlet.timeout` span attribute.
@@ -11852,9 +11613,9 @@ libraries:
     source_path: instrumentation/servlet/servlet-5.0
     scope:
       name: io.opentelemetry.servlet-5.0
-    target_versions:
-      javaagent:
-      - jakarta.servlet:jakarta.servlet-api:[5.0.0,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - jakarta.servlet:jakarta.servlet-api:[5.0.0,)
     configurations:
     - name: otel.instrumentation.servlet.experimental-span-attributes
       description: Enables capturing the experimental `servlet.timeout` span attribute.
@@ -11940,9 +11701,8 @@ libraries:
     source_path: instrumentation/spark-2.3
     scope:
       name: io.opentelemetry.spark-2.3
-    target_versions:
-      javaagent:
-      - com.sparkjava:spark-core:[2.3,)
+    javaagent_target_versions:
+    - com.sparkjava:spark-core:[2.3,)
   spring:
   - name: spring-batch-3.0
     description: This instrumentation enables spans for jobs run by the Spring Batch
@@ -11952,9 +11712,8 @@ libraries:
     source_path: instrumentation/spring/spring-batch-3.0
     scope:
       name: io.opentelemetry.spring-batch-3.0
-    target_versions:
-      javaagent:
-      - org.springframework.batch:spring-batch-core:[3.0.0.RELEASE,5)
+    javaagent_target_versions:
+    - org.springframework.batch:spring-batch-core:[3.0.0.RELEASE,5)
     configurations:
     - name: otel.instrumentation.spring-batch.experimental-span-attributes
       description: Adds the experimental attribute `job.system` to spans.
@@ -11988,9 +11747,8 @@ libraries:
     source_path: instrumentation/spring/spring-boot-actuator-autoconfigure-2.0
     scope:
       name: io.opentelemetry.spring-boot-actuator-autoconfigure-2.0
-    target_versions:
-      javaagent:
-      - org.springframework.boot:spring-boot-actuator-autoconfigure:[2.0.0.RELEASE,)
+    javaagent_target_versions:
+    - org.springframework.boot:spring-boot-actuator-autoconfigure:[2.0.0.RELEASE,)
   - name: spring-boot-resources
     description: "This instrumentation automatically detects the `service.name` and\
       \ `service.version` for Spring Boot applications and sets them as resource attributes.\n\
@@ -12018,9 +11776,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-cloud-aws-3.0
-    target_versions:
-      javaagent:
-      - io.awspring.cloud:spring-cloud-aws-sqs:[3.0.0,)
+    javaagent_target_versions:
+    - io.awspring.cloud:spring-cloud-aws-sqs:[3.0.0,)
   - name: spring-cloud-gateway-2.0
     description: 'This instrumentation enhances tracing for Spring Cloud Gateway.
       It does not generate new telemetry on its own, but rather enriches existing
@@ -12032,10 +11789,9 @@ libraries:
     source_path: instrumentation/spring/spring-cloud-gateway/spring-cloud-gateway-2.0
     scope:
       name: io.opentelemetry.spring-cloud-gateway-2.0
-    target_versions:
-      javaagent:
-      - org.springframework.cloud:spring-cloud-starter-gateway:[2.0.0.RELEASE,)
-      - org.springframework.cloud:spring-cloud-starter-gateway-server-webflux:[4.3.0,]
+    javaagent_target_versions:
+    - org.springframework.cloud:spring-cloud-starter-gateway:[2.0.0.RELEASE,)
+    - org.springframework.cloud:spring-cloud-starter-gateway-server-webflux:[4.3.0,]
     configurations:
     - name: otel.instrumentation.spring-cloud-gateway.experimental-span-attributes
       description: 'Enables experimental `spring-cloud-gateway.route` attributes (e.g.,
@@ -12050,9 +11806,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-cloud-gateway-webmvc-4.3
-    target_versions:
-      javaagent:
-      - org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc:[4.3.0,)
+    javaagent_target_versions:
+    - org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc:[4.3.0,)
   - name: spring-core-2.0
     description: 'This instrumentation ensures proper context propagation for asynchronous
       operations within Spring Core. It modifies how tasks are submitted and executed
@@ -12065,9 +11820,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-core-2.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-core:[2.0,]
+    javaagent_target_versions:
+    - org.springframework:spring-core:[2.0,]
   - name: spring-data-1.8
     description: 'This instrumentation enhances tracing for Spring Data operations.
       It works in conjunction with other instrumentations, such as JDBC, to provide
@@ -12079,10 +11833,9 @@ libraries:
     source_path: instrumentation/spring/spring-data/spring-data-1.8
     scope:
       name: io.opentelemetry.spring-data-1.8
-    target_versions:
-      javaagent:
-      - org.springframework:spring-aop:[1.2,]
-      - org.springframework.data:spring-data-commons:[1.8.0.RELEASE,]
+    javaagent_target_versions:
+    - org.springframework:spring-aop:[1.2,]
+    - org.springframework.data:spring-data-commons:[1.8.0.RELEASE,]
     telemetry:
     - when: default
       spans:
@@ -12099,11 +11852,9 @@ libraries:
     source_path: instrumentation/spring/spring-integration-4.1
     scope:
       name: io.opentelemetry.spring-integration-4.1
-    target_versions:
-      javaagent:
-      - org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,)
-      library:
-      - org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,5.+)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.springframework.integration:spring-integration-core:[4.1.0.RELEASE,)
     configurations:
     - name: otel.instrumentation.spring-integration.producer.enabled
       description: 'Create producer spans when messages are sent to an output channel.
@@ -12146,9 +11897,8 @@ libraries:
     source_path: instrumentation/spring/spring-jms/spring-jms-2.0
     scope:
       name: io.opentelemetry.spring-jms-2.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-jms:[2.0,6)
+    javaagent_target_versions:
+    - org.springframework:spring-jms:[2.0,6)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -12183,9 +11933,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-jms-6.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-jms:[6.0.0,)
+    javaagent_target_versions:
+    - org.springframework:spring-jms:[6.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -12219,9 +11968,9 @@ libraries:
     source_path: instrumentation/spring/spring-kafka-2.7
     scope:
       name: io.opentelemetry.spring-kafka-2.7
-    target_versions:
-      javaagent:
-      - org.springframework.kafka:spring-kafka:[2.7.0,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.springframework.kafka:spring-kafka:[2.7.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -12298,9 +12047,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-pulsar-1.0
-    target_versions:
-      javaagent:
-      - org.springframework.pulsar:spring-pulsar:[1.0.0,)
+    javaagent_target_versions:
+    - org.springframework.pulsar:spring-pulsar:[1.0.0,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.receive-telemetry.enabled
       description: 'Enables experimental receive telemetry, which will cause consumers
@@ -12343,9 +12091,8 @@ libraries:
     source_path: instrumentation/spring/spring-rabbit-1.0
     scope:
       name: io.opentelemetry.spring-rabbit-1.0
-    target_versions:
-      javaagent:
-      - org.springframework.amqp:spring-rabbit:(,)
+    javaagent_target_versions:
+    - org.springframework.amqp:spring-rabbit:(,)
     configurations:
     - name: otel.instrumentation.messaging.experimental.capture-headers
       description: A comma-separated list of header names to capture as span attributes.
@@ -12371,9 +12118,8 @@ libraries:
     source_path: instrumentation/spring/spring-rmi-4.0
     scope:
       name: io.opentelemetry.spring-rmi-4.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-context:[4.0.0.RELEASE,6)
+    javaagent_target_versions:
+    - org.springframework:spring-context:[4.0.0.RELEASE,6)
     telemetry:
     - when: default
       spans:
@@ -12399,9 +12145,8 @@ libraries:
     source_path: instrumentation/spring/spring-scheduling-3.1
     scope:
       name: io.opentelemetry.spring-scheduling-3.1
-    target_versions:
-      javaagent:
-      - org.springframework:spring-context:[3.1.0.RELEASE,]
+    javaagent_target_versions:
+    - org.springframework:spring-context:[3.1.0.RELEASE,]
     configurations:
     - name: otel.instrumentation.spring-scheduling.experimental-span-attributes
       description: Adds the experimental span attribute `job.system` with the value
@@ -12441,15 +12186,9 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-security-config-6.0
-    target_versions:
-      javaagent:
-      - org.springframework.security:spring-security-config:[6.0.0,]
-      library:
-      - io.projectreactor:reactor-core:3.5.0
-      - jakarta.servlet:jakarta.servlet-api:[6.0.0,6.1.0)
-      - org.springframework.security:spring-security-config:6.0.0
-      - org.springframework:spring-web:6.0.0
-      - org.springframework.security:spring-security-web:6.0.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.springframework.security:spring-security-config:[6.0.0,]
     configurations:
     - name: otel.instrumentation.common.enduser.id.enabled
       description: Enables capturing the enduser.id attribute.
@@ -12483,9 +12222,9 @@ libraries:
     scope:
       name: io.opentelemetry.spring-web-3.1
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-web:[3.1.0.RELEASE,6)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.springframework:spring-web:[3.1.0.RELEASE,6)
     telemetry:
     - when: default
       metrics:
@@ -12527,9 +12266,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-web-6.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-web:[6.0.0,)
+    javaagent_target_versions:
+    - org.springframework:spring-web:[6.0.0,)
   - name: spring-webflux-5.0
     description: 'This instrumentation enables HTTP client spans and metrics for Spring
       WebFlux 5.0. It also optionally enables experimental controller spans.
@@ -12540,11 +12278,10 @@ libraries:
     scope:
       name: io.opentelemetry.spring-webflux-5.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)
-      - org.springframework:spring-webflux:[5.0.0.RELEASE,)
-      - io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)
+    javaagent_target_versions:
+    - io.projectreactor.ipc:reactor-netty:[0.7.0.RELEASE,)
+    - org.springframework:spring-webflux:[5.0.0.RELEASE,)
+    - io.projectreactor.netty:reactor-netty:[0.8.0.RELEASE,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -12600,9 +12337,7 @@ libraries:
     scope:
       name: io.opentelemetry.spring-webflux-5.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      library:
-      - org.springframework:spring-webflux:5.3.0
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -12684,9 +12419,8 @@ libraries:
     source_path: instrumentation/spring/spring-webmvc/spring-webmvc-3.1
     scope:
       name: io.opentelemetry.spring-webmvc-3.1
-    target_versions:
-      javaagent:
-      - org.springframework:spring-webmvc:[3.1.0.RELEASE,6)
+    javaagent_target_versions:
+    - org.springframework:spring-webmvc:[3.1.0.RELEASE,6)
     configurations:
     - name: otel.instrumentation.spring-webmvc.experimental-span-attributes
       description: 'Enables the capture of experimental span attributes `spring-webmvc-view-name`
@@ -12733,6 +12467,7 @@ libraries:
     scope:
       name: io.opentelemetry.spring-webmvc-5.3
       schema_url: https://opentelemetry.io/schemas/1.37.0
+    has_standalone_library: true
     telemetry:
     - when: default
       metrics:
@@ -12794,9 +12529,9 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.spring-webmvc-6.0
-    target_versions:
-      javaagent:
-      - org.springframework:spring-webmvc:[6.0.0,)
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.springframework:spring-webmvc:[6.0.0,)
     configurations:
     - name: otel.instrumentation.spring-webmvc.experimental-span-attributes
       description: 'Enables the capture of experimental span attributes `spring-webmvc-view-name`
@@ -12838,17 +12573,65 @@ libraries:
     source_path: instrumentation/spring/spring-ws-2.0
     scope:
       name: io.opentelemetry.spring-ws-2.0
-    target_versions:
-      javaagent:
-      - org.springframework.ws:spring-ws-core:[2.0.0.RELEASE,]
+    javaagent_target_versions:
+    - org.springframework.ws:spring-ws-core:[2.0.0.RELEASE,]
   spymemcached:
   - name: spymemcached-2.12
+    display_name: Spymemcached
+    description: 'This instrumentation enables database client spans and database
+      client metrics for Memcached operations using the Spymemcached client.
+
+      '
+    semantic_conventions:
+    - DATABASE_CLIENT_SPANS
+    - DATABASE_CLIENT_METRICS
+    library_link: https://github.com/couchbase/spymemcached
     source_path: instrumentation/spymemcached-2.12
     scope:
       name: io.opentelemetry.spymemcached-2.12
-    target_versions:
-      javaagent:
-      - net.spy:spymemcached:[2.12.0,)
+    javaagent_target_versions:
+    - net.spy:spymemcached:[2.12.0,)
+    configurations:
+    - name: otel.instrumentation.spymemcached.experimental-span-attributes
+      description: 'Enables experimental span attributes `spymemcached.result` and
+        `spymemcached.command.cancelled`.
+
+        '
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      metrics:
+      - name: db.client.operation.duration
+        description: Duration of database client operations.
+        type: HISTOGRAM
+        unit: s
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation.name
+          type: STRING
+        - name: db.system.name
+          type: STRING
+        - name: error.type
+          type: STRING
+    - when: otel.instrumentation.spymemcached.experimental-span-attributes=true
+      spans:
+      - span_kind: CLIENT
+        attributes:
+        - name: db.operation
+          type: STRING
+        - name: db.system
+          type: STRING
+        - name: spymemcached.command.cancelled
+          type: BOOLEAN
+        - name: spymemcached.result
+          type: STRING
   struts:
   - name: struts-2.3
     display_name: Apache Struts
@@ -12864,9 +12647,8 @@ libraries:
     source_path: instrumentation/struts/struts-2.3
     scope:
       name: io.opentelemetry.struts-2.3
-    target_versions:
-      javaagent:
-      - org.apache.struts:struts2-core:[2.1.0,7)
+    javaagent_target_versions:
+    - org.apache.struts:struts2-core:[2.1.0,7)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -12896,9 +12678,8 @@ libraries:
     minimum_java_version: 17
     scope:
       name: io.opentelemetry.struts-7.0
-    target_versions:
-      javaagent:
-      - org.apache.struts:struts2-core:[7.0.0,)
+    javaagent_target_versions:
+    - org.apache.struts:struts2-core:[7.0.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -12928,9 +12709,8 @@ libraries:
     source_path: instrumentation/tapestry-5.4
     scope:
       name: io.opentelemetry.tapestry-5.4
-    target_versions:
-      javaagent:
-      - org.apache.tapestry:tapestry-core:[5.4.0,)
+    javaagent_target_versions:
+    - org.apache.tapestry:tapestry-core:[5.4.0,)
     configurations:
     - name: otel.instrumentation.common.experimental.controller-telemetry.enabled
       description: Enables the creation of experimental controller spans.
@@ -12946,24 +12726,21 @@ libraries:
     source_path: instrumentation/tomcat/tomcat-7.0
     scope:
       name: io.opentelemetry.tomcat-7.0
-    target_versions:
-      javaagent:
-      - org.apache.tomcat.embed:tomcat-embed-core:[7.0.4, 10)
+    javaagent_target_versions:
+    - org.apache.tomcat.embed:tomcat-embed-core:[7.0.4, 10)
   - name: tomcat-10.0
     source_path: instrumentation/tomcat/tomcat-10.0
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.tomcat-10.0
-    target_versions:
-      javaagent:
-      - org.apache.tomcat.embed:tomcat-embed-core:[10,)
+    javaagent_target_versions:
+    - org.apache.tomcat.embed:tomcat-embed-core:[10,)
   - name: tomcat-jdbc
     source_path: instrumentation/tomcat/tomcat-jdbc
     scope:
       name: io.opentelemetry.tomcat-jdbc
-    target_versions:
-      javaagent:
-      - org.apache.tomcat:tomcat-jdbc:[8.5.0,)
+    javaagent_target_versions:
+    - org.apache.tomcat:tomcat-jdbc:[8.5.0,)
     telemetry:
     - when: default
       metrics:
@@ -13010,35 +12787,31 @@ libraries:
     source_path: instrumentation/twilio-6.6
     scope:
       name: io.opentelemetry.twilio-6.6
-    target_versions:
-      javaagent:
-      - com.twilio.sdk:twilio:(,8.0.0)
+    javaagent_target_versions:
+    - com.twilio.sdk:twilio:(,8.0.0)
   undertow:
   - name: undertow-1.4
     source_path: instrumentation/undertow-1.4
     scope:
       name: io.opentelemetry.undertow-1.4
-    target_versions:
-      javaagent:
-      - io.undertow:undertow-core:[1.4.0.Final,)
+    javaagent_target_versions:
+    - io.undertow:undertow-core:[1.4.0.Final,)
   vaadin:
   - name: vaadin-14.2
     source_path: instrumentation/vaadin-14.2
     scope:
       name: io.opentelemetry.vaadin-14.2
-    target_versions:
-      javaagent:
-      - com.vaadin:flow-server:[2.2.0,3)
-      - com.vaadin:flow-server:[3.1.0,25.0.0)
+    javaagent_target_versions:
+    - com.vaadin:flow-server:[2.2.0,3)
+    - com.vaadin:flow-server:[3.1.0,25.0.0)
   vertx:
   - name: vertx-http-client-3.0
     source_path: instrumentation/vertx/vertx-http-client/vertx-http-client-3.0
     scope:
       name: io.opentelemetry.vertx-http-client-3.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-core:[3.0.0,4.0.0)
+    javaagent_target_versions:
+    - io.vertx:vertx-core:[3.0.0,4.0.0)
     telemetry:
     - when: default
       metrics:
@@ -13077,9 +12850,8 @@ libraries:
     scope:
       name: io.opentelemetry.vertx-http-client-4.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-core:[4.0.0,5)
+    javaagent_target_versions:
+    - io.vertx:vertx-core:[4.0.0,5)
     telemetry:
     - when: default
       metrics:
@@ -13129,9 +12901,8 @@ libraries:
     scope:
       name: io.opentelemetry.vertx-http-client-5.0
       schema_url: https://opentelemetry.io/schemas/1.37.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-core:[5.0.0,)
+    javaagent_target_versions:
+    - io.vertx:vertx-core:[5.0.0,)
     telemetry:
     - when: default
       metrics:
@@ -13179,16 +12950,14 @@ libraries:
     source_path: instrumentation/vertx/vertx-kafka-client-3.6
     scope:
       name: io.opentelemetry.vertx-kafka-client-3.6
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-kafka-client:[3.5.1,)
+    javaagent_target_versions:
+    - io.vertx:vertx-kafka-client:[3.5.1,)
   - name: vertx-redis-client-4.0
     source_path: instrumentation/vertx/vertx-redis-client-4.0
     scope:
       name: io.opentelemetry.vertx-redis-client-4.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-redis-client:[4.0.0,)
+    javaagent_target_versions:
+    - io.vertx:vertx-redis-client:[4.0.0,)
     telemetry:
     - when: default
       metrics:
@@ -13236,16 +13005,14 @@ libraries:
     source_path: instrumentation/vertx/vertx-rx-java-3.5
     scope:
       name: io.opentelemetry.vertx-rx-java-3.5
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-rx-java2:[3.5.0,)
+    javaagent_target_versions:
+    - io.vertx:vertx-rx-java2:[3.5.0,)
   - name: vertx-sql-client-4.0
     source_path: instrumentation/vertx/vertx-sql-client/vertx-sql-client-4.0
     scope:
       name: io.opentelemetry.vertx-sql-client-4.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-sql-client:[4.0.0,5)
+    javaagent_target_versions:
+    - io.vertx:vertx-sql-client:[4.0.0,5)
     telemetry:
     - when: default
       metrics:
@@ -13286,9 +13053,8 @@ libraries:
     minimum_java_version: 11
     scope:
       name: io.opentelemetry.vertx-sql-client-5.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-sql-client:[5.0.0,)
+    javaagent_target_versions:
+    - io.vertx:vertx-sql-client:[5.0.0,)
     telemetry:
     - when: default
       metrics:
@@ -13328,9 +13094,8 @@ libraries:
     source_path: instrumentation/vertx/vertx-web-3.0
     scope:
       name: io.opentelemetry.vertx-web-3.0
-    target_versions:
-      javaagent:
-      - io.vertx:vertx-web:[3.0.0,)
+    javaagent_target_versions:
+    - io.vertx:vertx-web:[3.0.0,)
   vibur:
   - name: vibur-dbcp-11.0
     description: Instrumentation for the vibur-dbcp library, which provides connection
@@ -13339,11 +13104,9 @@ libraries:
     source_path: instrumentation/vibur-dbcp-11.0
     scope:
       name: io.opentelemetry.vibur-dbcp-11.0
-    target_versions:
-      javaagent:
-      - org.vibur:vibur-dbcp:[11.0,)
-      library:
-      - org.vibur:vibur-dbcp:11.0
+    has_standalone_library: true
+    javaagent_target_versions:
+    - org.vibur:vibur-dbcp:[11.0,)
     telemetry:
     - when: default
       metrics:
@@ -13377,50 +13140,44 @@ libraries:
     source_path: instrumentation/wicket-8.0
     scope:
       name: io.opentelemetry.wicket-8.0
-    target_versions:
-      javaagent:
-      - org.apache.wicket:wicket:[8.0.0,]
+    javaagent_target_versions:
+    - org.apache.wicket:wicket:[8.0.0,]
   xxl:
   - name: xxl-job-1.9.2
     source_path: instrumentation/xxl-job/xxl-job-1.9.2
     scope:
       name: io.opentelemetry.xxl-job-1.9.2
-    target_versions:
-      javaagent:
-      - com.xuxueli:xxl-job-core:[1.9.2, 2.1.2)
+    javaagent_target_versions:
+    - com.xuxueli:xxl-job-core:[1.9.2, 2.1.2)
   - name: xxl-job-2.1.2
     source_path: instrumentation/xxl-job/xxl-job-2.1.2
     scope:
       name: io.opentelemetry.xxl-job-2.1.2
-    target_versions:
-      javaagent:
-      - com.xuxueli:xxl-job-core:[2.1.2,2.3.0)
+    javaagent_target_versions:
+    - com.xuxueli:xxl-job-core:[2.1.2,2.3.0)
   - name: xxl-job-2.3.0
     source_path: instrumentation/xxl-job/xxl-job-2.3.0
     scope:
       name: io.opentelemetry.xxl-job-2.3.0
-    target_versions:
-      javaagent:
-      - com.xuxueli:xxl-job-core:[2.3.0,)
+    javaagent_target_versions:
+    - com.xuxueli:xxl-job-core:[2.3.0,)
   zio:
   - name: zio-2.0
     source_path: instrumentation/zio/zio-2.0
     scope:
       name: io.opentelemetry.zio-2.0
-    target_versions:
-      javaagent:
-      - dev.zio:zio_2.13:[2.0.0,)
-      - dev.zio:zio_3:[2.0.0,)
-      - dev.zio:zio_2.12:[2.0.0,)
+    javaagent_target_versions:
+    - dev.zio:zio_2.13:[2.0.0,)
+    - dev.zio:zio_3:[2.0.0,)
+    - dev.zio:zio_2.12:[2.0.0,)
 internal:
 - name: internal-application-logger
   source_path: instrumentation/internal/internal-application-logger
   scope:
     name: io.opentelemetry.internal-application-logger
-  target_versions:
-    javaagent:
-    - org.springframework.boot:spring-boot:[1.2.0,)
-    - org.slf4j:slf4j-api:[1.4.0,)
+  javaagent_target_versions:
+  - org.springframework.boot:spring-boot:[1.2.0,)
+  - org.slf4j:slf4j-api:[1.4.0,)
 - name: internal-class-loader
   source_path: instrumentation/internal/internal-class-loader
   scope:
@@ -13445,9 +13202,8 @@ internal:
   source_path: instrumentation/opentelemetry-api/opentelemetry-api-1.0
   scope:
     name: io.opentelemetry.opentelemetry-api-1.0
-  target_versions:
-    javaagent:
-    - io.opentelemetry:opentelemetry-api:[0.17.0,)
+  javaagent_target_versions:
+  - io.opentelemetry:opentelemetry-api:[0.17.0,)
 - name: opentelemetry-api-1.4
   source_path: instrumentation/opentelemetry-api/opentelemetry-api-1.4
   scope:
@@ -13520,23 +13276,19 @@ internal:
   source_path: instrumentation/opentelemetry-extension-kotlin-1.0
   scope:
     name: io.opentelemetry.opentelemetry-extension-kotlin-1.0
-  target_versions:
-    javaagent:
-    - io.opentelemetry:opentelemetry-extension-kotlin:[0.17.0,)
+  javaagent_target_versions:
+  - io.opentelemetry:opentelemetry-extension-kotlin:[0.17.0,)
 - name: opentelemetry-instrumentation-api
   source_path: instrumentation/opentelemetry-instrumentation-api
   scope:
     name: io.opentelemetry.opentelemetry-instrumentation-api
-  target_versions:
-    javaagent:
-    - io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:[1.14.0-alpha,)
+  javaagent_target_versions:
+  - io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:[1.14.0-alpha,)
 - name: rxjava-1.0
   source_path: instrumentation/rxjava/rxjava-1.0
   scope:
     name: io.opentelemetry.rxjava-1.0
-  target_versions:
-    library:
-    - io.reactivex:rxjava:1.0.7
+  has_standalone_library: true
 custom:
 - name: external-annotations
   description: 'The external-annotations instrumentation acts as a "shim" that automatically
@@ -13552,9 +13304,8 @@ custom:
   source_path: instrumentation/external-annotations
   scope:
     name: io.opentelemetry.external-annotations
-  target_versions:
-    javaagent:
-    - Java 8+
+  javaagent_target_versions:
+  - Java 8+
   configurations:
   - name: otel.instrumentation.external-annotations.include
     description: Configuration for trace annotations, in the form of a pattern that
@@ -13576,6 +13327,7 @@ custom:
   source_path: instrumentation/jmx-metrics
   scope:
     name: io.opentelemetry.jmx-metrics
+  has_standalone_library: true
 - name: methods
   description: 'Provides a flexible way to capture telemetry at the method level in
     JVM applications. By weaving instrumentation into targeted methods at runtime
@@ -13587,9 +13339,8 @@ custom:
   source_path: instrumentation/methods
   scope:
     name: io.opentelemetry.methods
-  target_versions:
-    javaagent:
-    - Java 8+
+  javaagent_target_versions:
+  - Java 8+
 - name: opentelemetry-extension-annotations-1.0
   description: 'Instruments methods annotated with OpenTelemetry extension annotations,
     such as @WithSpan and @SpanAttribute.
@@ -13598,9 +13349,8 @@ custom:
   source_path: instrumentation/opentelemetry-extension-annotations-1.0
   scope:
     name: io.opentelemetry.opentelemetry-extension-annotations-1.0
-  target_versions:
-    javaagent:
-    - io.opentelemetry:opentelemetry-extension-annotations:[0.16.0,)
+  javaagent_target_versions:
+  - io.opentelemetry:opentelemetry-extension-annotations:[0.16.0,)
 - name: opentelemetry-instrumentation-annotations-1.16
   description: 'Instruments methods annotated with OpenTelemetry instrumentation annotations,
     such as @WithSpan and @SpanAttribute.
@@ -13609,6 +13359,5 @@ custom:
   source_path: instrumentation/opentelemetry-instrumentation-annotations-1.16
   scope:
     name: io.opentelemetry.opentelemetry-instrumentation-annotations-1.16
-  target_versions:
-    javaagent:
-    - io.opentelemetry:opentelemetry-instrumentation-annotations:(,)
+  javaagent_target_versions:
+  - io.opentelemetry:opentelemetry-instrumentation-annotations:(,)

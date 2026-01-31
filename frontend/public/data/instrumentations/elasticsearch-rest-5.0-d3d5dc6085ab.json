@@ -1,0 +1,93 @@
+{
+  "id": "elasticsearch-rest-5.0",
+  "library_group": "elasticsearch",
+  "description": "This instrumentation enables database client spans and database client metrics for Elasticsearch REST clients.",
+  "library_link": "https://www.elastic.co/guide/en/elasticsearch/client/java-rest",
+  "source_path": "instrumentation/elasticsearch/elasticsearch-rest-5.0",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.elasticsearch-rest-5.0"
+  },
+  "javaagent_target_versions": [
+    "org.elasticsearch.client:rest:[5.0,6.4)",
+    "org.elasticsearch.client:elasticsearch-rest-client:[5.0,6.4)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.elasticsearch.capture-search-query",
+      "description": "Enable the capture of search query bodies. It is important to note that Elasticsearch queries may contain personal or sensitive information.\n",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.http.known-methods",
+      "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+      "type": "list",
+      "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE"
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.full",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
