@@ -1,0 +1,11 @@
+{
+  "id": "resources",
+  "library_group": "resources",
+  "source_path": "instrumentation/resources",
+  "scope": {
+    "name": "io.opentelemetry.resources"
+  },
+  "has_standalone_library": true,
+  "markdown_hash": "f63864e1e404",
+  "markdown_url": "/data/markdown/resources-f63864e1e404.md"
+}
