@@ -1,0 +1,12 @@
+{
+  "id": "runtime-telemetry-java17",
+  "library_group": "runtime",
+  "source_path": "instrumentation/runtime-telemetry/runtime-telemetry-java17",
+  "minimum_java_version": 17,
+  "scope": {
+    "name": "io.opentelemetry.runtime-telemetry-java17"
+  },
+  "has_standalone_library": true,
+  "markdown_hash": "34b93dd26941",
+  "markdown_url": "/data/markdown/runtime-telemetry-java17-34b93dd26941.md"
+}
