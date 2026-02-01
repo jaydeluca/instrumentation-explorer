@@ -1,0 +1,179 @@
+{
+  "id": "alibaba-druid-1.0",
+  "library_group": "alibaba",
+  "description": "The Alibaba Druid instrumentation generates database connection pool metrics for druid data sources.\n",
+  "library_link": "https://github.com/alibaba/druid",
+  "source_path": "instrumentation/alibaba-druid-1.0",
+  "semantic_conventions": [
+    "DATABASE_POOL_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.alibaba-druid-1.0"
+  },
+  "javaagent_target_versions": [
+    "com.alibaba:druid:(,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.semconv-stability.opt-in",
+      "description": "Opt-in to emit stable semantic conventions instead of the old experimental semantic conventions. Accepts a comma-separated list of semantic convention groups (e.g., `database`, `http`, `messaging`). Use `<group>/dup` to emit both old and new conventions simultaneously. Stable semantic conventions will become the default in version 3.0 of the agent.\n",
+      "type": "list",
+      "default": ""
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.connections.idle.max",
+          "description": "The maximum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.idle.min",
+          "description": "The minimum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.pending_requests",
+          "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+          "type": "LONG_SUM",
+          "unit": "requests",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connections.usage",
+          "description": "The number of connections that are currently in state described by the state attribute.",
+          "type": "LONG_SUM",
+          "unit": "connections",
+          "attributes": [
+            {
+              "name": "pool.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "state",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    },
+    "otel.semconv-stability.opt-in=database": {
+      "metrics": [
+        {
+          "name": "db.client.connection.count",
+          "description": "The number of connections that are currently in state described by the state attribute.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.client.connection.state",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.idle.max",
+          "description": "The maximum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.idle.min",
+          "description": "The minimum number of idle open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.max",
+          "description": "The maximum number of open connections allowed.",
+          "type": "LONG_SUM",
+          "unit": "connection",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "db.client.connection.pending_requests",
+          "description": "The number of current pending requests for an open connection.",
+          "type": "LONG_SUM",
+          "unit": "request",
+          "attributes": [
+            {
+              "name": "db.client.connection.pool.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  },
+  "markdown_hash": "6c55bb962678",
+  "markdown_url": "/data/markdown/alibaba-druid-1.0-6c55bb962678.md"
+}
