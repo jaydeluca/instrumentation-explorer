@@ -1,0 +1,170 @@
+{
+  "id": "iceberg-1.8",
+  "display_name": "Apache Iceberg",
+  "library_group": "iceberg",
+  "description": "This instrumentation provides a standalone library integration that enables metrics for Apache Iceberg table scans.\n",
+  "library_link": "https://iceberg.apache.org/",
+  "source_path": "instrumentation/iceberg-1.8",
+  "scope": {
+    "name": "io.opentelemetry.iceberg-1.8"
+  },
+  "has_standalone_library": true,
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "iceberg.scan.data_files.count",
+          "description": "The number of data files.",
+          "type": "LONG_SUM",
+          "unit": "file",
+          "attributes": [
+            {
+              "name": "iceberg.scan.state",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.data_files.size",
+          "description": "The total size of all scanned data files.",
+          "type": "LONG_SUM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.data_manifests.count",
+          "description": "The number of data manifests.",
+          "type": "LONG_SUM",
+          "unit": "file",
+          "attributes": [
+            {
+              "name": "iceberg.scan.state",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.delete_files.count",
+          "description": "The number of delete files.",
+          "type": "LONG_SUM",
+          "unit": "file",
+          "attributes": [
+            {
+              "name": "iceberg.delete_file.type",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.scan.state",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.delete_files.size",
+          "description": "The total size of all scanned delete files.",
+          "type": "LONG_SUM",
+          "unit": "By",
+          "attributes": [
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.delete_manifests.count",
+          "description": "The number of delete manifests.",
+          "type": "LONG_SUM",
+          "unit": "file",
+          "attributes": [
+            {
+              "name": "iceberg.scan.state",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        },
+        {
+          "name": "iceberg.scan.planning.duration",
+          "description": "The total duration needed to plan the scan.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "iceberg.schema.id",
+              "type": "LONG",
+              "semconv": false
+            },
+            {
+              "name": "iceberg.table.name",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ],
+      "spans": []
+    }
+  }
+}
