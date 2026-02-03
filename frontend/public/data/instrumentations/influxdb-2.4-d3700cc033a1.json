@@ -25,6 +25,46 @@
   ],
   "telemetry": {
     "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.statement",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.semconv-stability.opt-in=database": {
       "metrics": [
         {
           "name": "db.client.operation.duration",
@@ -38,7 +78,7 @@
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -71,6 +111,11 @@
             },
             {
               "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
