@@ -158,9 +158,9 @@
       "filename": "c3p0-0.9-8ec4d65e9b3d.json"
     },
     "camel-2.20": {
-      "hash": "8f1fb6f00832",
-      "url": "/data/instrumentations/camel-2.20-8f1fb6f00832.json",
-      "filename": "camel-2.20-8f1fb6f00832.json"
+      "hash": "474598f008a6",
+      "url": "/data/instrumentations/camel-2.20-474598f008a6.json",
+      "filename": "camel-2.20-474598f008a6.json"
     },
     "cassandra-3.0": {
       "hash": "4bc97fd7f7de",
@@ -378,9 +378,9 @@
       "filename": "iceberg-1.8-f008e48ff465.json"
     },
     "influxdb-2.4": {
-      "hash": "f857e295f602",
-      "url": "/data/instrumentations/influxdb-2.4-f857e295f602.json",
-      "filename": "influxdb-2.4-f857e295f602.json"
+      "hash": "bac1bc2dbb21",
+      "url": "/data/instrumentations/influxdb-2.4-bac1bc2dbb21.json",
+      "filename": "influxdb-2.4-bac1bc2dbb21.json"
     },
     "java-http-client": {
       "hash": "4b2b6321c894",
