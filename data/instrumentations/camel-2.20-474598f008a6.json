@@ -40,6 +40,11 @@
               "semconv": false
             },
             {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
               "name": "db.query.text",
               "type": "STRING",
               "semconv": false
