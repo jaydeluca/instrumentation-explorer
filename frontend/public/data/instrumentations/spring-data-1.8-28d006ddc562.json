@@ -1,0 +1,37 @@
+{
+  "id": "spring-data-1.8",
+  "display_name": "Spring Data",
+  "library_group": "spring",
+  "description": "This instrumentation enables spans for Spring Data repository method invocations.",
+  "library_link": "https://spring.io/projects/spring-data",
+  "source_path": "instrumentation/spring/spring-data/spring-data-1.8",
+  "scope": {
+    "name": "io.opentelemetry.spring-data-1.8"
+  },
+  "javaagent_target_versions": [
+    "org.springframework:spring-aop:[1.2,]",
+    "org.springframework.data:spring-data-commons:[1.8.0.RELEASE,]"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

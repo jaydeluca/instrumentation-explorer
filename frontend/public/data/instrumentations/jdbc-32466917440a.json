@@ -151,7 +151,7 @@
         }
       ]
     },
-    "otel.semconv-stability.opt-in=database": {
+    "otel.semconv-stability.opt-in=database,service.peer": {
       "metrics": [
         {
           "name": "db.client.operation.duration",
@@ -217,14 +217,14 @@
               "semconv": false
             },
             {
-              "name": "peer.service",
+              "name": "server.address",
               "type": "STRING",
               "semconv": true
             },
             {
-              "name": "server.address",
+              "name": "service.peer.name",
               "type": "STRING",
-              "semconv": true
+              "semconv": false
             }
           ]
         },

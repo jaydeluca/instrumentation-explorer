@@ -87,11 +87,6 @@
               "semconv": true
             },
             {
-              "name": "peer.service",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
               "name": "server.address",
               "type": "STRING",
               "semconv": true
@@ -100,6 +95,11 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
+            },
+            {
+              "name": "service.peer.name",
+              "type": "STRING",
+              "semconv": false
             }
           ]
         }
