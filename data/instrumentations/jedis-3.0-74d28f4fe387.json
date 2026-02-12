@@ -1,39 +1,25 @@
 {
-  "id": "r2dbc-1.0",
-  "display_name": "R2DBC",
-  "library_group": "r2dbc",
-  "description": "This instrumentation enables database client spans and database client metrics for R2DBC (Reactive Relational Database Connectivity).\n",
-  "library_link": "https://r2dbc.io/",
-  "source_path": "instrumentation/r2dbc-1.0",
+  "id": "jedis-3.0",
+  "library_group": "jedis",
+  "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
+  "library_link": "https://github.com/redis/jedis",
+  "source_path": "instrumentation/jedis/jedis-3.0",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.r2dbc-1.0"
+    "name": "io.opentelemetry.jedis-3.0"
   },
   "javaagent_target_versions": [
-    "io.r2dbc:r2dbc-spi:[1.0.0.RELEASE,)"
+    "redis.clients:jedis:[3.0.0,4)"
   ],
-  "has_standalone_library": true,
   "configurations": [
-    {
-      "name": "otel.instrumentation.r2dbc.statement-sanitizer.enabled",
-      "description": "Enables statement sanitization for database queries. Takes precedence over otel.instrumentation.common.db-statement-sanitizer.enabled.\n",
-      "type": "boolean",
-      "default": true
-    },
     {
       "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
       "description": "Enables statement sanitization for database queries.",
       "type": "boolean",
       "default": true
-    },
-    {
-      "name": "otel.instrumentation.r2dbc.experimental.sqlcommenter.enabled",
-      "description": "Enables augmenting queries with a comment containing the tracing information. See [sqlcommenter](https://google.github.io/sqlcommenter/) for more info. WARNING: augmenting queries with tracing context will make query texts unique, which may have adverse impact on database performance.\n",
-      "type": "boolean",
-      "default": false
     },
     {
       "name": "otel.instrumentation.common.peer-service-mapping",
@@ -50,22 +36,7 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.connection_string",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "db.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
               "name": "db.operation",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "db.sql.table",
               "type": "STRING",
               "semconv": false
             },
@@ -80,9 +51,19 @@
               "semconv": false
             },
             {
-              "name": "db.user",
+              "name": "network.peer.address",
               "type": "STRING",
-              "semconv": false
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
             },
             {
               "name": "peer.service",
@@ -103,7 +84,7 @@
         }
       ]
     },
-    "otel.semconv-stability.opt-in=database": {
+    "otel.semconv-stability.opt-in=database,service.peer": {
       "metrics": [
         {
           "name": "db.client.operation.duration",
@@ -112,12 +93,7 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.namespace",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "db.query.summary",
+              "name": "db.operation.name",
               "type": "STRING",
               "semconv": false
             },
@@ -125,6 +101,16 @@
               "name": "db.system.name",
               "type": "STRING",
               "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
             },
             {
               "name": "server.address",
@@ -144,12 +130,7 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.namespace",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "db.query.summary",
+              "name": "db.operation.name",
               "type": "STRING",
               "semconv": false
             },
@@ -164,7 +145,17 @@
               "semconv": false
             },
             {
-              "name": "peer.service",
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
               "type": "STRING",
               "semconv": true
             },
@@ -177,12 +168,15 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
+            },
+            {
+              "name": "service.peer.name",
+              "type": "STRING",
+              "semconv": false
             }
           ]
         }
       ]
     }
-  },
-  "markdown_hash": "011569447ac1",
-  "markdown_url": "/data/markdown/r2dbc-1.0-011569447ac1.md"
+  }
 }

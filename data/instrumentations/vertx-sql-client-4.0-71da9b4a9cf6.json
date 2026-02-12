@@ -1,15 +1,65 @@
 {
-  "id": "vertx-redis-client-4.0",
+  "id": "vertx-sql-client-4.0",
   "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-redis-client-4.0",
+  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-4.0",
   "scope": {
-    "name": "io.opentelemetry.vertx-redis-client-4.0"
+    "name": "io.opentelemetry.vertx-sql-client-4.0"
   },
   "javaagent_target_versions": [
-    "io.vertx:vertx-redis-client:[4.0.0,)"
+    "io.vertx:vertx-sql-client:[4.0.0,5)"
   ],
   "telemetry": {
     "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.sql.table",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.statement",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.user",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "peer.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.semconv-stability.opt-in=database,service.peer": {
       "metrics": [
         {
           "name": "db.client.operation.duration",
@@ -23,24 +73,9 @@
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
-            },
-            {
-              "name": "db.system.name",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
             },
             {
               "name": "server.address",
@@ -65,7 +100,7 @@
               "semconv": false
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -75,22 +110,12 @@
               "semconv": false
             },
             {
-              "name": "db.system.name",
+              "name": "db.response.status_code",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "peer.service",
+              "name": "error.type",
               "type": "STRING",
               "semconv": true
             },
@@ -103,6 +128,11 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
+            },
+            {
+              "name": "service.peer.name",
+              "type": "STRING",
+              "semconv": false
             }
           ]
         }

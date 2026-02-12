@@ -1,32 +1,12 @@
 {
-  "id": "jedis-1.4",
-  "library_group": "jedis",
-  "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
-  "library_link": "https://github.com/redis/jedis",
-  "source_path": "instrumentation/jedis/jedis-1.4",
-  "semantic_conventions": [
-    "DATABASE_CLIENT_SPANS",
-    "DATABASE_CLIENT_METRICS"
-  ],
+  "id": "vertx-sql-client-4.0",
+  "library_group": "vertx",
+  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-4.0",
   "scope": {
-    "name": "io.opentelemetry.jedis-1.4"
+    "name": "io.opentelemetry.vertx-sql-client-4.0"
   },
   "javaagent_target_versions": [
-    "redis.clients:jedis:[1.4.0,3.0.0)"
-  ],
-  "configurations": [
-    {
-      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
-      "description": "Enables statement sanitization for database queries.",
-      "type": "boolean",
-      "default": true
-    },
-    {
-      "name": "otel.instrumentation.common.peer-service-mapping",
-      "description": "Used to specify a mapping from host names or IP addresses to peer services.",
-      "type": "map",
-      "default": ""
-    }
+    "io.vertx:vertx-sql-client:[4.0.0,5)"
   ],
   "telemetry": {
     "default": {
@@ -38,12 +18,12 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "db.system.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -65,7 +45,12 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -75,12 +60,12 @@
               "semconv": false
             },
             {
-              "name": "db.system.name",
+              "name": "db.response.status_code",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "peer.service",
+              "name": "error.type",
               "type": "STRING",
               "semconv": true
             },
@@ -93,6 +78,11 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
+            },
+            {
+              "name": "service.peer.name",
+              "type": "STRING",
+              "semconv": false
             }
           ]
         }
