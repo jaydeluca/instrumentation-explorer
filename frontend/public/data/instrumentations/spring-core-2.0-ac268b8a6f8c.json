@@ -1,0 +1,18 @@
+{
+  "id": "spring-core-2.0",
+  "display_name": "Spring Core",
+  "library_group": "spring",
+  "description": "This instrumentation provides context propagation for Spring Core asynchronous task execution, it does not emit any telemetry on its own.\n",
+  "library_link": "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/package-summary.html",
+  "source_path": "instrumentation/spring/spring-core-2.0",
+  "minimum_java_version": 17,
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.spring-core-2.0"
+  },
+  "javaagent_target_versions": [
+    "org.springframework:spring-core:[2.0,]"
+  ]
+}

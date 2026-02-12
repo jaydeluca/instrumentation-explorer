@@ -1,29 +1,37 @@
 {
-  "id": "lettuce-4.0",
-  "library_group": "lettuce",
-  "description": "This instrumentation enables database client spans and database client metrics for the Lettuce Redis client.\n",
-  "library_link": "https://github.com/redis/lettuce",
-  "source_path": "instrumentation/lettuce/lettuce-4.0",
+  "id": "r2dbc-1.0",
+  "display_name": "R2DBC",
+  "library_group": "r2dbc",
+  "description": "This instrumentation enables database client spans and database client metrics for R2DBC (Reactive Relational Database Connectivity).\n",
+  "library_link": "https://r2dbc.io/",
+  "source_path": "instrumentation/r2dbc-1.0",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.lettuce-4.0"
+    "name": "io.opentelemetry.r2dbc-1.0"
   },
   "javaagent_target_versions": [
-    "biz.paluch.redis:lettuce:[4.0.Final,)"
+    "io.r2dbc:r2dbc-spi:[1.0.0.RELEASE,)"
   ],
+  "has_standalone_library": true,
   "configurations": [
     {
-      "name": "otel.instrumentation.lettuce.connection-telemetry.enabled",
-      "description": "Enables connection telemetry spans for Redis connections.",
+      "name": "otel.instrumentation.r2dbc.statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries. Takes precedence over otel.instrumentation.common.db-statement-sanitizer.enabled.\n",
       "type": "boolean",
-      "default": false
+      "default": true
     },
     {
-      "name": "otel.instrumentation.lettuce.experimental-span-attributes",
-      "description": "Enables experimental span attribute `lettuce.command.cancelled`.",
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "otel.instrumentation.r2dbc.experimental.sqlcommenter.enabled",
+      "description": "Enables augmenting queries with a comment containing the tracing information. See [sqlcommenter](https://google.github.io/sqlcommenter/) for more info. WARNING: augmenting queries with tracing context will make query texts unique, which may have adverse impact on database performance.\n",
       "type": "boolean",
       "default": false
     },
@@ -44,7 +52,12 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": false
             },
@@ -52,6 +65,16 @@
               "name": "db.system.name",
               "type": "STRING",
               "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
             }
           ]
         }
@@ -61,7 +84,17 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.query.text",
               "type": "STRING",
               "semconv": false
             },
@@ -71,16 +104,6 @@
               "semconv": false
             },
             {
-              "name": "error.type",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "peer.service",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
               "name": "server.address",
               "type": "STRING",
               "semconv": true
@@ -89,50 +112,17 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
-            }
-          ]
-        }
-      ]
-    },
-    "otel.instrumentation.lettuce.experimental-span-attributes=true": {
-      "metrics": [],
-      "spans": [
-        {
-          "span_kind": "CLIENT",
-          "attributes": [
+            },
             {
-              "name": "db.operation",
+              "name": "service.peer.name",
               "type": "STRING",
               "semconv": false
-            },
-            {
-              "name": "db.system",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "lettuce.command.cancelled",
-              "type": "BOOLEAN",
-              "semconv": false
-            },
-            {
-              "name": "peer.service",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.port",
-              "type": "LONG",
-              "semconv": true
             }
           ]
         }
       ]
     }
-  }
+  },
+  "markdown_hash": "011569447ac1",
+  "markdown_url": "/data/markdown/r2dbc-1.0-011569447ac1.md"
 }
