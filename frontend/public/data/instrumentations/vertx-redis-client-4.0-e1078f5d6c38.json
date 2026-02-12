@@ -1,13 +1,12 @@
 {
-  "id": "vertx-sql-client-5.0",
+  "id": "vertx-redis-client-4.0",
   "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-5.0",
-  "minimum_java_version": 11,
+  "source_path": "instrumentation/vertx/vertx-redis-client-4.0",
   "scope": {
-    "name": "io.opentelemetry.vertx-sql-client-5.0"
+    "name": "io.opentelemetry.vertx-redis-client-4.0"
   },
   "javaagent_target_versions": [
-    "io.vertx:vertx-sql-client:[5.0.0,)"
+    "io.vertx:vertx-redis-client:[4.0.0,)"
   ],
   "telemetry": {
     "default": {
@@ -24,9 +23,24 @@
               "semconv": false
             },
             {
-              "name": "db.query.summary",
+              "name": "db.operation.name",
               "type": "STRING",
               "semconv": false
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
             },
             {
               "name": "server.address",
@@ -51,7 +65,7 @@
               "semconv": false
             },
             {
-              "name": "db.query.summary",
+              "name": "db.operation.name",
               "type": "STRING",
               "semconv": false
             },
@@ -61,18 +75,18 @@
               "semconv": false
             },
             {
-              "name": "db.response.status_code",
+              "name": "db.system.name",
               "type": "STRING",
               "semconv": false
             },
             {
-              "name": "error.type",
+              "name": "network.peer.address",
               "type": "STRING",
               "semconv": true
             },
             {
-              "name": "peer.service",
-              "type": "STRING",
+              "name": "network.peer.port",
+              "type": "LONG",
               "semconv": true
             },
             {
@@ -84,6 +98,11 @@
               "name": "server.port",
               "type": "LONG",
               "semconv": true
+            },
+            {
+              "name": "service.peer.name",
+              "type": "STRING",
+              "semconv": false
             }
           ]
         }
