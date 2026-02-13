@@ -1,5 +1,5 @@
 {
-  "latest_version": "2.24.0",
+  "latest_version": "2.25.0",
   "instrumentations": [
     {
       "id": "activej-http-6.0",
