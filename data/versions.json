@@ -28,6 +28,11 @@
     {
       "version": "2.24.0",
       "manifest_url": "/data/versions/2.24.0.json",
+      "is_latest": false
+    },
+    {
+      "version": "2.25.0",
+      "manifest_url": "/data/versions/2.25.0.json",
       "is_latest": true
     },
     {
