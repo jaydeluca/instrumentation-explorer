@@ -7,5 +7,7 @@
   },
   "javaagent_target_versions": [
     "jakarta.servlet:jakarta.servlet-api:[5.0.0,)"
-  ]
+  ],
+  "markdown_hash": "2eb4af67ce09",
+  "markdown_url": "/data/markdown/servlet-5.0-2eb4af67ce09.md"
 }
