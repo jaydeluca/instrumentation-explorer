@@ -1,52 +1,47 @@
 {
-  "id": "armeria-1.3",
-  "library_group": "armeria",
-  "description": "This instrumentation enables HTTP client spans and metrics for the Armeria HTTP client, and HTTP server spans and metrics for the Armeria HTTP server.\n",
-  "library_link": "https://armeria.dev/",
-  "source_path": "instrumentation/armeria/armeria-1.3",
+  "id": "servlet-5.0",
+  "display_name": "Servlet",
+  "library_group": "servlet",
+  "description": "This instrumentation enables HTTP server spans and metrics for Jakarta Servlet API.",
+  "library_link": "https://jakarta.ee/specifications/servlet/",
+  "source_path": "instrumentation/servlet/servlet-5.0",
+  "semantic_conventions": [
+    "HTTP_SERVER_SPANS",
+    "HTTP_SERVER_METRICS"
+  ],
+  "features": [
+    "HTTP_ROUTE"
+  ],
   "scope": {
-    "name": "io.opentelemetry.armeria-1.3"
+    "name": "io.opentelemetry.servlet-5.0"
   },
   "javaagent_target_versions": [
-    "com.linecorp.armeria:armeria:[1.3.0,)"
+    "jakarta.servlet:jakarta.servlet-api:[5.0.0,)"
   ],
   "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.servlet.experimental-span-attributes",
+      "description": "Enables capturing the experimental `servlet.timeout` span attribute.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "otel.instrumentation.servlet.capture-request-parameters",
+      "description": "List of request parameter names to capture as span attributes.",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.servlet.add-trace-id-request-attribute",
+      "description": "Adds the trace ID and span ID as a request attributes for downstream servlet access.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
   "telemetry": {
     "default": {
       "metrics": [
-        {
-          "name": "http.client.request.duration",
-          "description": "Duration of HTTP client requests.",
-          "type": "HISTOGRAM",
-          "unit": "s",
-          "attributes": [
-            {
-              "name": "http.request.method",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "http.response.status_code",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.protocol.version",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.port",
-              "type": "LONG",
-              "semconv": true
-            }
-          ]
-        },
         {
           "name": "http.server.request.duration",
           "description": "Duration of HTTP server requests.",
@@ -83,50 +78,15 @@
       ],
       "spans": [
         {
-          "span_kind": "CLIENT",
+          "span_kind": "INTERNAL",
           "attributes": [
             {
-              "name": "error.type",
+              "name": "code.function",
               "type": "STRING",
               "semconv": true
             },
             {
-              "name": "http.request.method",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "http.response.status_code",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.protocol.version",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "server.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "url.full",
+              "name": "code.namespace",
               "type": "STRING",
               "semconv": true
             }
@@ -147,6 +107,11 @@
             },
             {
               "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method_original",
               "type": "STRING",
               "semconv": true
             },
@@ -210,6 +175,6 @@
       ]
     }
   },
-  "markdown_hash": "ffc205260731",
-  "markdown_url": "/data/markdown/armeria-1.3-ffc205260731.md"
+  "markdown_hash": "2eb4af67ce09",
+  "markdown_url": "/data/markdown/servlet-5.0-2eb4af67ce09.md"
 }

@@ -3147,7 +3147,11 @@
       "tags": [
         "spring",
         "kafka",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
