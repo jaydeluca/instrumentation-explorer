@@ -5,7 +5,6 @@
   "scope": {
     "name": "io.opentelemetry.runtime-telemetry-java8"
   },
-  "has_standalone_library": true,
-  "markdown_hash": "aa98eca1ab04",
-  "markdown_url": "/data/markdown/runtime-telemetry-java8-aa98eca1ab04.md"
+  "markdown_hash": "255a21a1fcad",
+  "markdown_url": "/data/markdown/runtime-telemetry-java8-255a21a1fcad.md"
 }

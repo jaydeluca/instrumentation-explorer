@@ -78,9 +78,9 @@
       "filename": "apache-shenyu-2.4-5984362d44fd.json"
     },
     "armeria-1.3": {
-      "hash": "c074ac1b6f3e",
-      "url": "/data/instrumentations/armeria-1.3-c074ac1b6f3e.json",
-      "filename": "armeria-1.3-c074ac1b6f3e.json"
+      "hash": "78c984ecee6a",
+      "url": "/data/instrumentations/armeria-1.3-78c984ecee6a.json",
+      "filename": "armeria-1.3-78c984ecee6a.json"
     },
     "armeria-grpc-1.14": {
       "hash": "c951d88e15f8",
@@ -728,9 +728,9 @@
       "filename": "netty-4.0-e8b2b3ac7d35.json"
     },
     "netty-4.1": {
-      "hash": "1e92eae11f9a",
-      "url": "/data/instrumentations/netty-4.1-1e92eae11f9a.json",
-      "filename": "netty-4.1-1e92eae11f9a.json"
+      "hash": "69f4af62b97d",
+      "url": "/data/instrumentations/netty-4.1-69f4af62b97d.json",
+      "filename": "netty-4.1-69f4af62b97d.json"
     },
     "okhttp-2.2": {
       "hash": "40fafec7395c",
@@ -928,9 +928,9 @@
       "filename": "runtime-telemetry-java17-78957d4e7390.json"
     },
     "runtime-telemetry-java8": {
-      "hash": "06c5e76130de",
-      "url": "/data/instrumentations/runtime-telemetry-java8-06c5e76130de.json",
-      "filename": "runtime-telemetry-java8-06c5e76130de.json"
+      "hash": "d629d3879ccc",
+      "url": "/data/instrumentations/runtime-telemetry-java8-d629d3879ccc.json",
+      "filename": "runtime-telemetry-java8-d629d3879ccc.json"
     },
     "rxjava-2.0": {
       "hash": "46838e6b5d00",
@@ -963,9 +963,9 @@
       "filename": "servlet-3.0-940fe1f5f479.json"
     },
     "servlet-5.0": {
-      "hash": "19a3bf5facd6",
-      "url": "/data/instrumentations/servlet-5.0-19a3bf5facd6.json",
-      "filename": "servlet-5.0-19a3bf5facd6.json"
+      "hash": "352586b5337b",
+      "url": "/data/instrumentations/servlet-5.0-352586b5337b.json",
+      "filename": "servlet-5.0-352586b5337b.json"
     },
     "spark-2.3": {
       "hash": "d092d459add5",
@@ -1028,9 +1028,9 @@
       "filename": "spring-jms-6.0-c34b186bfca6.json"
     },
     "spring-kafka-2.7": {
-      "hash": "233ad44e7736",
-      "url": "/data/instrumentations/spring-kafka-2.7-233ad44e7736.json",
-      "filename": "spring-kafka-2.7-233ad44e7736.json"
+      "hash": "d14761871965",
+      "url": "/data/instrumentations/spring-kafka-2.7-d14761871965.json",
+      "filename": "spring-kafka-2.7-d14761871965.json"
     },
     "spring-pulsar-1.0": {
       "hash": "6fdf1a640b0e",
