@@ -3,9 +3,9 @@
   "agent_version": "2.25.0",
   "instrumentations": {
     "activej-http-6.0": {
-      "hash": "8b8244ee340e",
-      "url": "/data/instrumentations/activej-http-6.0-8b8244ee340e.json",
-      "filename": "activej-http-6.0-8b8244ee340e.json"
+      "hash": "f7142dc947cd",
+      "url": "/data/instrumentations/activej-http-6.0-f7142dc947cd.json",
+      "filename": "activej-http-6.0-f7142dc947cd.json"
     },
     "akka-actor-2.3": {
       "hash": "9ee63e515068",
@@ -228,24 +228,24 @@
       "filename": "dropwizard-views-0.7-c1fce769aa8b.json"
     },
     "elasticsearch-api-client-7.16": {
-      "hash": "664ae4a91fcf",
-      "url": "/data/instrumentations/elasticsearch-api-client-7.16-664ae4a91fcf.json",
-      "filename": "elasticsearch-api-client-7.16-664ae4a91fcf.json"
+      "hash": "fafaf809fd99",
+      "url": "/data/instrumentations/elasticsearch-api-client-7.16-fafaf809fd99.json",
+      "filename": "elasticsearch-api-client-7.16-fafaf809fd99.json"
     },
     "elasticsearch-rest-5.0": {
-      "hash": "a83f63657814",
-      "url": "/data/instrumentations/elasticsearch-rest-5.0-a83f63657814.json",
-      "filename": "elasticsearch-rest-5.0-a83f63657814.json"
+      "hash": "125dafe8ea79",
+      "url": "/data/instrumentations/elasticsearch-rest-5.0-125dafe8ea79.json",
+      "filename": "elasticsearch-rest-5.0-125dafe8ea79.json"
     },
     "elasticsearch-rest-6.4": {
-      "hash": "93c62a56adec",
-      "url": "/data/instrumentations/elasticsearch-rest-6.4-93c62a56adec.json",
-      "filename": "elasticsearch-rest-6.4-93c62a56adec.json"
+      "hash": "ce66767c046b",
+      "url": "/data/instrumentations/elasticsearch-rest-6.4-ce66767c046b.json",
+      "filename": "elasticsearch-rest-6.4-ce66767c046b.json"
     },
     "elasticsearch-rest-7.0": {
-      "hash": "4ccfaafbb997",
-      "url": "/data/instrumentations/elasticsearch-rest-7.0-4ccfaafbb997.json",
-      "filename": "elasticsearch-rest-7.0-4ccfaafbb997.json"
+      "hash": "1de73f1e3872",
+      "url": "/data/instrumentations/elasticsearch-rest-7.0-1de73f1e3872.json",
+      "filename": "elasticsearch-rest-7.0-1de73f1e3872.json"
     },
     "elasticsearch-transport-5.0": {
       "hash": "389537ca3db6",
@@ -328,9 +328,9 @@
       "filename": "gwt-2.0-f2f4cb25b265.json"
     },
     "helidon-4.3": {
-      "hash": "c7e7ffc0b35d",
-      "url": "/data/instrumentations/helidon-4.3-c7e7ffc0b35d.json",
-      "filename": "helidon-4.3-c7e7ffc0b35d.json"
+      "hash": "5b6ffb5996b3",
+      "url": "/data/instrumentations/helidon-4.3-5b6ffb5996b3.json",
+      "filename": "helidon-4.3-5b6ffb5996b3.json"
     },
     "hibernate-3.3": {
       "hash": "0025222c2b7b",
@@ -748,19 +748,19 @@
       "filename": "openai-java-1.1-5d2b9c47b3c9.json"
     },
     "opensearch-java-3.0": {
-      "hash": "fb6b31ef2ac3",
-      "url": "/data/instrumentations/opensearch-java-3.0-fb6b31ef2ac3.json",
-      "filename": "opensearch-java-3.0-fb6b31ef2ac3.json"
+      "hash": "63a9b107b821",
+      "url": "/data/instrumentations/opensearch-java-3.0-63a9b107b821.json",
+      "filename": "opensearch-java-3.0-63a9b107b821.json"
     },
     "opensearch-rest-1.0": {
-      "hash": "c30ef1f23442",
-      "url": "/data/instrumentations/opensearch-rest-1.0-c30ef1f23442.json",
-      "filename": "opensearch-rest-1.0-c30ef1f23442.json"
+      "hash": "1f760f0beaf2",
+      "url": "/data/instrumentations/opensearch-rest-1.0-1f760f0beaf2.json",
+      "filename": "opensearch-rest-1.0-1f760f0beaf2.json"
     },
     "opensearch-rest-3.0": {
-      "hash": "ab0d9598ff22",
-      "url": "/data/instrumentations/opensearch-rest-3.0-ab0d9598ff22.json",
-      "filename": "opensearch-rest-3.0-ab0d9598ff22.json"
+      "hash": "c35772dfa14f",
+      "url": "/data/instrumentations/opensearch-rest-3.0-c35772dfa14f.json",
+      "filename": "opensearch-rest-3.0-c35772dfa14f.json"
     },
     "oracle-ucp-11.2": {
       "hash": "d37102f0b844",
@@ -1098,9 +1098,9 @@
       "filename": "spring-ws-2.0-4fe4d82397aa.json"
     },
     "spymemcached-2.12": {
-      "hash": "dddd6cc9a62f",
-      "url": "/data/instrumentations/spymemcached-2.12-dddd6cc9a62f.json",
-      "filename": "spymemcached-2.12-dddd6cc9a62f.json"
+      "hash": "0560873d4770",
+      "url": "/data/instrumentations/spymemcached-2.12-0560873d4770.json",
+      "filename": "spymemcached-2.12-0560873d4770.json"
     },
     "struts-2.3": {
       "hash": "47e9ec580021",
@@ -1221,10 +1221,15 @@
       "hash": "956fa7b25333",
       "url": "/data/instrumentations/zio-2.0-956fa7b25333.json",
       "filename": "zio-2.0-956fa7b25333.json"
+    },
+    "zio-http-3.0": {
+      "hash": "6a18f3267f1e",
+      "url": "/data/instrumentations/zio-http-3.0-6a18f3267f1e.json",
+      "filename": "zio-http-3.0-6a18f3267f1e.json"
     }
   },
   "metadata": {
-    "total_count": 244,
-    "changed_from_previous": 1
+    "total_count": 245,
+    "changed_from_previous": 5
   }
 }
