@@ -3,9 +3,9 @@
   "agent_version": "3.0.0",
   "instrumentations": {
     "activej-http-6.0": {
-      "hash": "8b8244ee340e",
-      "url": "/data/instrumentations/activej-http-6.0-8b8244ee340e.json",
-      "filename": "activej-http-6.0-8b8244ee340e.json"
+      "hash": "f7142dc947cd",
+      "url": "/data/instrumentations/activej-http-6.0-f7142dc947cd.json",
+      "filename": "activej-http-6.0-f7142dc947cd.json"
     },
     "akka-actor-2.3": {
       "hash": "9ee63e515068",
@@ -328,9 +328,9 @@
       "filename": "gwt-2.0-f2f4cb25b265.json"
     },
     "helidon-4.3": {
-      "hash": "c7e7ffc0b35d",
-      "url": "/data/instrumentations/helidon-4.3-c7e7ffc0b35d.json",
-      "filename": "helidon-4.3-c7e7ffc0b35d.json"
+      "hash": "5b6ffb5996b3",
+      "url": "/data/instrumentations/helidon-4.3-5b6ffb5996b3.json",
+      "filename": "helidon-4.3-5b6ffb5996b3.json"
     },
     "hibernate-3.3": {
       "hash": "0025222c2b7b",
@@ -1098,9 +1098,9 @@
       "filename": "spring-ws-2.0-4fe4d82397aa.json"
     },
     "spymemcached-2.12": {
-      "hash": "d408c41c4884",
-      "url": "/data/instrumentations/spymemcached-2.12-d408c41c4884.json",
-      "filename": "spymemcached-2.12-d408c41c4884.json"
+      "hash": "82c496faca34",
+      "url": "/data/instrumentations/spymemcached-2.12-82c496faca34.json",
+      "filename": "spymemcached-2.12-82c496faca34.json"
     },
     "struts-2.3": {
       "hash": "47e9ec580021",
@@ -1221,10 +1221,15 @@
       "hash": "956fa7b25333",
       "url": "/data/instrumentations/zio-2.0-956fa7b25333.json",
       "filename": "zio-2.0-956fa7b25333.json"
+    },
+    "zio-http-3.0": {
+      "hash": "6a18f3267f1e",
+      "url": "/data/instrumentations/zio-http-3.0-6a18f3267f1e.json",
+      "filename": "zio-http-3.0-6a18f3267f1e.json"
     }
   },
   "metadata": {
-    "total_count": 244,
+    "total_count": 245,
     "changed_from_previous": 47
   }
 }

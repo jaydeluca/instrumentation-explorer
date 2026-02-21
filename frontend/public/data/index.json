@@ -3544,6 +3544,20 @@
         "zio"
       ],
       "has_telemetry": false
+    },
+    {
+      "id": "zio-http-3.0",
+      "library_group": "zio",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+      "tags": [
+        "zio",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": false
     }
   ]
 }
