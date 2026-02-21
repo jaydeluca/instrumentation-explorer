@@ -1,0 +1,172 @@
+{
+  "id": "helidon-4.3",
+  "library_group": "helidon",
+  "description": "This instrumentation enables HTTP server spans and HTTP server metrics for the Helidon HTTP server.",
+  "library_link": "https://helidon.io/",
+  "source_path": "instrumentation/helidon-4.3",
+  "minimum_java_version": 21,
+  "semantic_conventions": [
+    "HTTP_SERVER_SPANS",
+    "HTTP_SERVER_METRICS"
+  ],
+  "features": [
+    "HTTP_ROUTE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.helidon-4.3",
+    "schema_url": "https://opentelemetry.io/schemas/1.37.0"
+  },
+  "javaagent_target_versions": [
+    "io.helidon.webserver:helidon-webserver:[4.3.0,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.http.known-methods",
+      "description": "Configures the instrumentation to recognize an alternative set of HTTP request methods. All other methods will be treated as `_OTHER`.\n",
+      "type": "list",
+      "default": "CONNECT,DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT,TRACE"
+    },
+    {
+      "name": "otel.instrumentation.http.server.capture-request-headers",
+      "description": "List of HTTP request headers to capture in HTTP server telemetry.",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.http.server.capture-response-headers",
+      "description": "List of HTTP response headers to capture in HTTP server telemetry.",
+      "type": "list",
+      "default": ""
+    },
+    {
+      "name": "otel.instrumentation.http.server.emit-experimental-telemetry",
+      "description": "Enable the capture of experimental HTTP server telemetry. Adds the `http.request.body.size` and `http.response.body.size` attributes to spans, and records `http.server.request.size` and `http.server.response.size` metrics.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "http.server.request.duration",
+          "description": "Duration of HTTP server requests.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "http.route",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "client.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "error.type",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.request.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "http.response.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "http.route",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.protocol.version",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "url.path",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.query",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "url.query",
+              "type": "VALUE",
+              "semconv": true
+            },
+            {
+              "name": "url.scheme",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "user_agent.original",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "markdown_hash": "05f7907c327b",
+  "markdown_url": "/data/markdown/helidon-4.3-05f7907c327b.md"
+}

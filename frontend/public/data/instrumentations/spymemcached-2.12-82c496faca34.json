@@ -41,6 +41,16 @@
               "name": "db.system.name",
               "type": "STRING",
               "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
             }
           ]
         }
@@ -63,6 +73,16 @@
               "name": "error.type",
               "type": "STRING",
               "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
             }
           ]
         }
@@ -83,6 +103,16 @@
               "name": "db.system",
               "type": "STRING",
               "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
             },
             {
               "name": "spymemcached.command.cancelled",
