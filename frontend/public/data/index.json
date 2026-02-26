@@ -1261,6 +1261,20 @@
       "has_telemetry": false
     },
     {
+      "id": "javalin-7.0",
+      "library_group": "javalin",
+      "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
+      "tags": [
+        "javalin",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": false
+    },
+    {
       "id": "jaxrs-1.0",
       "display_name": "JAX-RS 1.x",
       "library_group": "jaxrs",

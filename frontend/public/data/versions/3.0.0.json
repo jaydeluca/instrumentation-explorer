@@ -158,9 +158,9 @@
       "filename": "c3p0-0.9-8ec4d65e9b3d.json"
     },
     "camel-2.20": {
-      "hash": "474598f008a6",
-      "url": "/data/instrumentations/camel-2.20-474598f008a6.json",
-      "filename": "camel-2.20-474598f008a6.json"
+      "hash": "003f03185f5d",
+      "url": "/data/instrumentations/camel-2.20-003f03185f5d.json",
+      "filename": "camel-2.20-003f03185f5d.json"
     },
     "cassandra-3.0": {
       "hash": "4bc97fd7f7de",
@@ -398,9 +398,14 @@
       "filename": "java-util-logging-6ef69b3fb900.json"
     },
     "javalin-5.0": {
-      "hash": "9496a06e0b6d",
-      "url": "/data/instrumentations/javalin-5.0-9496a06e0b6d.json",
-      "filename": "javalin-5.0-9496a06e0b6d.json"
+      "hash": "94bdaed8c734",
+      "url": "/data/instrumentations/javalin-5.0-94bdaed8c734.json",
+      "filename": "javalin-5.0-94bdaed8c734.json"
+    },
+    "javalin-7.0": {
+      "hash": "fbcc77380293",
+      "url": "/data/instrumentations/javalin-7.0-fbcc77380293.json",
+      "filename": "javalin-7.0-fbcc77380293.json"
     },
     "jaxrs-1.0": {
       "hash": "499f0d2a2f86",
@@ -633,9 +638,9 @@
       "filename": "lettuce-5.0-4defa808f29c.json"
     },
     "lettuce-5.1": {
-      "hash": "16eaa32be2b9",
-      "url": "/data/instrumentations/lettuce-5.1-16eaa32be2b9.json",
-      "filename": "lettuce-5.1-16eaa32be2b9.json"
+      "hash": "32f3ec75e537",
+      "url": "/data/instrumentations/lettuce-5.1-32f3ec75e537.json",
+      "filename": "lettuce-5.1-32f3ec75e537.json"
     },
     "liberty-20.0": {
       "hash": "48f118fb9ae1",
@@ -1229,7 +1234,7 @@
     }
   },
   "metadata": {
-    "total_count": 245,
+    "total_count": 246,
     "changed_from_previous": 47
   }
 }

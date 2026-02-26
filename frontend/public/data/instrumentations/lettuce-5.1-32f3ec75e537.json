@@ -39,6 +39,11 @@
           "unit": "s",
           "attributes": [
             {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
               "name": "db.system.name",
               "type": "STRING",
               "semconv": false
@@ -71,6 +76,11 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
               "name": "db.query.text",
               "type": "STRING",
               "semconv": false
@@ -81,9 +91,9 @@
               "semconv": false
             },
             {
-              "name": "error",
+              "name": "error.type",
               "type": "STRING",
-              "semconv": false
+              "semconv": true
             },
             {
               "name": "network.peer.address",
