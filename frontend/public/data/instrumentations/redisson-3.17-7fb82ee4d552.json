@@ -1,0 +1,88 @@
+{
+  "id": "redisson-3.17",
+  "library_group": "redisson",
+  "description": "This instrumentation enables database client spans and database client metrics for Redisson Redis client operations.",
+  "library_link": "https://github.com/redisson/redisson",
+  "source_path": "instrumentation/redisson/redisson-3.17",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.redisson-3.17"
+  },
+  "javaagent_target_versions": [
+    "org.redisson:redisson:[3.17.0,)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "network.peer.port",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "network.type",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
