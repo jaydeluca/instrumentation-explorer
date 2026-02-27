@@ -45,6 +45,7 @@ const ALLOWED_SEMCONV_DIRS = [
   'process',
   'rpc',
   'server',
+  'service',
   'system',
   'telemetry',
   'thread',
