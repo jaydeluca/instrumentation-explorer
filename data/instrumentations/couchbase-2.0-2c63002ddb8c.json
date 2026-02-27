@@ -1,0 +1,81 @@
+{
+  "id": "couchbase-2.0",
+  "library_group": "couchbase",
+  "description": "This instrumentation enables database client spans and database client metrics for Couchbase 2.0 operations. It automatically traces key-value operations (get, upsert, replace, remove), view queries, N1QL queries, and cluster management operations.\n",
+  "library_link": "https://github.com/couchbase/couchbase-java-client",
+  "source_path": "instrumentation/couchbase/couchbase-2.0",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.couchbase-2.0"
+  },
+  "javaagent_target_versions": [
+    "com.couchbase.client:java-client:[2,3)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [
+        {
+          "name": "db.client.operation.duration",
+          "description": "Duration of database client operations.",
+          "type": "HISTOGRAM",
+          "unit": "s",
+          "attributes": [
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.operation.name",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.text",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
