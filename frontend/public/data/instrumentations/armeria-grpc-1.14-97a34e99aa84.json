@@ -1,0 +1,90 @@
+{
+  "id": "armeria-grpc-1.14",
+  "library_group": "armeria",
+  "description": "This instrumentation enables RPC client spans and metrics for the Armeria gRPC client, and RPC server spans and metrics for the Armeria gRPC server.\n",
+  "library_link": "https://armeria.dev/",
+  "source_path": "instrumentation/armeria/armeria-grpc-1.14",
+  "scope": {
+    "name": "io.opentelemetry.armeria-grpc-1.14"
+  },
+  "javaagent_target_versions": [
+    "com.linecorp.armeria:armeria-grpc:[1.14.0,)"
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        },
+        {
+          "span_kind": "SERVER",
+          "attributes": [
+            {
+              "name": "rpc.grpc.status_code",
+              "type": "LONG",
+              "semconv": true
+            },
+            {
+              "name": "rpc.method",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.service",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "rpc.system",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
