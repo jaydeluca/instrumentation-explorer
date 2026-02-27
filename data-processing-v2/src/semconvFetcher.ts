@@ -20,7 +20,7 @@ const ALLOWED_SEMCONV_DIRS = [
   'code',
   'container',
   'cpu',
-  'database',
+  'db',
   'disk',
   'dns',
   'elasticsearch',
@@ -174,7 +174,7 @@ export async function fetchConventionMappings(): Promise<ConventionMappings> {
 
       // Determine convention name
       let convName = '';
-      if (convType === 'database') {
+      if (convType === 'db') {
         convName = 'Database Client';
       } else if (convType === 'http') {
         if (fileName.includes('client')) {
