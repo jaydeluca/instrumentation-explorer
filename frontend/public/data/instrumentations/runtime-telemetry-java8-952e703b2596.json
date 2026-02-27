@@ -1,0 +1,10 @@
+{
+  "id": "runtime-telemetry-java8",
+  "library_group": "runtime",
+  "source_path": "instrumentation/runtime-telemetry/runtime-telemetry-java8",
+  "scope": {
+    "name": "io.opentelemetry.runtime-telemetry-java8"
+  },
+  "markdown_hash": "255a21a1fcad",
+  "markdown_url": "/data/markdown/runtime-telemetry-java8-255a21a1fcad.md"
+}

@@ -73,9 +73,9 @@
       "filename": "apache-shenyu-2.4-5984362d44fd.json"
     },
     "armeria-1.3": {
-      "hash": "c074ac1b6f3e",
-      "url": "/data/instrumentations/armeria-1.3-c074ac1b6f3e.json",
-      "filename": "armeria-1.3-c074ac1b6f3e.json"
+      "hash": "78c984ecee6a",
+      "url": "/data/instrumentations/armeria-1.3-78c984ecee6a.json",
+      "filename": "armeria-1.3-78c984ecee6a.json"
     },
     "armeria-grpc-1.14": {
       "hash": "c951d88e15f8",
@@ -713,9 +713,9 @@
       "filename": "netty-4.0-62d25db1ded3.json"
     },
     "netty-4.1": {
-      "hash": "7ff01716ac99",
-      "url": "/data/instrumentations/netty-4.1-7ff01716ac99.json",
-      "filename": "netty-4.1-7ff01716ac99.json"
+      "hash": "141427a61541",
+      "url": "/data/instrumentations/netty-4.1-141427a61541.json",
+      "filename": "netty-4.1-141427a61541.json"
     },
     "okhttp-2.2": {
       "hash": "5f95d75a203d",
@@ -913,9 +913,9 @@
       "filename": "runtime-telemetry-java17-f83698c2b919.json"
     },
     "runtime-telemetry-java8": {
-      "hash": "b3fbf56eac88",
-      "url": "/data/instrumentations/runtime-telemetry-java8-b3fbf56eac88.json",
-      "filename": "runtime-telemetry-java8-b3fbf56eac88.json"
+      "hash": "952e703b2596",
+      "url": "/data/instrumentations/runtime-telemetry-java8-952e703b2596.json",
+      "filename": "runtime-telemetry-java8-952e703b2596.json"
     },
     "rxjava-2.0": {
       "hash": "46838e6b5d00",
@@ -948,9 +948,9 @@
       "filename": "servlet-3.0-03a60b9a4d2b.json"
     },
     "servlet-5.0": {
-      "hash": "299911ad6548",
-      "url": "/data/instrumentations/servlet-5.0-299911ad6548.json",
-      "filename": "servlet-5.0-299911ad6548.json"
+      "hash": "56fdefb04690",
+      "url": "/data/instrumentations/servlet-5.0-56fdefb04690.json",
+      "filename": "servlet-5.0-56fdefb04690.json"
     },
     "spark-2.3": {
       "hash": "9fde7ad54f45",

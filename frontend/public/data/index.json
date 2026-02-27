@@ -1,5 +1,5 @@
 {
-  "latest_version": "2.24.0",
+  "latest_version": "2.25.0",
   "instrumentations": [
     {
       "id": "activej-http-6.0",
@@ -1248,6 +1248,20 @@
     },
     {
       "id": "javalin-5.0",
+      "library_group": "javalin",
+      "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
+      "tags": [
+        "javalin",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "javalin-7.0",
       "library_group": "javalin",
       "description": "This instrumentation enriches existing HTTP server spans with route information, it does not emit any telemetry on its own.",
       "tags": [
@@ -3009,8 +3023,9 @@
     },
     {
       "id": "spring-batch-3.0",
+      "display_name": "Spring Batch",
       "library_group": "spring",
-      "description": "This instrumentation enables spans for jobs run by the Spring Batch framework.",
+      "description": "This instrumentation enables spans for Spring Batch job execution, including job, step, and chunk processing.\n",
       "tags": [
         "spring"
       ],
@@ -3018,6 +3033,7 @@
     },
     {
       "id": "spring-boot-actuator-autoconfigure-2.0",
+      "display_name": "Spring Boot Actuator Autoconfigure",
       "library_group": "spring",
       "description": "This instrumentation configures the OpenTelemetry Micrometer bridge to receive metrics from Spring Boot Actuator. It does not produce telemetry on its own.\n",
       "tags": [
@@ -3027,62 +3043,79 @@
     },
     {
       "id": "spring-boot-resources",
+      "display_name": "Spring Boot Resource Detector",
       "library_group": "spring",
       "description": "This instrumentation automatically detects the `service.name` and `service.version` for Spring Boot applications and sets them as resource attributes.\nIt uses the following strategies (first successful wins):\n  - Check for the SPRING_APPLICATION_NAME environment variable\n  - Check for spring.application.name system property\n  - Check for application.properties file on the classpath\n  - Check for application.properties in the current working dir\n  - Check for application.yml on the classpath\n  - Check for application.yml in the current working dir\n  - Check for --spring.application.name program argument (not jvm arg) via ProcessHandle\n  - Check for --spring.application.name program argument via sun.java.command system property\n",
       "tags": [
         "spring"
       ],
+      "features": [
+        "RESOURCE_DETECTOR"
+      ],
       "has_telemetry": false
     },
     {
       "id": "spring-cloud-aws-3.0",
+      "display_name": "Spring Cloud AWS",
       "library_group": "spring",
-      "description": "This instrumentation enhances tracing for Spring Cloud AWS. It augments the existing AWS SDK instrumentation by providing higher-level tracing for SQS operations, capturing details specific to Spring Cloud AWS SQS usage and linking them to the underlying AWS SDK traces.\n",
+      "description": "This instrumentation enhances messaging span creation for Spring Cloud AWS SQS. It coordinates with the AWS SDK instrumentation to create spans at the appropriate points in Spring Cloud AWS message handling.\n",
       "tags": [
-        "spring"
+        "spring",
+        "messaging"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-cloud-gateway-2.0",
+      "display_name": "Spring Cloud Gateway",
       "library_group": "spring",
-      "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate new telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
+      "description": "This instrumentation enhances tracing for Spring Cloud Gateway. It does not generate any telemetry on its own, but rather enriches existing traces produced by other instrumentations like Netty and Spring WebFlux with Spring Cloud Gateway-specific attributes.\n",
       "tags": [
         "spring",
         "netty"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-cloud-gateway-webmvc-4.3",
+      "display_name": "Spring Cloud Gateway Server WebMVC",
       "library_group": "spring",
+      "description": "This instrumentation enhances tracing for Spring Cloud Gateway Server WebMVC. It does not generate any telemetry on its own, but rather enriches existing traces produced by other instrumentations like Spring WebMVC with Spring Cloud Gateway-specific attributes.\n",
       "tags": [
-        "spring"
+        "spring",
+        "server"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-core-2.0",
+      "display_name": "Spring Core",
       "library_group": "spring",
-      "description": "This instrumentation ensures proper context propagation for asynchronous operations within Spring Core. It modifies how tasks are submitted and executed to ensure that spans created by other instrumentations are correctly linked across thread boundaries, rather than generating any new telemetry itself.\n",
+      "description": "This instrumentation provides context propagation for Spring Core asynchronous task execution, it does not emit any telemetry on its own.\n",
       "tags": [
         "spring"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-data-1.8",
+      "display_name": "Spring Data",
       "library_group": "spring",
-      "description": "This instrumentation enhances tracing for Spring Data operations. It works in conjunction with other instrumentations, such as JDBC, to provide additional context and details for database interactions initiated through Spring Data.\n",
+      "description": "This instrumentation enables spans for Spring Data repository method invocations.",
       "tags": [
-        "spring",
-        "jdbc",
-        "database"
+        "spring"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-integration-4.1",
+      "display_name": "Spring Integration",
       "library_group": "spring",
       "description": "This instrumentation enables producer and consumer messaging spans for Spring Integration.",
       "tags": [
@@ -3093,21 +3126,31 @@
     },
     {
       "id": "spring-jms-2.0",
+      "display_name": "Spring JMS",
       "library_group": "spring",
-      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "description": "This instrumentation enables messaging spans for Spring JMS message consumers.",
       "tags": [
         "spring",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-jms-6.0",
+      "display_name": "Spring JMS",
       "library_group": "spring",
-      "description": "This instrumentation enables the generation of consumer messaging spans for Spring JMS.",
+      "description": "This instrumentation enables messaging spans for Spring JMS message consumers.",
       "tags": [
         "spring",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
@@ -3118,7 +3161,11 @@
       "tags": [
         "spring",
         "kafka",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
@@ -3509,6 +3556,20 @@
       "library_group": "zio",
       "tags": [
         "zio"
+      ],
+      "has_telemetry": false
+    },
+    {
+      "id": "zio-http-3.0",
+      "library_group": "zio",
+      "description": "This instrumentation does not emit telemetry on its own. Instead, it extracts the HTTP route and attaches it to HTTP server spans and HTTP server metrics.\n",
+      "tags": [
+        "zio",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     }
