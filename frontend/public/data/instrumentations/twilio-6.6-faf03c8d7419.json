@@ -1,0 +1,63 @@
+{
+  "id": "twilio-6.6",
+  "display_name": "Twilio",
+  "library_group": "twilio",
+  "description": "This instrumentation enables client spans for Twilio SDK API calls such as sending messages and making phone calls.\n",
+  "library_link": "https://github.com/twilio/twilio-java",
+  "source_path": "instrumentation/twilio-6.6",
+  "scope": {
+    "name": "io.opentelemetry.twilio-6.6"
+  },
+  "javaagent_target_versions": [
+    "com.twilio.sdk:twilio:(,8.0.0)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.twilio.experimental-span-attributes",
+      "description": "Enables experimental span attributes `twilio.type`, `twilio.account`, `twilio.sid`, and `twilio.status`.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": []
+        }
+      ]
+    },
+    "otel.instrumentation.twilio.experimental-span-attributes=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "twilio.account",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "twilio.sid",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "twilio.status",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "twilio.type",
+              "type": "STRING",
+              "semconv": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

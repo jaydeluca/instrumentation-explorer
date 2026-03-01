@@ -1,27 +1,20 @@
 {
-  "id": "lettuce-5.1",
-  "library_group": "lettuce",
-  "description": "This instrumentation enables database client spans and database client metrics for the Lettuce Redis client.\n",
-  "library_link": "https://github.com/redis/lettuce",
-  "source_path": "instrumentation/lettuce/lettuce-5.1",
+  "id": "clickhouse-client-v2-0.8",
+  "library_group": "clickhouse",
+  "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
+  "library_link": "https://github.com/ClickHouse/clickhouse-java",
+  "source_path": "instrumentation/clickhouse/clickhouse-client-v2-0.8",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.lettuce-5.1"
+    "name": "io.opentelemetry.clickhouse-client-v2-0.8"
   },
   "javaagent_target_versions": [
-    "io.lettuce:lettuce-core:[5.1.0.RELEASE,)"
+    "com.clickhouse:client-v2:[0.6.4,)"
   ],
-  "has_standalone_library": true,
   "configurations": [
-    {
-      "name": "otel.instrumentation.lettuce.experimental.command-encoding-events.enabled",
-      "description": "Enables capturing `redis.encode.start` and `redis.encode.end` span events.",
-      "type": "boolean",
-      "default": false
-    },
     {
       "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
       "description": "Enables statement sanitization for database queries.",
@@ -31,6 +24,46 @@
   ],
   "telemetry": {
     "default": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "CLIENT",
+          "attributes": [
+            {
+              "name": "db.name",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.operation",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.statement",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "db.system",
+              "type": "STRING",
+              "semconv": false
+            },
+            {
+              "name": "server.address",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "server.port",
+              "type": "LONG",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    },
+    "otel.semconv-stability.opt-in=database": {
       "metrics": [
         {
           "name": "db.client.operation.duration",
@@ -39,18 +72,18 @@
           "unit": "s",
           "attributes": [
             {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
               "name": "db.system.name",
               "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
               "semconv": true
             },
             {
@@ -71,6 +104,16 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
               "name": "db.query.text",
               "type": "STRING",
               "semconv": true
@@ -81,22 +124,7 @@
               "semconv": true
             },
             {
-              "name": "error",
-              "type": "STRING",
-              "semconv": false
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.type",
+              "name": "error.type",
               "type": "STRING",
               "semconv": true
             },
@@ -114,7 +142,5 @@
         }
       ]
     }
-  },
-  "markdown_hash": "0ec91bca1453",
-  "markdown_url": "/data/markdown/lettuce-5.1-0ec91bca1453.md"
+  }
 }

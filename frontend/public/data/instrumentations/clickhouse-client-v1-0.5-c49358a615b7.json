@@ -1,18 +1,18 @@
 {
-  "id": "jedis-3.0",
-  "library_group": "jedis",
-  "description": "This instrumentation enables database client spans and database client metrics for Jedis Redis operations.",
-  "library_link": "https://github.com/redis/jedis",
-  "source_path": "instrumentation/jedis/jedis-3.0",
+  "id": "clickhouse-client-v1-0.5",
+  "library_group": "clickhouse",
+  "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
+  "library_link": "https://github.com/ClickHouse/clickhouse-java",
+  "source_path": "instrumentation/clickhouse/clickhouse-client-v1-0.5",
   "semantic_conventions": [
     "DATABASE_CLIENT_SPANS",
     "DATABASE_CLIENT_METRICS"
   ],
   "scope": {
-    "name": "io.opentelemetry.jedis-3.0"
+    "name": "io.opentelemetry.clickhouse-client-v1-0.5"
   },
   "javaagent_target_versions": [
-    "redis.clients:jedis:[3.0.0,4)"
+    "com.clickhouse.client:clickhouse-client:[0.5.0,)"
   ],
   "configurations": [
     {
@@ -20,12 +20,6 @@
       "description": "Enables statement sanitization for database queries.",
       "type": "boolean",
       "default": true
-    },
-    {
-      "name": "otel.instrumentation.common.peer-service-mapping",
-      "description": "Used to specify a mapping from host names or IP addresses to peer services.",
-      "type": "map",
-      "default": ""
     }
   ],
   "telemetry": {
@@ -38,23 +32,18 @@
           "unit": "s",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": true
             },
             {
               "name": "db.system.name",
               "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
               "semconv": true
             },
             {
@@ -75,7 +64,12 @@
           "span_kind": "CLIENT",
           "attributes": [
             {
-              "name": "db.operation.name",
+              "name": "db.namespace",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": true
             },
@@ -90,22 +84,7 @@
               "semconv": true
             },
             {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "network.type",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "peer.service",
+              "name": "error.type",
               "type": "STRING",
               "semconv": true
             },

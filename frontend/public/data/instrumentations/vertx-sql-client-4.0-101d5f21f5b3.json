@@ -60,11 +60,6 @@
               "semconv": true
             },
             {
-              "name": "db.response.status_code",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
               "name": "error.type",
               "type": "STRING",
               "semconv": true
