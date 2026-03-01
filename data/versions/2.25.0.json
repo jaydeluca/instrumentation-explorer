@@ -178,14 +178,14 @@
       "filename": "cassandra-4.4-a27be5fc056c.json"
     },
     "clickhouse-client-v1-0.5": {
-      "hash": "0c68f9955996",
-      "url": "/data/instrumentations/clickhouse-client-v1-0.5-0c68f9955996.json",
-      "filename": "clickhouse-client-v1-0.5-0c68f9955996.json"
+      "hash": "ef1150a5c350",
+      "url": "/data/instrumentations/clickhouse-client-v1-0.5-ef1150a5c350.json",
+      "filename": "clickhouse-client-v1-0.5-ef1150a5c350.json"
     },
     "clickhouse-client-v2-0.8": {
-      "hash": "66ccc1823a2b",
-      "url": "/data/instrumentations/clickhouse-client-v2-0.8-66ccc1823a2b.json",
-      "filename": "clickhouse-client-v2-0.8-66ccc1823a2b.json"
+      "hash": "347524f47c59",
+      "url": "/data/instrumentations/clickhouse-client-v2-0.8-347524f47c59.json",
+      "filename": "clickhouse-client-v2-0.8-347524f47c59.json"
     },
     "couchbase-2.0": {
       "hash": "483e20f935cd",
@@ -1138,9 +1138,9 @@
       "filename": "tomcat-jdbc-5237b078f8f9.json"
     },
     "twilio-6.6": {
-      "hash": "4c02c7cbe69b",
-      "url": "/data/instrumentations/twilio-6.6-4c02c7cbe69b.json",
-      "filename": "twilio-6.6-4c02c7cbe69b.json"
+      "hash": "faf03c8d7419",
+      "url": "/data/instrumentations/twilio-6.6-faf03c8d7419.json",
+      "filename": "twilio-6.6-faf03c8d7419.json"
     },
     "undertow-1.4": {
       "hash": "71e195acedc0",
@@ -1183,14 +1183,14 @@
       "filename": "vertx-rx-java-3.5-86614a1c2203.json"
     },
     "vertx-sql-client-4.0": {
-      "hash": "cf51a72e66cc",
-      "url": "/data/instrumentations/vertx-sql-client-4.0-cf51a72e66cc.json",
-      "filename": "vertx-sql-client-4.0-cf51a72e66cc.json"
+      "hash": "47860ab29af6",
+      "url": "/data/instrumentations/vertx-sql-client-4.0-47860ab29af6.json",
+      "filename": "vertx-sql-client-4.0-47860ab29af6.json"
     },
     "vertx-sql-client-5.0": {
-      "hash": "965feecf0a37",
-      "url": "/data/instrumentations/vertx-sql-client-5.0-965feecf0a37.json",
-      "filename": "vertx-sql-client-5.0-965feecf0a37.json"
+      "hash": "f93ade7889c3",
+      "url": "/data/instrumentations/vertx-sql-client-5.0-f93ade7889c3.json",
+      "filename": "vertx-sql-client-5.0-f93ade7889c3.json"
     },
     "vertx-web-3.0": {
       "hash": "f1768f6f86af",
@@ -1235,6 +1235,6 @@
   },
   "metadata": {
     "total_count": 246,
-    "changed_from_previous": 9
+    "changed_from_previous": 14
   }
 }
