@@ -3395,11 +3395,14 @@
     },
     {
       "id": "twilio-6.6",
+      "display_name": "Twilio",
       "library_group": "twilio",
+      "description": "This instrumentation enables client spans for Twilio SDK API calls such as sending messages and making phone calls.\n",
       "tags": [
-        "twilio"
+        "twilio",
+        "client"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "undertow-1.4",

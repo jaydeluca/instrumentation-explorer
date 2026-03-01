@@ -1,13 +1,26 @@
 {
-  "id": "vertx-sql-client-5.0",
-  "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-5.0",
-  "minimum_java_version": 11,
+  "id": "clickhouse-client-v2-0.8",
+  "library_group": "clickhouse",
+  "description": "This instrumentation enables database client spans and database client metrics for the ClickHouse Java Client.\n",
+  "library_link": "https://github.com/ClickHouse/clickhouse-java",
+  "source_path": "instrumentation/clickhouse/clickhouse-client-v2-0.8",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
   "scope": {
-    "name": "io.opentelemetry.vertx-sql-client-5.0"
+    "name": "io.opentelemetry.clickhouse-client-v2-0.8"
   },
   "javaagent_target_versions": [
-    "io.vertx:vertx-sql-client:[5.0.0,)"
+    "com.clickhouse:client-v2:[0.6.4,)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
   ],
   "telemetry": {
     "default": {
@@ -25,6 +38,11 @@
             },
             {
               "name": "db.query.summary",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "db.system.name",
               "type": "STRING",
               "semconv": true
             },
@@ -61,7 +79,7 @@
               "semconv": true
             },
             {
-              "name": "db.response.status_code",
+              "name": "db.system.name",
               "type": "STRING",
               "semconv": true
             },
@@ -78,11 +96,6 @@
             {
               "name": "server.port",
               "type": "LONG",
-              "semconv": true
-            },
-            {
-              "name": "service.peer.name",
-              "type": "STRING",
               "semconv": true
             }
           ]
