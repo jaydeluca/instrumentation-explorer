@@ -1,0 +1,28 @@
+{
+  "id": "reactor-3.1",
+  "display_name": "Reactor",
+  "library_group": "reactor",
+  "description": "This instrumentation enables context propagation for Project Reactor reactive streams, it does not emit any telemetry on its own.\n",
+  "library_link": "https://projectreactor.io/",
+  "source_path": "instrumentation/reactor/reactor-3.1",
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.reactor-3.1"
+  },
+  "javaagent_target_versions": [
+    "io.projectreactor:reactor-core:[3.1.0.RELEASE,)"
+  ],
+  "has_standalone_library": true,
+  "configurations": [
+    {
+      "name": "otel.instrumentation.reactor.experimental-span-attributes",
+      "description": "Enables the capture of the experimental `reactor.canceled` attribute on spans when reactive streams are cancelled.\n",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "markdown_hash": "1517dbdc2da4",
+  "markdown_url": "/data/markdown/reactor-3.1-1517dbdc2da4.md"
+}
