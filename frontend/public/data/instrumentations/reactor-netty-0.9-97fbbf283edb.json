@@ -1,0 +1,17 @@
+{
+  "id": "reactor-netty-0.9",
+  "display_name": "Reactor Netty",
+  "library_group": "reactor",
+  "description": "This instrumentation enables context propagation for Reactor Netty HTTP client, it does not emit any telemetry on its own.\n",
+  "library_link": "https://projectreactor.io/docs/netty/release/reference/",
+  "source_path": "instrumentation/reactor/reactor-netty/reactor-netty-0.9",
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.reactor-netty-0.9"
+  },
+  "javaagent_target_versions": [
+    "io.projectreactor.netty:reactor-netty:[0.8.2.RELEASE,1.0.0)"
+  ]
+}
