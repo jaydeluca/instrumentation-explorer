@@ -1,0 +1,48 @@
+{
+  "id": "spring-ws-2.0",
+  "display_name": "Spring WS",
+  "library_group": "spring",
+  "description": "This instrumentation enables controller spans for Spring Web Services 2.0+ endpoints (controller spans are disabled by default).\n",
+  "library_link": "https://spring.io/projects/spring-ws",
+  "source_path": "instrumentation/spring/spring-ws-2.0",
+  "features": [
+    "CONTROLLER_SPANS"
+  ],
+  "disabled_by_default": true,
+  "scope": {
+    "name": "io.opentelemetry.spring-ws-2.0"
+  },
+  "javaagent_target_versions": [
+    "org.springframework.ws:spring-ws-core:[2.0.0.RELEASE,]"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.experimental.controller-telemetry.enabled",
+      "description": "Enables the creation of experimental controller spans.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "telemetry": {
+    "otel.instrumentation.common.experimental.controller-telemetry.enabled=true": {
+      "metrics": [],
+      "spans": [
+        {
+          "span_kind": "INTERNAL",
+          "attributes": [
+            {
+              "name": "code.function",
+              "type": "STRING",
+              "semconv": true
+            },
+            {
+              "name": "code.namespace",
+              "type": "STRING",
+              "semconv": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

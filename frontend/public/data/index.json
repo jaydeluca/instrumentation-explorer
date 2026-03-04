@@ -2696,44 +2696,65 @@
     },
     {
       "id": "reactor-3.1",
+      "display_name": "Reactor",
       "library_group": "reactor",
+      "description": "This instrumentation enables context propagation for Project Reactor reactive streams, it does not emit any telemetry on its own.\n",
       "tags": [
         "reactor"
       ],
-      "has_telemetry": false
-    },
-    {
-      "id": "reactor-3.4",
-      "library_group": "reactor",
-      "tags": [
-        "reactor"
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "reactor-kafka-1.0",
+      "display_name": "Reactor Kafka",
       "library_group": "reactor",
+      "description": "This instrumentation enables messaging spans for Reactor Kafka message consumers.\n",
       "tags": [
         "reactor",
-        "kafka"
+        "kafka",
+        "messaging",
+        "messaging_spans"
       ],
-      "has_telemetry": false
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "reactor-netty-0.9",
+      "display_name": "Reactor Netty",
       "library_group": "reactor",
+      "description": "This instrumentation enables context propagation for Reactor Netty HTTP client, it does not emit any telemetry on its own.\n",
       "tags": [
         "reactor",
-        "netty"
+        "http",
+        "netty",
+        "client"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "reactor-netty-1.0",
+      "display_name": "Reactor Netty",
       "library_group": "reactor",
+      "description": "This instrumentation enables HTTP client spans and HTTP client metrics for the Reactor Netty HTTP client.\n",
       "tags": [
         "reactor",
-        "netty"
+        "http",
+        "netty",
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
@@ -3156,6 +3177,7 @@
     },
     {
       "id": "spring-kafka-2.7",
+      "display_name": "Spring Kafka",
       "library_group": "spring",
       "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
       "tags": [
@@ -3171,38 +3193,56 @@
     },
     {
       "id": "spring-pulsar-1.0",
+      "display_name": "Spring Pulsar",
       "library_group": "spring",
       "description": "This instrumentation enables consumer messaging spans for Spring Pulsar listeners.",
       "tags": [
         "spring",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-rabbit-1.0",
+      "display_name": "Spring Rabbit",
       "library_group": "spring",
       "description": "This instrumentation enables consumer messaging spans for Spring RabbitMQ listeners.",
       "tags": [
         "spring",
-        "messaging"
+        "messaging",
+        "messaging_spans"
+      ],
+      "semantic_conventions": [
+        "MESSAGING_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-rmi-4.0",
+      "display_name": "Spring RMI",
       "library_group": "spring",
       "description": "This instrumentation enables RPC client and RPC server spans for Spring RMI applications.",
       "tags": [
         "spring",
         "client",
         "server",
-        "rpc"
+        "rpc",
+        "rpc_client_spans",
+        "rpc_server_spans"
+      ],
+      "semantic_conventions": [
+        "RPC_CLIENT_SPANS",
+        "RPC_SERVER_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-scheduling-3.1",
+      "display_name": "Spring Scheduling",
       "library_group": "spring",
       "description": "This instrumentation enables tracing for Spring Scheduling tasks.",
       "tags": [
@@ -3212,6 +3252,7 @@
     },
     {
       "id": "spring-security-config-6.0",
+      "display_name": "Spring Security",
       "library_group": "spring",
       "description": "This instrumentation does not emit any telemetry on its own. Instead, it captures enduser attributes, and is only enabled when at least one of the `enduser` configurations is enabled.\nNOTE: The `enduser` attributes have been deprecated and will be removed in 3.0+ of the java agent.\n",
       "tags": [
@@ -3221,86 +3262,145 @@
     },
     {
       "id": "spring-web-3.1",
+      "display_name": "Spring Web",
       "library_group": "spring",
       "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate.\n",
       "tags": [
         "spring",
         "http",
-        "client"
+        "client",
+        "http_client_spans",
+        "http_client_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-web-6.0",
+      "display_name": "Spring Web",
       "library_group": "spring",
-      "description": "This instrumentation provides a library integration that enables capturing HTTP client spans and metrics for Spring's RestTemplate.\n",
+      "description": "This instrumentation enriches HTTP client spans with URL template information for Spring's RestTemplate 6.0+.\n",
       "tags": [
         "spring",
         "http",
         "client"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": false
     },
     {
       "id": "spring-webflux-5.0",
+      "display_name": "Spring WebFlux",
       "library_group": "spring",
-      "description": "This instrumentation enables HTTP client spans and metrics for Spring WebFlux 5.0. It also optionally enables experimental controller spans.\n",
-      "tags": [
-        "spring",
-        "http",
-        "client"
-      ],
-      "has_telemetry": true
-    },
-    {
-      "id": "spring-webflux-5.3",
-      "library_group": "spring",
-      "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information for Spring WebFlux 5.0+. It also installs WebClient telemetry interceptors and enables controller spans (controller spans are disabled by default).\n",
       "tags": [
         "spring",
         "http",
         "client",
         "server"
       ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
+    },
+    {
+      "id": "spring-webflux-5.3",
+      "display_name": "Spring WebFlux",
+      "library_group": "spring",
+      "description": "This instrumentation provides a library integration for the Spring WebFlux WebClient and Webflux server versions 5.3+ that enables HTTP client and server spans and metrics.\n",
+      "tags": [
+        "spring",
+        "http",
+        "client",
+        "server",
+        "http_client_spans",
+        "http_client_metrics",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_CLIENT_SPANS",
+        "HTTP_CLIENT_METRICS",
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
       "has_telemetry": true
     },
     {
       "id": "spring-webmvc-3.1",
+      "display_name": "Spring WebMVC",
       "library_group": "spring",
-      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 3.1+.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information for Spring WebMVC 3.1+. It also enables controller spans (controller spans are disabled by default) and view spans (view spans are disabled by default).\n",
       "tags": [
-        "spring"
+        "spring",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS",
+        "VIEW_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-webmvc-5.3",
+      "display_name": "Spring WebMVC",
       "library_group": "spring",
       "description": "This instrumentation provides a library integration for Spring WebMVC controllers, that enables the creation of HTTP server spans and metrics for requests processed by the Spring servlet container.\n",
       "tags": [
         "spring",
         "http",
         "servlet",
-        "server"
+        "server",
+        "http_server_spans",
+        "http_server_metrics"
+      ],
+      "semantic_conventions": [
+        "HTTP_SERVER_SPANS",
+        "HTTP_SERVER_METRICS"
+      ],
+      "features": [
+        "HTTP_ROUTE"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-webmvc-6.0",
+      "display_name": "Spring WebMVC",
       "library_group": "spring",
-      "description": "This instrumentation enables optional Controller and View spans for Spring WebMVC 6.0+.\n",
+      "description": "This instrumentation enriches HTTP server spans with route information for Spring WebMVC 6.0+. It also enables controller spans (controller spans are disabled by default) and view spans (view spans are disabled by default).\n",
       "tags": [
-        "spring"
+        "spring",
+        "http",
+        "server"
+      ],
+      "features": [
+        "HTTP_ROUTE",
+        "CONTROLLER_SPANS",
+        "VIEW_SPANS"
       ],
       "has_telemetry": true
     },
     {
       "id": "spring-ws-2.0",
+      "display_name": "Spring WS",
       "library_group": "spring",
+      "description": "This instrumentation enables controller spans for Spring Web Services 2.0+ endpoints (controller spans are disabled by default).\n",
       "tags": [
         "spring"
       ],
-      "has_telemetry": false
+      "features": [
+        "CONTROLLER_SPANS"
+      ],
+      "has_telemetry": true
     },
     {
       "id": "spymemcached-2.12",

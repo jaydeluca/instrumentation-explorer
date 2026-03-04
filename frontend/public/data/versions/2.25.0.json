@@ -858,29 +858,24 @@
       "filename": "ratpack-1.7-cebdbf42e163.json"
     },
     "reactor-3.1": {
-      "hash": "e1ed5d2a4a42",
-      "url": "/data/instrumentations/reactor-3.1-e1ed5d2a4a42.json",
-      "filename": "reactor-3.1-e1ed5d2a4a42.json"
-    },
-    "reactor-3.4": {
-      "hash": "c13a92347252",
-      "url": "/data/instrumentations/reactor-3.4-c13a92347252.json",
-      "filename": "reactor-3.4-c13a92347252.json"
+      "hash": "6ab0a14827ec",
+      "url": "/data/instrumentations/reactor-3.1-6ab0a14827ec.json",
+      "filename": "reactor-3.1-6ab0a14827ec.json"
     },
     "reactor-kafka-1.0": {
-      "hash": "469f24552dad",
-      "url": "/data/instrumentations/reactor-kafka-1.0-469f24552dad.json",
-      "filename": "reactor-kafka-1.0-469f24552dad.json"
+      "hash": "f91d9051b137",
+      "url": "/data/instrumentations/reactor-kafka-1.0-f91d9051b137.json",
+      "filename": "reactor-kafka-1.0-f91d9051b137.json"
     },
     "reactor-netty-0.9": {
-      "hash": "cda209200538",
-      "url": "/data/instrumentations/reactor-netty-0.9-cda209200538.json",
-      "filename": "reactor-netty-0.9-cda209200538.json"
+      "hash": "97fbbf283edb",
+      "url": "/data/instrumentations/reactor-netty-0.9-97fbbf283edb.json",
+      "filename": "reactor-netty-0.9-97fbbf283edb.json"
     },
     "reactor-netty-1.0": {
-      "hash": "e4593a6ea52a",
-      "url": "/data/instrumentations/reactor-netty-1.0-e4593a6ea52a.json",
-      "filename": "reactor-netty-1.0-e4593a6ea52a.json"
+      "hash": "f43b106b7c06",
+      "url": "/data/instrumentations/reactor-netty-1.0-f43b106b7c06.json",
+      "filename": "reactor-netty-1.0-f43b106b7c06.json"
     },
     "rediscala-1.8": {
       "hash": "581a57960782",
@@ -1033,74 +1028,74 @@
       "filename": "spring-jms-6.0-c34b186bfca6.json"
     },
     "spring-kafka-2.7": {
-      "hash": "d14761871965",
-      "url": "/data/instrumentations/spring-kafka-2.7-d14761871965.json",
-      "filename": "spring-kafka-2.7-d14761871965.json"
+      "hash": "a392b47208f5",
+      "url": "/data/instrumentations/spring-kafka-2.7-a392b47208f5.json",
+      "filename": "spring-kafka-2.7-a392b47208f5.json"
     },
     "spring-pulsar-1.0": {
-      "hash": "6fdf1a640b0e",
-      "url": "/data/instrumentations/spring-pulsar-1.0-6fdf1a640b0e.json",
-      "filename": "spring-pulsar-1.0-6fdf1a640b0e.json"
+      "hash": "0b53d11fb98d",
+      "url": "/data/instrumentations/spring-pulsar-1.0-0b53d11fb98d.json",
+      "filename": "spring-pulsar-1.0-0b53d11fb98d.json"
     },
     "spring-rabbit-1.0": {
-      "hash": "23cec90e4621",
-      "url": "/data/instrumentations/spring-rabbit-1.0-23cec90e4621.json",
-      "filename": "spring-rabbit-1.0-23cec90e4621.json"
+      "hash": "760ae0cac156",
+      "url": "/data/instrumentations/spring-rabbit-1.0-760ae0cac156.json",
+      "filename": "spring-rabbit-1.0-760ae0cac156.json"
     },
     "spring-rmi-4.0": {
-      "hash": "ed8880c1a481",
-      "url": "/data/instrumentations/spring-rmi-4.0-ed8880c1a481.json",
-      "filename": "spring-rmi-4.0-ed8880c1a481.json"
+      "hash": "7965d966aca7",
+      "url": "/data/instrumentations/spring-rmi-4.0-7965d966aca7.json",
+      "filename": "spring-rmi-4.0-7965d966aca7.json"
     },
     "spring-scheduling-3.1": {
-      "hash": "2fb49ab30af1",
-      "url": "/data/instrumentations/spring-scheduling-3.1-2fb49ab30af1.json",
-      "filename": "spring-scheduling-3.1-2fb49ab30af1.json"
+      "hash": "3644af2702fa",
+      "url": "/data/instrumentations/spring-scheduling-3.1-3644af2702fa.json",
+      "filename": "spring-scheduling-3.1-3644af2702fa.json"
     },
     "spring-security-config-6.0": {
-      "hash": "082658175d5f",
-      "url": "/data/instrumentations/spring-security-config-6.0-082658175d5f.json",
-      "filename": "spring-security-config-6.0-082658175d5f.json"
+      "hash": "498425efb0cf",
+      "url": "/data/instrumentations/spring-security-config-6.0-498425efb0cf.json",
+      "filename": "spring-security-config-6.0-498425efb0cf.json"
     },
     "spring-web-3.1": {
-      "hash": "59b644c80eec",
-      "url": "/data/instrumentations/spring-web-3.1-59b644c80eec.json",
-      "filename": "spring-web-3.1-59b644c80eec.json"
+      "hash": "3b81e342df7f",
+      "url": "/data/instrumentations/spring-web-3.1-3b81e342df7f.json",
+      "filename": "spring-web-3.1-3b81e342df7f.json"
     },
     "spring-web-6.0": {
-      "hash": "51bd18a95a49",
-      "url": "/data/instrumentations/spring-web-6.0-51bd18a95a49.json",
-      "filename": "spring-web-6.0-51bd18a95a49.json"
+      "hash": "6efa1003e4bb",
+      "url": "/data/instrumentations/spring-web-6.0-6efa1003e4bb.json",
+      "filename": "spring-web-6.0-6efa1003e4bb.json"
     },
     "spring-webflux-5.0": {
-      "hash": "1bf526bf039e",
-      "url": "/data/instrumentations/spring-webflux-5.0-1bf526bf039e.json",
-      "filename": "spring-webflux-5.0-1bf526bf039e.json"
+      "hash": "d45eee5a1ce4",
+      "url": "/data/instrumentations/spring-webflux-5.0-d45eee5a1ce4.json",
+      "filename": "spring-webflux-5.0-d45eee5a1ce4.json"
     },
     "spring-webflux-5.3": {
-      "hash": "f4a97314584e",
-      "url": "/data/instrumentations/spring-webflux-5.3-f4a97314584e.json",
-      "filename": "spring-webflux-5.3-f4a97314584e.json"
+      "hash": "6465b20d1cdf",
+      "url": "/data/instrumentations/spring-webflux-5.3-6465b20d1cdf.json",
+      "filename": "spring-webflux-5.3-6465b20d1cdf.json"
     },
     "spring-webmvc-3.1": {
-      "hash": "64def3f32ea5",
-      "url": "/data/instrumentations/spring-webmvc-3.1-64def3f32ea5.json",
-      "filename": "spring-webmvc-3.1-64def3f32ea5.json"
+      "hash": "add52dc6abab",
+      "url": "/data/instrumentations/spring-webmvc-3.1-add52dc6abab.json",
+      "filename": "spring-webmvc-3.1-add52dc6abab.json"
     },
     "spring-webmvc-5.3": {
-      "hash": "4f98000d8a7d",
-      "url": "/data/instrumentations/spring-webmvc-5.3-4f98000d8a7d.json",
-      "filename": "spring-webmvc-5.3-4f98000d8a7d.json"
+      "hash": "16954b7e576a",
+      "url": "/data/instrumentations/spring-webmvc-5.3-16954b7e576a.json",
+      "filename": "spring-webmvc-5.3-16954b7e576a.json"
     },
     "spring-webmvc-6.0": {
-      "hash": "b9ae9233d834",
-      "url": "/data/instrumentations/spring-webmvc-6.0-b9ae9233d834.json",
-      "filename": "spring-webmvc-6.0-b9ae9233d834.json"
+      "hash": "4aa1c52ee1ae",
+      "url": "/data/instrumentations/spring-webmvc-6.0-4aa1c52ee1ae.json",
+      "filename": "spring-webmvc-6.0-4aa1c52ee1ae.json"
     },
     "spring-ws-2.0": {
-      "hash": "4fe4d82397aa",
-      "url": "/data/instrumentations/spring-ws-2.0-4fe4d82397aa.json",
-      "filename": "spring-ws-2.0-4fe4d82397aa.json"
+      "hash": "23ab56b6d105",
+      "url": "/data/instrumentations/spring-ws-2.0-23ab56b6d105.json",
+      "filename": "spring-ws-2.0-23ab56b6d105.json"
     },
     "spymemcached-2.12": {
       "hash": "7a155560cc81",
@@ -1234,7 +1229,7 @@
     }
   },
   "metadata": {
-    "total_count": 246,
-    "changed_from_previous": 14
+    "total_count": 245,
+    "changed_from_previous": 31
   }
 }

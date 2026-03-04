@@ -1,5 +1,6 @@
 {
   "id": "spring-kafka-2.7",
+  "display_name": "Spring Kafka",
   "library_group": "spring",
   "description": "This instrumentation enables consumer messaging spans for Spring Kafka listeners.",
   "library_link": "https://spring.io/projects/spring-kafka",
