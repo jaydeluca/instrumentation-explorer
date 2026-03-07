@@ -863,9 +863,9 @@
       "filename": "reactor-3.1-6ab0a14827ec.json"
     },
     "reactor-kafka-1.0": {
-      "hash": "f91d9051b137",
-      "url": "/data/instrumentations/reactor-kafka-1.0-f91d9051b137.json",
-      "filename": "reactor-kafka-1.0-f91d9051b137.json"
+      "hash": "f531d5fcb08d",
+      "url": "/data/instrumentations/reactor-kafka-1.0-f531d5fcb08d.json",
+      "filename": "reactor-kafka-1.0-f531d5fcb08d.json"
     },
     "reactor-netty-0.9": {
       "hash": "97fbbf283edb",
@@ -1148,49 +1148,49 @@
       "filename": "vaadin-14.2-e36dc3c2996e.json"
     },
     "vertx-http-client-3.0": {
-      "hash": "899eb9b81100",
-      "url": "/data/instrumentations/vertx-http-client-3.0-899eb9b81100.json",
-      "filename": "vertx-http-client-3.0-899eb9b81100.json"
+      "hash": "13a4c8044b99",
+      "url": "/data/instrumentations/vertx-http-client-3.0-13a4c8044b99.json",
+      "filename": "vertx-http-client-3.0-13a4c8044b99.json"
     },
     "vertx-http-client-4.0": {
-      "hash": "fbe8f4ec14bc",
-      "url": "/data/instrumentations/vertx-http-client-4.0-fbe8f4ec14bc.json",
-      "filename": "vertx-http-client-4.0-fbe8f4ec14bc.json"
+      "hash": "f63170e71d72",
+      "url": "/data/instrumentations/vertx-http-client-4.0-f63170e71d72.json",
+      "filename": "vertx-http-client-4.0-f63170e71d72.json"
     },
     "vertx-http-client-5.0": {
-      "hash": "0f8e0336fac2",
-      "url": "/data/instrumentations/vertx-http-client-5.0-0f8e0336fac2.json",
-      "filename": "vertx-http-client-5.0-0f8e0336fac2.json"
+      "hash": "a388032fc28c",
+      "url": "/data/instrumentations/vertx-http-client-5.0-a388032fc28c.json",
+      "filename": "vertx-http-client-5.0-a388032fc28c.json"
     },
     "vertx-kafka-client-3.6": {
-      "hash": "1a5eeb1584a8",
-      "url": "/data/instrumentations/vertx-kafka-client-3.6-1a5eeb1584a8.json",
-      "filename": "vertx-kafka-client-3.6-1a5eeb1584a8.json"
+      "hash": "8ea91ac1aceb",
+      "url": "/data/instrumentations/vertx-kafka-client-3.6-8ea91ac1aceb.json",
+      "filename": "vertx-kafka-client-3.6-8ea91ac1aceb.json"
     },
     "vertx-redis-client-4.0": {
-      "hash": "195ff934d6ef",
-      "url": "/data/instrumentations/vertx-redis-client-4.0-195ff934d6ef.json",
-      "filename": "vertx-redis-client-4.0-195ff934d6ef.json"
+      "hash": "d8a5b1770e46",
+      "url": "/data/instrumentations/vertx-redis-client-4.0-d8a5b1770e46.json",
+      "filename": "vertx-redis-client-4.0-d8a5b1770e46.json"
     },
     "vertx-rx-java-3.5": {
-      "hash": "86614a1c2203",
-      "url": "/data/instrumentations/vertx-rx-java-3.5-86614a1c2203.json",
-      "filename": "vertx-rx-java-3.5-86614a1c2203.json"
+      "hash": "c462bd3fb71c",
+      "url": "/data/instrumentations/vertx-rx-java-3.5-c462bd3fb71c.json",
+      "filename": "vertx-rx-java-3.5-c462bd3fb71c.json"
     },
     "vertx-sql-client-4.0": {
-      "hash": "101d5f21f5b3",
-      "url": "/data/instrumentations/vertx-sql-client-4.0-101d5f21f5b3.json",
-      "filename": "vertx-sql-client-4.0-101d5f21f5b3.json"
+      "hash": "5ce2d8b11965",
+      "url": "/data/instrumentations/vertx-sql-client-4.0-5ce2d8b11965.json",
+      "filename": "vertx-sql-client-4.0-5ce2d8b11965.json"
     },
     "vertx-sql-client-5.0": {
-      "hash": "c7486cfa0d21",
-      "url": "/data/instrumentations/vertx-sql-client-5.0-c7486cfa0d21.json",
-      "filename": "vertx-sql-client-5.0-c7486cfa0d21.json"
+      "hash": "6d60a705d803",
+      "url": "/data/instrumentations/vertx-sql-client-5.0-6d60a705d803.json",
+      "filename": "vertx-sql-client-5.0-6d60a705d803.json"
     },
     "vertx-web-3.0": {
-      "hash": "f1768f6f86af",
-      "url": "/data/instrumentations/vertx-web-3.0-f1768f6f86af.json",
-      "filename": "vertx-web-3.0-f1768f6f86af.json"
+      "hash": "0447eae8905f",
+      "url": "/data/instrumentations/vertx-web-3.0-0447eae8905f.json",
+      "filename": "vertx-web-3.0-0447eae8905f.json"
     },
     "vibur-dbcp-11.0": {
       "hash": "56fc0530941e",
@@ -1230,6 +1230,6 @@
   },
   "metadata": {
     "total_count": 245,
-    "changed_from_previous": 47
+    "changed_from_previous": 50
   }
 }
