@@ -1,0 +1,17 @@
+{
+  "id": "vertx-rx-java-3.5",
+  "display_name": "Vert.x RxJava",
+  "library_group": "vertx",
+  "description": "This instrumentation enables context propagation for Vert.x RxJava 2 reactive streams, it does not emit any telemetry on its own.\n",
+  "library_link": "https://vertx.io/docs/vertx-rx/java/",
+  "source_path": "instrumentation/vertx/vertx-rx-java-3.5",
+  "features": [
+    "CONTEXT_PROPAGATION"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.vertx-rx-java-3.5"
+  },
+  "javaagent_target_versions": [
+    "io.vertx:vertx-rx-java2:[3.5.0,)"
+  ]
+}

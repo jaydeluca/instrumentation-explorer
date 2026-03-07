@@ -1,12 +1,27 @@
 {
-  "id": "vertx-redis-client-4.0",
+  "id": "vertx-sql-client-4.0",
+  "display_name": "Vert.x SQL Client",
   "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-redis-client-4.0",
+  "description": "This instrumentation enables database client spans and database client metrics for Vert.x SQL Client operations.\n",
+  "library_link": "https://github.com/eclipse-vertx/vertx-sql-client",
+  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-4.0",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
   "scope": {
-    "name": "io.opentelemetry.vertx-redis-client-4.0"
+    "name": "io.opentelemetry.vertx-sql-client-4.0"
   },
   "javaagent_target_versions": [
-    "io.vertx:vertx-redis-client:[4.0.0,)"
+    "io.vertx:vertx-sql-client:[4.0.0,5)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
   ],
   "telemetry": {
     "default": {
@@ -23,23 +38,8 @@
               "semconv": true
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "db.system.name",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
               "semconv": true
             },
             {
@@ -65,7 +65,7 @@
               "semconv": true
             },
             {
-              "name": "db.operation.name",
+              "name": "db.query.summary",
               "type": "STRING",
               "semconv": true
             },
@@ -75,18 +75,8 @@
               "semconv": true
             },
             {
-              "name": "db.system.name",
+              "name": "error.type",
               "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.address",
-              "type": "STRING",
-              "semconv": true
-            },
-            {
-              "name": "network.peer.port",
-              "type": "LONG",
               "semconv": true
             },
             {

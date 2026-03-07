@@ -1,13 +1,27 @@
 {
-  "id": "vertx-sql-client-5.0",
+  "id": "vertx-sql-client-4.0",
+  "display_name": "Vert.x SQL Client",
   "library_group": "vertx",
-  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-5.0",
-  "minimum_java_version": 11,
+  "description": "This instrumentation enables database client spans and database client metrics for Vert.x SQL Client operations.\n",
+  "library_link": "https://github.com/eclipse-vertx/vertx-sql-client",
+  "source_path": "instrumentation/vertx/vertx-sql-client/vertx-sql-client-4.0",
+  "semantic_conventions": [
+    "DATABASE_CLIENT_SPANS",
+    "DATABASE_CLIENT_METRICS"
+  ],
   "scope": {
-    "name": "io.opentelemetry.vertx-sql-client-5.0"
+    "name": "io.opentelemetry.vertx-sql-client-4.0"
   },
   "javaagent_target_versions": [
-    "io.vertx:vertx-sql-client:[5.0.0,)"
+    "io.vertx:vertx-sql-client:[4.0.0,5)"
+  ],
+  "configurations": [
+    {
+      "name": "otel.instrumentation.common.db-statement-sanitizer.enabled",
+      "description": "Enables statement sanitization for database queries.",
+      "type": "boolean",
+      "default": true
+    }
   ],
   "telemetry": {
     "default": {
