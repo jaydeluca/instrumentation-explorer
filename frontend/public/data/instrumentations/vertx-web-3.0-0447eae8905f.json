@@ -1,0 +1,17 @@
+{
+  "id": "vertx-web-3.0",
+  "display_name": "Vert.x Web",
+  "library_group": "vertx",
+  "description": "This instrumentation enriches HTTP server spans with route information for Vert.x Web, it does not emit any telemetry on its own.\n",
+  "library_link": "https://vertx.io/docs/vertx-web/java/",
+  "source_path": "instrumentation/vertx/vertx-web-3.0",
+  "features": [
+    "HTTP_ROUTE"
+  ],
+  "scope": {
+    "name": "io.opentelemetry.vertx-web-3.0"
+  },
+  "javaagent_target_versions": [
+    "io.vertx:vertx-web:[3.0.0,)"
+  ]
+}
