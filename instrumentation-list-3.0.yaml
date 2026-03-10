@@ -1,4 +1,4 @@
-file_format: 0.2
+file_format: 0.3
 libraries:
   activej:
   - name: activej-http-6.0
@@ -45,7 +45,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -79,8 +80,6 @@ libraries:
           type: STRING
         - name: url.query
           type: STRING
-        - name: url.query
-          type: VALUE
         - name: url.scheme
           type: STRING
         - name: user_agent.original
@@ -191,7 +190,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -206,7 +206,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -230,12 +231,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
       - span_kind: SERVER
@@ -296,8 +297,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -305,29 +307,33 @@ libraries:
           type: STRING
       - name: db.client.connection.idle.max
         description: The maximum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.idle.min
         description: The minimum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.pending_requests
         description: The number of current pending requests for an open connection.
-        type: LONG_SUM
-        unit: request
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{request}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -369,8 +375,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -378,22 +385,25 @@ libraries:
           type: STRING
       - name: db.client.connection.idle.max
         description: The maximum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.idle.min
         description: The minimum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -425,7 +435,8 @@ libraries:
       metrics:
       - name: rpc.client.duration
         description: The duration of an outbound RPC invocation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: ms
         attributes:
         - name: rpc.method
@@ -440,7 +451,8 @@ libraries:
           type: LONG
       - name: rpc.server.duration
         description: The duration of an inbound RPC invocation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: ms
         attributes:
         - name: rpc.method
@@ -578,7 +590,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -604,12 +617,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   - name: apache-httpclient-2.0
@@ -664,7 +677,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -688,12 +702,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   - name: apache-httpclient-4.0
@@ -749,7 +763,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -801,7 +816,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -887,7 +903,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -913,12 +930,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   - name: apache-httpclient-5.2
@@ -939,7 +956,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1072,7 +1090,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1087,7 +1106,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1115,12 +1135,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
       - span_kind: SERVER
@@ -1169,13 +1189,11 @@ libraries:
       spans:
       - span_kind: CLIENT
         attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
@@ -1183,13 +1201,11 @@ libraries:
           type: LONG
       - span_kind: SERVER
         attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
@@ -1250,7 +1266,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1272,12 +1289,12 @@ libraries:
           type: STRING
         - name: http.response.status_code
           type: LONG
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   - name: async-http-client-1.9
@@ -1334,7 +1351,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1356,12 +1374,12 @@ libraries:
           type: STRING
         - name: http.response.status_code
           type: LONG
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   - name: async-http-client-2.0
@@ -1418,7 +1436,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -1448,12 +1467,12 @@ libraries:
           type: LONG
         - name: network.protocol.version
           type: STRING
-        - name: peer.service
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
+        - name: service.peer.name
+          type: STRING
         - name: url.full
           type: STRING
   avaje:
@@ -1654,7 +1673,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -1821,7 +1841,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -2031,8 +2052,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -2040,8 +2062,9 @@ libraries:
           type: STRING
       - name: db.client.connection.pending_requests
         description: The number of current pending requests for an open connection.
-        type: LONG_SUM
-        unit: request
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{request}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -2192,7 +2215,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.query.summary
@@ -2252,7 +2276,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.query.summary
@@ -2326,7 +2351,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.query.summary
@@ -2399,7 +2425,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -2453,7 +2480,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -2510,7 +2538,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -2564,7 +2593,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -2592,8 +2622,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
     - when: otel.instrumentation.couchbase.experimental-span-attributes=true
       spans:
       - span_kind: CLIENT
@@ -2889,7 +2917,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -2952,7 +2981,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.system.name
@@ -3006,7 +3036,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.system.name
@@ -3061,7 +3092,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.system.name
@@ -3124,7 +3156,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -3213,7 +3246,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -3310,7 +3344,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -3330,8 +3365,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
     - when: otel.instrumentation.elasticsearch.experimental-span-attributes=true
       spans:
       - span_kind: CLIENT
@@ -3412,8 +3445,9 @@ libraries:
       metrics:
       - name: failsafe.circuit_breaker.execution.count
         description: Count of circuit breaker executions.
-        type: LONG_SUM
-        unit: execution
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{execution}'
         attributes:
         - name: failsafe.circuit_breaker.name
           type: STRING
@@ -3421,8 +3455,9 @@ libraries:
           type: STRING
       - name: failsafe.circuit_breaker.state_change.count
         description: Count of circuit breaker state changes.
-        type: LONG_SUM
-        unit: execution
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{execution}'
         attributes:
         - name: failsafe.circuit_breaker.name
           type: STRING
@@ -3430,8 +3465,9 @@ libraries:
           type: STRING
       - name: failsafe.retry_policy.attempts
         description: Number of attempts for each execution.
-        type: HISTOGRAM
-        unit: attempt
+        instrument: histogram
+        data_type: HISTOGRAM
+        unit: '{attempt}'
         attributes:
         - name: failsafe.retry_policy.name
           type: STRING
@@ -3440,8 +3476,9 @@ libraries:
       - name: failsafe.retry_policy.execution.count
         description: Count of execution attempts processed by the retry policy, where
           one execution represents the total number of attempts.
-        type: LONG_SUM
-        unit: execution
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{execution}'
         attributes:
         - name: failsafe.retry_policy.name
           type: STRING
@@ -3518,7 +3555,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -3590,7 +3628,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -3790,7 +3829,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -3879,109 +3919,33 @@ libraries:
     telemetry:
     - when: default
       metrics:
-      - name: rpc.client.duration
-        description: The duration of an outbound RPC invocation.
-        type: HISTOGRAM
-        unit: ms
+      - name: rpc.client.call.duration
+        description: Measures the duration of outbound remote procedure calls (RPC).
+        instrument: histogram
+        data_type: HISTOGRAM
+        unit: s
         attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
         - name: server.port
           type: LONG
-      - name: rpc.client.request.size
-        description: Measures the size of RPC request messages (uncompressed).
-        type: HISTOGRAM
-        unit: By
+      - name: rpc.server.call.duration
+        description: Measures the duration of inbound remote procedure calls (RPC).
+        instrument: histogram
+        data_type: HISTOGRAM
+        unit: s
         attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
-          type: STRING
-        - name: server.address
-          type: STRING
-        - name: server.port
-          type: LONG
-      - name: rpc.client.response.size
-        description: Measures the size of RPC response messages (uncompressed).
-        type: HISTOGRAM
-        unit: By
-        attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
-        - name: rpc.method
-          type: STRING
-        - name: rpc.service
-          type: STRING
-        - name: rpc.system
-          type: STRING
-        - name: server.address
-          type: STRING
-        - name: server.port
-          type: LONG
-      - name: rpc.server.duration
-        description: The duration of an inbound RPC invocation.
-        type: HISTOGRAM
-        unit: ms
-        attributes:
-        - name: network.type
-          type: STRING
-        - name: rpc.grpc.status_code
-          type: LONG
-        - name: rpc.method
-          type: STRING
-        - name: rpc.service
-          type: STRING
-        - name: rpc.system
-          type: STRING
-        - name: server.address
-          type: STRING
-        - name: server.port
-          type: LONG
-      - name: rpc.server.request.size
-        description: Measures the size of RPC request messages (uncompressed).
-        type: HISTOGRAM
-        unit: By
-        attributes:
-        - name: network.type
-          type: STRING
-        - name: rpc.grpc.status_code
-          type: LONG
-        - name: rpc.method
-          type: STRING
-        - name: rpc.service
-          type: STRING
-        - name: rpc.system
-          type: STRING
-        - name: server.address
-          type: STRING
-        - name: server.port
-          type: LONG
-      - name: rpc.server.response.size
-        description: Measures the size of RPC response messages (uncompressed).
-        type: HISTOGRAM
-        unit: By
-        attributes:
-        - name: network.type
-          type: STRING
-        - name: rpc.grpc.status_code
-          type: LONG
-        - name: rpc.method
-          type: STRING
-        - name: rpc.service
-          type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
@@ -3990,13 +3954,13 @@ libraries:
       spans:
       - span_kind: CLIENT
         attributes:
-        - name: rpc.grpc.status_code
-          type: LONG
+        - name: error.type
+          type: STRING
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
@@ -4004,19 +3968,19 @@ libraries:
           type: LONG
       - span_kind: SERVER
         attributes:
+        - name: error.type
+          type: STRING
         - name: network.peer.address
           type: STRING
         - name: network.peer.port
           type: LONG
         - name: network.type
           type: STRING
-        - name: rpc.grpc.status_code
-          type: LONG
         - name: rpc.method
           type: STRING
-        - name: rpc.service
+        - name: rpc.response.status_code
           type: STRING
-        - name: rpc.system
+        - name: rpc.system.name
           type: STRING
         - name: server.address
           type: STRING
@@ -4026,7 +3990,8 @@ libraries:
       metrics:
       - name: rpc.client.duration
         description: The duration of an outbound RPC invocation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: ms
         attributes:
         - name: rpc.grpc.status_code
@@ -4043,7 +4008,8 @@ libraries:
           type: LONG
       - name: rpc.client.request.size
         description: Measures the size of RPC request messages (uncompressed).
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: By
         attributes:
         - name: rpc.grpc.status_code
@@ -4060,7 +4026,8 @@ libraries:
           type: LONG
       - name: rpc.client.response.size
         description: Measures the size of RPC response messages (uncompressed).
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: By
         attributes:
         - name: rpc.grpc.status_code
@@ -4077,7 +4044,8 @@ libraries:
           type: LONG
       - name: rpc.server.duration
         description: The duration of an inbound RPC invocation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: ms
         attributes:
         - name: network.type
@@ -4096,7 +4064,8 @@ libraries:
           type: LONG
       - name: rpc.server.request.size
         description: Measures the size of RPC request messages (uncompressed).
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: By
         attributes:
         - name: network.type
@@ -4115,7 +4084,8 @@ libraries:
           type: LONG
       - name: rpc.server.response.size
         description: Measures the size of RPC response messages (uncompressed).
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: By
         attributes:
         - name: network.type
@@ -4267,7 +4237,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -4307,8 +4278,6 @@ libraries:
           type: STRING
         - name: url.query
           type: STRING
-        - name: url.query
-          type: VALUE
         - name: url.scheme
           type: STRING
         - name: user_agent.original
@@ -4445,8 +4414,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -4454,51 +4424,58 @@ libraries:
           type: STRING
       - name: db.client.connection.create_time
         description: The time it took to create a new connection.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.idle.min
         description: The minimum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.pending_requests
         description: The number of current pending requests for an open connection.
-        type: LONG_SUM
-        unit: request
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{request}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.timeouts
         description: The number of connection timeouts that have occurred trying to
           obtain a connection from the pool.
-        type: LONG_SUM
-        unit: timeout
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{timeout}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.use_time
         description: The time between borrowing a connection and returning it to the
           pool.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.wait_time
         description: The time it took to obtain an open connection from the pool.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.client.connection.pool.name
@@ -4558,7 +4535,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -4638,8 +4616,9 @@ libraries:
       metrics:
       - name: iceberg.scan.data_files.count
         description: The number of data files.
-        type: LONG_SUM
-        unit: file
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{file}'
         attributes:
         - name: iceberg.scan.state
           type: STRING
@@ -4649,7 +4628,8 @@ libraries:
           type: STRING
       - name: iceberg.scan.data_files.size
         description: The total size of all scanned data files.
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: iceberg.schema.id
@@ -4658,8 +4638,9 @@ libraries:
           type: STRING
       - name: iceberg.scan.data_manifests.count
         description: The number of data manifests.
-        type: LONG_SUM
-        unit: file
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{file}'
         attributes:
         - name: iceberg.scan.state
           type: STRING
@@ -4669,8 +4650,9 @@ libraries:
           type: STRING
       - name: iceberg.scan.delete_files.count
         description: The number of delete files.
-        type: LONG_SUM
-        unit: file
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{file}'
         attributes:
         - name: iceberg.delete_file.type
           type: STRING
@@ -4682,7 +4664,8 @@ libraries:
           type: STRING
       - name: iceberg.scan.delete_files.size
         description: The total size of all scanned delete files.
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: iceberg.schema.id
@@ -4691,8 +4674,9 @@ libraries:
           type: STRING
       - name: iceberg.scan.delete_manifests.count
         description: The number of delete manifests.
-        type: LONG_SUM
-        unit: file
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{file}'
         attributes:
         - name: iceberg.scan.state
           type: STRING
@@ -4702,7 +4686,8 @@ libraries:
           type: STRING
       - name: iceberg.scan.planning.duration
         description: The total duration needed to plan the scan.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: iceberg.schema.id
@@ -4733,7 +4718,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -4817,7 +4803,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -4900,7 +4887,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -5614,7 +5602,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -5682,7 +5671,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -5735,7 +5725,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -5763,8 +5754,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
@@ -5793,7 +5782,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -5817,8 +5807,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
   jetty:
   - name: jetty-8.0
     description: This instrumentation enables HTTP server spans and HTTP server metrics
@@ -5864,7 +5852,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -5949,7 +5938,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6034,7 +6024,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6128,7 +6119,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6215,7 +6207,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6449,7 +6442,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6956,7 +6950,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -6978,8 +6973,6 @@ libraries:
           type: STRING
         - name: http.response.status_code
           type: LONG
-        - name: network.peer.address
-          type: STRING
         - name: network.protocol.version
           type: STRING
         - name: server.address
@@ -7007,8 +7000,6 @@ libraries:
         - name: http.response.status_code
           type: LONG
         - name: http.route
-          type: STRING
-        - name: network.peer.address
           type: STRING
         - name: network.protocol.version
           type: STRING
@@ -7100,7 +7091,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7115,7 +7107,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7275,7 +7268,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7290,7 +7284,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7338,6 +7333,8 @@ libraries:
           type: LONG
         - name: http.route
           type: STRING
+        - name: network.peer.address
+          type: STRING
         - name: network.protocol.version
           type: STRING
         - name: server.address
@@ -7356,7 +7353,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7371,8 +7369,9 @@ libraries:
           type: LONG
       - name: http.server.active_requests
         description: Number of active HTTP server requests.
-        type: LONG_SUM
-        unit: requests
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{requests}'
         attributes:
         - name: http.request.method
           type: STRING
@@ -7380,7 +7379,8 @@ libraries:
           type: STRING
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7395,7 +7395,8 @@ libraries:
           type: STRING
       - name: http.server.response.body.size
         description: Size of HTTP server response bodies.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: By
         attributes:
         - name: http.request.method
@@ -7442,6 +7443,8 @@ libraries:
         - name: http.response.status_code
           type: LONG
         - name: http.route
+          type: STRING
+        - name: network.peer.address
           type: STRING
         - name: network.protocol.version
           type: STRING
@@ -7517,7 +7520,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7549,7 +7553,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -7615,7 +7620,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -7693,7 +7699,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -7767,7 +7774,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -7797,8 +7805,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
         - name: server.address
           type: STRING
         - name: server.port
@@ -8229,7 +8235,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.collection.name
@@ -8294,7 +8301,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.collection.name
@@ -8358,7 +8366,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.collection.name
@@ -8422,7 +8431,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.collection.name
@@ -8604,7 +8614,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -8619,7 +8630,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -8766,7 +8778,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -8781,7 +8794,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -8930,7 +8944,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -8945,7 +8960,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9063,7 +9079,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9150,7 +9167,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9219,7 +9237,8 @@ libraries:
       metrics:
       - name: gen_ai.client.operation.duration
         description: GenAI operation duration.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: gen_ai.operation.name
@@ -9232,8 +9251,9 @@ libraries:
           type: STRING
       - name: gen_ai.client.token.usage
         description: Measures number of input and output tokens used.
-        type: HISTOGRAM
-        unit: token
+        instrument: histogram
+        data_type: HISTOGRAM
+        unit: '{token}'
         attributes:
         - name: gen_ai.operation.name
           type: STRING
@@ -9313,7 +9333,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -9349,7 +9370,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -9385,7 +9407,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -9423,8 +9446,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -9432,15 +9456,17 @@ libraries:
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.pending_requests
         description: The number of current pending requests for an open connection.
-        type: LONG_SUM
-        unit: request
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{request}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -9471,7 +9497,8 @@ libraries:
       metrics:
       - name: system.disk.io
         description: System disk IO
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: device
@@ -9480,8 +9507,9 @@ libraries:
           type: STRING
       - name: system.disk.operations
         description: System disk operations
-        type: LONG_SUM
-        unit: operations
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{operations}'
         attributes:
         - name: device
           type: STRING
@@ -9489,22 +9517,25 @@ libraries:
           type: STRING
       - name: system.memory.usage
         description: System memory usage
-        type: LONG_SUM
+        instrument: updowncounter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: state
           type: STRING
       - name: system.memory.utilization
         description: System memory utilization
-        type: DOUBLE_GAUGE
+        instrument: gauge
+        data_type: DOUBLE_GAUGE
         unit: '1'
         attributes:
         - name: state
           type: STRING
       - name: system.network.errors
         description: System network errors
-        type: LONG_SUM
-        unit: errors
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{errors}'
         attributes:
         - name: device
           type: STRING
@@ -9512,7 +9543,8 @@ libraries:
           type: STRING
       - name: system.network.io
         description: System network IO
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: device
@@ -9521,8 +9553,9 @@ libraries:
           type: STRING
       - name: system.network.packets
         description: System network packets
-        type: LONG_SUM
-        unit: packets
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{packets}'
         attributes:
         - name: device
           type: STRING
@@ -9532,21 +9565,24 @@ libraries:
       metrics:
       - name: runtime.java.cpu_time
         description: Runtime Java CPU time
-        type: LONG_GAUGE
+        instrument: gauge
+        data_type: LONG_GAUGE
         unit: ms
         attributes:
         - name: type
           type: STRING
       - name: runtime.java.memory
         description: Runtime Java memory
-        type: LONG_SUM
+        instrument: updowncounter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: type
           type: STRING
       - name: system.disk.io
         description: System disk IO
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: device
@@ -9555,8 +9591,9 @@ libraries:
           type: STRING
       - name: system.disk.operations
         description: System disk operations
-        type: LONG_SUM
-        unit: operations
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{operations}'
         attributes:
         - name: device
           type: STRING
@@ -9564,22 +9601,25 @@ libraries:
           type: STRING
       - name: system.memory.usage
         description: System memory usage
-        type: LONG_SUM
+        instrument: updowncounter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: state
           type: STRING
       - name: system.memory.utilization
         description: System memory utilization
-        type: DOUBLE_GAUGE
+        instrument: gauge
+        data_type: DOUBLE_GAUGE
         unit: '1'
         attributes:
         - name: state
           type: STRING
       - name: system.network.errors
         description: System network errors
-        type: LONG_SUM
-        unit: errors
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{errors}'
         attributes:
         - name: device
           type: STRING
@@ -9587,7 +9627,8 @@ libraries:
           type: STRING
       - name: system.network.io
         description: System network IO
-        type: LONG_SUM
+        instrument: counter
+        data_type: LONG_SUM
         unit: By
         attributes:
         - name: device
@@ -9596,8 +9637,9 @@ libraries:
           type: STRING
       - name: system.network.packets
         description: System network packets
-        type: LONG_SUM
-        unit: packets
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{packets}'
         attributes:
         - name: device
           type: STRING
@@ -9702,7 +9744,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9717,7 +9760,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9883,7 +9927,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -9971,7 +10016,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -10058,7 +10104,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -10179,7 +10226,8 @@ libraries:
       metrics:
       - name: messaging.publish.duration
         description: Measures the duration of publish operation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: messaging.destination.name
@@ -10194,7 +10242,8 @@ libraries:
           type: LONG
       - name: messaging.receive.duration
         description: Measures the duration of receive operation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: messaging.destination.name
@@ -10209,8 +10258,9 @@ libraries:
           type: LONG
       - name: messaging.receive.messages
         description: Measures the number of received messages.
-        type: LONG_SUM
-        unit: message
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{message}'
         attributes:
         - name: messaging.destination.name
           type: STRING
@@ -10265,7 +10315,8 @@ libraries:
       metrics:
       - name: messaging.publish.duration
         description: Measures the duration of publish operation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: messaging.destination.name
@@ -10280,7 +10331,8 @@ libraries:
           type: LONG
       - name: messaging.receive.duration
         description: Measures the duration of receive operation.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: messaging.destination.name
@@ -10295,8 +10347,9 @@ libraries:
           type: LONG
       - name: messaging.receive.messages
         description: Measures the number of received messages.
-        type: LONG_SUM
-        unit: message
+        instrument: counter
+        data_type: LONG_SUM
+        unit: '{message}'
         attributes:
         - name: messaging.destination.name
           type: STRING
@@ -10447,7 +10500,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -10726,7 +10780,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -10739,7 +10794,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -10864,8 +10920,6 @@ libraries:
       spans:
       - span_kind: CONSUMER
         attributes:
-        - name: kafka.record.queue_time_ms
-          type: LONG
         - name: messaging.client_id
           type: STRING
         - name: messaging.destination.name
@@ -10977,7 +11031,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -11044,7 +11099,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -11105,7 +11161,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -11129,8 +11186,6 @@ libraries:
           type: STRING
         - name: network.peer.port
           type: LONG
-        - name: network.type
-          type: STRING
   resources:
   - name: resources
     source_path: instrumentation/resources
@@ -11183,7 +11238,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -11274,7 +11330,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -11543,26 +11600,74 @@ libraries:
     has_standalone_library: true
   rxjava:
   - name: rxjava-2.0
+    display_name: RxJava
+    description: 'This instrumentation enables context propagation for RxJava 2 reactive
+      streams and adds support for @WithSpan annotations on methods that return RxJava
+      2 types. It does not emit any telemetry on its own.
+
+      '
+    library_link: https://github.com/ReactiveX/RxJava/tree/2.x
+    features:
+    - CONTEXT_PROPAGATION
     source_path: instrumentation/rxjava/rxjava-2.0
     scope:
       name: io.opentelemetry.rxjava-2.0
     has_standalone_library: true
     javaagent_target_versions:
     - io.reactivex.rxjava2:rxjava:[2.0.6,)
+    configurations:
+    - name: otel.instrumentation.rxjava.experimental-span-attributes
+      description: 'Enables the experimental span attribute `rxjava.canceled`.
+
+        '
+      type: boolean
+      default: false
   - name: rxjava-3.0
+    display_name: RxJava
+    description: 'This instrumentation enables context propagation for RxJava 3 reactive
+      streams and adds support for @WithSpan annotations on methods that return RxJava
+      3 types. It does not emit any telemetry on its own.
+
+      '
+    library_link: https://github.com/ReactiveX/RxJava/tree/3.x
+    features:
+    - CONTEXT_PROPAGATION
     source_path: instrumentation/rxjava/rxjava-3.0
     scope:
       name: io.opentelemetry.rxjava-3.0
     has_standalone_library: true
     javaagent_target_versions:
     - io.reactivex.rxjava3:rxjava:[3.0.0,3.1.0]
+    configurations:
+    - name: otel.instrumentation.rxjava.experimental-span-attributes
+      description: 'Enables the experimental span attribute `rxjava.canceled`.
+
+        '
+      type: boolean
+      default: false
   - name: rxjava-3.1.1
+    display_name: RxJava
+    description: 'This instrumentation enables context propagation for RxJava 3 reactive
+      streams and adds support for @WithSpan annotations on methods that return RxJava
+      3 types. It does not emit any telemetry on its own.
+
+      '
+    library_link: https://github.com/ReactiveX/RxJava/tree/3.x
+    features:
+    - CONTEXT_PROPAGATION
     source_path: instrumentation/rxjava/rxjava-3.1.1
     scope:
       name: io.opentelemetry.rxjava-3.1.1
     has_standalone_library: true
     javaagent_target_versions:
     - io.reactivex.rxjava3:rxjava:[3.1.1,)
+    configurations:
+    - name: otel.instrumentation.rxjava.experimental-span-attributes
+      description: 'Enables the experimental span attribute `rxjava.canceled`.
+
+        '
+      type: boolean
+      default: false
   scala:
   - name: scala-fork-join-2.8
     display_name: Scala ForkJoinPool
@@ -11611,7 +11716,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -11692,7 +11798,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -11779,7 +11886,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12425,7 +12533,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12503,7 +12612,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12560,7 +12670,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12573,7 +12684,8 @@ libraries:
           type: LONG
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12702,7 +12814,8 @@ libraries:
       metrics:
       - name: http.server.request.duration
         description: Duration of HTTP server requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -12860,7 +12973,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.operation.name
@@ -13015,8 +13129,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -13024,29 +13139,33 @@ libraries:
           type: STRING
       - name: db.client.connection.idle.max
         description: The maximum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.idle.min
         description: The minimum number of idle open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
       - name: db.client.connection.pending_requests
         description: The number of current pending requests for an open connection.
-        type: LONG_SUM
-        unit: request
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{request}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -13158,7 +13277,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -13238,7 +13358,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -13331,7 +13452,8 @@ libraries:
       metrics:
       - name: http.client.request.duration
         description: Duration of HTTP client requests.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: http.request.method
@@ -13482,7 +13604,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -13559,7 +13682,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -13613,7 +13737,8 @@ libraries:
       metrics:
       - name: db.client.operation.duration
         description: Duration of database client operations.
-        type: HISTOGRAM
+        instrument: histogram
+        data_type: HISTOGRAM
         unit: s
         attributes:
         - name: db.namespace
@@ -13672,8 +13797,9 @@ libraries:
       - name: db.client.connection.count
         description: The number of connections that are currently in state described
           by the state attribute.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -13681,8 +13807,9 @@ libraries:
           type: STRING
       - name: db.client.connection.max
         description: The maximum number of open connections allowed.
-        type: LONG_SUM
-        unit: connection
+        instrument: updowncounter
+        data_type: LONG_SUM
+        unit: '{connection}'
         attributes:
         - name: db.client.connection.pool.name
           type: STRING
@@ -13703,23 +13830,125 @@ libraries:
     - org.apache.wicket:wicket:[8.0.0,]
   xxl:
   - name: xxl-job-1.9.2
+    display_name: XXL-Job
+    description: This instrumentation enables spans for XXL-Job task executions.
+    library_link: https://github.com/xuxueli/xxl-job
     source_path: instrumentation/xxl-job/xxl-job-1.9.2
     scope:
       name: io.opentelemetry.xxl-job-1.9.2
     javaagent_target_versions:
     - com.xuxueli:xxl-job-core:[1.9.2, 2.1.2)
+    configurations:
+    - name: otel.instrumentation.xxl-job.experimental-span-attributes
+      description: 'Enables experimental span attributes `job.system`, `scheduling.xxl-job.glue.type`,
+        and `scheduling.xxl-job.job.id`.
+
+        '
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+    - when: otel.instrumentation.xxl-job.experimental-span-attributes=true
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+        - name: job.system
+          type: STRING
+        - name: scheduling.xxl-job.glue.type
+          type: STRING
+        - name: scheduling.xxl-job.job.id
+          type: LONG
   - name: xxl-job-2.1.2
+    display_name: XXL-Job
+    description: This instrumentation enables spans for XXL-Job task executions.
+    library_link: https://github.com/xuxueli/xxl-job
     source_path: instrumentation/xxl-job/xxl-job-2.1.2
     scope:
       name: io.opentelemetry.xxl-job-2.1.2
     javaagent_target_versions:
     - com.xuxueli:xxl-job-core:[2.1.2,2.3.0)
+    configurations:
+    - name: otel.instrumentation.xxl-job.experimental-span-attributes
+      description: 'Enables experimental span attributes `job.system`, `scheduling.xxl-job.glue.type`,
+        and `scheduling.xxl-job.job.id`.
+
+        '
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+    - when: otel.instrumentation.xxl-job.experimental-span-attributes=true
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+        - name: job.system
+          type: STRING
+        - name: scheduling.xxl-job.glue.type
+          type: STRING
+        - name: scheduling.xxl-job.job.id
+          type: LONG
   - name: xxl-job-2.3.0
+    display_name: XXL-Job
+    description: This instrumentation enables spans for XXL-Job task executions.
+    library_link: https://github.com/xuxueli/xxl-job
     source_path: instrumentation/xxl-job/xxl-job-2.3.0
     scope:
       name: io.opentelemetry.xxl-job-2.3.0
     javaagent_target_versions:
     - com.xuxueli:xxl-job-core:[2.3.0,)
+    configurations:
+    - name: otel.instrumentation.xxl-job.experimental-span-attributes
+      description: 'Enables experimental span attributes `job.system`, `scheduling.xxl-job.glue.type`,
+        and `scheduling.xxl-job.job.id`.
+
+        '
+      type: boolean
+      default: false
+    telemetry:
+    - when: default
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+    - when: otel.instrumentation.xxl-job.experimental-span-attributes=true
+      spans:
+      - span_kind: INTERNAL
+        attributes:
+        - name: code.function
+          type: STRING
+        - name: code.namespace
+          type: STRING
+        - name: job.system
+          type: STRING
+        - name: scheduling.xxl-job.glue.type
+          type: STRING
+        - name: scheduling.xxl-job.job.id
+          type: LONG
   zio:
   - name: zio-2.0
     source_path: instrumentation/zio/zio-2.0
@@ -13876,6 +14105,14 @@ internal:
   javaagent_target_versions:
   - io.projectreactor:reactor-core:[3.4.0,)
 - name: rxjava-1.0
+  display_name: RxJava
+  description: 'This instrumentation enables context propagation for RxJava 1 reactive
+    streams. It does not emit any telemetry on its own.
+
+    '
+  library_link: https://github.com/ReactiveX/RxJava/tree/1.x
+  features:
+  - CONTEXT_PROPAGATION
   source_path: instrumentation/rxjava/rxjava-1.0
   scope:
     name: io.opentelemetry.rxjava-1.0
