@@ -2932,25 +2932,40 @@
     },
     {
       "id": "rxjava-2.0",
+      "display_name": "RxJava",
       "library_group": "rxjava",
+      "description": "This instrumentation enables context propagation for RxJava 2 reactive streams and adds support for @WithSpan annotations on methods that return RxJava 2 types. It does not emit any telemetry on its own.\n",
       "tags": [
         "rxjava"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "rxjava-3.0",
+      "display_name": "RxJava",
       "library_group": "rxjava",
+      "description": "This instrumentation enables context propagation for RxJava 3 reactive streams and adds support for @WithSpan annotations on methods that return RxJava 3 types. It does not emit any telemetry on its own.\n",
       "tags": [
         "rxjava"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
     {
       "id": "rxjava-3.1.1",
+      "display_name": "RxJava",
       "library_group": "rxjava",
+      "description": "This instrumentation enables context propagation for RxJava 3 reactive streams and adds support for @WithSpan annotations on methods that return RxJava 3 types. It does not emit any telemetry on its own.\n",
       "tags": [
         "rxjava"
+      ],
+      "features": [
+        "CONTEXT_PROPAGATION"
       ],
       "has_telemetry": false
     },
@@ -3702,27 +3717,33 @@
     },
     {
       "id": "xxl-job-1.9.2",
+      "display_name": "XXL-Job",
       "library_group": "xxl",
+      "description": "This instrumentation enables spans for XXL-Job task executions.",
       "tags": [
         "xxl"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "xxl-job-2.1.2",
+      "display_name": "XXL-Job",
       "library_group": "xxl",
+      "description": "This instrumentation enables spans for XXL-Job task executions.",
       "tags": [
         "xxl"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "xxl-job-2.3.0",
+      "display_name": "XXL-Job",
       "library_group": "xxl",
+      "description": "This instrumentation enables spans for XXL-Job task executions.",
       "tags": [
         "xxl"
       ],
-      "has_telemetry": false
+      "has_telemetry": true
     },
     {
       "id": "zio-2.0",
