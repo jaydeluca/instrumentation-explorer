@@ -1,3 +1,5 @@
+**Note**: this project was a proof of concept, and is now being rebuilt at https://github.com/open-telemetry/opentelemetry-ecosystem-explorer
+
 # Instrumentation Explorer
 
 This project is a web-based tool designed to explore and display information about Java instrumentation libraries. It
