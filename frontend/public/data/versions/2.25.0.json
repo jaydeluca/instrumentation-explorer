@@ -922,15 +922,20 @@
       "url": "/data/instrumentations/rocketmq-client-5.0-2849ccad0fff.json",
       "filename": "rocketmq-client-5.0-2849ccad0fff.json"
     },
+    "runtime-telemetry": {
+      "hash": "7e6bb8a816de",
+      "url": "/data/instrumentations/runtime-telemetry-7e6bb8a816de.json",
+      "filename": "runtime-telemetry-7e6bb8a816de.json"
+    },
     "runtime-telemetry-java17": {
-      "hash": "78957d4e7390",
-      "url": "/data/instrumentations/runtime-telemetry-java17-78957d4e7390.json",
-      "filename": "runtime-telemetry-java17-78957d4e7390.json"
+      "hash": "5885beb20768",
+      "url": "/data/instrumentations/runtime-telemetry-java17-5885beb20768.json",
+      "filename": "runtime-telemetry-java17-5885beb20768.json"
     },
     "runtime-telemetry-java8": {
-      "hash": "d629d3879ccc",
-      "url": "/data/instrumentations/runtime-telemetry-java8-d629d3879ccc.json",
-      "filename": "runtime-telemetry-java8-d629d3879ccc.json"
+      "hash": "ffe5d897d784",
+      "url": "/data/instrumentations/runtime-telemetry-java8-ffe5d897d784.json",
+      "filename": "runtime-telemetry-java8-ffe5d897d784.json"
     },
     "rxjava-2.0": {
       "hash": "5311970c68b1",
@@ -1229,7 +1234,7 @@
     }
   },
   "metadata": {
-    "total_count": 245,
-    "changed_from_previous": 132
+    "total_count": 246,
+    "changed_from_previous": 135
   }
 }
